@@ -1,0 +1,60 @@
+#! /bin/bash
+
+# Movable Type (r) (C) Six Apart Ltd. All Rights Reserved.
+# This code cannot be redistributed without permission from www.sixapart.com.
+# For more information, consult your Movable Type license.
+#
+# $Id$
+# 
+# to make XX.pm, 
+#  $ cd /PATH/TO/MT_ROOT_DIR
+#  $ build/l10n/make-l10n XX
+# you can get XX in $TEMP_DIR
+
+
+TEMP_DIR=/tmp
+SCRIPT_DIR=build/l10n
+
+if [ -n $1 ]; then
+    TARGET=$1
+fi
+
+if [ -z $TARGET ]; then
+    TARGET=ja
+fi
+
+echo "in php..."
+find -L php -type f -name "*.cgi" -or -name "*.pm" -or -name "*.pl" -or -name "*.tmpl" -or -name "*.php" -or -name "*.pre" -or -name "*.js" -or -name "*.mtml" | sort | \
+awk -v target=$TARGET -v dir=$SCRIPT_DIR '{print "perl", dir "/trans.pl -t lib/MT/L10N/" target ".pm", $1 }' | bash >> $TEMP_DIR/$TARGET-base.pm
+echo "in cgi..."
+find -L *.cgi -type f -name "*.cgi" -or -name "*.pm" -or -name "*.pl" -or -name "*.tmpl" -or -name "*.php" -or -name "*.pre" -or -name "*.js" -or -name "*.mtml" | sort | \
+awk -v target=$TARGET -v dir=$SCRIPT_DIR '{print "perl", dir "/trans.pl -t lib/MT/L10N/" target ".pm", $1 }' | bash >> $TEMP_DIR/$TARGET-base.pm
+echo "in default_templates..."
+find -L default_templates -type f -name "*.cgi" -or -name "*.pm" -or -name "*.pl" -or -name "*.tmpl" -or -name "*.php" -or -name "*.pre" -or -name "*.js" -or -name "*.mtml" | sort | \
+awk -v target=$TARGET -v dir=$SCRIPT_DIR '{print "perl", dir "/trans.pl -t lib/MT/L10N/" target ".pm", $1 }' | bash >> $TEMP_DIR/$TARGET-base.pm
+echo "in lib..."
+find -L lib -type f -name "*.cgi" -or -name "*.pm" -or -name "*.pl" -or -name "*.tmpl" -or -name "*.php" -or -name "*.pre" -or -name "*.js" -or -name "*.mtml" | sort | grep -v L10N | \
+awk -v target=$TARGET -v dir=$SCRIPT_DIR '{print "perl", dir "/trans.pl -t lib/MT/L10N/" target ".pm", $1 }' | bash >> $TEMP_DIR/$TARGET-base.pm
+echo "in mt-static..."
+find -L mt-static -type f -name "*.cgi" -or -name "*.pm" -or -name "*.pl" -or -name "*.tmpl" -or -name "*.php" -or -name "*.pre" -or -name "*.js" -or -name "*.mtml" -or -name "*.tag" | sort | \
+awk -v target=$TARGET -v dir=$SCRIPT_DIR '{print "perl", dir "/trans.pl -t lib/MT/L10N/" target ".pm", $1 }' | bash >> $TEMP_DIR/$TARGET-base.pm
+echo "in themes..."
+find -L themes -type f -name "*.yaml" -or -name "*.js" -or -name "*.mtml" | sort | \
+awk -v target=$TARGET -v dir=$SCRIPT_DIR '{print "perl", dir "/trans.pl -t lib/MT/L10N/" target ".pm", $1 }' | bash >> $TEMP_DIR/$TARGET-base.pm
+echo "in search_templates..."
+find -L search_templates -type f -name "*.cgi" -or -name "*.pm" -or -name "*.pl" -or -name "*.tmpl" -or -name "*.php" -or -name "*.pre" -or -name "*.js" -or -name "*.mtml" | sort | \
+awk -v target=$TARGET -v dir=$SCRIPT_DIR '{print "perl", dir "/trans.pl -t lib/MT/L10N/" target ".pm", $1 }' | bash >> $TEMP_DIR/$TARGET-base.pm
+echo "in tmpl..."
+find -L tmpl -type f -name "*.cgi" -or -name "*.pm" -or -name "*.pl" -or -name "*.tmpl" -or -name "*.php" -or -name "*.pre" -or -name "*.js" -or -name "*.mtml" | sort | \
+awk -v target=$TARGET -v dir=$SCRIPT_DIR '{print "perl", dir "/trans.pl -t lib/MT/L10N/" target ".pm", $1 }' | bash >> $TEMP_DIR/$TARGET-base.pm
+echo "in addons..."
+find -L addons -type f -name "*.cgi" -or -name "*.pm" -or -name "*.pl" -or -name "*.cfg" -or -name "*.tmpl" -or -name "*.php" -or -name "*.pre" -or -name "*.js" -or -name "*.mtml" -or -name "*.yaml" | sort | \
+awk -v target=$TARGET -v dir=$SCRIPT_DIR '{print "perl", dir "/trans.pl -t lib/MT/L10N/" target ".pm", $1 }' | bash >> $TEMP_DIR/$TARGET-base.pm
+echo "in plugins..."
+find -L plugins -type f -name "*.cgi" -or -name "*.pm" -or -name "*.pl" -or -name "*.cfg" -or -name "*.tmpl" -or -name "*.php" -or -name "*.pre" -or -name "*.js" -or -name "*.mtml" -or -name "*.yaml" | sort | \
+awk -v target=$TARGET -v dir=$SCRIPT_DIR '{print "perl", dir "/trans.pl -t lib/MT/L10N/" target ".pm", $1 }' | bash >> $TEMP_DIR/$TARGET-base.pm
+#perl $SCRIPT_DIR/diff.pl -old lib/MT/L10N/$TARGET.pm -target $TEMP_DIR/$TARGET-base.pm -new $TEMP_DIR/$TARGET-nodupe.pm > $TEMP_DIR/$TARGET-old.pm
+#cat $TEMP_DIR/$TARGET-old.pm >> $TEMP_DIR/$TARGET-base.pm
+cat $TEMP_DIR/$TARGET-base.pm | perl $SCRIPT_DIR/wrap.pl $TARGET > $TEMP_DIR/$TARGET.pm
+#perl -Ilib -cw $TEMP_DIR/$TARGET.pm
+#rm -f $TEMP_DIR/$TARGET-*.pm

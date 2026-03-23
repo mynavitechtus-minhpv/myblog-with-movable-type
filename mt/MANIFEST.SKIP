@@ -1,0 +1,432 @@
+# Themes that aren't to be in the general release
+mt-static/themes/cityscape-austin
+mt-static/themes/cityscape-boston
+mt-static/themes/cityscape-chicago
+mt-static/themes/cityscape-dc
+mt-static/themes/cityscape-houston
+mt-static/themes/cityscape-kiev
+mt-static/themes/cityscape-la
+mt-static/themes/cityscape-london
+mt-static/themes/cityscape-miami
+mt-static/themes/cityscape-nashville
+mt-static/themes/cityscape-nyc
+mt-static/themes/cityscape-paris
+mt-static/themes/cityscape-philadelphia
+mt-static/themes/cityscape-seattle
+#mt-static/themes/cityscape-sf
+mt-static/themes/cityscape-sydney
+mt-static/themes/cityscape-tokyo
+mt-static/themes/cityscape-toronto
+mt-static/themes/cityscape-vegas
+mt-static/themes/hills-dusk
+mt-static/themes/hills-green
+mt-static/themes/hills-midnight
+mt-static/themes/hills-pink
+mt-static/themes/minimalist-blue
+mt-static/themes/minimalist-brown
+mt-static/themes/minimalist-green
+mt-static/themes/minimalist-grey
+mt-static/themes/minimalist-light-blue
+mt-static/themes/minimalist-light-green
+mt-static/themes/minimalist-pink
+mt-static/themes/minimalist-purple
+#mt-static/themes/minimalist-red
+mt-static/themes/minimalist-white
+mt-static/themes/mt-static/themes/cityscape-portland
+#mt-static/themes/unity-blue
+mt-static/themes/unity-green
+mt-static/themes/unity-purple
+mt-static/themes/unity-tricolor
+
+# Theme package for test
+themes/broken_blog_theme
+
+# Conditional SKIP rule; format: #?(var=value) RULE
+#?package=MT ^COPYING
+#?package=MT ^COPYRIGHT
+#?package=MT ^addons/Enterprise.pack
+#?package=MT ^mt-static/addons/Enterprise.pack
+#?package=MT ^tools/migrate-mssql
+#?package=MT ^addons/Cloud.pack
+#?package=MT ^mt-hb.cgi
+#?package=MT ^mt-static/addons/Cloud.pack
+#?package=MT ^VERSIONS
+#?package=MT ^lib/MT/FileMgr/FTP.pm
+#?package=MT ^lib/MT/FileMgr/FTPS.pm
+#?package=MT ^addons/Sync.pack
+#?package=MT ^mt-static/addons/Sync.pack
+#?package=MT ^addons/AWS.pack
+#?package=MT ^mt-sp.cgi
+#?package=MT ^plugins/SmartphoneOption
+#?package=MT ^mt-static/SmartphoneOption
+#?package=MT ^plugins/Motion
+#?package=MT ^mt-static/plugins/Motion
+#?package=MT ^mt-static/jquery/themes/Motion
+
+#?package=MT ^mt-cp.cgi
+#?package=MT ^addons/Community.pack
+#?package=MT ^mt-static/addons/Community.pack
+
+#?pacakge=MT ^plugins/mixiComment
+#?pacakge=MT ^mt-static/plugins/mixiComment
+#?package=MT ^plugins/P-M-SizeLimit
+
+#?package=MTAWS ^COPYING
+#?package=MTAWS ^COPYRIGHT
+#?package=MTAWS ^addons/Enterprise.pack
+#?package=MTAWS ^mt-static/addons/Enterprise.pack
+#?package=MTAWS ^tools/migrate-mssql
+#?package=MTAWS ^addons/Cloud.pack
+#?package=MTAWS ^mt-hb.cgi
+#?package=MTAWS ^mt-static/addons/Cloud.pack
+#?package=MTAWS ^VERSIONS
+#?package=MTAWS ^lib/MT/FileMgr/FTP.pm
+#?package=MTAWS ^lib/MT/FileMgr/FTPS.pm
+#?package=MTAWS ^addons/Sync.pack
+#?package=MTAWS ^mt-static/addons/Sync.pack
+#?package=MTAWS ^plugins/P-M-SizeLimit
+#?package=MTAWS ^mt-cp.cgi
+#?package=MTAWS ^addons/Community.pack
+#?package=MTAWS ^mt-static/addons/Community.pack
+#?package=MTAWS ^plugins/LicenseVerification
+
+#?package=MTOS ^addons
+#?package=MTOS ^mt-cp.cgi
+#?package=MTOS ^mt-static/addons
+#?package=MTOS ^mt-static/themes/tristan-blue
+#?package=MTOS ^mt-static/themes/tristan-blue-4.2
+#?package=MTOS ^mt-static/plugins/Motion
+#?package=MTOS ^mt-static/jquery/themes/Motion
+#?package=MTOS ^mt-static/plugins/ActionStreams
+#?package=MTOS ^mt-static/plugins/FacebookCommenters
+#?package=MTOS ^mt-static/plugins/mixiComment
+#?package=MTOS ^plugins/Motion
+#?package=MTOS ^plugins/ActionStreams
+#?package=MTOS ^plugins/FacebookCommenters
+#?package=MTOS ^plugins/CommunityActionStreams
+#?package=MTOS ^plugins/mixiComment
+#?package=MTOS ^plugins/CustomFields
+#?package=MTOS ^tools/migrate-mssql
+#?package=MTOS ^addons/Cloud.pack
+#?package=MTOS ^mt-hb.cgi
+#?package=MTOS ^VERSIONS
+#?package=MTOS ^lib/MT/FileMgr/FTP.pm
+#?package=MTOS ^lib/MT/FileMgr/FTPS.pm
+#?package=MTOS ^themes/eiger
+#?package=MTOS ^plugins/SmartphoneOption
+#?package=MTOS ^mt-static/plugins/SmartphoneOption
+#?package=MTOS ^mt-sp.cgi
+#?package=MTOS ^addons/Sync.pack
+#?package=MTOS ^mt-static/addons/Sync.pack
+#?package=MTOS ^addons/AWS.pack
+#?package=MTOS ^plugins/P-M-SizeLimit
+#?package=MTOS ^plugins/LicenseVerification
+
+#?package=MTCOM ^COPYING
+#?package=MTCOM ^COPYRIGHT
+#?package=MTCOM ^addons/Enterprise.pack
+#?package=MTCOM ^mt-static/addons/Enterprise.pack
+#?package=MTCOM ^addons/Community.pack
+#?package=MTCOM ^mt-static/addons/Community.pack
+#?package=MTCOM ^mt-cp.cgi
+#?package=MTCOM ^mt-static/themes/tristan-blue
+#?package=MTCOM ^mt-static/themes/tristan-blue-4.2
+#?package=MTCOM ^mt-static/plugins/Motion
+#?package=MTCOM ^mt-static/jquery/themes/Motion
+#?package=MTCOM ^mt-static/plugins/ActionStreams
+#?package=MTCOM ^mt-static/plugins/FacebookCommenters
+#?package=MTCOM ^mt-static/plugins/mixiComment
+#?package=MTCOM ^plugins/Motion
+#?package=MTCOM ^plugins/ActionStreams
+#?package=MTCOM ^plugins/FacebookCommenters
+#?package=MTCOM ^plugins/CommunityActionStreams
+#?package=MTCOM ^plugins/mixiComment
+#?package=MTCOM ^tools/migrate-mssql
+#?package=MTCOM ^addons/Cloud.pack
+#?package=MTCOM ^mt-static/addons/Cloud.pack
+#?package=MTCOM ^mt-hb.cgi
+#?package=MTCOM ^VERSIONS
+#?package=MTCOM ^lib/MT/FileMgr/FTP.pm
+#?package=MTCOM ^lib/MT/FileMgr/FTPS.pm
+#?package=MTCOM ^addons/Sync.pack
+#?package=MTCOM ^mt-static/addons/Sync.pack
+#?package=MTCOM ^addons/AWS.pack
+#?package=MTCOM ^plugins/P-M-SizeLimit
+#?package=MTCOM ^plugins/LicenseVerification
+
+#?package=MTA ^COPYING
+#?package=MTA ^COPYRIGHT
+#?package=MTA ^addons/Cloud.pack
+#?package=MTA ^mt-static/addons/Cloud.pack
+#?package=MTA ^mt-hb.cgi
+#?package=MTA ^VERSIONS
+#?package=MTA ^addons/Sync.pack/lib/MT/FileSynchronizer/Rsync.pm
+#?package=MTA ^addons/AWS.pack
+#?package=MTA ^plugins/P-M-SizeLimit
+#?package=MTA ^mt-cp.cgi
+#?package=MTA ^addons/Community.pack
+#?package=MTA ^mt-static/addons/Community.pack
+
+#?package=MTAAWS ^COPYING
+#?package=MTAAWS ^COPYRIGHT
+#?package=MTAAWS ^addons/Cloud.pack
+#?package=MTAAWS ^mt-static/addons/Cloud.pack
+#?package=MTAAWS ^mt-hb.cgi
+#?package=MTAAWS ^VERSIONS
+#?package=MTAAWS ^addons/Sync.pack/lib/MT/FileSynchronizer/Rsync.pm
+#?package=MTAAWS ^plugins/P-M-SizeLimit
+#?package=MTAAWS ^mt-cp.cgi
+#?package=MTAAWS ^addons/Community.pack
+#?package=MTAAWS ^mt-static/addons/Community.pack
+#?package=MTAAWS ^plugins/LicenseVerification
+
+#?package=MTCLOUD ^COPYING
+#?package=MTCLOUD ^COPYRIGHT
+#?package=MTCLOUD ^addons/Enterprise.pack
+#?package=MTCLOUD ^mt-static/addons/Enterprise.pack
+#?package=MTCLOUD ^tools/migrate-mssql
+#?package=MTCLOUD ^addons/Sync.pack/lib/MT/FileSynchronizer/Rsync.pm
+#?package=MTCLOUD ^addons/AWS.pack
+#?package=MTCLOUD ^mt-cp.cgi
+#?package=MTCLOUD ^addons/Community.pack
+#?package=MTCLOUD ^mt-static/addons/Community.pack
+#?package=MTCLOUD ^addons/Cloud.pack/tools/Cloud.pack/cloud-log
+#?package=MTCLOUD ^plugins/LicenseVerification
+
+#?package=MTP ^COPYING
+#?package=MTP ^COPYRIGHT
+#?package=MTP ^addons/Enterprise.pack
+#?package=MTP ^mt-static/addons/Enterprise.pack
+#?package=MTP ^tools/migrate-mssql
+#?package=MTP ^addons/Cloud.pack
+#?package=MTP ^mt-hb.cgi
+#?package=MTP ^mt-static/addons/Cloud.pack
+#?package=MTP ^VERSIONS
+#?package=MTP ^lib/MT/FileMgr/FTP.pm
+#?package=MTP ^lib/MT/FileMgr/FTPS.pm
+#?package=MTP ^addons/Sync.pack
+#?package=MTP ^mt-static/addons/Sync.pack
+#?package=MTP ^addons/AWS.pack
+#?package=MTP ^mt-sp.cgi
+#?package=MTP ^plugins/SmartphoneOption
+#?package=MTP ^mt-static/SmartphoneOption
+#?package=MTP ^plugins/Motion
+#?package=MTP ^mt-static/plugins/Motion
+#?package=MTP ^mt-static/jquery/themes/Motion
+
+#?package=MTP ^mt-cp.cgi
+#?package=MTP ^addons/Community.pack
+#?package=MTP ^mt-static/addons/Community.pack
+
+#?pacakge=MTP ^plugins/mixiComment
+#?pacakge=MTP ^mt-static/plugins/mixiComment
+#?package=MTP ^plugins/P-M-SizeLimit
+#?package=MTP ^plugins/LicenseVerification
+
+#?package=MTPA ^COPYING
+#?package=MTPA ^COPYRIGHT
+#?package=MTPA ^addons/Cloud.pack
+#?package=MTPA ^mt-static/addons/Cloud.pack
+#?package=MTPA ^mt-hb.cgi
+#?package=MTPA ^VERSIONS
+#?package=MTPA ^addons/Sync.pack/lib/MT/FileSynchronizer/Rsync.pm
+#?package=MTPA ^addons/AWS.pack
+#?package=MTPA ^plugins/P-M-SizeLimit
+#?package=MTPA ^mt-cp.cgi
+#?package=MTPA ^addons/Community.pack
+#?package=MTPA ^mt-static/addons/Community.pack
+#?pacakge=MTPA ^plugins/mixiComment
+#?pacakge=MTPA ^mt-static/plugins/mixiComment
+#?package=MTPA ^plugins/P-M-SizeLimit
+#?package=MTPA ^plugins/LicenseVerification
+
+#?package=MTPCLOUD ^COPYING
+#?package=MTPCLOUD ^COPYRIGHT
+#?package=MTPCLOUD ^addons/Enterprise.pack
+#?package=MTPCLOUD ^mt-static/addons/Enterprise.pack
+#?package=MTPCLOUD ^tools/migrate-mssql
+#?package=MTPCLOUD ^addons/Sync.pack/lib/MT/FileSynchronizer/Rsync.pm
+#?package=MTPCLOUD ^addons/AWS.pack
+#?package=MTPCLOUD ^mt-cp.cgi
+#?package=MTPCLOUD ^addons/Community.pack
+#?package=MTPCLOUD ^mt-static/addons/Community.pack
+#?package=MTPCLOUD ^plugins/PremiumSearch
+#?package=MTPCLOUD ^plugins/PremiumOpenSearch
+#?package=MTPCLOUD ^plugins/LicenseVerification
+
+#?language=ja ^plugins/zemanta
+
+^schemas/
+^scss/
+^src/
+\bknown-issues
+^t/
+.*/t/
+^xt/
+.*/xt/
+^phpunit.xml
+^php/tests
+^php/extlib/adodb5/tests
+^db
+^ToDo$
+^README
+
+# License files.
+^LICENSE$
+^LICENSE-PERSONAL$
+^LICENSE-BETA$
+^LICENSE-COMMERCIAL$
+
+# Revision files.
+\bCVS\b
+\bRCS\b
+\.svn\b
+\.git\b
+\.gitignore
+\.gitmodules
+\.mailmap$
+,v$
+
+# Hidden, temp and backup files.
+~$
+^\.#
+\.bak$
+\.old$
+\.swp$
+\.tmp$
+^\.DS_Store$
+
+# Packages
+^lib/MT/FileMgr/SFTP.pm$
+^lib/MT/FileMgr/DAV.pm$
+^extlib/share
+^extlib/pkg
+^extlib/perllocal.po
+Tangent\.pm$
+/no\.pm$
+/it\.pm$
+
+# Language
+lang-es
+lang-no
+lang-ja
+lang-it
+\.(en_us|fr|de|gb|ja|en|no|it)$
+
+# Tools
+^mt-inbox.pl$
+^mt-thread.cgi$
+^mt-set-reg.cgi$
+^mt-load.cgi
+#^tools/find-junk
+#^tools/list-index
+#^tools/list-objects
+^tools/populate
+^tools/mt-tools
+^tools/mt-tools.tar.gz
+^tools/mt-tools.zip
+#^tools/rebuild-indexes
+#^tools/rebuild-pages
+#^tools/remove-object
+#^tools/run-periodic-tasks
+#^tools/sig-validate
+#^tools/upgrade
+^tools/write-default-templates
+
+# Plugins
+#plugins/WidgetManager
+plugins/MultiBlog/t/
+plugins/FormattedText/t/
+plugins/Loupe
+mt-static/plugins/Loupe
+plugins/mixiComment
+mt-static/plugins/mixiComment
+
+# 'Extras'
+^extras/
+
+# Build process and distribution files
+\.pre$
+^MANIFEST
+Makefile
+^_build
+^build
+^Build.*$
+^blib/
+^pm_to_blib$
+^MT-
+^MT.*\.zip
+^MT.*\.gz
+index\.html\..*
+readme\.html\..*
+build-language-stamp
+^mt-config.cgi$
+^exports/
+^Gruntfile.js
+^package-lock.json
+^package.json
+^node_modules/
+\.node-version$
+\.php_cs\.dist$
+\.php-cs-fixer\.php
+^rollup.config.ts
+^vitest.config.ts
+^tsconfig.json
+\.babelrc
+\.eslintrc.json
+\.eslintignore
+^eslint.config.mjs
+
+^mt-static/plugins/Motion
+^mt-static/jquery/themes/Motion
+^mt-static/jquery/themes/flora
+^mt-static/plugins/ActionStreams
+^plugins/Motion
+^plugins/ActionStreams
+^plugins/CommunityActionStreams
+^plugins/TypePadAntiSpam
+
+# a-table.js
+^mt-static/a-table.js/.babelrc
+^mt-static/a-table.js/.editorconfig
+^mt-static/a-table.js/.eslintrc
+^mt-static/a-table.js/.gitignore
+^mt-static/a-table.js/.node-version
+^mt-static/a-table.js/_config.yml
+^mt-static/a-table.js/bin/
+^mt-static/a-table.js/circle.yml
+^mt-static/a-table.js/examples/
+^mt-static/a-table.js/lib/
+^mt-static/a-table.js/node_modules/
+^mt-static/a-table.js/package.json
+^mt-static/a-table.js/src/
+^mt-static/a-table.js/test/
+^mt-static/a-table.js/yarn.lock
+
+# GitHub
+\.github
+
+# Travis
+\.travis.yml
+
+# wercker
+wercker.yml
+
+# CircleCI
+circle.yml
+Dockerfile
+\.circleci
+
+# Etc
+\.perltidyrc
+\.perlcriticrc
+\.gitattributes
+shippable.yml
+yarn.lock
+
+# Test
+\.proverc
+
+# Composer
+^composer.json
+^composer.lock

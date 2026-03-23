@@ -1,0 +1,164 @@
+## -*- mode: perl; coding: utf-8 -*-
+
+## requires
+
+# These modules are installed in extlib directory.
+#requires 'CGI';
+#requires 'Image::Size';
+#requires 'CGI::Cookie';
+#requires 'LWP::UserAgent';
+
+# This is a core module, but there may be the environment
+# that this module is not installed...
+requires 'File::Spec', '0.8';
+
+requires 'DBI', '1.21';
+requires 'DBD::mysql';
+
+# TODO: These are installed by carton install.
+#feature 'mssqlserver', 'MSSQLServer support' => sub {
+#    requires 'DBD::ODBC', '1.25';
+#};
+#feature 'oracle', 'Oracle Database support' => sub {
+#    requires 'DBD::Oracle', '1.25';
+#};
+
+## recommends
+
+requires 'Digest::SHA';
+requires 'Plack';
+requires 'CGI::PSGI';
+requires 'CGI::Parse::PSGI';
+requires 'XMLRPC::Transport::HTTP::Plack';
+requires 'HTML::Entities';
+requires 'HTML::Parser';
+requires 'SOAP::Lite', '0.5';
+requires 'File::Temp';
+requires 'Scalar::Util';
+requires 'List::Util';
+
+# Image::Magick is not installed by using cpanfile
+# on CI services.
+#requires 'Image::Magick';
+
+requires 'GD';
+requires 'Imager';
+requires 'IPC::Run';
+requires 'Storable';
+requires 'Crypt::DSA';
+
+# TODO: libdb-dev is needed for installing Cache::File.
+#requires 'Cache::File';
+
+requires 'MIME::Base64';
+requires 'Email::MIME';
+requires 'Cache::Memcached';
+requires 'Archive::Tar';
+requires 'IO::Compress::Gzip';
+requires 'IO::Uncompress::Gunzip';
+requires 'Archive::Zip', '!=1.66, !=1.67, !=1.68';
+requires 'XML::SAX';
+requires 'Digest::SHA1';
+requires 'Net::SMTP', '2.32';
+requires 'Authen::SASL';
+requires 'Net::SMTP::SSL';
+requires 'Net::SMTP::TLS';
+requires 'IO::Socket::SSL';
+requires 'Net::SSLeay';
+requires 'Safe';
+requires 'Digest::MD5';
+requires 'Text::Balanced';
+requires 'XML::Parser';
+requires 'Time::HiRes';
+requires 'Mozilla::CA';
+requires 'XML::SAX::ExpatXS';
+requires 'XML::SAX::Expat';
+requires 'XML::LibXML::SAX';
+
+requires 'CGI::Compile';
+requires 'YAML::PP';
+requires 'YAML::Syck';
+requires 'YAML::XS', 'v0.903.0';
+
+# Cloud.pack
+requires 'Net::CIDR';
+requires 'Net::IP';
+
+on 'test' => sub {
+    requires 'Acme::RandomEmoji';
+    requires 'AnyEvent::SMTP::Server';
+    requires 'App::Prove::Plugin::MySQLPool';
+    requires 'Array::Diff';
+    requires 'Carp::Always';
+    requires 'Class::Unload';
+    requires 'Data::Visitor::Tiny';
+    requires 'Date::Parse';
+    requires 'DateTime';
+    requires 'DateTime::TimeZone';
+    requires 'Devel::GlobalDestruction';
+    requires 'DBD::SQLite';
+    requires 'DBI', '1.633';
+    requires 'File::pushd';
+    requires 'File::Temp', '0.23';
+    requires 'File::Which';
+    requires 'Fluent::Logger';
+    requires 'HTML::Filter::Callbacks';
+    requires 'HTML::Form';
+    requires 'HTTP::DAV';
+    requires 'HTTP::Request::AsCGI';
+    requires 'HTTP::Request::Common';
+    requires 'IO::String';
+    requires 'IPC::Run3';
+    requires 'JSON::XS';  # For speed
+    requires 'JSON::Validator' unless $] < 5.016;
+    requires 'Log::Dispatch';
+    requires 'Log::Dispatch::Configurator::Perl';
+    requires 'Log::Dispatch::Configurator::YAML';
+    requires 'Log::Log4perl';
+    requires 'Log::Minimal';
+    requires 'MIME::Head';
+    requires 'Mock::MonkeyPatch';
+    requires 'Module::Find';
+    requires 'Mojolicious';
+    requires 'Net::Server::SS::PreFork' unless $^O eq 'MSWin32';
+    requires 'Net::SFTP';
+    requires 'Parallel::ForkManager';
+    requires 'Path::Tiny';
+    requires 'Perl::Critic::Pulp';
+    requires 'Perl::Critic::TooMuchCode';
+    requires 'PHP::Serialization';
+    requires 'POSIX::AtFork' unless $^O eq 'MSWin32';
+    requires 'Proc::ProcessTable' unless $^O eq 'MSWin32';
+    requires 'Role::Tiny';
+    requires 'Selenium::Remote::Driver', '1.36';
+    requires 'Server::Starter' unless $^O eq 'MSWin32';
+    requires 'SQL::Maker';
+    requires 'SQL::Translator', '1.61';   # changed comment generation
+    requires 'Starman' unless $^O eq 'MSWin32';
+    requires 'String::CamelCase';
+    requires 'Sub::Name';
+    requires 'Term::Encoding';
+    requires 'Test::Base';
+    requires 'Test::Base::Less';
+    requires 'Test::Class';
+    requires 'Test::Data';
+    requires 'Test::Deep';
+    requires 'Test::Differences';
+    requires 'Test::FailWarnings';
+    requires 'Test::File';
+    requires 'Test::LeakTrace';
+    requires 'Test::Memcached';
+    requires 'Test::MockModule';
+    requires 'Test::MockObject';
+    requires 'Test::MockTime::HiRes';
+    requires 'Test::Perl::Critic';
+    requires 'Test::Pod::Coverage';
+    requires 'Test::Requires';
+    requires 'Test::SharedFork';
+    requires 'Test::Spec';
+    requires 'Text::Diff';
+    requires 'Time::Piece';
+    requires 'URI::Escape';
+    requires 'Web::Query';
+    requires 'Web::Scraper';
+};
