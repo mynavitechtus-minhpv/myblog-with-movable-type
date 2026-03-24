@@ -71,7 +71,7 @@ sub test_wizard {
     my %seen;
     my $ct        = 0;
     my $prev_step = '';
-    local $MT::DebugMode = 1;
+    local $MT::DebugMode = 0;
     until ((my $step = current_step($app) || '') eq 'seed') {
         die $app->content unless $step;
         die $app->content if $ct > 2;

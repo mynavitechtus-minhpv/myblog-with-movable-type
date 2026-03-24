@@ -8,7 +8,7 @@ our $test_env;
 BEGIN {
     $test_env = MT::Test::Env->new(
         PluginPath => ['TEST_ROOT/plugins'],
-        DebugMode => 1,
+        DebugMode => 0,
     );
     $ENV{MT_CONFIG} = $test_env->config_file;
 

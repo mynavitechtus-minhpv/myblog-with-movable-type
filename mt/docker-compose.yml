@@ -36,6 +36,7 @@ services:
       - .:/var/www/cgi-bin/mt
       # Published site output (local folder)
       - ./published:/var/www/html/site
+      - ./assets:/var/www/cgi-bin/mt/mt-static/assets
     environment:
       MT_DB_HOST: db
       MT_DB_PORT: 3306

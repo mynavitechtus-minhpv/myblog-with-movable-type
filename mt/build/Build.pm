@@ -563,7 +563,7 @@ CGIPath $url
 Database $db
 ObjectDriver DBI::mysql
 DBUser root
-DebugMode 2
+DebugMode 0
 CONFIG
         if ( $self->{'ldap'} ) {
             print $fh <<CONFIG;
