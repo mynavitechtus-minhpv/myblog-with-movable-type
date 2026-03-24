@@ -1,0 +1,63 @@
+---
+description: Standardized detailed format for Movable Type admin setup requests
+alwaysApply: true
+---
+
+# MT Admin Escalation Output Format
+
+When implementation requires new Admin entities, respond with this exact structure and high detail.
+
+## Required Sections
+
+1. `Admin setup required` summary
+2. Per-entity block (one block per `CustomField` / `ContentType` / `Template`)
+3. Full field schema
+4. MTML usage snippet
+5. Setup order
+6. Dependency and impact notes
+
+## Output Template
+
+```markdown
+## Admin setup required
+
+### 1) [Entity Name]
+- Type: `CustomField` | `ContentType` | `Template`
+- Scope: [Website/Blog/Entry/Category/ContentType/...]
+- Purpose: [Why this entity is required]
+- Dependency: [What feature waits on this setup]
+
+### 2) Field schema
+- `field_key`
+  - Label: ...
+  - Type: ...
+  - Required: yes/no
+  - Default: ...
+  - Validation: ...
+  - Notes: ...
+
+### 3) MTML usage
+```mtml
+...realistic snippet using the field/content...
+```
+
+### 4) Setup order
+1. Create ...
+2. Configure ...
+3. Link ...
+4. Rebuild/verify ...
+
+### 5) Impact and verification
+- Affected templates: ...
+- Backward compatibility: ...
+- Verification checklist:
+  - [ ] Data appears in expected template block
+  - [ ] Empty-state behavior is safe
+  - [ ] Existing pages are not broken
+```
+
+## Quality Bar
+
+- Be concrete: avoid generic placeholders when real names are available.
+- Include assumptions explicitly if data model is not yet finalized.
+- If user has not created Admin entities yet, stop dependent implementation and ask for setup completion.

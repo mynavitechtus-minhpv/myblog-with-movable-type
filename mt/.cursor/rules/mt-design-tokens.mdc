@@ -1,0 +1,19 @@
+---
+description: Enforce approved color, typography, spacing, and radius tokens for AZ-COM UI
+alwaysApply: true
+---
+
+# MT Design Tokens
+
+- Use tokenized colors only; avoid hard-coded color values in component styles.
+- Primary: `#22326e`, `#1c64f2`, `#e8f0fe`, `#b9cffb`; Accent: `#df4661`, `#bc2630`.
+- Neutrals: text `#424242/#757575`, white `#ffffff`, bg `#f5f7fa`, border `#e0e0e0`.
+- Allowed gradients: blue `linear-gradient(to bottom right, #22326e, #1c64f2)` and red `linear-gradient(to right, #df4661, #bc2630)`.
+- Base spacing scale uses 8px system with approved values `4, 8, 10, 16, 20, 24, 32, 40, 48, 60, 64, 80`.
+- Border radius tokens only: `4px`, `8px`, `12px`, and pill `9999px`.
+
+## Typography Rules
+
+- Main font: Noto Sans JP. Secondary (labels/latin-numeric): Helvetica.
+- Body default: `16px` with readable line-height (`1.6-1.75`).
+- Enforce heading and body line-height ranges from the guideline.

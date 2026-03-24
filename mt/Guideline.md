@@ -18,6 +18,6 @@
 - Tạo **header.mtml** Trong ```Layout Templates``` => Coppy nội dung của **/templates/layout/header.mtml**
 - Tạo **footer.mtml** Trong ```Layout Templates``` => Coppy nội dung của **/templates/layout/footer.mtml**
 - Tạo **index.mtml** Trong ```Index Templates``` => Coppy nội dung của **/pages/index.mtml**
-- Copy file này **/assets/css/base.css** và upload lên MT Cloud (FTP) => đúng path là /assets/css/base.css
+- Copy file này **/assets/css/base.css** và upload lên MT Cloud (FTP) => đúng path là **mt-static/assets/css/base.css**
 
 

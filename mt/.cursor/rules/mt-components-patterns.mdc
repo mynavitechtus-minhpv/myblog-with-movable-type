@@ -1,0 +1,22 @@
+---
+description: Component naming and UI behavior conventions for AZ-COM design system
+alwaysApply: true
+---
+
+# MT Component Patterns
+
+- Naming convention must follow BEM-like format:
+  - `.c-[component]`
+  - `.c-[component]__element`
+  - `.c-[component]--modifier`
+- Button variants: Primary, Accent, Outline, Pill. Main navigation CTA prefers Pill.
+- Header/Footer actions keep brand consistency; member button uses Pill style.
+- Breadcrumb text style: `14px`, line-height `20px`, secondary text color.
+- Label/Tag style: Helvetica, `16px`, bold, line-height `32px`.
+- Pagination must distinguish clearly: number, prev, next; active uses Primary Blue.
+- Floating CTA buttons default to Pill + subtle shadow for visibility.
+
+## Reuse Principle
+
+- Build reusable components before page-specific overrides.
+- Keep card structure consistent: thumbnail, category, title, description, link.

@@ -1,0 +1,20 @@
+---
+description: Movable Type layout and responsive breakpoints for AZ-COM project
+alwaysApply: true
+---
+
+# MT Layout and Responsive
+
+- Use breakpoints exactly: Mobile `<768px`, Tablet `768px-1024px`, Desktop `>1024px`.
+- Desktop widths: container `1440px`, content `1280px`, text-heavy content `1120px`.
+- Mobile widths: design baseline `375px`, content `335px`, narrow readable zone `280px`.
+- Prefer readability adjustments on SP by spacing and width, not aggressive font shrinking.
+- Keep heading responsive scale: H1 `40->30`, H2 `32->26`, H3 `24->20`, H4 `20->18`.
+- Section spacing responsive baseline: `64px -> 40px`, page padding `80px -> 20px`.
+
+## Validation Checklist
+
+- [ ] Chosen container/content width matches page context.
+- [ ] SP layout uses approved mobile widths.
+- [ ] Heading scale follows desktop/mobile mapping.
+- [ ] Responsive behavior preserves readability first.

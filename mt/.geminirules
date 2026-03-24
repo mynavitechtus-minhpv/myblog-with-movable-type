@@ -1,0 +1,76 @@
+# Quy tắc Dự án Movable Type (MT) - AZ-COM Design System
+
+Bạn phải luôn tuân thủ các quy tắc sau đây khi làm việc trong project này.
+
+## 1. Quy tắc Chung (Global User Rules)
+- Luôn trả lời bằng **tiếng Việt**.
+- Các file đặc tả (specifications), tài liệu gen ra phải là **tiếng Việt**.
+- Comment trong code phải sử dụng **tiếng Anh**.
+
+## 2. Quy trình Làm việc & Mirroring (Source of Truth)
+- Thư mục `assets/` là **nguồn dữ liệu gốc (Source of Truth)** cho các file frontend (CSS/JS).
+- **QUAN TRỌNG:** Sau khi chỉnh sửa bất kỳ file nào trong `assets/css/` hoặc `assets/js/`, bạn PHẢI sao chép nội dung chính xác sang file tương ứng trong `development-dev/assets/`.
+- Thư mục theo dõi Template của MT: `development-dev/pages/`, `development-dev/templates/`.
+- Không tự động đồng bộ file hình ảnh trừ khi được yêu cầu cụ thể.
+- Không đọc hoặc sửa file `.env` trừ khi được phép.
+
+## 3. Hệ thống Design Tokens (AZ-COM)
+- **Màu sắc:** Chỉ sử dụng mã màu đã quy định.
+    - Blue (Primary): `#22326e`, `#1c64f2`, `#e8f0fe`, `#b9cffb`
+    - Red (Accent): `#df4661`, `#bc2630`
+    - Neutrals: Text `#424242/#757575`, White `#ffffff`, BG `#f5f7fa`, Border `#e0e0e0`
+- **Gradients:** 
+    - Blue: `linear-gradient(to bottom right, #22326e, #1c64f2)`
+    - Red: `linear-gradient(to right, #df4661, #bc2630)`
+- **Spacing:** Hệ thống 8px với các giá trị: `4, 8, 10, 16, 20, 24, 32, 40, 48, 60, 64, 80`.
+- **Border Radius:** `4px`, `8px`, `12px`, và pill `9999px`.
+- **Typography:** Font chính là `Noto Sans JP`. Font phụ (label/latin) là `Helvetica`. Body mặc định `16px`, line-height `1.6-1.75`.
+
+## 4. Triển khai CSS & Component
+- **Kiến trúc CSS:** Phân chia thành `base.css`, `layout.css`, `component.css`, `page.css`, `utility.css`.
+- **Naming:** Tuân thủ BEM-like: `.c-[component]`, `.c-[component]__element`, `.c-[component]--modifier`.
+- **Cấm:** Viết CSS inline, hard-code màu sắc ngoài hệ thống token.
+- **Hiệu ứng:** Sử dụng `box-shadow` hoặc pseudo-element cho hiệu ứng ring/border của CTA thay vì tăng border-width.
+- **Button:** Các biến thể Primary, Accent, Outline, Pill. Nút điều hướng chính và thành viên ưu tiên kiểu **Pill**.
+
+## 5. Bố cục & Responsive (Breakpoints)
+- **Breakpoints:** Mobile `<768px`, Tablet `768px-1024px`, Desktop `>1024px`.
+- **Width (Desktop):** Container `1440px`, Content `1280px`, Text-heavy `1120px`.
+- **Width (Mobile):** Baseline `375px`, Content `335px`, Narrow `280px`.
+- **Heading Scale (PC -> SP):** H1 `40->30`, H2 `32->26`, H3 `24->20`, H4 `20->18`.
+
+## 6. Tích hợp MTML & Yêu cầu Thiết lập Admin (Escalation)
+Khi cần thêm `CustomField`, `ContentType` hoặc `Template` mới trong Admin MT, bạn PHẢI tạm dừng triển khai phần phụ thuộc và gửi yêu cầu theo format sau:
+
+### Format Yêu cầu Admin:
+```markdown
+## Admin setup required
+
+### 1) [Tên Thực thể]
+- Type: `CustomField` | `ContentType` | `Template`
+- Scope: [Website/Blog/Entry/Category/ContentType/...]
+- Purpose: [Lý do cần thiết]
+
+### 2) Field schema
+- `field_key`
+  - Label: ...
+  - Type: ...
+  - Required: yes/no
+  - Default: ...
+  - Validation: ...
+
+### 3) MTML usage
+```mtml
+...đoạn code ví dụ sử dụng field này...
+```
+
+### 4) Setup order
+1. Tạo ...
+2. Cấu hình ...
+3. Liên kết ...
+```
+
+## 7. Giới hạn & An toàn
+- Ưu tiên các thay đổi nhỏ, có mục tiêu.
+- Bảo tồn các chỉnh sửa hiện có của người dùng.
+- Luôn kiểm soát sự mâu thuẫn giữa code và quy tắc này, ưu tiên tuân thủ guideline của khách hàng.

@@ -1,0 +1,22 @@
+---
+description: Movable Type template integration and admin dependency escalation standards
+alwaysApply: true
+---
+
+# MTML Integration and Admin Escalation
+
+- For template work, keep tracked template files in `development-dev` structure.
+- Ensure template asset links follow project Docker path mapping.
+- When adding dynamic blocks, align with MT data assumptions:
+  - article cards: `title`, `category.name`, `thumbnail`, `excerpt`, `published_at`
+  - pagination: `page_numbers`, `has_prev`, `has_next`
+  - navigation: `page/category`
+  - side menu: ranking (max 5), category list, tag list
+- Content rendering wrappers should use `.mt-content` for article body styling.
+
+## Mandatory Escalation
+
+If implementation requires new Admin entities, provide detailed request for:
+- `CustomField` / `ContentType` / `Template`
+- name, scope, full field schema, validation, default value, MTML usage snippet, setup order
+- pause dependent implementation until Admin setup dependency is acknowledged

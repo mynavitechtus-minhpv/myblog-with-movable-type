@@ -1,0 +1,20 @@
+---
+description: CSS implementation guardrails for Movable Type frontend development
+alwaysApply: true
+---
+
+# MT CSS Implementation Guardrails
+
+- CSS architecture target: `base.css`, `layout.css`, `component.css`, `page.css`, `utility.css`.
+- Mandatory: CSS variables/design tokens, reusable classes, PC/SP responsive handling.
+- Forbidden: inline CSS, color hard-coding, fixed typography outside approved scale.
+- Avoid inconsistent corner styles for same UI intent.
+- Keep CTA ring/border effect via `box-shadow` or pseudo-element instead of thick border hacks.
+- Do not overuse gradients on small components.
+
+## Project Workflow Constraints
+
+- Treat `assets` as source of truth for css/js edits.
+- Mirror exact css/js content into `development-dev/assets` counterpart after each change.
+- Do not auto-sync image files unless explicitly requested.
+- If code conflicts with this rule, prioritize client guideline compliance.
