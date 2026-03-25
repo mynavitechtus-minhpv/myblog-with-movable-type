@@ -1,33 +1,156 @@
 <header class="c-header">
   <div class="c-header__inner l-container">
     <div class="c-header__logo">
-      <a href="/"><img src="/assets/img/common/logo.svg" alt="AZ-COM"></a>
+      <a href="/"><img src="/mt-static/assets/img/logo.svg" alt="AZ-COM NET"></a>
     </div>
 
-    <nav class="c-header__nav">
+    <nav class="c-header__nav" id="global-nav" aria-label="Global navigation">
       <ul class="c-header__menu">
-        <li class="c-header__item">
-          <a href="/greeting/">法人案内</a>
-          <ul class="c-header__dropdown">
-             <li><a href="/greeting/">挨拶・理念</a></li>
-             <li><a href="/history/">沿革</a></li>
-             <li><a href="/company/">法人概要</a></li>
-          </ul>
+        <li class="c-header__item c-header__item--has-mega">
+          <a href="#" class="c-header__link" aria-haspopup="true" aria-expanded="false">法人案内</a>
+          <div class="c-header__mega">
+            <div class="c-header__mega-inner l-container">
+              <div class="c-header__mega-title">法人案内</div>
+              <ul class="c-header__mega-list">
+                <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>理事長あいさつ・理念</a></li>
+                <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>沿革</a></li>
+                <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>法人概要</a></li>
+              </ul>
+            </div>
+          </div>
         </li>
-        <li class="c-header__item"><a href="/support/">支援メニュー</a></li>
-        <li class="c-header__item"><a href="/news/">お知らせ</a></li>
-        <li class="c-header__item"><a href="/activity-report/">活動報告</a></li>
-        <li class="c-header__item"><a href="/bcp/">BCP</a></li>
-        <li class="c-header__item"><a href="/inquiry/">お問合せ</a></li>
-        
-        <li class="c-header__item c-header__item--external">
-          <a href="https://premium.s.azcom-net.jp/pages/top" target="_blank" rel="noopener noreferrer">共同購入サイト</a>
+
+        <li class="c-header__item c-header__item--has-mega">
+          <a href="/support/" class="c-header__link" aria-haspopup="true" aria-expanded="false">事業内容</a>
+          <div class="c-header__mega c-header__mega--business">
+            <div class="c-header__mega-inner l-container">
+              <div class="c-header__mega-title">事業内容</div>
+
+              <div class="c-header__mega-business-grid">
+                <div class="c-header__mega-col">
+                  <div class="c-header__mega-group-title"><span class="c-header__mega-icon"></span>支援メニュー</div>
+                  <ul class="c-header__mega-sub-list">
+                    <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>リース・金融・決済関連</a></li>
+                    <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>健康・医療サポート</a></li>
+                    <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>経営・業務・事務支援</a></li>
+                  </ul>
+                </div>
+
+                <div class="c-header__mega-col">
+                  <div class="c-header__mega-group-title c-header__mega-group-title--spacer" aria-hidden="true">&nbsp;</div>
+                  <ul class="c-header__mega-sub-list">
+                    <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>BCP・社会貢献</a></li>
+                    <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>福利厚生・会員特典</a></li>
+                    <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>車両・燃料・インフラ設備</a></li>
+                  </ul>
+                </div>
+
+                <div class="c-header__mega-col">
+                  <div class="c-header__mega-group-title c-header__mega-group-title--spacer" aria-hidden="true">&nbsp;</div>
+                  <ul class="c-header__mega-sub-list">
+                    <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>安全・事故防止</a></li>
+                    <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>人材採用・教育支援</a></li>
+                  </ul>
+                </div>
+
+                <ul class="c-header__mega-utility-list">
+                  <li>
+                    <a href="#" target="_blank" rel="noopener" class="c-header__mega-link c-header__mega-link--external">
+                      <span class="c-header__mega-icon"></span>
+                      共同購入サイト
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                        <path d="M10.5 7.58333V11.6667C10.5 11.9761 10.3771 12.2728 10.1583 12.4916C9.93949 12.7104 9.64275 12.8333 9.33333 12.8333H2.33333C2.02391 12.8333 1.72717 12.7104 1.50837 12.4916C1.28958 12.2728 1.16667 11.9761 1.16667 11.6667V4.66667C1.16667 4.35725 1.28958 4.0605 1.50837 3.84171C1.72717 3.62292 2.02391 3.5 2.33333 3.5H6.41667" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M8.75 1.16667H12.8333V5.25001" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5.83333 8.16667L12.8333 1.16667" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                  </li>
+                  <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>AZ-COMネットワークのBCP・災害支援</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="c-header__item c-header__item--has-mega">
+          <a href="#" class="c-header__link" aria-haspopup="true" aria-expanded="false">お知らせ</a>
+          <div class="c-header__mega">
+            <div class="c-header__mega-inner l-container">
+              <div class="c-header__mega-title">お知らせ</div>
+              <ul class="c-header__mega-list">
+                <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>すべて</a></li>
+                <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>事務局からのお知らせ</a></li>
+                <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>スケジュール</a></li>
+                <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>研修・セミナー</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <li class="c-header__item c-header__item--has-mega">
+          <a href="#" class="c-header__link" aria-haspopup="true" aria-expanded="false">活動報告</a>
+          <div class="c-header__mega">
+            <div class="c-header__mega-inner l-container">
+              <div class="c-header__mega-title">活動報告</div>
+              <ul class="c-header__mega-list">
+                <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>すべて</a></li>
+                <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>総会</a></li>
+                <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>ゴルフコンペ</a></li>
+                <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>研修・セミナー</a></li>
+                <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>エリア交流会</a></li>
+                <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>新聞・雑誌・書籍</a></li>
+                <li><a href="#" class="c-header__mega-link"><span class="c-header__mega-icon"></span>海外レポート</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <li class="c-header__item c-header__item--plain">
+          <a href="#" class="c-header__link c-header__link--inline-icon">入会のご案内</a>
+        </li>
+
+        <li class="c-header__item c-header__item--plain">
+          <a href="#" class="c-header__link c-header__link--inline-icon">お問合せ</a>
         </li>
       </ul>
+
+      <div class="c-header__mobile-footer">
+        <form class="c-header__mobile-search" action="/search/" method="get" role="search">
+          <label class="c-header__visually-hidden" for="header-mobile-search-q">サイト内検索</label>
+          <span class="c-header__mobile-search-inner">
+            <svg class="c-header__mobile-search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <path d="M19 19L14.65 14.65M17 9C17 13.4183 13.4183 17 9 17C4.58172 17 1 13.4183 1 9C1 4.58172 4.58172 1 9 1C13.4183 1 17 4.58172 17 9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <input id="header-mobile-search-q" class="c-header__mobile-search-input" type="search" name="q" placeholder="サイト内を検索" autocomplete="off">
+            <button type="button" class="c-header__mobile-search-clear" aria-label="検索語をクリア" hidden></button>
+            <button type="submit" class="c-header__mobile-search-submit">検索</button>
+          </span>
+        </form>
+        <a href="/login/" class="c-header__btn-member c-header__btn-member--mobile">会員の方はこちら</a>
+        <div class="c-header__mobile-brand">
+          <a href="/"><img src="/mt-static/assets/img/logo.svg" alt="AZ-COM NET"></a>
+        </div>
+        <div class="c-header__mobile-legal">
+          <a href="#">利用規約</a>
+          <a href="#">個人情報保護方針</a>
+        </div>
+      </div>
     </nav>
-    
-    <button class="c-header__hamburger" aria-label="Menu">
+
+    <div class="c-header__actions">
+      <a href="/login/" class="c-header__btn-member">会員の方はこちら</a>
+      <button class="c-header__search" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <path d="M19 19L14.65 14.65M17 9C17 13.4183 13.4183 17 9 17C4.58172 17 1 13.4183 1 9C1 4.58172 4.58172 1 9 1C13.4183 1 17 4.58172 17 9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <button type="button" class="c-header__hamburger" aria-label="メニューを開く" aria-controls="global-nav" aria-expanded="false">
+      <span></span>
+      <span></span>
       <span></span>
     </button>
   </div>
 </header>
+<script src="/mt-static/assets/js/header.js"></script>
