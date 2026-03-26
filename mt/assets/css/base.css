@@ -1,39 +1,114 @@
 :root {
-  /* Primary */
+  /* Color — core */
   --color-primary-dark: #22326e;
   --color-primary: #1c64f2;
   --color-primary-light: #e8f0fe;
   --color-primary-light-2: #b9cffb;
 
-  /* Accent */
   --color-accent: #df4661;
   --color-accent-dark: #bc2630;
 
-  /* Neutral */
   --color-text-primary: #424242;
   --color-text-secondary: #757575;
   --color-white: #ffffff;
   --color-bg: #f5f7fa;
   --color-border: #e0e0e0;
 
-  /* Gradient */
-  --gradient-primary: linear-gradient(to bottom right, #22326e, #1c64f2);
-  --gradient-accent: linear-gradient(to right, #df4661, #bc2630);
+  /* Color — extended */
+  --color-primary-medium: #1447ac;
+  --color-primary-light-3: #ebf3ff;
+  --color-primary-light-4: #97b8f9;
+  --color-border-light: #d3d3d3;
+  --color-bg-alt: #f5f5f5;
 
-  /* Alias for compatibility */
-  --primary-color: var(--color-primary);
-  --accent-color: var(--color-accent);
-  --text-main: var(--color-text-primary);
-  --bg-light: var(--color-bg);
+  /* Breakpoints (min-width values; mobile = below --breakpoint-sm) */
+  --breakpoint-sm: 768px;
+  --breakpoint-md: 1024px;
 
-  /* Layout */
-  --max-width: 1280px;
-  --text-width: 1120px;
-  --pc-margin: 80px;
-  --sp-margin: 20px;
+  /* Layout — widths */
+  --layout-container: 1440px;
+  --layout-content: 1280px;
+  --layout-prose: 1120px;
+  --layout-mobile: 375px;
+  --layout-mobile-content: 335px;
+  --layout-mobile-narrow: 280px;
 
-  /* Typography */
+  /* Layout — horizontal padding */
+  --layout-padding-inline: 80px;
+  --layout-padding-inline-mobile: 20px;
+
+  /* Spacing scale (8px base) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 40px;
+  --space-3xl: 48px;
+  --space-4xl: 60px;
+  --space-5xl: 64px;
+  --space-6xl: 80px;
+
+  /* Typography — families */
   --font-main: "Noto Sans JP", sans-serif;
+  --font-secondary: Helvetica, Arial, sans-serif;
+
+  /* Typography — scale (semantic sizes, responsive rules in components) */
+  --font-size-2xs: 13px;
+  --font-size-xs: 14px;
+  --font-size-sm: 16px;
+  --font-size-md: 18px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 28px;
+  --font-size-3xl: 32px;
+  --font-size-4xl: 40px;
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  --line-height-body: 1.6;
+  --line-height-body-relaxed: 1.75;
+  --line-height-heading: 1.3;
+  --line-height-nav: 1.4;
+  --line-height-small: 20px;
+  --line-height-tight: 1.5;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 9999px;
+
+  /* Shadow — semantic elevation only */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --shadow-focus-primary: 0 0 0 3px rgba(28, 100, 242, 0.4);
+
+  /* Z-index */
+  --z-index-base: 0;
+  --z-index-raised: 1;
+  --z-index-dropdown: 100;
+  --z-index-sticky: 1000;
+  --z-index-overlay: 1001;
+
+  /* Transition */
+  --duration-fast: 0.15s;
+  --duration-normal: 0.2s;
+  --duration-slow: 0.35s;
+  --easing-default: ease;
+  --easing-emphasized: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Gradients — not stored as custom properties; use utilities or inline linear-gradient + color tokens */
+.u-gradient-primary {
+  background-image: linear-gradient(to bottom right, var(--color-primary-dark), var(--color-primary));
+}
+
+.u-gradient-accent {
+  background-image: linear-gradient(to right, var(--color-accent), var(--color-accent-dark));
 }
 
 * {
@@ -43,15 +118,15 @@
 body {
   font-family: var(--font-main);
   color: var(--color-text-primary);
-  line-height: 1.6;
+  line-height: var(--line-height-body);
   margin: 0;
   background-color: var(--color-bg);
 }
 
 .l-container {
-  max-width: var(--max-width);
+  max-width: var(--layout-content);
   margin: 0 auto;
-  padding: 0 var(--pc-margin);
+  padding: 0 var(--layout-padding-inline);
 }
 
 img {
@@ -70,6 +145,6 @@ a:hover {
 
 @media (max-width: 767px) {
   .l-container {
-    padding: 0 var(--sp-margin);
+    padding: 0 var(--layout-padding-inline-mobile);
   }
 }
