@@ -1,0 +1,12 @@
+/* layout.css — page shell, containers, layout primitives */
+.l-container {
+  max-width: var(--layout-content);
+  margin: 0 auto;
+  padding: 0 var(--layout-padding-inline);
+}
+
+@media (max-width: 767px) {
+  .l-container {
+    padding: 0 var(--layout-padding-inline-mobile);
+  }
+}

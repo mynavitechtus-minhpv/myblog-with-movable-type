@@ -1,3 +1,7 @@
+/*
+  Header component tokens — local :root (load base.css before this file).
+  Uses global design tokens: --color-*, --shadow-*, --space-*.
+*/
 :root {
   --header-height-pc: 72px;
   --header-height-sp: 72px;
@@ -10,13 +14,10 @@
   --header-mega-bg: var(--color-primary-light);
   --header-mega-shadow: var(--shadow-md);
   --header-mobile-drawer-bg: var(--color-primary-light-3);
-  --header-mobile-panel-bg: var(--color-white);
-  --header-mobile-radius: var(--radius-lg);
   --header-mega-indent-step: calc(var(--space-md) + var(--space-xs));
   --header-nav-link-padding-x: var(--space-md);
-  --header-nav-link-padding-x-search: var(--space-sm);
-  /* Header-only elevation (not global tokens) */
   --header-shadow-cta: 0 4px 12px rgba(28, 100, 242, 0.4);
+  --header-cta-ring: 0 0 0 3px var(--color-primary-light-4);
   --header-shadow-elevated: 0 4px 16px rgba(34, 50, 110, 0.12);
   --header-shadow-search: 0 4px 16px rgba(34, 50, 110, 0.08);
   --header-shadow-mobile-btn: 0 2px 8px rgba(28, 100, 242, 0.15);
@@ -205,7 +206,7 @@
     visibility 0s linear 0s;
 }
 
-.c-header__btn-member {
+.c-header__actions .c-shared-member-cta {
   padding: 10px var(--space-lg);
   color: var(--color-white);
   font-size: var(--font-size-xs);
@@ -214,29 +215,31 @@
   text-decoration: none;
   background: var(--color-primary);
   width: fit-content;
-  border: 3px solid var(--color-primary-light-4);
+  border: none;
   border-radius: var(--radius-pill);
+  box-shadow: var(--header-cta-ring);
 }
 
-.c-header__btn-member:hover,
-.c-header__btn-member:focus-visible {
+.c-header__actions .c-shared-member-cta:hover,
+.c-header__actions .c-shared-member-cta:focus-visible {
   transform: translateY(-2px);
-  box-shadow: var(--header-shadow-cta);
+  box-shadow: var(--header-cta-ring), var(--header-shadow-cta);
 }
 
-.c-header__btn-member--mobile {
+.c-header__mobile-footer .c-shared-member-cta {
   display: none;
   width: 100%;
   margin-top: var(--space-lg);
   padding: var(--space-md) var(--space-lg);
   font-size: var(--font-size-sm);
   text-align: center;
-  box-shadow: var(--header-shadow-elevated);
+  box-shadow: var(--header-cta-ring), var(--header-shadow-elevated);
 }
 
-.c-header__btn-member--mobile:hover,
-.c-header__btn-member--mobile:focus-visible {
+.c-header__mobile-footer .c-shared-member-cta:hover,
+.c-header__mobile-footer .c-shared-member-cta:focus-visible {
   transform: none;
+  box-shadow: var(--header-cta-ring), var(--header-shadow-elevated);
 }
 
 .c-header__search:hover,
@@ -553,10 +556,6 @@
   transform: rotate(-45deg);
 }
 
-.u-overflow-hidden {
-  overflow: hidden !important;
-}
-
 @media (min-width: 768px) {
   .c-header__inner {
     display: grid;
@@ -647,7 +646,7 @@
     gap: var(--space-sm);
   }
 
-  .c-header__btn-member {
+  .c-header__actions .c-shared-member-cta {
     padding: var(--space-sm) 14px;
     font-size: var(--font-size-2xs);
   }
@@ -681,11 +680,11 @@
     margin-left: auto;
   }
 
-  .c-header__btn-member {
+  .c-header__actions .c-shared-member-cta {
     display: block;
     padding: var(--space-sm) var(--space-md);
     font-size: var(--font-size-2xs);
-    box-shadow: var(--header-shadow-mobile-btn);
+    box-shadow: var(--header-cta-ring), var(--header-shadow-mobile-btn);
   }
 
   .c-header__search-slot {
@@ -697,7 +696,7 @@
     order: 3;
   }
 
-  .c-header__btn-member--mobile {
+  .c-header__mobile-footer .c-shared-member-cta {
     display: block;
   }
 
@@ -818,7 +817,8 @@
     margin-top: var(--space-lg);
   }
 
-  .c-header__mobile-legal a {
+  .c-header__mobile-legal a,
+  .c-header__mobile-legal .c-shared-legal-link {
     font-size: var(--font-size-xs);
     line-height: var(--line-height-tight);
     color: var(--color-text-secondary);
@@ -1086,8 +1086,9 @@
     height: 22px;
   }
 
-  .c-header__btn-member--mobile {
+  .c-header__mobile-footer .c-shared-member-cta {
     background: var(--color-primary);
+    color: var(--color-white);
     width: fit-content;
     margin-top: 0;
     margin-left: auto;
@@ -1095,9 +1096,11 @@
     margin-bottom: var(--space-lg);
     padding: var(--space-sm) var(--space-xl);
     font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
     text-align: center;
     border-radius: var(--radius-pill);
-    border: 3px solid var(--color-primary-light-4);
+    border: none;
+    box-shadow: var(--header-cta-ring), var(--header-shadow-elevated);
   }
 
   .c-header__mega-link:hover .c-header__mega-icon,

@@ -1,3 +1,4 @@
+/* base.css — Design tokens + reset + default element styles */
 :root {
   /* Color — core */
   --color-primary-dark: #22326e;
@@ -64,6 +65,7 @@
   --font-size-3xl: 32px;
   --font-size-4xl: 40px;
 
+  --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-bold: 700;
@@ -101,15 +103,6 @@
   --easing-emphasized: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Gradients — not stored as custom properties; use utilities or inline linear-gradient + color tokens */
-.u-gradient-primary {
-  background-image: linear-gradient(to bottom right, var(--color-primary-dark), var(--color-primary));
-}
-
-.u-gradient-accent {
-  background-image: linear-gradient(to right, var(--color-accent), var(--color-accent-dark));
-}
-
 * {
   box-sizing: border-box;
 }
@@ -120,12 +113,6 @@ body {
   line-height: var(--line-height-body);
   margin: 0;
   background-color: var(--color-bg);
-}
-
-.l-container {
-  max-width: var(--layout-content);
-  margin: 0 auto;
-  padding: 0 var(--layout-padding-inline);
 }
 
 img {
@@ -140,10 +127,4 @@ a {
 
 a:hover {
   color: var(--color-primary-dark);
-}
-
-@media (max-width: 767px) {
-  .l-container {
-    padding: 0 var(--layout-padding-inline-mobile);
-  }
 }

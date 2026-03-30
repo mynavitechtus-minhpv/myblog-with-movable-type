@@ -1,0 +1,66 @@
+<mt:Ignore>
+  html-head-meta — SEO / OGP / Twitter
+  親テンプレートで変数をセットしてから <mt:Include module="html-head-meta"> を呼ぶ。
+  任意変数:
+  - meta_title … <title> / og:title（未設定時は BlogName）
+  - meta_description … description / og:description（未設定時は BlogDescription があれば）
+  - meta_canonical_url … canonical / og:url（未設定時は BlogURL）
+  - meta_og_type … og:type（未設定時は website）
+  - meta_og_locale … og:locale（未設定時は ja_JP）
+  - meta_og_image … StaticWebPath からの相対パス（未設定時は assets/img/og-image_az-com-network.png）
+  - meta_twitter_card … twitter:card（未設定時は summary_large_image）
+</mt:Ignore>
+<mt:If name="meta_title">
+<title><$mt:Var name="meta_title" encode_html="1"$></title>
+<mt:Else>
+<title><$mt:BlogName encode_html="1"$></title>
+</mt:If>
+<mt:If name="meta_description">
+<meta name="description" content="<$mt:Var name="meta_description" encode_html="1"$>">
+<mt:Else>
+<mt:If tag="BlogDescription">
+<meta name="description" content="<$mt:BlogDescription remove_html="1" encode_html="1"$>">
+</mt:If>
+</mt:If>
+<mt:If name="meta_canonical_url">
+<link rel="canonical" href="<$mt:Var name="meta_canonical_url" encode_html="1"$>">
+<mt:Else>
+<link rel="canonical" href="<$mt:BlogURL encode_html="1"$>">
+</mt:If>
+<mt:If name="meta_og_type">
+<meta property="og:type" content="<$mt:Var name="meta_og_type" encode_html="1"$>">
+<mt:Else>
+<meta property="og:type" content="website">
+</mt:If>
+<mt:If name="meta_og_locale">
+<meta property="og:locale" content="<$mt:Var name="meta_og_locale" encode_html="1"$>">
+<mt:Else>
+<meta property="og:locale" content="ja_JP">
+</mt:If>
+<mt:If name="meta_title">
+<meta property="og:title" content="<$mt:Var name="meta_title" encode_html="1"$>">
+<mt:Else>
+<meta property="og:title" content="<$mt:BlogName encode_html="1"$>">
+</mt:If>
+<mt:If name="meta_description">
+<meta property="og:description" content="<$mt:Var name="meta_description" encode_html="1"$>">
+<mt:Else>
+<mt:If tag="BlogDescription">
+<meta property="og:description" content="<$mt:BlogDescription remove_html="1" encode_html="1"$>">
+</mt:If>
+</mt:If>
+<mt:If name="meta_canonical_url">
+<meta property="og:url" content="<$mt:Var name="meta_canonical_url" encode_html="1"$>">
+<mt:Else>
+<meta property="og:url" content="<$mt:BlogURL encode_html="1"$>">
+</mt:If>
+<mt:If name="meta_og_image">
+<meta property="og:image" content="<$mt:StaticWebPath$><$mt:Var name="meta_og_image"$>">
+<mt:Else>
+<meta property="og:image" content="<$mt:StaticWebPath$>assets/img/og-image_az-com-network.png">
+</mt:If>
+<mt:If name="meta_twitter_card">
+<meta name="twitter:card" content="<$mt:Var name="meta_twitter_card" encode_html="1"$>">
+<mt:Else>
+<meta name="twitter:card" content="summary_large_image">
+</mt:If>

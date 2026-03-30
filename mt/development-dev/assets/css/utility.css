@@ -1,0 +1,13 @@
+/* utility.css — reusable single-purpose classes */
+.u-overflow-hidden {
+  overflow: hidden !important;
+}
+
+/* Gradients — use utilities or inline linear-gradient + color tokens from base.css */
+.u-gradient-primary {
+  background-image: linear-gradient(to bottom right, var(--color-primary-dark), var(--color-primary));
+}
+
+.u-gradient-accent {
+  background-image: linear-gradient(to right, var(--color-accent), var(--color-accent-dark));
+}

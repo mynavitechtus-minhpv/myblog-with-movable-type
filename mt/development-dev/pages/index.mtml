@@ -3,19 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <mt:SetVarBlock name="meta_title">AZ-COMネット ホームページ</mt:SetVarBlock>
+    <mt:SetVarBlock name="meta_description">AZ-COMネット ホームページ</mt:SetVarBlock>
+    <mt:Include module="azcom-head-meta">
+
+    <mt:SetVar name="assets_version" value="20260327">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<mt:StaticWebPath>assets/css/base.css">
-    <link rel="stylesheet" href="<mt:StaticWebPath>assets/css/header.css">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/base.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/layout.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/utility.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/header.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/footer.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
 </head>
 <body>
-    <mt:Include module="Header">
-
-    <h1>Trang chủ</h1>
-
-    <main class="p-top">
+    <mt:Include module="azcom-header">
+    <main class="p-top" id="main">
+        Home Page 
     </main>
 
+    <mt:Include module="azcom-footer">
 </body>
 </html>

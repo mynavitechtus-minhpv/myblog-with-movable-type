@@ -1,5 +1,5 @@
 <div class="c-header__mobile-footer">
-  <form class="c-header__mobile-search" action="#" method="get" role="search">
+  <form class="c-header__mobile-search" action="/search/" method="get" role="search">
     <label class="c-header__visually-hidden" for="header-mobile-search-q">サイト内検索</label>
     <span class="c-header__mobile-search-inner">
       <img class="c-header__mobile-search-icon" src="<mt:StaticWebPath>assets/img/icon-search.svg" alt="" width="20" height="20" aria-hidden="true">
@@ -8,12 +8,12 @@
       <button type="submit" class="c-header__mobile-search-submit">検索</button>
     </span>
   </form>
-  <a href="/login/" class="c-header__btn-member c-header__btn-member--mobile">会員の方はこちら</a>
+  <mt:Include module="azcom-shared-member-cta">
   <div class="c-header__mobile-brand">
-    <a href="/"><img src="<mt:StaticWebPath>assets/img/logo.svg" alt="AZ-COM NET"></a>
+    <mt:Include module="azcom-shared-logo-link">
   </div>
   <div class="c-header__mobile-legal">
-    <a href="#">利用規約</a>
-    <a href="#">個人情報保護方針</a>
+    <mt:Include module="azcom-shared-legal-terms">
+    <mt:Include module="azcom-shared-legal-privacy">
   </div>
 </div>
