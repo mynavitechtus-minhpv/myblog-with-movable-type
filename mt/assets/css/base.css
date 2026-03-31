@@ -92,6 +92,7 @@
   --z-index-base: 0;
   --z-index-raised: 1;
   --z-index-dropdown: 100;
+  --z-index-floating: 900;
   --z-index-sticky: 1000;
   --z-index-overlay: 1001;
 
@@ -99,6 +100,7 @@
   --duration-fast: 0.15s;
   --duration-normal: 0.2s;
   --duration-slow: 0.35s;
+  --duration-float: 0.4s;
   --easing-default: ease;
   --easing-emphasized: cubic-bezier(0.4, 0, 0.2, 1);
 }

@@ -47,9 +47,6 @@
     <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/utility.css?v=20260333">
     <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/header.css?v=20260333">
     <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/footer.css?v=20260333">
-    <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/floating-button.css?v=20260333">
-    <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/go-to-top.css?v=20260333">
-    <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/home-floating-inquiry.css?v=20260333">
 </head>
 <body>
     <header class="c-header">
@@ -233,12 +230,65 @@
 <script src="http://localhost:8082/mt-static/assets/js/header.js"></script>
 
     <main class="p-top" id="main">
-        <section id="js-home-floating-inquiry-fv" class="p-top__fv-placeholder" aria-label="メインビジュアル（仮・開発用）">
-            メインビジュアル（FV）プレースホルダー — 高さ 100vh
-        </section>
-        <div class="p-top__dev-scroll-placeholder">
-            開発用：スクロール検証エリア（最小 200vh）
-        </div>
+       <h3 data-path-to-node="3">1. Tạo Template cho Trang (Page Archive Template)</h3>
+<p data-path-to-node="4">Mặc dù bạn đã tạo nội dung trang, nhưng Movable Type cần một bộ khung (Template) để biết cách hiển thị nội dung đó.</p>
+<ul data-path-to-node="5">
+<li>
+<p data-path-to-node="5,0,0">Tại menu bên trái, chọn <b data-path-to-node="5,0,0" data-index-in-node="24">Design (Thiết kế)</b> &gt; <b data-path-to-node="5,0,0" data-index-in-node="44">Templates (Mẫu)</b>.</p>
+</li>
+<li>
+<p data-path-to-node="5,1,0">Tìm phần <b data-path-to-node="5,1,0" data-index-in-node="9">Archive Templates (Mẫu lưu trữ)</b>. Hiện tại ảnh của bạn báo là <i data-path-to-node="5,1,0" data-index-in-node="70">"No archive templates could be found"</i>.</p>
+</li>
+<li>
+<p data-path-to-node="5,2,0">Nhấn vào <b data-path-to-node="5,2,0" data-index-in-node="9">Create (Tạo mới)</b> hoặc chọn loại template là <b data-path-to-node="5,2,0" data-index-in-node="53">Page (Trang)</b> từ danh sách đổ xuống cạnh nút Create.</p>
+</li>
+<li>
+<p data-path-to-node="5,3,0"><b data-path-to-node="5,3,0" data-index-in-node="0">Nội dung Template:</b> Bạn nên copy mã nguồn từ trang chủ (Main Index) sang để giữ đồng nhất Header/Footer, nhưng thay phần nội dung chính bằng tag <code data-path-to-node="5,3,0" data-index-in-node="144">&lt;$mt:PageBody$&gt;</code> và <code data-path-to-node="5,3,0" data-index-in-node="163">&lt;$mt:PageMore$&gt;</code>.</p>
+</li>
+<li>
+<p data-path-to-node="5,4,0">Đặt tên template là "Page" và nhấn <b data-path-to-node="5,4,0" data-index-in-node="35">Save</b>.</p>
+</li>
+</ul>
+<h3 data-path-to-node="6">2. Thiết lập ánh xạ (Mapping)</h3>
+<p data-path-to-node="7">Bước này để chỉ định đường dẫn (URL) cho trang About.</p>
+<ul data-path-to-node="8">
+<li>
+<p data-path-to-node="8,0,0">Trong giao diện sửa Template "Page" vừa tạo ở bước trên, kéo xuống phần <b data-path-to-node="8,0,0" data-index-in-node="72">Archive Mapping</b>.</p>
+</li>
+<li>
+<p data-path-to-node="8,1,0">Nhấn <b data-path-to-node="8,1,0" data-index-in-node="5">Add archive mapping</b>.</p>
+</li>
+<li>
+<p data-path-to-node="8,2,0">Chọn kiểu là <b data-path-to-node="8,2,0" data-index-in-node="13">Page</b>.</p>
+</li>
+<li>
+<p data-path-to-node="8,3,0">Trong phần <b data-path-to-node="8,3,0" data-index-in-node="11">Path (Đường dẫn)</b>, bạn có thể chọn định dạng như <code data-path-to-node="8,3,0" data-index-in-node="59">%f/%b.html</code> (thường sẽ tạo ra đường dẫn kiểu <code data-path-to-node="8,3,0" data-index-in-node="103">about/index.html</code>).</p>
+</li>
+<li>
+<p data-path-to-node="8,4,0">Nhấn <b data-path-to-node="8,4,0" data-index-in-node="5">Save</b>.<img alt="avatar-meme.jpeg" src="http://localhost:8082/about/avatar-meme.jpeg" width="551" height="551" class="mt-image-none" style="display: block; margin-left: auto; margin-right: auto;"></p>
+</li>
+</ul>
+<h3 data-path-to-node="9">3. Xuất bản (Publish) trang About</h3>
+<p data-path-to-node="10">Sau khi đã có "khung" (Template) và "đường dẫn" (Mapping), bạn tiến hành xuất bản:</p>
+<ul data-path-to-node="11">
+<li>
+<p data-path-to-node="11,0,0">Quay lại menu <b data-path-to-node="11,0,0" data-index-in-node="14">Pages (Trang)</b> &gt; <b data-path-to-node="11,0,0" data-index-in-node="30">Manage (Quản lý)</b> (như trong ảnh đầu tiên của bạn).</p>
+</li>
+<li>
+<p data-path-to-node="11,1,0">Tích chọn vào ô bên cạnh trang <b data-path-to-node="11,1,0" data-index-in-node="31">About</b>.</p>
+</li>
+<li>
+<p data-path-to-node="11,2,0">Nhấn nút <b data-path-to-node="11,2,0" data-index-in-node="9">Publish (Xuất bản)</b> ở phía trên danh sách.</p>
+</li>
+<li>
+<p data-path-to-node="11,3,0">Sau khi chạy xong, bạn có thể nhấn vào biểu tượng icon nhỏ cạnh chữ "about" trong cột <i data-path-to-node="11,3,0" data-index-in-node="86">Folder</i> hoặc <i data-path-to-node="11,3,0" data-index-in-node="98">Title</i> để xem thành quả.</p>
+</li>
+</ul>
+<hr data-path-to-node="12">
+<h3 data-path-to-node="13">Mẹo nhỏ cho bạn:</h3>
+<p data-path-to-node="14">Vì bạn có rất nhiều <b data-path-to-node="14" data-index-in-node="20">Template Modules</b> (như <code data-path-to-node="14" data-index-in-node="42">azcom-footer</code>, <code data-path-to-node="14" data-index-in-node="56">azcom-float-nav</code>), hãy tận dụng chúng trong Template Page mới bằng cách dùng thẻ: <code data-path-to-node="14" data-index-in-node="137">&lt;$mt:Include module="tên-module"$&gt;</code></p>
+<p data-path-to-node="15">Việc này giúp trang About của bạn có đầy đủ menu và chân trang giống hệt trang chủ mà không cần viết lại code.</p>
+       
     </main>
 
     <footer class="c-footer">
@@ -356,93 +406,5 @@
 
 </footer>
 
-
-    <!-- Home Floating Inquiry -->
-    
-    
-    
-    
-    
-    <div
-  class="c-home-floating-inquiry"
-  id="js-home-floating-inquiry"
-  role="region"
-  aria-label="補助ナビゲーション"
-  data-home-floating-inquiry-fv="#js-home-floating-inquiry-fv"
-  data-home-floating-inquiry-sp-fv-reveal="0.7"
-
->
-  <div class="c-home-floating-inquiry__cluster">
-    <nav class="c-home-floating-inquiry__rails" aria-label="クイックリンク">
-
-      <!-- Membership Inquiry Button -->
-      
-      
-      
-      
-      
-      
-      
-      <a
-  class="c-floating-button c-floating-button--guide"
-  href="/"
-  aria-label="入会のご案内"
->
-  <span class="c-floating-button__icon c-floating-button__icon--guide" aria-hidden="true">
-    <img
-      src="http://localhost:8082/mt-static/assets/img/icon-information.svg?v=20260333"
-      alt=""
-      width="25"
-      height="25"
-      decoding="async"
-    />
-  </span>
-  <span class="c-floating-button__label">入会のご案内</span>
-</a>
-
-
-      <!-- Document Request Button -->
-      
-      
-      
-      
-      
-      
-      
-      <a
-  class="c-floating-button c-floating-button--doc"
-  href="/"
-  aria-label="資料請求"
->
-  <span class="c-floating-button__icon c-floating-button__icon--doc" aria-hidden="true">
-    <img
-      src="http://localhost:8082/mt-static/assets/img/icon-material.svg?v=20260333"
-      alt=""
-      width="21"
-      height="27"
-      decoding="async"
-    />
-  </span>
-  <span class="c-floating-button__label">資料請求</span>
-</a>
-
-
-    </nav>
-  </div>
-</div>
-
-
-
-    <!-- Go to Top Button -->
-    
-    
-    
-    <a class="c-go-to-top" href="#main" aria-label="ページ先頭へ戻る">
-  <span class="c-go-to-top__chevron" aria-hidden="true"></span>
-  <span class="c-go-to-top__text">TOP</span>
-</a>
-
-    <script defer src="http://localhost:8082/mt-static/assets/js/home-floating-inquiry.js?v=20260333"></script>
-    <script defer src="http://localhost:8082/mt-static/assets/js/go-to-top.js?v=20260333"></script>
 </body>
 </html>
