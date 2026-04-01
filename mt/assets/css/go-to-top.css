@@ -5,7 +5,7 @@
 
 .c-go-to-top {
   position: fixed;
-  right: var(--space-2xl);
+  right: var(--space-4xl);
   bottom: var(--space-2xl);
   z-index: var(--z-index-floating);
   display: flex;

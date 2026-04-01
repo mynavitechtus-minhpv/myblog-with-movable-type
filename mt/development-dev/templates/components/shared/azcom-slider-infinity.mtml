@@ -1,0 +1,31 @@
+<div class="c-slider-infinite__inner">
+  <mt:If name="slider_heading">
+    <p class="c-slider-infinite__heading"><$mt:Var name="slider_heading" encode_html="1"$></p>
+  </mt:If>
+  <div class="c-slider-infinite__viewport">
+    <div class="c-slider-infinite__track js-slider-infinite-track">
+      <mt:Contents
+        content_type="Slider"
+        sort_by="field:sort_order"
+        sort_order="asc"
+        limit="500"
+        field:slider_key="$slider_key_value"
+      >
+        <div class="c-slider-infinite__item">
+          <div class="c-slider-infinite__media">
+            <mt:Assets field="logo_image" limit="1">
+              <mt:ContentField name="logo_alt">
+                <img
+                  class="c-slider-infinite__img"
+                  src="<$mt:AssetURL encode_html="1"$>"
+                  alt="<$mt:ContentFieldValue encode_html="1"$>"
+                  loading="lazy"
+                >
+              </mt:ContentField>
+            </mt:Assets>
+          </div>
+        </div>
+      </mt:Contents>
+    </div>
+  </div>
+</div>

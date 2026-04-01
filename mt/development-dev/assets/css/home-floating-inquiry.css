@@ -76,7 +76,10 @@
   }
 
   .c-home-floating-inquiry__cluster {
-    display: contents;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .c-home-floating-inquiry__rails {

@@ -56,7 +56,8 @@
   function isSpPastFvReveal() {
     var fv = queryFv();
     if (!fv) {
-      return false;
+      // Fallback: if FV not found, treat as visible after scrolling 1 viewport height
+      return window.pageYOffset >= (window.innerHeight || document.documentElement.clientHeight || 0);
     }
     var ratio = getSpFvRevealRatio();
     var rect = fv.getBoundingClientRect();
@@ -71,7 +72,8 @@
   function isFvScrolledOut() {
     var fv = queryFv();
     if (!fv) {
-      return false;
+      // Fallback: if FV not found, consider it scrolled out after 1 viewport height
+      return window.pageYOffset >= (window.innerHeight || document.documentElement.clientHeight || 0);
     }
     return fv.getBoundingClientRect().bottom <= 0;
   }

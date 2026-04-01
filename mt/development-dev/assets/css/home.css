@@ -1,0 +1,9 @@
+.p-top {
+  padding-block: 0;
+}
+
+@media (max-width: 767px) {
+  .p-top {
+    padding-block: 0;
+  }
+}
