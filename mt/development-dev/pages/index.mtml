@@ -20,39 +20,30 @@
 
     <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/header.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
     <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/footer.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/slider-infinite.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
     <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/floating-button.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
     <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/go-to-top.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/home-floating-inquiry.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/slider-infinite.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/floating-inquiry.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
 
 </head>
 <body>
     <mt:Include module="azcom-header">
     <main class="p-top" id="main">
-        <section id="js-home-floating-inquiry-fv" class="p-top__fv-placeholder" aria-label="メインビジュアル（仮・開発用）">
-            メインビジュアル（FV）プレースホルダー — 高さ 100vh
-        </section>
-
-
+        
         <!-- Slider Infinite Logo Partners - Using Content Type "Slider" -->
-        <section id="slider-partners-logo" aria-label="会員企業のロゴスライダー">
-            <mt:Include module="azcom-slider-infinity" slider_key_value="top" slider_heading="多くの会員様にご活用いただいています">
+        <section class="p-top__logo-slider-section" id="slider-partners-logo" aria-label="会員企業のロゴスライダー">
+            <p class="p-top__logo-slider-heading">多くの会員様にご活用いただいています</p>
+            <mt:Include module="azcom-slider-infinity" slider_key_value="top">
         </section>
 
-        <div class="p-top__dev-scroll-placeholder">
-            開発用：スクロール検証エリア（最小 200vh）
-        </div>
     </main>
 
     <mt:Include module="azcom-footer">
 
-    <!-- Home Floating Inquiry -->
-    <mt:SetVar name="home_floating_inquiry_show" value="1">
-    <mt:SetVar name="home_floating_inquiry_url_guide" value="/about/#about">
-    <mt:SetVar name="home_floating_inquiry_url_doc" value="/inquiry/?type=materials">
-    <mt:SetVar name="home_floating_inquiry_fv_selector" value="#js-home-floating-inquiry-fv">
-    <mt:SetVar name="home_floating_inquiry_sp_fv_reveal" value="0.7">
-    <mt:Include module="azcom-home-floating-inquiry">
+
+    <!-- Floating Inquiry -->
+    <mt:SetVar name="floating_inquiry_show" value="1">
+    <mt:Include module="azcom-floating-inquiry">
 
     <!-- Go to Top Button -->
     <mt:SetVar name="go_to_top_href" value="#main">
@@ -61,8 +52,8 @@
     <mt:Include module="azcom-go-to-top">
 
     <!-- Scripts -->
-    <script defer src="<$mt:StaticWebPath encode_html="1"$>assets/js/home-floating-inquiry.js?v=<$mt:Var name="assets_version" encode_html="1"$>"></script>
-    <script defer src="<$mt:StaticWebPath encode_html="1"$>assets/js/go-to-top.js?v=<$mt:Var name="assets_version" encode_html="1"$>"></script>
     <script defer src="<$mt:StaticWebPath encode_html="1"$>assets/js/slider-infinite.js?v=<$mt:Var name="assets_version" encode_html="1"$>"></script>
+    <script defer src="<$mt:StaticWebPath encode_html="1"$>assets/js/floating-inquiry.js?v=<$mt:Var name="assets_version" encode_html="1"$>"></script>
+    <script defer src="<$mt:StaticWebPath encode_html="1"$>assets/js/go-to-top.js?v=<$mt:Var name="assets_version" encode_html="1"$>"></script>
 </body>
 </html>

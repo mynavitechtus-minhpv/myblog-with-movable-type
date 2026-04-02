@@ -1,30 +1,24 @@
 (function () {
   'use strict';
 
-  const DEFAULT_HOME_FLOATING_INQUIRY_DELAY_MS = 1500;
+  const DEFAULT_FLOATING_INQUIRY_DELAY_MS = 1500;
   const SP_FV_REVEAL_RATIO_DEFAULT = 0.7;
 
-  var floatingInquiry = document.querySelector('.c-home-floating-inquiry');
+  var floatingInquiry = document.querySelector('.c-floating-inquiry');
   if (!floatingInquiry) {
     return;
   }
 
-  var clusterEl = floatingInquiry.querySelector('.c-home-floating-inquiry__cluster');
+  var clusterEl = floatingInquiry.querySelector('.c-floating-inquiry__cluster');
 
   var fvSelector =
-    floatingInquiry.getAttribute('data-home-floating-inquiry-fv') ||
-    floatingInquiry.getAttribute('data-home-float-fv') ||
-    floatingInquiry.getAttribute('data-floating-nav-fv') ||
-    floatingInquiry.getAttribute('data-float-nav-fv') ||
-    '#js-home-floating-inquiry-fv';
+    floatingInquiry.getAttribute('data-floating-inquiry-fv') ||
+    '#js-floating-inquiry-fv';
   var delayRaw =
-    floatingInquiry.getAttribute('data-home-floating-inquiry-delay') ||
-    floatingInquiry.getAttribute('data-home-float-delay') ||
-    floatingInquiry.getAttribute('data-floating-nav-delay') ||
-    floatingInquiry.getAttribute('data-float-nav-delay');
-  var delayMs = parseInt(delayRaw || String(DEFAULT_HOME_FLOATING_INQUIRY_DELAY_MS), 10);
+    floatingInquiry.getAttribute('data-floating-inquiry-delay');
+  var delayMs = parseInt(delayRaw || String(DEFAULT_FLOATING_INQUIRY_DELAY_MS), 10);
   if (isNaN(delayMs) || delayMs < 0) {
-    delayMs = DEFAULT_HOME_FLOATING_INQUIRY_DELAY_MS;
+    delayMs = DEFAULT_FLOATING_INQUIRY_DELAY_MS;
   }
   var desktopQuery = window.matchMedia('(min-width: 1024px)');
 
@@ -42,10 +36,7 @@
 
   function getSpFvRevealRatio() {
     var raw =
-      floatingInquiry.getAttribute('data-home-floating-inquiry-sp-fv-reveal') ||
-      floatingInquiry.getAttribute('data-home-float-sp-fv-reveal') ||
-      floatingInquiry.getAttribute('data-floating-nav-sp-fv-reveal') ||
-      floatingInquiry.getAttribute('data-float-nav-sp-fv-reveal');
+      floatingInquiry.getAttribute('data-floating-inquiry-sp-fv-reveal');
     var r = parseFloat(raw);
     if (isNaN(r) || r < 0 || r > 1) {
       return SP_FV_REVEAL_RATIO_DEFAULT;
@@ -106,17 +97,17 @@
   }
 
   function clearSpScrollPad() {
-    document.documentElement.classList.remove('is-home-floating-inquiry-sp-active');
-    document.documentElement.style.removeProperty('--home-floating-inquiry-sp-pad');
+    document.documentElement.classList.remove('is-floating-inquiry-sp-active');
+    document.documentElement.style.removeProperty('--floating-inquiry-sp-pad');
   }
 
   function updateSpScrollPad() {
     var bottomPad = 20;
     var gap = 16;
     var barH = floatingInquiry.offsetHeight || 0;
-    document.documentElement.classList.add('is-home-floating-inquiry-sp-active');
+    document.documentElement.classList.add('is-floating-inquiry-sp-active');
     document.documentElement.style.setProperty(
-      '--home-floating-inquiry-sp-pad',
+      '--floating-inquiry-sp-pad',
       barH + bottomPad + gap + 'px'
     );
   }

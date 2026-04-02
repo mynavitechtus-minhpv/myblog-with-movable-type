@@ -11,15 +11,6 @@
   background-color: var(--color-white);
 }
 
-.c-slider-infinite__heading {
-  text-align: center;
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-heading);
-  font-weight: var(--font-weight-bold);
-  margin: 0 0 var(--space-md);
-  color: var(--color-text-primary);
-}
-
 .c-slider-infinite__viewport {
   height: var(--slider-viewport-height);
   overflow: hidden;

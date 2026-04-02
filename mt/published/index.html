@@ -49,10 +49,10 @@
 
     <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/header.css?v=20260327">
     <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/footer.css?v=20260327">
+    <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/slider-infinite.css?v=20260327">
     <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/floating-button.css?v=20260327">
     <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/go-to-top.css?v=20260327">
-    <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/home-floating-inquiry.css?v=20260327">
-    <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/slider-infinite.css?v=20260327">
+    <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/floating-inquiry.css?v=20260327">
 
 </head>
 <body>
@@ -237,17 +237,11 @@
 <script src="http://localhost:8082/mt-static/assets/js/header.js"></script>
 
     <main class="p-top" id="main">
-        <section id="js-home-floating-inquiry-fv" class="p-top__fv-placeholder" aria-label="メインビジュアル（仮・開発用）">
-            メインビジュアル（FV）プレースホルダー — 高さ 100vh
-        </section>
-
-
+        
         <!-- Slider Infinite Logo Partners - Using Content Type "Slider" -->
-        <section id="slider-partners-logo" aria-label="会員企業のロゴスライダー">
+        <section class="p-top__logo-slider-section" id="slider-partners-logo" aria-label="会員企業のロゴスライダー">
+            <p class="p-top__logo-slider-heading">多くの会員様にご活用いただいています</p>
             <div class="c-slider-infinite__inner">
-  
-    <p class="c-slider-infinite__heading">多くの会員様にご活用いただいています</p>
-  
   <div class="c-slider-infinite__viewport">
     <div class="c-slider-infinite__track js-slider-infinite-track">
       
@@ -257,23 +251,8 @@
               
                 <img
                   class="c-slider-infinite__img"
-                  src="http://localhost:8082/logo-partners/logo-saidaiji-unyu.jpg"
-                  alt="8"
-                  loading="lazy"
-                >
-              
-            
-          </div>
-        </div>
-      
-        <div class="c-slider-infinite__item">
-          <div class="c-slider-infinite__media">
-            
-              
-                <img
-                  class="c-slider-infinite__img"
-                  src="http://localhost:8082/logo-partners/logo-life-net.jpg"
-                  alt="9"
+                  src="http://localhost:8082/logo-partners/logo-ec-logi.png"
+                  alt="株式会社ECロジ"
                   loading="lazy"
                 >
               
@@ -288,7 +267,7 @@
                 <img
                   class="c-slider-infinite__img"
                   src="http://localhost:8082/logo-partners/logo-tsubasa-holdings.png"
-                  alt="10"
+                  alt="株式会社翼ホールディングス"
                   loading="lazy"
                 >
               
@@ -302,8 +281,8 @@
               
                 <img
                   class="c-slider-infinite__img"
-                  src="http://localhost:8082/logo-partners/logo-sankyokamotu.png"
-                  alt="11"
+                  src="http://localhost:8082/logo-partners/logo-life-net.jpg"
+                  alt="株式会社ライフネット"
                   loading="lazy"
                 >
               
@@ -318,7 +297,7 @@
                 <img
                   class="c-slider-infinite__img"
                   src="http://localhost:8082/logo-partners/logist.jpg"
-                  alt="4"
+                  alt="株式会社ロジスト"
                   loading="lazy"
                 >
               
@@ -333,22 +312,7 @@
                 <img
                   class="c-slider-infinite__img"
                   src="http://localhost:8082/logo-partners/logo-asahi-unyu.jpg"
-                  alt="5"
-                  loading="lazy"
-                >
-              
-            
-          </div>
-        </div>
-      
-        <div class="c-slider-infinite__item">
-          <div class="c-slider-infinite__media">
-            
-              
-                <img
-                  class="c-slider-infinite__img"
-                  src="http://localhost:8082/logo-partners/logo-ec-logi.png"
-                  alt="6"
+                  alt="旭運輸株式会社"
                   loading="lazy"
                 >
               
@@ -363,7 +327,37 @@
                 <img
                   class="c-slider-infinite__img"
                   src="http://localhost:8082/logo-partners/logo-guntou-express.png"
-                  alt="7"
+                  alt="郡東エクスプレス株式会社"
+                  loading="lazy"
+                >
+              
+            
+          </div>
+        </div>
+      
+        <div class="c-slider-infinite__item">
+          <div class="c-slider-infinite__media">
+            
+              
+                <img
+                  class="c-slider-infinite__img"
+                  src="http://localhost:8082/logo-partners/logo-sankyokamotu.png"
+                  alt="三共貨物自動車株式会社"
+                  loading="lazy"
+                >
+              
+            
+          </div>
+        </div>
+      
+        <div class="c-slider-infinite__item">
+          <div class="c-slider-infinite__media">
+            
+              
+                <img
+                  class="c-slider-infinite__img"
+                  src="http://localhost:8082/logo-partners/logo-saidaiji-unyu.jpg"
+                  alt="西大寺運送有限会社"
                   loading="lazy"
                 >
               
@@ -377,9 +371,6 @@
 
         </section>
 
-        <div class="p-top__dev-scroll-placeholder">
-            開発用：スクロール検証エリア（最小 200vh）
-        </div>
     </main>
 
     <footer class="c-footer">
@@ -498,23 +489,19 @@
 </footer>
 
 
-    <!-- Home Floating Inquiry -->
-    
-    
-    
-    
+
+    <!-- Floating Inquiry -->
     
     <div
-  class="c-home-floating-inquiry"
-  id="js-home-floating-inquiry"
+  class="c-floating-inquiry"
+  id="js-floating-inquiry"
   role="region"
   aria-label="補助ナビゲーション"
-  data-home-floating-inquiry-fv="#js-home-floating-inquiry-fv"
-  data-home-floating-inquiry-sp-fv-reveal="0.7"
-
+  data-floating-inquiry-fv="#js-floating-inquiry-fv"
+  data-floating-inquiry-sp-fv-reveal="0.7"
 >
-  <div class="c-home-floating-inquiry__cluster">
-    <nav class="c-home-floating-inquiry__rails" aria-label="クイックリンク">
+  <div class="c-floating-inquiry__cluster">
+    <nav class="c-floating-inquiry__rails" aria-label="クイックリンク">
 
       <!-- Membership Inquiry Button -->
       
@@ -585,8 +572,8 @@
 
 
     <!-- Scripts -->
-    <script defer src="http://localhost:8082/mt-static/assets/js/home-floating-inquiry.js?v=20260327"></script>
-    <script defer src="http://localhost:8082/mt-static/assets/js/go-to-top.js?v=20260327"></script>
     <script defer src="http://localhost:8082/mt-static/assets/js/slider-infinite.js?v=20260327"></script>
+    <script defer src="http://localhost:8082/mt-static/assets/js/floating-inquiry.js?v=20260327"></script>
+    <script defer src="http://localhost:8082/mt-static/assets/js/go-to-top.js?v=20260327"></script>
 </body>
 </html>

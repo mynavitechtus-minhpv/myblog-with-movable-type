@@ -1,7 +1,4 @@
 <div class="c-slider-infinite__inner">
-  <mt:If name="slider_heading">
-    <p class="c-slider-infinite__heading"><$mt:Var name="slider_heading" encode_html="1"$></p>
-  </mt:If>
   <div class="c-slider-infinite__viewport">
     <div class="c-slider-infinite__track js-slider-infinite-track">
       <mt:Contents
@@ -18,7 +15,7 @@
                 <img
                   class="c-slider-infinite__img"
                   src="<$mt:AssetURL encode_html="1"$>"
-                  alt="<$mt:ContentFieldValue encode_html="1"$>"
+                  alt="<$mt:ContentLabel encode_html="1"$>"
                   loading="lazy"
                 >
               </mt:ContentField>

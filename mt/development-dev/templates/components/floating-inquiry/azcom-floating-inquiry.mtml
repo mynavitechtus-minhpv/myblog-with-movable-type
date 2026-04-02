@@ -1,18 +1,17 @@
-<mt:If name="home_floating_inquiry_show" eq="1">
+<mt:If name="floating_inquiry_show" eq="1">
 <div
-  class="c-home-floating-inquiry"
-  id="js-home-floating-inquiry"
+  class="c-floating-inquiry"
+  id="js-floating-inquiry"
   role="region"
   aria-label="補助ナビゲーション"
-  data-home-floating-inquiry-fv="<$mt:Var name="home_floating_inquiry_fv_selector" encode_html="1"$>"
-  data-home-floating-inquiry-sp-fv-reveal="<$mt:Var name="home_floating_inquiry_sp_fv_reveal" encode_html="1"$>"
-<mt:If name="home_floating_inquiry_delay_ms">  data-home-floating-inquiry-delay="<$mt:Var name="home_floating_inquiry_delay_ms" encode_html="1"$>"</mt:If>
+  data-floating-inquiry-fv="#js-floating-inquiry-fv"
+  data-floating-inquiry-sp-fv-reveal="0.7"
 >
-  <div class="c-home-floating-inquiry__cluster">
-    <nav class="c-home-floating-inquiry__rails" aria-label="クイックリンク">
+  <div class="c-floating-inquiry__cluster">
+    <nav class="c-floating-inquiry__rails" aria-label="クイックリンク">
 
       <!-- Membership Inquiry Button -->
-      <mt:SetVarBlock name="floating_button_href"><$mt:Var name="home_floating_inquiry_url_guide" encode_html="1"$></mt:SetVarBlock>
+      <mt:SetVarBlock name="floating_button_href">/about/#about</mt:SetVarBlock>
       <mt:SetVarBlock name="floating_button_aria_label">入会のご案内</mt:SetVarBlock>
       <mt:SetVarBlock name="floating_button_label">入会のご案内</mt:SetVarBlock>
       <mt:SetVar name="floating_button_icon_src" value="assets/img/icon-information.svg">
@@ -22,7 +21,7 @@
       <mt:Include module="azcom-floating-button">
 
       <!-- Document Request Button -->
-      <mt:SetVarBlock name="floating_button_href"><$mt:Var name="home_floating_inquiry_url_doc" encode_html="1"$></mt:SetVarBlock>
+      <mt:SetVarBlock name="floating_button_href">/inquiry/?type=materials</mt:SetVarBlock>
       <mt:SetVarBlock name="floating_button_aria_label">資料請求</mt:SetVarBlock>
       <mt:SetVarBlock name="floating_button_label">資料請求</mt:SetVarBlock>
       <mt:SetVar name="floating_button_icon_src" value="assets/img/icon-material.svg">
