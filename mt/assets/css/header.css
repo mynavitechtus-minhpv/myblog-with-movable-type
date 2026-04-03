@@ -141,7 +141,7 @@
   align-items: center;
   flex-shrink: 0;
   width: 44px;
-  height: 44px;
+  height: 48px;
   overflow: hidden;
   transition: width var(--duration-slow) var(--easing-emphasized);
 }

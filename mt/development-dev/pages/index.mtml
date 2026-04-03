@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <mt:SetVarBlock name="meta_title">AZ-COMネット ホームページ</mt:SetVarBlock>
-    <mt:SetVarBlock name="meta_description">AZ-COMネット ホームページ</mt:SetVarBlock>
+    <mt:SetVarBlock name="meta_title">一般社団法人AZ-COMネットワーク</mt:SetVarBlock>
+    <mt:SetVarBlock name="meta_description">運送業・物流企業の経営課題を解決する支援ネットワーク。単独では乗り越えられない人手不足やコスト高騰、BCP対策に伴走し、企業成長と業界の未来をともに創ります。</mt:SetVarBlock>
+    <mt:SetVarBlock name="meta_canonical_url">https://www.azcom-net.jp/</mt:SetVarBlock>
+    <mt:SetVar name="meta_og_image" value="assets/img/og-image_az-com-network.png">
     <mt:Include module="azcom-head-meta">
 
     <mt:SetVar name="assets_version" value="20260327">
@@ -20,26 +22,31 @@
 
     <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/header.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
     <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/footer.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/slider-infinite.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
     <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/floating-button.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
     <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/go-to-top.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
     <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/floating-inquiry.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/slider-infinite.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
 
 </head>
 <body>
     <mt:Include module="azcom-header">
     <main class="p-top" id="main">
-        
+        <section id="js-floating-inquiry-fv" class="p-top__fv-placeholder" aria-label="メインビジュアル（仮・開発用）">
+            メインビジュアル（FV）プレースホルダー — 高さ 100vh
+        </section>
+
         <!-- Slider Infinite Logo Partners - Using Content Type "Slider" -->
         <section class="p-top__logo-slider-section" id="slider-partners-logo" aria-label="会員企業のロゴスライダー">
             <p class="p-top__logo-slider-heading">多くの会員様にご活用いただいています</p>
             <mt:Include module="azcom-slider-infinity" slider_key_value="top">
         </section>
 
+        <div class="p-top__dev-scroll-placeholder">
+            開発用：スクロール検証エリア（最小 200vh）
+        </div>
     </main>
 
     <mt:Include module="azcom-footer">
-
 
     <!-- Floating Inquiry -->
     <mt:SetVar name="floating_inquiry_show" value="1">
@@ -52,8 +59,8 @@
     <mt:Include module="azcom-go-to-top">
 
     <!-- Scripts -->
-    <script defer src="<$mt:StaticWebPath encode_html="1"$>assets/js/slider-infinite.js?v=<$mt:Var name="assets_version" encode_html="1"$>"></script>
     <script defer src="<$mt:StaticWebPath encode_html="1"$>assets/js/floating-inquiry.js?v=<$mt:Var name="assets_version" encode_html="1"$>"></script>
     <script defer src="<$mt:StaticWebPath encode_html="1"$>assets/js/go-to-top.js?v=<$mt:Var name="assets_version" encode_html="1"$>"></script>
+    <script defer src="<$mt:StaticWebPath encode_html="1"$>assets/js/slider-infinite.js?v=<$mt:Var name="assets_version" encode_html="1"$>"></script>
 </body>
 </html>

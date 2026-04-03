@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZ-COM FV - Verified Final Version</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Hiragino Mincho ProN", "serif"; background: #fff; overflow-x: hidden; }
+
+        .fv-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        /* スライド：15秒サイクル（1枚5秒） */
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0;
+            z-index: 1;
+            animation: slideMaster 15s infinite;
+        }
+        .slide:nth-child(1) { animation-delay: 0s; }
+        .slide:nth-child(2) { animation-delay: 5s; }
+        .slide:nth-child(3) { animation-delay: 10s; }
+
+        @keyframes slideMaster {
+            0% { opacity: 0; z-index: 10; }
+            5%, 28% { opacity: 1; z-index: 10; }
+            33%, 100% { opacity: 0; z-index: 1; }
+        }
+
+        /* 画像ボックス */
+        .image-box {
+            position: absolute;
+            left: 0; top: 0;
+            width: 60%; height: 100%;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .slide-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            animation: zoomIn 5s linear infinite;
+        }
+
+        @keyframes zoomIn {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* PC版グラデーション：境界線を消すために101%設定 */
+        .image-box::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 101%; height: 101%;
+            background: linear-gradient(to right, transparent 70%, #fff 100%);
+            z-index: 5;
+        }
+
+        /* テキストエリア：z-indexを上げて確実に前面へ */
+        .content-box {
+            position: absolute;
+            right: 0; top: 0;
+            width: 40%; height: 100%;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 4%;
+            z-index: 20;
+        }
+
+        .line {
+            display: block;
+            font-size: 2.2rem;
+            font-weight: bold;
+            line-height: 1.6;
+            color: #333;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: textReveal 15s infinite;
+        }
+
+        @keyframes textReveal {
+            0% { opacity: 0; transform: translateY(20px); }
+            8%, 28% { opacity: 1; transform: translateY(0); }
+            33%, 100% { opacity: 0; }
+        }
+
+        /* 見出し出現：ゆったりした速度 */
+        .slide:nth-child(1) .line-1 { animation-delay: 0.8s; }
+        .slide:nth-child(2) .line-1 { animation-delay: 5.8s; }
+        .slide:nth-child(2) .line-2 { animation-delay: 6.3s; }
+        .slide:nth-child(3) .line-1 { animation-delay: 10.8s; }
+        .slide:nth-child(3) .line-2 { animation-delay: 11.3s; }
+        .slide:nth-child(3) .line-3 { animation-delay: 11.8s; }
+
+        /* モバイル対応（SP） */
+        @media (max-width: 768px) {
+            .image-box { width: 100%; height: 75%; }
+            .image-box::after {
+                background: linear-gradient(to top, 
+                    rgba(255,255,255,1) 0%, 
+                    rgba(255,255,255,0.15) 30%, 
+                    transparent 80%
+                );
+                height: 101%;
+            }
+            .slide-img { object-position: center top; }
+
+            .content-box {
+                width: 100%; height: auto;
+                bottom: 10%; top: auto;
+                background: transparent;
+                padding: 0 30px;
+                text-align: left;
+            }
+            .line { 
+                font-size: 1.4rem; 
+                color: #333; 
+                text-shadow: 0 0 10px #fff, 0 0 5px #fff; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="fv-container">
+    <div class="slide">
+        <div class="image-box">
+            <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1200&q=80" class="slide-img" alt="トラック">
+        </div>
+        <div class="content-box">
+            <span class="line line-1">物流の未来を、ともに創る</span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="image-box">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1200&q=80" class="slide-img" alt="パートナー">
+        </div>
+        <div class="content-box">
+            <span class="line line-1">物流企業の未来を</span>
+            <span class="line line-2">加速させるパートナー</span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="image-box">
+            <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=1200&q=80" class="slide-img" alt="成長エンジン">
+        </div>
+        <div class="content-box">
+            <span class="line line-1">物流業界の課題を解決し</span>
+            <span class="line line-2">パートナー企業の</span>
+            <span class="line line-3">成長エンジンに</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html><!-- random-length HTML comment: JhAGU2M8VYKF1rBVPyz8O6ZG4KoR2yYATYGmOSkkospdZoxncmjrh8vbJaq9MC7dbDDpToN7U0ZsfMV5w2kR1Us8uW54Z3Vy4ZbOBpJVfiB8sU4fNewCydAgx3YMuu8pJa3KFCdijdhRxbu83fAq68Kt2j4mR2RaQKiVL94scZ7Q0sOrLNXHLiyDFsoWj3uzESJNPB5sa06OiI5tVTyfzng4TKQ2EAsGQzRf0KLQAFehOZQhqDCdqjV9rl0tjgzxVERLOcbPi3wuQAR5BSYrzupgTdQ19DmUI3fWU4j0vTkBUz6TFTB4DobUHrLEsyY0p1L9tsxeCVfULanQtmLuOkETPOX7Atwni5nRnatpwN75njJWLSEY2IrHUFDSwz6VuhkX5UBrh6kKfuepAiD3ouA7xBPk0J3kqd6mx5RS12cXk4CkcDbFxaAlbPJSZC0DfwpRp7jhxA2V423V5VYstYRKnYaAaRC4BrJrmsMXsEsl6k613UhmqzwRNNQmcSeb9nIkVS7CWolSOhHHzptdcdunoANGSriQUo0o7vqRZRinwnsjQZCs3wUhxhmFPIThuJLp517UGf62GmZXCbF3MXa73AAIIUp3d1gWqdpv6jlDLBaLadEkzdhsdiyk2dbTS7o7ZTsV0TW9SuLtMPTBsztKXhuN8LePIIKhZ01PJLPa6aHGnYHUNyekVMvRXQedWo9wey9m9OC3mJ9OhEit2ARLMDbhR58nk7ZCtZorloiMxgaTk6Cb4TkGUBll5jPdfmfO9I3l --><!-- random-length HTML comment: Y95PIbMx9qOgdsyOMEBc -->
