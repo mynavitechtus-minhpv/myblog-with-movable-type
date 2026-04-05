@@ -1,0 +1,298 @@
+/* ==========================================================================
+   Hero First View Slider - 60/40 Split với Diagonal Decoration
+   ========================================================================== */
+
+/* Timing Variables */
+:root {
+  --hero-fv-slide-duration: 5s;
+  --hero-fv-text-delay: 0.8s;
+  --hero-fv-height-pc: 80vh;
+  --hero-fv-height-sp: 75vh;
+}
+
+/* FV Wrapper — no overflow needed; .c-hero-fv__container clips slides */
+.c-hero-fv-wrap {
+  position: relative;
+  width: 100%;
+}
+
+/* FV Section — height defines the visible area */
+.c-hero-fv {
+  position: relative;
+  width: 100%;
+  height: var(--hero-fv-height-pc);
+  background: var(--color-white);
+}
+
+.c-hero-fv__container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--color-white);
+  overflow: hidden;
+}
+
+/* Slide Master — JS sets animation-delay inline for each slide dynamically */
+.c-hero-fv__slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+  animation: slideMaster calc(var(--hero-fv-slide-duration) * var(--total-slides, 3)) infinite;
+  will-change: opacity;
+}
+
+@keyframes slideMaster {
+  0%          { opacity: 0; z-index: 10; }
+  5%, 28%     { opacity: 1; z-index: 10; }
+  33%, 100%   { opacity: 0; z-index: 1; }
+}
+
+/* Image Box — 60% width, right side */
+.c-hero-fv__image-box {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Gradient Overlay — left edge blending */
+.c-hero-fv__image-box::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 150px;
+  height: 100%;
+  background: linear-gradient(
+    to left,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    var(--color-white) 100%
+  );
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Image Zoom Animation — scale(1.0 → 1.1) per slide, JS sets delay inline */
+.c-hero-fv__slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  animation: zoomIn var(--hero-fv-slide-duration) linear infinite;
+  will-change: transform;
+}
+
+@keyframes zoomIn {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+/* Content Box — 40% left, white background */
+.c-hero-fv__content-box {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40%;
+  height: 100%;
+  background: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 4% 0 4%;
+  z-index: 20;
+  gap: var(--space-sm);
+}
+
+/* Text Lines — fade-in with translateY, JS sets animation-delay inline */
+.c-hero-fv__line {
+  display: block;
+  font-family: "Hiragino Mincho Pro", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "MS PMincho", serif;
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: textReveal calc(var(--hero-fv-slide-duration) * var(--total-slides, 3)) infinite;
+  will-change: opacity, transform;
+}
+
+@keyframes textReveal {
+  0%          { opacity: 0; transform: translateY(20px); }
+  8%, 28%     { opacity: 1; transform: translateY(0); }
+  33%, 100%   { opacity: 0; transform: translateY(0); }
+}
+
+/* Text Animation Delays — JS sets inline based on slide index + line index */
+
+/* Slider Controls — positioned inside .c-hero-fv */
+.c-hero-fv > .c-hero-fv__controls {
+  position: absolute;
+  bottom: var(--space-xl);
+  left: var(--layout-padding-inline-mobile);
+  z-index: 20;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--space-sm);
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+.c-hero-fv__dot {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 12px;
+  height: 12px;
+  min-width: 12px;
+  min-height: 12px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: var(--color-primary-light-4);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background-color var(--duration-normal) var(--easing-default),
+              box-shadow var(--duration-normal) var(--easing-default);
+}
+
+.c-hero-fv__dot.is-active {
+  background: var(--color-primary-dark);
+  box-shadow: var(--shadow-focus-secondary);
+}
+
+.c-hero-fv__dot:focus-visible {
+  outline: none;
+}
+
+.c-hero-fv__next {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.c-hero-fv__next:focus-visible {
+  outline: none;
+}
+
+.c-hero-fv__next-icon {
+  display: block;
+  color: var(--color-primary-dark);
+  margin-left: 2px;
+}
+
+/* ========================================================================
+   Mobile (SP) — max-width: 767px
+   ======================================================================== */
+@media (max-width: 767px) {
+  .c-hero-fv {
+    height: var(--hero-fv-height-sp);
+  }
+
+  /* Full-width image, fills entire FV — text overlays via content-box */
+  .c-hero-fv__image-box {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: auto;
+  }
+
+  /* Gradient from bottom — provides readable bg for text overlay */
+  .c-hero-fv__image-box::after {
+    width: 100%;
+    height: 45%;
+    right: auto;
+    left: 0;
+    bottom: 0;
+    top: auto;
+    background: linear-gradient(
+      to top,
+      var(--color-white) 0%,
+      rgba(255, 255, 255, 0.85) 40%,
+      transparent 100%
+    );
+  }
+
+  .c-hero-fv__slide-img {
+    object-position: center 30%;
+  }
+
+  /* Content Box — bottom overlay on image */
+  .c-hero-fv__content-box {
+    width: 100%;
+    height: auto;
+    top: auto;
+    bottom: 14%;
+    left: 0;
+    right: 0;
+    background: transparent;
+    padding: 0 var(--layout-padding-inline-mobile);
+    text-align: right;
+    align-items: flex-end;
+    gap: var(--space-sm);
+  }
+
+  .c-hero-fv__line {
+    font-size: var(--font-size-2xl);
+    color: var(--color-primary-dark);
+  }
+
+  /* Controls hidden on SP */
+  .c-hero-fv > .c-hero-fv__controls {
+    display: none;
+  }
+}
+
+/* ========================================================================
+   Tablet — 768px to 1024px
+   ======================================================================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .c-hero-fv__content-box {
+    padding: 0 4% 0 4%;
+  }
+
+  .c-hero-fv__line {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+/* ========================================================================
+   Reduced Motion
+   ======================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .c-hero-fv__slide,
+  .c-hero-fv__slide-img,
+  .c-hero-fv__line {
+    animation: none !important;
+  }
+
+  .c-hero-fv__slide {
+    opacity: 1;
+  }
+
+  .c-hero-fv__slide:not(:first-child) {
+    display: none;
+  }
+
+  .c-hero-fv__line {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

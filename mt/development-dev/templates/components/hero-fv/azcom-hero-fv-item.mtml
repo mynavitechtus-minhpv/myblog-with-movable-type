@@ -1,0 +1,26 @@
+<mt:Ignore>
+  Hero Slider Item Component
+  Params: img_pc, img_sp, line1, line2, line3
+</mt:Ignore>
+
+<div class="c-hero-fv__slide">
+
+  <div class="c-hero-fv__content-box">
+    <mt:If name="line1"><span class="c-hero-fv__line c-hero-fv__line-1"><$mt:Var name="line1"$></span></mt:If>
+    <mt:If name="line2"><span class="c-hero-fv__line c-hero-fv__line-2"><$mt:Var name="line2"$></span></mt:If>
+    <mt:If name="line3"><span class="c-hero-fv__line c-hero-fv__line-3"><$mt:Var name="line3"$></span></mt:If>
+  </div>
+  
+  <div class="c-hero-fv__image-box">
+    <picture>
+      <mt:If name="img_sp">
+      <source media="(max-width: 767px)" srcset="<$mt:StaticWebPath encode_html="1"$>assets/img/<$mt:Var name="img_sp" encode_html="1"$>">
+      </mt:If>
+      <img src="<$mt:StaticWebPath encode_html="1"$>assets/img/<$mt:Var name="img_pc" encode_html="1"$>" 
+           class="c-hero-fv__slide-img" 
+           alt="<$mt:Var name="line1" encode_html="1"$>"
+           loading="<$mt:Var name="loading" default="lazy"$>">
+    </picture>
+  </div>
+  
+</div>

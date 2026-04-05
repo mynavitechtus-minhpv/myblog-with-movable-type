@@ -1,0 +1,162 @@
+/* ==========================================================================
+   Hero Intro Section - Text + Achievement Badges
+
+   padding-top calculation:
+     Decoration straddle = 50% of decoration rendered height
+     Rendered height (PC)  = viewport_width × (390 / 1440)
+     Rendered height (SP)  = viewport_width × (254 / 375)
+     padding-top = 100% × ratio × 0.5 + buffer
+     ("100%" in padding = width of containing block = viewport width)
+   ========================================================================== */
+
+.c-hero-intro {
+  position: relative;
+  z-index: 1;
+  /* Clear the bottom half of the decoration wave (50% straddle + buffer) */
+  padding-top: calc(100% * (390 / 1440) * 0.5 + var(--space-2xl));
+  padding-bottom: 0;
+  background: transparent;
+}
+
+/* Text Content */
+.c-hero-intro__text {
+  max-width: 800px;
+  margin: var(--space-xl) auto var(--space-xl);
+  text-align: center;
+  line-height: var(--line-height-body);
+}
+
+.c-hero-intro__paragraph {
+  font-size: var(--font-size-sm);
+  line-height: 2.4;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.c-hero-intro__paragraph--emphasis {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-dark);
+  margin-top: var(--space-lg);
+}
+
+/* Badges + note wrapper — fit-content + auto margin keeps note aligned with badge left edge */
+.c-hero-intro__badges-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto var(--space-lg);
+  gap: var(--space-md);
+}
+
+/* Badges row */
+.c-hero-intro__badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  margin: 0;
+  max-width: 100%;
+}
+
+.c-hero-intro__badge {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.c-hero-intro__badge-img {
+  width: 220px;
+  height: auto;
+  display: block;
+}
+
+/* Note — aligns left edge with first badge */
+.c-hero-intro__note {
+  align-self: stretch;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  text-align: left;
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.c-hero-intro__note p {
+  margin: 4px 0;
+}
+
+/* ========================================================================
+   Mobile (SP) — max-width: 767px
+   ======================================================================== */
+@media (max-width: 767px) {
+  .c-hero-intro {
+    /* SP SVG ratio: 254/375 */
+    padding-top: calc(100% * (254 / 375) * 0.5 + var(--space-lg));
+    padding-bottom: var(--space-2xl);
+  }
+
+  .c-hero-intro__text {
+    margin-bottom: var(--space-xl);
+  }
+
+  .c-hero-intro__paragraph {
+    font-size: var(--font-size-sm);
+  }
+
+  .c-hero-intro__paragraph--emphasis {
+    font-size: var(--font-size-sm);
+  }
+
+  .c-hero-intro__badges-wrap {
+    gap: var(--space-sm);
+  }
+
+  /* 2+1 layout: badges 1 and 2 side by side, badge 3 centered below */
+  .c-hero-intro__badges {
+    max-width: min(100%, var(--layout-mobile-content));
+    gap: var(--space-xs) var(--space-sm);
+  }
+
+  .c-hero-intro__badge:nth-child(1),
+  .c-hero-intro__badge:nth-child(2) {
+    flex: 0 0 calc((100% - var(--space-sm)) / 2);
+    box-sizing: border-box;
+    justify-content: center;
+  }
+
+  .c-hero-intro__badge:nth-child(1) .c-hero-intro__badge-img,
+  .c-hero-intro__badge:nth-child(2) .c-hero-intro__badge-img,
+  .c-hero-intro__badge:nth-child(3) .c-hero-intro__badge-img {
+    width: 100%;
+    max-width: 158px;
+    height: auto;
+  }
+
+  .c-hero-intro__badge:nth-child(3) {
+    flex: 0 0 100%;
+    justify-content: center;
+  }
+
+  .c-hero-intro__note {
+    font-size: 11px;
+  }
+}
+
+/* ========================================================================
+   Tablet — 768px to 1024px
+   ======================================================================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .c-hero-intro__badges {
+    gap: var(--space-sm);
+  }
+
+  .c-hero-intro__badge-img {
+    width: 160px;
+  }
+}

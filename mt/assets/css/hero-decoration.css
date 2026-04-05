@@ -1,0 +1,66 @@
+/* ==========================================================================
+   Hero Decoration Wave — Module: azcom-hero-decoration
+   development-dev/templates/components/hero-fv/azcom-hero-decoration.mtml
+
+   Placement: in normal flow in index.mtml, BETWEEN azcom-hero-fv and azcom-hero-intro.
+   (NOT inside .c-hero-fv-wrap — avoids scroll-container clipping from overflow-x:hidden)
+
+   Strategy: position:relative + symmetric negative margins
+     margin-top  = -50% of rendered SVG height → overlaps into FV bottom
+     margin-bottom = -50% of rendered SVG height → pulls intro up
+
+   In the overlap zone (top half, inside FV bounds):
+     Decoration z-index:2 < active slide z-index:10 → FV image paints on top → hidden ✓
+   Below FV bottom (bottom half):
+     Decoration z-index:2 > intro z-index:1 → wave visible above intro background ✓
+
+   Intro must set padding-top ≥ 50% of decoration rendered height (see hero-intro.css).
+
+   "100%" in margin percentages = width of containing block = viewport width.
+   ========================================================================== */
+
+#main {
+  position: relative;
+}
+
+.c-hero-decoration {
+  position: relative;
+  z-index: 15;
+  pointer-events: none;
+  /* overlap: top 50% into FV (hidden behind slides) */
+  margin-top: calc(-1 * 100% * (390 / 1440) * 0.5);
+  /* straddle: bottom 50% into intro space (pulls intro up) */
+  margin-bottom: calc(-1 * 100% * (390 / 1440) * 0.5);
+}
+
+.c-hero-decoration__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+/* Desktop SVG — >= 768px */
+.c-hero-decoration__svg--desktop {
+  display: block;
+}
+
+/* Mobile SVG — < 768px */
+.c-hero-decoration__svg--mobile {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .c-hero-decoration {
+    margin-top: calc(-1 * 100% * (200 / 375) * 0.5);
+    margin-bottom: calc(-1 * 100% * (254 / 375) * 0.5);
+  }
+
+  .c-hero-decoration__svg--desktop {
+    display: none;
+  }
+
+  .c-hero-decoration__svg--mobile {
+    display: block;
+  }
+}
