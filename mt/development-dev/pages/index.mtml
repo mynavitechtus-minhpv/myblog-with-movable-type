@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/hero-fv.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
     <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/hero-intro.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
     <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/hero-decoration.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/network-strengths.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
 
 </head>
 <body>
@@ -48,6 +49,10 @@
             <p class="p-top__logo-slider-heading">多くの会員様にご活用いただいています</p>
             <mt:Include module="azcom-slider-infinity" slider_key_value="top">
         </section>
+
+        <!-- AZ-COMネットワークの強み -->
+        <mt:SetVar name="network_strengths_show_cta" value="1">
+        <mt:Include module="azcom-network-strengths">
 
         <div class="p-top__dev-scroll-placeholder">
             開発用：スクロール検証エリア（最小 200vh）

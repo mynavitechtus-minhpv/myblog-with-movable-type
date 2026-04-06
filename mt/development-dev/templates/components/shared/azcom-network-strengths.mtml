@@ -1,0 +1,79 @@
+<mt:Ignore>
+  Parent (e.g. index): SetVar network_strengths_show_cta = 1 to render footer CTA; omit or 0 to hide.
+</mt:Ignore>
+<section class="c-network-strengths" id="network-strengths" aria-labelledby="network-strengths-heading">
+  <div class="l-container">
+    <header class="c-network-strengths__header">
+      <div class="c-network-strengths__title-row">
+        <h2 id="network-strengths-heading" class="c-network-strengths__title">AZ-COMネットワークの強み</h2>
+      </div>
+    </header>
+
+    <ol class="c-network-strengths__list">
+    <!-- Point 01 -->
+    <mt:SetVar name="point_label" value="Point 01">
+    <mt:SetVar name="img" value="top-img-004.png">
+    <mt:SetVar name="img_alt" value="「新しい成長エンジン」として会員企業の幸福を実現">
+    <mt:SetVar name="point_title" value="「新しい成長エンジン」として会員企業の幸福を実現">
+    <mt:SetVarBlock name="point_body">AZ-COMネットワークは、パートナー企業である会員の幸福（しあわせ）の実現を目指して、多彩な支援メニューを通じて、事業拡大や経営改善を後押します。</mt:SetVarBlock>
+    <mt:SetVar name="loading" value="eager">
+    <mt:Include module="azcom-network-strengths-point">
+
+    <!-- Point 02 -->
+    <mt:SetVar name="point_label" value="Point 02">
+    <mt:SetVar name="img" value="top-img-005.png">
+    <mt:SetVar name="img_alt" value="経営支援、コスト削減に寄与するサービスの提供">
+    <mt:SetVar name="point_title" value="経営支援、コスト削減に寄与するサービスの提供">
+    <mt:SetVarBlock name="point_body">ETC大口多頻度割引（AZ-COM協同組合を通じて提供）や燃料をはじめとする各種商品・サービスの会員特別価格提供などで、経営コストを最適化し、収益力強化に貢献します。</mt:SetVarBlock>
+    <mt:SetVar name="loading" value="lazy">
+    <mt:Include module="azcom-network-strengths-point">
+
+    <!-- Point 03 -->
+    <mt:SetVar name="point_label" value="Point 03">
+    <mt:SetVar name="img" value="top-img-006.png">
+    <mt:SetVar name="img_alt" value="人財育成で企業の未来を創る">
+    <mt:SetVar name="point_title" value="人財育成で企業の未来を創る">
+    <mt:SetVarBlock name="point_body">経営塾、運行管理者向け研修などの階層別研修に加え、海外視察研修会など多彩な学びの場を提供します。組織の課題に即したカリキュラムで、人財の育成を支援します。</mt:SetVarBlock>
+    <mt:SetVar name="loading" value="lazy">
+    <mt:Include module="azcom-network-strengths-point">
+
+    <!-- Point 04 -->
+    <mt:SetVar name="point_label" value="Point 04">
+    <mt:SetVar name="img" value="top-img-007.png">
+    <mt:SetVar name="img_alt" value="会員同士がつながるコミュニティの創出">
+    <mt:SetVar name="point_title" value="会員同士がつながるコミュニティの創出">
+    <mt:SetVarBlock name="point_body">総会やパートナー企業研修、各地区の地域交流会など、豊富な催事で会員同士がつながる場を提供します。情報の交換し合い、共感と連帯を育むことで、強い絆を生み出します。</mt:SetVarBlock>
+    <mt:SetVar name="loading" value="lazy">
+    <mt:Include module="azcom-network-strengths-point">
+
+    <!-- Point 05 -->
+    <mt:SetVar name="point_label" value="Point 05">
+    <mt:SetVar name="img" value="top-img-008.png">
+    <mt:SetVar name="img_alt" value="運送業界の未来を創り出すプラットフォームの実現">
+    <mt:SetVar name="point_title" value="運送業界の未来を創り出すプラットフォームの実現">
+    <mt:SetVarBlock name="point_body">AZ-COMネットワークが提供するサービスプラットフォームで、サービス申込やすべてがつながる場所で、運送業界の未来を共に創り上げます。</mt:SetVarBlock>
+    <mt:SetVar name="loading" value="lazy">
+    <mt:Include module="azcom-network-strengths-point">
+
+    <!-- Point 06 -->
+    <mt:SetVar name="point_label" value="Point 06">
+    <mt:SetVar name="img" value="top-img-009.png">
+    <mt:SetVar name="img_alt" value="社会貢献（BCP）と全国ネットワークのつながり">
+    <mt:SetVar name="point_title" value="社会貢献（BCP）と全国ネットワークのつながり">
+    <mt:SetVarBlock name="point_body">「指定公共機関」として社会貢献に取り組み、BCPで全国最大級の組織を目指しています。BCPネットワークの全国６支部では、定期的な会合をなど開催し、災害発生時の対応力向上を着実に高めています。</mt:SetVarBlock>
+    <mt:SetVar name="loading" value="lazy">
+    <mt:Include module="azcom-network-strengths-point">
+    </ol>
+
+    <mt:If name="network_strengths_show_cta" eq="1">
+    <div class="c-network-strengths__footer">
+      <a class="c-network-strengths__cta" href="#" aria-label="AZ-COMネットワークの強みを詳しく見る">
+        詳しく見る
+        <svg class="c-network-strengths__cta-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+    </mt:If>
+  </div>
+</section>
