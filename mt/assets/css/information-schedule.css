@@ -1,0 +1,147 @@
+.c-information--schedule {
+  background-color: var(--color-bg);
+  padding-block: var(--space-xl) var(--space-5xl);
+}
+
+.c-information-schedule {
+  padding: var(--space-6xl);
+  margin-bottom: 0;
+  background-color: var(--color-bg-alt);
+  border-radius: var(--radius-lg);
+}
+
+.c-information-schedule__heading {
+  margin: 0 0 var(--space-lg);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+  text-align: left;
+}
+
+.c-schedule-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  align-items: stretch;
+}
+
+.c-schedule-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  color: var(--color-white);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--duration-slow) var(--easing-emphasized);
+}
+
+.c-schedule-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.c-schedule-card:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus-primary);
+}
+
+/* Figma: hover — overlay đặc primary-dark (che ảnh); default — overlay bán trong suốt */
+.c-schedule-card:hover .c-schedule-card__overlay,
+.c-schedule-card:focus-visible .c-schedule-card__overlay {
+  background-color: var(--color-primary-dark);
+}
+
+.c-schedule-card__media {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-index-base);
+}
+
+.c-schedule-card__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--easing-emphasized);
+}
+
+.c-schedule-card:hover .c-schedule-card__img,
+.c-schedule-card:focus-visible .c-schedule-card__img {
+  transform: scale(1.04);
+}
+
+.c-schedule-card__img--placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: color-mix(in srgb, var(--color-primary-dark) 35%, var(--color-border));
+}
+
+.c-schedule-card__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-index-raised);
+  background-color: color-mix(in srgb, var(--color-primary-dark) 58%, transparent);
+  pointer-events: none;
+  transition: background-color var(--duration-slow) var(--easing-emphasized);
+}
+
+.c-schedule-card__label {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  padding-inline: var(--space-md);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-white);
+  text-align: center;
+  text-shadow: 0 1px 2px color-mix(in srgb, var(--color-primary-dark) 40%, transparent);
+}
+
+.c-schedule-card__label-icon {
+  display: block;
+  flex-shrink: 0;
+  width: 5px;
+  height: 9px;
+}
+
+@media (max-width: 767px) {
+  .c-information--schedule {
+    padding-block: var(--space-lg) var(--space-2xl);
+  }
+
+  .c-information-schedule {
+    padding: var(--space-md);
+    background-color: var(--color-bg);
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-lg);
+  }
+
+  .c-information-schedule__heading {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  .c-schedule-list {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .c-schedule-card {
+    aspect-ratio: 16 / 10;
+  }
+
+  .c-schedule-card__label {
+    font-size: var(--font-size-md);
+  }
+}

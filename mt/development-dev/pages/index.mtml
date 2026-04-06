@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/hero-decoration.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
     <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/network-strengths.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
     <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/business-content.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/information-news.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/information-schedule.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
 
 </head>
 <body>
@@ -57,6 +59,16 @@
 
         <!-- 事業内容 -->
         <mt:Include module="azcom-business-content">
+
+        <!-- お知らせ -->
+        <mt:SetVar name="information_news_lastn" value="5">
+        <mt:SetVar name="information_news_sort_by" value="authored_on">
+        <mt:SetVar name="information_news_sort_order" value="descend">
+        <mt:SetVar name="information_news_show_list_cta" value="1">
+        <mt:Include module="azcom-information-news">
+
+        <!-- 年間スケジュール -->
+        <mt:Include module="azcom-information-schedule">
     </main>
 
     <mt:Include module="azcom-footer">

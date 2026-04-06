@@ -1,0 +1,16 @@
+<a class="c-schedule-card" href="<$mt:Var name="schedule_slot_href" encode_html="1"$>">
+  <span class="c-schedule-card__media">
+    <mt:If name="schedule_slot_img" ne="">
+    <img class="c-schedule-card__img" src="<$mt:StaticWebPath encode_html="1"$>assets/img/<$mt:Var name="schedule_slot_img" encode_html="1"$>" alt="<$mt:Var name="schedule_slot_label" encode_html="1"$>" width="480" height="360" loading="lazy">
+    <mt:Else>
+    <span class="c-schedule-card__img c-schedule-card__img--placeholder" role="img" aria-hidden="true"></span>
+    </mt:If>
+    <span class="c-schedule-card__overlay" aria-hidden="true"></span>
+  </span>
+  <span class="c-schedule-card__label">
+    <span class="c-schedule-card__label-text"><$mt:Var name="schedule_slot_label" encode_html="1"$></span>
+    <svg class="c-schedule-card__label-icon" width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <path d="M0.232692 7.54862L3.08179 4.49997L0.232692 1.45134C-0.0775644 1.11934 -0.0775645 0.581086 0.232692 0.249001C0.271545 0.207511 0.313339 0.171206 0.357357 0.140089C0.665802 -0.077816 1.08493 -0.0415116 1.35643 0.249L4.76736 3.8988C4.91633 4.0583 5 4.2745 5 4.49997C5 4.72553 4.91633 4.94173 4.76736 5.10114L1.35643 8.75099C1.04607 9.083 0.543044 9.083 0.232692 8.75099C0.193942 8.70948 0.160007 8.66475 0.130918 8.61761C-0.0727093 8.28761 -0.0387741 7.83914 0.232692 7.54862Z" fill="currentColor"/>
+    </svg>
+  </span>
+</a>

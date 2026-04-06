@@ -101,3 +101,43 @@ Name = **Slider**
 | Module template | Source Path Github |
 | --- | --- |
 | `azcom-slider-infinity` | `/templates/components/shared/azcom-slider-infinity.mtml` |
+
+---
+
+#### Information — News & Annual schedule (Module Templates)
+
+| Module template | Source Path Github |
+| --- | --- |
+| `azcom-information-news` | `/templates/components/shared/azcom-information-news.mtml` |
+| `azcom-information-schedule` | `/templates/components/shared/azcom-information-schedule.mtml` |
+| `azcom-information-schedule-slot` | `/templates/components/shared/azcom-information-schedule-slot.mtml` |
+
+## 3. Blog「News」(お知らせ) — create in MT Admin (production)
+
+### 3.1 Name convention (must be consistent)
+
+- **Blog name** (Name field in Admin) must be **`News`** (case-sensitive), matching the fixed name in **`azcom-information-news`**.
+- The TOP **Index** must be published in the **Website** context that includes this child blog (`include_blogs="children"`).
+
+### 3.2 Create blog & paths
+
+1. **Website AZ-COM** → **Create Blog** (child site) → set **Name** per convention (e.g. `News`).
+2. **Settings → General**
+   - **Site URL:** `https://<domain>/news/` (trailing `/`).
+   - **Site Root:** real **filesystem** path where static files are written (must align with **DocumentRoot** / server mapping — production differs from local; no trailing `/` per MT hint).
+   - **Publish archives outside of Site Root:** leave off unless architecture requires it.
+3. **Settings → Publishing / General (Archive)**
+   - **Preferred Archive:** **Entry** (Individual).
+   - **File Extension:** `html`.
+
+### 3.3 Archive mapping (per-entry URL)
+
+1. **Settings → Publishing** (or from the Entry Archive template) → **Archive mapping** for **Entry**.
+2. **File template (Custom):** `post_%E/%i`  
+   - **Do not** add leading/trailing spaces (avoids *inappropriate whitespace* errors).
+   - Output: `.../news/post_<id>/index.html` → public URL `.../news/post_<id>/`.
+
+### 3.4 Entry detail template & (optional) listing
+
+1. **Design → Templates → Create → Entry Archive:** add MTML for the detail page (e.g. `EntryTitle`, `EntryDate`, `EntryBody` inside `<article>`). **Save**.
+2. **Tools → Rebuild** the News blog. Create an **Entry** → **Published** → open the permalink to verify.
