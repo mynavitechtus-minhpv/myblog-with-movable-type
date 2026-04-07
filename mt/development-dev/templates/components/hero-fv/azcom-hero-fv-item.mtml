@@ -1,8 +1,3 @@
-<mt:Ignore>
-  Hero Slider Item Component
-  Params: img_pc, img_sp, line1, line2, line3
-</mt:Ignore>
-
 <div class="c-hero-fv__slide">
 
   <div class="c-hero-fv__content-box">
@@ -18,7 +13,7 @@
       </mt:If>
       <img src="<$mt:StaticWebPath encode_html="1"$>assets/img/<$mt:Var name="img_pc" encode_html="1"$>" 
            class="c-hero-fv__slide-img" 
-           alt="<$mt:Var name="line1" encode_html="1"$>"
+           alt="<$mt:Var name="hero_alt" default="$line1" encode_html="1"$>"
            loading="<$mt:Var name="loading" default="lazy"$>">
     </picture>
   </div>
