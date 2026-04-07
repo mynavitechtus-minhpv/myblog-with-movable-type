@@ -1,5 +1,5 @@
 <mt:Ignore>
-  Params: point_label, img, img_alt, point_title, point_body (SetVarBlock), loading
+  Params: point_label, img, img_alt, point_title, point_body (SetVarBlock), point_body_html (optional raw HTML), loading
   Badge overlays top-left of image (Figma); no full-width pastel bar.
 </mt:Ignore>
 
@@ -19,8 +19,13 @@
       </div>
       <div class="c-network-strengths__content">
         <h3 class="c-network-strengths__item-title"><$mt:Var name="point_title" encode_html="1"$></h3>
-        <p class="c-network-strengths__item-text"><$mt:Var name="point_body" encode_html="1"$></p>
+        <mt:If name="point_body_html" ne="">
+          <div class="c-network-strengths__item-text"><$mt:Var name="point_body_html"$></div>
+        <mt:Else>
+          <p class="c-network-strengths__item-text"><$mt:Var name="point_body" encode_html="1"$></p>
+        </mt:If>
       </div>
     </div>
   </div>
 </li>
+<mt:SetVar name="point_body_html" value="">

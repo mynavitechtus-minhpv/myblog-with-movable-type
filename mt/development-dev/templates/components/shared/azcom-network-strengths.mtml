@@ -60,14 +60,16 @@
     <mt:SetVar name="img" value="top-img-009.png">
     <mt:SetVar name="img_alt" value="社会貢献（BCP）と全国ネットワークのつながり">
     <mt:SetVar name="point_title" value="社会貢献（BCP）と全国ネットワークのつながり">
-    <mt:SetVarBlock name="point_body">「指定公共機関」として社会貢献に取り組み、BCPで全国最大級の組織を目指しています。BCPネットワークの全国６支部では、定期的な会合をなど開催し、災害発生時の対応力向上を着実に高めています。</mt:SetVarBlock>
+    <mt:SetVarBlock name="point_body_html">
+      <p>「指定公共機関」として社会貢献に取り組み、<strong>BCP</strong>で全国最大級の組織を目指しています。<br>BCPネットワークの全国６支部では、定期的な会合をなど開催し、災害発生時の対応力向上を着実に高めています。</p>
+    </mt:SetVarBlock>
     <mt:SetVar name="loading" value="lazy">
     <mt:Include module="azcom-network-strengths-point">
     </ol>
 
     <mt:If name="network_strengths_show_cta" eq="1">
     <div class="c-network-strengths__footer">
-      <a class="c-network-strengths__cta" href="#" aria-label="AZ-COMネットワークの強みを詳しく見る">
+      <a class="c-network-strengths__cta" href="/about" aria-label="AZ-COMネットワークの強みを詳しく見る">
         詳しく見る
         <svg class="c-network-strengths__cta-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
