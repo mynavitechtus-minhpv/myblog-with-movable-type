@@ -1,5 +1,5 @@
 <mt:Ignore>
-  Params: img, img_alt, card_kicker, card_title, card_featured (1|0), card_href
+  Params: img, img_alt, card_kicker, card_title, card_featured (1|0), card_href, card_target, card_rel
   Images always use loading="lazy" (no param).
   card_featured 0: card shell = primary gradient (blue); CTA = icon-arrow-005.svg (accent disc).
   card_featured 1: card shell = accent gradient (red); CTA = icon-arrow-004.svg (primary-dark disc).
@@ -21,7 +21,11 @@
         <p class="c-business-content__kicker"><$mt:Var name="card_kicker" encode_html="1"$></p>
         <div class="c-business-content__title-row">
           <h3 class="c-business-content__card-title"><$mt:Var name="card_title" encode_html="1"$></h3>
-          <a class="c-business-content__cta" href="<$mt:Var name="card_href" encode_html="1"$>" aria-label="<$mt:Var name="card_title" encode_html="1"$>の詳細へ">
+          <a class="c-business-content__cta"
+             href="<$mt:Var name="card_href" encode_html="1"$>"
+             <mt:If name="card_target">target="<$mt:Var name="card_target" encode_html="1"$>"</mt:If>
+             <mt:If name="card_rel">rel="<$mt:Var name="card_rel" encode_html="1"$>"</mt:If>
+             aria-label="<$mt:Var name="card_title" encode_html="1"$>の詳細へ">
             <mt:If name="card_featured" eq="1">
             <img src="<$mt:StaticWebPath encode_html="1"$>assets/img/icon-arrow-004.svg"
                  alt=""

@@ -1,6 +1,8 @@
 .c-business-content {
   padding-block: var(--space-5xl);
   background-color: var(--color-primary-light);
+  --business-content-media-bg: rgba(19, 94, 156, 0.12);
+  --business-content-featured-media-bg: rgba(151, 46, 32, 0.15);
 }
 
 .c-business-content__header {
@@ -27,8 +29,7 @@
   background: linear-gradient(
     to right,
     var(--color-primary-dark) 0%,
-    var(--color-primary-dark) 18%,
-    color-mix(in srgb, var(--color-primary-dark) 35%, transparent) 55%,
+    var(--color-primary-dark) 55%,
     transparent 100%
   );
 }
@@ -36,8 +37,8 @@
 .c-business-content__lead {
   max-width: var(--layout-prose);
   margin: var(--space-xl) 0 0;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
   line-height: var(--line-height-body-relaxed);
   color: var(--color-text-primary);
   text-align: left;
@@ -76,6 +77,9 @@
     var(--color-primary)
   );
   box-shadow: var(--shadow-sm);
+  transition:
+    background-image var(--duration-normal) var(--easing-default),
+    transform var(--duration-normal) var(--easing-default);
 }
 
 .c-business-content__card--featured {
@@ -93,11 +97,11 @@
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: var(--radius-sm);
-  background-color: color-mix(in srgb, var(--color-primary-dark) 12%, transparent);
+  background-color: var(--business-content-media-bg);
 }
 
 .c-business-content__card--featured .c-business-content__media {
-  background-color: color-mix(in srgb, var(--color-accent-dark) 15%, transparent);
+  background-color: var(--business-content-featured-media-bg);
 }
 
 .c-business-content__img {
@@ -107,6 +111,7 @@
   min-height: 0;
   border: 0;
   object-fit: cover;
+  transition: transform var(--duration-slow) var(--easing-default);
 }
 
 .c-business-content__body {
@@ -176,6 +181,46 @@
   height: 30px;
 }
 
+@supports (color: color-mix(in srgb, red 50%, white 50%)) {
+  .c-business-content__title::after {
+    background: linear-gradient(
+      to right,
+      var(--color-primary-dark) 0%,
+      var(--color-primary-dark) 18%,
+      color-mix(in srgb, var(--color-primary-dark) 35%, transparent) 55%,
+      transparent 100%
+    );
+  }
+
+  .c-business-content__media {
+    background-color: color-mix(in srgb, var(--color-primary-dark) 12%, transparent);
+  }
+
+  .c-business-content__card--featured .c-business-content__media {
+    background-color: color-mix(in srgb, var(--color-accent-dark) 15%, transparent);
+  }
+}
+
+.c-business-content__item:hover .c-business-content__card {
+  background-image: linear-gradient(
+    to top left,
+    var(--color-primary-dark),
+    var(--color-primary)
+  );
+}
+
+.c-business-content__item:hover .c-business-content__card--featured {
+  background-image: linear-gradient(
+    to top left,
+    var(--color-accent),
+    var(--color-accent-dark)
+  );
+}
+
+.c-business-content__item:hover .c-business-content__img {
+  transform: scale(1.04);
+}
+
 @media (min-width: 768px) and (max-width: 1024px) {
   .c-business-content__grid {
     gap: var(--space-xs);
@@ -187,10 +232,6 @@
 }
 
 @media (max-width: 767px) {
-  .c-business-content__card {
-    border-radius: 0;
-  }
-
   .c-business-content {
     padding-block: var(--space-2xl);
   }

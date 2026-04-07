@@ -36,8 +36,8 @@
 .c-business-content__lead {
   max-width: var(--layout-prose);
   margin: var(--space-xl) 0 0;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
   line-height: var(--line-height-body-relaxed);
   color: var(--color-text-primary);
   text-align: left;
