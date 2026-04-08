@@ -1,11 +1,7 @@
-.c-information--schedule {
-  background-color: var(--color-bg);
-  padding-block: var(--space-xl) var(--space-5xl);
-}
+/* ── Schedule card (gray container) ── */
 
 .c-information-schedule {
   padding: var(--space-6xl);
-  margin-bottom: 0;
   background-color: var(--color-bg-alt);
   border-radius: var(--radius-lg);
 }
@@ -18,6 +14,8 @@
   color: var(--color-text-primary);
   text-align: left;
 }
+
+/* ── Schedule card grid ── */
 
 .c-schedule-list {
   display: grid;
@@ -129,6 +127,8 @@ a.c-schedule-card {
   text-shadow: var(--shadow-text-primary-dark);
 }
 
+/* ── Progressive enhancement ── */
+
 @supports (color: color-mix(in srgb, red 50%, white 50%)) {
   .c-schedule-card__img--placeholder {
     background: none;
@@ -153,14 +153,12 @@ a.c-schedule-card {
   height: 9px;
 }
 
-@media (max-width: 767px) {
-  .c-information--schedule {
-    padding-block: var(--space-lg) var(--space-2xl);
-  }
+/* ── SP responsive ── */
 
+@media (max-width: 767px) {
   .c-information-schedule {
-    padding: 0;
-    background-color: transparent;
+    padding: var(--space-lg) var(--layout-padding-inline-mobile);
+    background-color: var(--color-bg-alt);
     box-shadow: none;
     border-radius: 0;
   }

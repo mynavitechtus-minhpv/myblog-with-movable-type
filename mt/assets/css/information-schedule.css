@@ -1,11 +1,5 @@
-.c-information--schedule {
-  background-color: var(--color-bg);
-  padding-block: var(--space-xl) var(--space-5xl);
-}
-
 .c-information-schedule {
   padding: var(--space-6xl);
-  margin-bottom: 0;
   background-color: var(--color-bg-alt);
   border-radius: var(--radius-lg);
 }
@@ -154,23 +148,21 @@ a.c-schedule-card {
 }
 
 @media (max-width: 767px) {
-  .c-information--schedule {
-    padding-block: var(--space-lg) var(--space-2xl);
-  }
-
   .c-information-schedule {
-    padding: 0;
-    background-color: transparent;
+    padding: var(--space-lg) var(--layout-padding-inline-mobile);
+    background-color: var(--color-bg-alt);
     box-shadow: none;
     border-radius: 0;
   }
 
   .c-information-schedule__heading {
+    padding: 0 var(--space-md);
     font-size: var(--font-size-lg);
     margin-bottom: var(--space-md);
   }
 
   .c-schedule-list {
+    padding: var(--space-md);
     grid-template-columns: 1fr;
     gap: var(--space-md);
   }

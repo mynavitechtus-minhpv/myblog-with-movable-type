@@ -1,6 +1,6 @@
 .c-business-content {
   padding-block: var(--space-5xl);
-  background-color: var(--color-primary-light);
+  background-color: var(--color-bg);
   --business-content-media-bg: rgba(19, 94, 156, 0.12);
   --business-content-featured-media-bg: rgba(151, 46, 32, 0.15);
 }

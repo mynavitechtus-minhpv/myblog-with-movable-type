@@ -1,24 +1,19 @@
-<section class="c-information c-information--news" id="information" aria-labelledby="information-heading">
-  <div class="l-container">
-    <h2 id="information-heading" class="c-information__title">インフォメーション</h2>
-    <div class="c-information-news" id="information-news" aria-labelledby="information-news-heading">
-      <div class="c-information-news__card">
-        <h3 id="information-news-heading" class="c-information-news__heading">お知らせ</h3>
+<div class="c-information-news" id="information-news" aria-labelledby="information-news-heading">
+  <div class="c-information-news__card">
+    <h3 id="information-news-heading" class="c-information-news__heading">お知らせ</h3>
 
-        <mt:SetVar name="news_query_limit" value="$information_news_lastn">
-        <mt:SetVar name="news_query_sort_by" value="$information_news_sort_by">
-        <mt:SetVar name="news_query_sort_order" value="$information_news_sort_order">
+    <mt:SetVar name="news_query_limit" value="$information_news_lastn">
+    <mt:SetVar name="news_query_sort_by" value="$information_news_sort_by">
+    <mt:SetVar name="news_query_sort_order" value="$information_news_sort_order">
 
-        <mt:Include module="azcom-query-news-corporate-latest">
+    <mt:Include module="azcom-query-news-corporate-latest">
 
-        <mt:If name="information_news_show_list_cta" ne="">
-          <mt:If name="news_corp_count" gt="0">
-            <p class="c-information-news__actions">
-              <a class="c-information-news__btn-more" href="/news/">お知らせ一覧</a>
-            </p>
-          </mt:If>
-        </mt:If>
-      </div>
-    </div>
+    <mt:If name="information_news_show_list_cta" ne="">
+      <mt:If name="news_corp_count" gt="0">
+        <p class="c-information-news__actions">
+          <a class="c-information-news__btn-more" href="/news/">お知らせ一覧</a>
+        </p>
+      </mt:If>
+    </mt:If>
   </div>
-</section>
+</div>

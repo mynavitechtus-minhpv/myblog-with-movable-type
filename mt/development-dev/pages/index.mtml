@@ -61,15 +61,21 @@
         <!-- AZ-COMネットの理念 -->
         <mt:Include module="azcom-philosophy-video">
 
-        <!-- お知らせ -->
-        <mt:SetVar name="information_news_lastn" value="5">
-        <mt:SetVar name="information_news_sort_by" value="authored_on">
-        <mt:SetVar name="information_news_sort_order" value="descend">
-        <mt:SetVar name="information_news_show_list_cta" value="1">
-        <mt:Include module="azcom-information-news">
+        <!-- インフォメーション（お知らせ + 年間スケジュール） -->
+        <section class="c-information" id="information" aria-labelledby="information-heading">
+            <div class="l-container">
+                <h2 id="information-heading" class="c-information__title">インフォメーション</h2>
+                <div class="c-information__body">
+                    <mt:SetVar name="information_news_lastn" value="5">
+                    <mt:SetVar name="information_news_sort_by" value="authored_on">
+                    <mt:SetVar name="information_news_sort_order" value="descend">
+                    <mt:SetVar name="information_news_show_list_cta" value="1">
+                    <mt:Include module="azcom-information-news">
 
-        <!-- 年間スケジュール -->
-        <mt:Include module="azcom-information-schedule">
+                    <mt:Include module="azcom-information-schedule">
+                </div>
+            </div>
+        </section>
     </main>
 
     <mt:Include module="azcom-footer">

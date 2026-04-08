@@ -3,15 +3,9 @@
   --shadow-information-news-btn-more: 0 8px 18px rgba(28, 100, 242, 0.2);
 }
 
-.c-information--news {
+.c-information {
   width: 100%;
-  padding-block: var(--space-5xl) var(--space-xl);
-}
-
-.c-information--news *,
-.c-information--news *::before,
-.c-information--news *::after {
-  box-sizing: border-box;
+  padding-block: var(--space-5xl);
 }
 
 .c-information__title {
@@ -38,9 +32,14 @@
   );
 }
 
+.c-information__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
 .c-information-news {
   width: 100%;
-  margin: 0 0 var(--space-xl);
   padding: var(--space-6xl);
   border-radius: var(--radius-lg);
   background-color: var(--color-bg-alt);
@@ -77,7 +76,7 @@
   margin: 0;
 }
 
-.c-news-list__item:not(:last-child)::after {
+.c-news-list__item::after {
   content: "";
   position: absolute;
   inset-inline: var(--space-md);
@@ -225,18 +224,21 @@
     );
   }
 
-  .c-news-list__item:not(:last-child)::after {
+  .c-news-list__item::after {
     background-color: color-mix(in srgb, var(--color-border) 55%, var(--color-white));
   }
 }
 
 @media (max-width: 767px) {
-  .c-information--news {
-    padding-block: var(--space-2xl) var(--space-lg);
+  .c-information {
+    padding-block: var(--space-2xl) var(--space-md);
   }
 
   .c-information__title {
-    margin-bottom: var(--space-2xl);
+    margin-bottom: 0;
+    margin-inline: calc(-1 * var(--layout-padding-inline-mobile));
+    padding: var(--space-lg) var(--layout-padding-inline-mobile) var(--space-lg);
+    background-color: var(--color-bg);
     font-size: var(--font-size-2xl);
   }
 
@@ -245,11 +247,15 @@
     margin-top: var(--space-xs);
   }
 
+  .c-information__body {
+    margin-inline: calc(-1 * var(--layout-padding-inline-mobile));
+    gap: var(--space-md);
+  }
+
   .c-information-news {
-    margin-bottom: var(--space-lg);
-    padding: 0;
+    padding: var(--space-lg) var(--layout-padding-inline-mobile) var(--space-xl);
+    background-color: var(--color-bg-alt);
     border-radius: 0;
-    background-color: transparent;
   }
 
   .c-information-news__card {
@@ -270,7 +276,7 @@
     gap: var(--space-sm);
   }
 
-  .c-news-list__item:not(:last-child)::after {
+  .c-news-list__item::after {
     inset-inline: var(--space-sm);
   }
 
