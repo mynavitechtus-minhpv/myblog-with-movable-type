@@ -1,0 +1,204 @@
+:root {
+  --philosophy-video-media-max-width: 920px;
+  --philosophy-video-wave-min-width: 500px;
+  --philosophy-video-stage-padding-bottom: 280px;
+  --philosophy-video-stage-padding-bottom-tablet: 248px;
+  --philosophy-video-wave-height-tablet: 320px;
+  --philosophy-video-stage-padding-bottom-mobile: 144px;
+  --philosophy-video-wave-height-mobile: 280px;
+}
+
+.c-philosophy-video {
+  position: relative;
+  overflow: hidden;
+  padding-top: var(--space-5xl);
+  background-color: var(--color-white);
+}
+
+.c-philosophy-video__container {
+  position: relative;
+  margin-bottom: var(--space-3xl);
+}
+
+.c-philosophy-video__header {
+  margin-bottom: var(--space-2xl);
+}
+
+.c-philosophy-video__title {
+  display: inline-block;
+  margin: 0;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-accent);
+}
+
+.c-philosophy-video__title::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  margin-top: var(--space-sm);
+  background: linear-gradient(
+    to right,
+    var(--color-primary-dark) 0%,
+    var(--color-primary-dark) 55%,
+    transparent 100%
+  );
+}
+
+.c-philosophy-video__media-wrap {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+}
+
+.c-philosophy-video__stage {
+  position: relative;
+  padding-bottom: var(--philosophy-video-stage-padding-bottom);
+}
+
+.c-philosophy-video__media {
+  width: min(100%, var(--philosophy-video-media-max-width));
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background-color: var(--color-border);
+}
+
+.c-philosophy-video__iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+.c-philosophy-video__wave {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100vw;
+  min-width: var(--philosophy-video-wave-min-width);
+  z-index: 1;
+}
+
+.c-philosophy-video__wave-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.c-philosophy-video__quote-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--space-3xl);
+  z-index: 2;
+  padding-inline: var(--layout-padding-inline);
+  text-align: center;
+}
+
+.c-philosophy-video__ruby {
+  margin: 0 0 var(--space-sm);
+  font-family: "Zen Old Mincho", serif;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+  color: var(--color-white);
+  letter-spacing: 0.12em;
+}
+
+.c-philosophy-video__quote {
+  margin: 0;
+  font-family: "Zen Old Mincho", serif;
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-heading);
+  color: var(--color-white);
+  letter-spacing: 0.08em;
+}
+
+.c-philosophy-video__caption {
+  margin: var(--space-sm) auto 0;
+  max-width: var(--layout-prose);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+  color: var(--color-white);
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .c-philosophy-video__stage {
+    padding-bottom: var(--philosophy-video-stage-padding-bottom-tablet);
+  }
+
+  .c-philosophy-video__wave {
+    height: var(--philosophy-video-wave-height-tablet);
+  }
+
+  .c-philosophy-video__quote-wrap {
+    bottom: var(--space-xl);
+    padding-inline: var(--layout-padding-inline-mobile);
+  }
+
+  .c-philosophy-video__quote {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+@media (max-width: 767px) {
+  .c-philosophy-video {
+    padding-top: var(--space-2xl);
+  }
+
+  .c-philosophy-video__container {
+    max-width: var(--layout-mobile);
+    margin-inline: auto;
+  }
+
+  .c-philosophy-video__header {
+    margin-bottom: var(--space-lg);
+  }
+
+  .c-philosophy-video__title {
+    font-size: 26px;
+  }
+
+  .c-philosophy-video__title::after {
+    height: 3px;
+    margin-top: var(--space-xs);
+  }
+
+  .c-philosophy-video__media {
+    width: 100%;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .c-philosophy-video__stage {
+    padding-bottom: var(--philosophy-video-stage-padding-bottom-mobile);
+  }
+
+  .c-philosophy-video__wave {
+    height: var(--philosophy-video-wave-height-mobile);
+  }
+
+  .c-philosophy-video__quote-wrap {
+    bottom: var(--space-md);
+    padding-inline: var(--layout-padding-inline-mobile);
+  }
+
+  .c-philosophy-video__ruby {
+    font-size: var(--font-size-3xs);
+  }
+
+  .c-philosophy-video__quote {
+    font-size: var(--font-size-lg);
+  }
+
+  .c-philosophy-video__caption {
+    max-width: var(--layout-mobile-narrow);
+    font-size: var(--font-size-2xs);
+  }
+}
