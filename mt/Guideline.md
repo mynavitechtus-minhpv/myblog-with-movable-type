@@ -109,6 +109,7 @@ Name = **Slider**
 | Module template | Source Path Github |
 | --- | --- |
 | `azcom-information-news` | `/templates/components/shared/azcom-information-news.mtml` |
+| `azcom-query-news-corporate-latest` | `/templates/components/shared/azcom-query-news-corporate-latest.mtml` |
 | `azcom-information-schedule` | `/templates/components/shared/azcom-information-schedule.mtml` |
 | `azcom-information-schedule-slot` | `/templates/components/shared/azcom-information-schedule-slot.mtml` |
 
@@ -141,3 +142,25 @@ Name = **Slider**
 
 1. **Design → Templates → Create → Entry Archive:** add MTML for the detail page (e.g. `EntryTitle`, `EntryDate`, `EntryBody` inside `<article>`). **Save**.
 2. **Tools → Rebuild** the News blog. Create an **Entry** → **Published** → open the permalink to verify.
+
+### 3.5 Setup Custom Field & Category For News Blog
+
+- Custom Field — display_target
+   Type: CustomField
+   Scope: Entry — Blog「お知らせ」(Name = News)
+   Label: Display Target
+   Basename: display_target
+   Field type: Select List (Single)
+   Options (value = label):
+   - corporate = コーポレートのみ
+   - member = 会員のみ
+   - both = 両方
+   Default: both
+   Required: Yes
+
+- Category — azcom-newsletter
+   Name: AZ-COM通信
+   Slug / Basename: azcom-newsletter
+   Blog: News (/news)
+   Description: Articles in this category are completely excluded from the corporate output.
+   Verification: Check in Admin → News blog → Categories to see if the slug azcom-newsletter exists.

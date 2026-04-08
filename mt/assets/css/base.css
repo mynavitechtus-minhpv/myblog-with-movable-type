@@ -89,6 +89,7 @@
   --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.1);
   --shadow-focus-primary: 0 0 0 3px rgba(28, 100, 242, 0.4);
   --shadow-focus-secondary: 0 0 0 3px rgb(222, 223, 226);
+  --shadow-text-primary-dark: 0 1px 2px rgba(34, 50, 110, 0.4);
 
   /* Z-index */
   --z-index-base: 0;

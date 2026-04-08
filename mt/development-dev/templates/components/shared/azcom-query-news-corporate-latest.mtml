@@ -1,0 +1,83 @@
+<mt:Ignore>
+  Module purpose:
+  Build the "latest news" list for the corporate top page from the child blog named "News".
+
+  What this module does:
+  - Scans recent News entries (up to 300, newest first by authored_on).
+  - Applies corporate visibility rules:
+    1) Exclude entries in category basename "azcom-newsletter" (AZ-COM newsletter/member-only exception).
+    2) Include entries whose custom field "display_target" is "corporate" or "both".
+    3) Also include entries with empty "display_target" as backward-compatible/default behavior.
+  - Stops output after reaching the requested number of items via "news_query_limit".
+  - Outputs a <ul class="c-news-list"> with list items, or a fallback empty message when no entries match.
+
+  Expected input variable (set by caller before include):
+  - news_query_limit: maximum number of news items to render (for example: 5).
+
+  Output contract:
+  - HTML list structure used by .c-news-list styles.
+  - Each item links to /news/post_{EntryID}/ and prints title + publication date.
+</mt:Ignore>
+
+<mt:SetVar name="news_corp_count" value="0">
+
+<mt:Blogs include_blogs="children">
+  <mt:If tag="BlogName" eq="News">
+
+    <mt:Entries lastn="300" sort_by="$news_query_sort_by" sort_order="$news_query_sort_order">
+      <mt:If name="news_corp_count" lt="$news_query_limit">
+
+        <mt:SetVar name="is_newsletter" value="0">
+        <mt:EntryCategories>
+          <mt:If tag="CategoryBasename" eq="azcom-newsletter">
+            <mt:SetVar name="is_newsletter" value="1">
+          </mt:If>
+        </mt:EntryCategories>
+
+        <mt:SetVar name="is_corp_target" value="0">
+        <mt:If tag="EntryCustomField basename='display_target'" eq="corporate">
+          <mt:SetVar name="is_corp_target" value="1">
+        </mt:If>
+        <mt:If tag="EntryCustomField basename='display_target'" eq="both">
+          <mt:SetVar name="is_corp_target" value="1">
+        </mt:If>
+        <mt:If tag="EntryCustomField basename='display_target'" eq="">
+          <mt:SetVar name="is_corp_target" value="1">
+        </mt:If>
+
+        <mt:If name="is_newsletter" eq="0">
+          <mt:If name="is_corp_target" eq="1">
+
+            <mt:If name="news_corp_count" eq="0"><ul class="c-news-list"></mt:If>
+
+            <li class="c-news-list__item">
+              <a class="c-news-list__link" href="/news/post_<$mt:EntryID encode_html="1"$>/">
+                <span class="c-news-list__body">
+                  <time class="c-news-list__date" datetime="<$mt:EntryDate format_name="iso8601"$>"><$mt:EntryDate format="%Y.%m.%d %H:%M:%S"$></time>
+                  <span class="c-news-list__text"><$mt:EntryTitle remove_html="1" encode_html="1"$></span>
+                </span>
+                <span class="c-news-list__icon" aria-hidden="true">
+                  <svg class="c-news-list__icon-svg" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                    <rect width="30" height="30" rx="15" fill="var(--color-primary-medium)"/>
+                    <path d="M15.9287 12.2901L17.8988 14.2443H10.2619C10.2356 14.2443 10.2096 14.2456 10.184 14.2481C9.7998 14.2868 9.5 14.6087 9.5 15C9.5 15.4173 9.8411 15.7557 10.2619 15.7557H17.8988L15.9287 17.7098C15.6312 18.005 15.6312 18.4835 15.9287 18.7787C16.2263 19.0738 16.7086 19.0738 17.0062 18.7787L20.2768 15.5344C20.5744 15.2392 20.5744 14.7607 20.2768 14.4656L17.0062 11.2213C16.7086 10.9262 16.2263 10.9262 15.9287 11.2213C15.8915 11.2582 15.859 11.298 15.8311 11.3399C15.6359 11.6332 15.6684 12.0319 15.9287 12.2901Z" fill="var(--color-white)"/>
+                  </svg>
+                </span>
+              </a>
+            </li>
+
+            <mt:SetVar name="news_corp_count" op="++">
+
+          </mt:If>
+        </mt:If>
+
+      </mt:If>
+    </mt:Entries>
+
+  </mt:If>
+</mt:Blogs>
+
+<mt:If name="news_corp_count" gt="0">
+  </ul>
+<mt:Else>
+  <p class="c-news-list__empty" role="status">お知らせはまだありません。</p>
+</mt:If>

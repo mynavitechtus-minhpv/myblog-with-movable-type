@@ -28,10 +28,8 @@
 
 .c-schedule-card {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: block;
+  width: 100%;
   min-height: 0;
   aspect-ratio: 4 / 3;
   overflow: hidden;
@@ -47,20 +45,33 @@
 }
 
 .c-schedule-card:focus-visible {
-  outline: none;
   box-shadow: var(--shadow-focus-primary);
 }
 
-/* Figma: hover — overlay đặc primary-dark (che ảnh); default — overlay bán trong suốt */
-.c-schedule-card:hover .c-schedule-card__overlay,
-.c-schedule-card:focus-visible .c-schedule-card__overlay {
-  background-color: var(--color-primary-dark);
+a.c-schedule-card {
+  cursor: pointer;
+}
+
+.c-schedule-card.is-disabled {
+  cursor: default;
 }
 
 .c-schedule-card__media {
   position: absolute;
   inset: 0;
   z-index: var(--z-index-base);
+  pointer-events: none;
+}
+
+.c-schedule-card__content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  pointer-events: none;
 }
 
 .c-schedule-card__img {
@@ -80,32 +91,59 @@
   display: block;
   width: 100%;
   height: 100%;
-  background-color: color-mix(in srgb, var(--color-primary-dark) 35%, var(--color-border));
+  background: linear-gradient(
+    to bottom right,
+    var(--color-primary-dark) 0%,
+    var(--color-border) 100%
+  );
 }
 
 .c-schedule-card__overlay {
   position: absolute;
   inset: 0;
   z-index: var(--z-index-raised);
-  background-color: color-mix(in srgb, var(--color-primary-dark) 58%, transparent);
+  background-color: var(--color-primary-dark);
+  opacity: 0.58;
   pointer-events: none;
-  transition: background-color var(--duration-slow) var(--easing-emphasized);
+  transition:
+    background-color var(--duration-slow) var(--easing-emphasized),
+    opacity var(--duration-slow) var(--easing-emphasized);
+}
+
+.c-schedule-card:hover .c-schedule-card__overlay,
+.c-schedule-card:focus-visible .c-schedule-card__overlay {
+  opacity: 1;
 }
 
 .c-schedule-card__label {
-  position: relative;
-  z-index: 2;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-md);
-  padding-inline: var(--space-md);
+  max-width: 100%;
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-heading);
   color: var(--color-white);
   text-align: center;
-  text-shadow: 0 1px 2px color-mix(in srgb, var(--color-primary-dark) 40%, transparent);
+  text-shadow: var(--shadow-text-primary-dark);
+}
+
+@supports (color: color-mix(in srgb, red 50%, white 50%)) {
+  .c-schedule-card__img--placeholder {
+    background: none;
+    background-color: color-mix(in srgb, var(--color-primary-dark) 35%, var(--color-border));
+  }
+
+  .c-schedule-card__overlay {
+    background-color: color-mix(in srgb, var(--color-primary-dark) 58%, transparent);
+    opacity: 1;
+  }
+
+  .c-schedule-card:hover .c-schedule-card__overlay,
+  .c-schedule-card:focus-visible .c-schedule-card__overlay {
+    background-color: color-mix(in srgb, var(--color-primary-dark) 100%, transparent);
+  }
 }
 
 .c-schedule-card__label-icon {
@@ -121,10 +159,10 @@
   }
 
   .c-information-schedule {
-    padding: var(--space-md);
-    background-color: var(--color-bg);
-    box-shadow: var(--shadow-md);
-    border-radius: var(--radius-lg);
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
   }
 
   .c-information-schedule__heading {
@@ -138,7 +176,8 @@
   }
 
   .c-schedule-card {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-lg);
   }
 
   .c-schedule-card__label {
