@@ -24,12 +24,20 @@
     <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/floating-button.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
     <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/go-to-top.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
     <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/subpage-hero.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/breadcrumb.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
    
 </head>
 <body>
     <mt:Include module="azcom-header">
 
     <main class="p-news-list" id="main">
+
+        <mt:SetVarBlock name="breadcrumb_lv1_label">トップ</mt:SetVarBlock>
+        <mt:SetVarBlock name="breadcrumb_lv1_url">/</mt:SetVarBlock>
+        <mt:SetVarBlock name="breadcrumb_current_label">お知らせ一覧</mt:SetVarBlock>
+        <mt:SetVar name="breadcrumb_show_jsonld" value="1">
+        <mt:Include module="azcom-breadcrumb">
+
         <mt:SetVar name="subpage_hero_bg" value="sub-img-004.png">
         <mt:SetVarBlock name="subpage_hero_title">お知らせ</mt:SetVarBlock>
         <mt:Include module="azcom-subpage-hero">

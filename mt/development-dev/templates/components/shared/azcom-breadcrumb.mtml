@@ -1,0 +1,135 @@
+<mt:Ignore>
+  Common breadcrumb V2 (caller-driven, up to 6 levels).
+  Required: breadcrumb_lv1_label, breadcrumb_lv1_url, breadcrumb_current_label
+  Optional: breadcrumb_lv2..lv6_label/url, breadcrumb_show_jsonld (1)
+</mt:Ignore>
+
+<mt:SetVar name="__bc_pos" value="0">
+
+<nav class="c-breadcrumb" aria-label="パンくずリスト">
+  <div class="l-container-breadcrumb">
+    <ol class="c-breadcrumb__list">
+      <mt:If name="breadcrumb_lv1_label">
+        <mt:SetVar name="__bc_pos" op="+" value="1">
+        <li class="c-breadcrumb__item c-breadcrumb__item--home">
+          <a class="c-breadcrumb__link" href="<$mt:Var name="breadcrumb_lv1_url" encode_html="1"$>"><$mt:Var name="breadcrumb_lv1_label" encode_html="1"$></a>
+        </li>
+      </mt:If>
+
+      <mt:If name="breadcrumb_lv2_label">
+        <mt:SetVar name="__bc_pos" op="+" value="1">
+        <li class="c-breadcrumb__item">
+          <mt:If name="breadcrumb_lv2_url">
+            <a class="c-breadcrumb__link" href="<$mt:Var name="breadcrumb_lv2_url" encode_html="1"$>"><$mt:Var name="breadcrumb_lv2_label" encode_html="1"$></a>
+          <mt:Else>
+            <span class="c-breadcrumb__text"><$mt:Var name="breadcrumb_lv2_label" encode_html="1"$></span>
+          </mt:If>
+        </li>
+      </mt:If>
+
+      <mt:If name="breadcrumb_lv3_label">
+        <mt:SetVar name="__bc_pos" op="+" value="1">
+        <li class="c-breadcrumb__item">
+          <mt:If name="breadcrumb_lv3_url">
+            <a class="c-breadcrumb__link" href="<$mt:Var name="breadcrumb_lv3_url" encode_html="1"$>"><$mt:Var name="breadcrumb_lv3_label" encode_html="1"$></a>
+          <mt:Else>
+            <span class="c-breadcrumb__text"><$mt:Var name="breadcrumb_lv3_label" encode_html="1"$></span>
+          </mt:If>
+        </li>
+      </mt:If>
+
+      <mt:If name="breadcrumb_lv4_label">
+        <mt:SetVar name="__bc_pos" op="+" value="1">
+        <li class="c-breadcrumb__item">
+          <mt:If name="breadcrumb_lv4_url">
+            <a class="c-breadcrumb__link" href="<$mt:Var name="breadcrumb_lv4_url" encode_html="1"$>"><$mt:Var name="breadcrumb_lv4_label" encode_html="1"$></a>
+          <mt:Else>
+            <span class="c-breadcrumb__text"><$mt:Var name="breadcrumb_lv4_label" encode_html="1"$></span>
+          </mt:If>
+        </li>
+      </mt:If>
+
+      <mt:If name="breadcrumb_lv5_label">
+        <mt:SetVar name="__bc_pos" op="+" value="1">
+        <li class="c-breadcrumb__item">
+          <mt:If name="breadcrumb_lv5_url">
+            <a class="c-breadcrumb__link" href="<$mt:Var name="breadcrumb_lv5_url" encode_html="1"$>"><$mt:Var name="breadcrumb_lv5_label" encode_html="1"$></a>
+          <mt:Else>
+            <span class="c-breadcrumb__text"><$mt:Var name="breadcrumb_lv5_label" encode_html="1"$></span>
+          </mt:If>
+        </li>
+      </mt:If>
+
+      <mt:If name="breadcrumb_lv6_label">
+        <mt:SetVar name="__bc_pos" op="+" value="1">
+        <li class="c-breadcrumb__item">
+          <mt:If name="breadcrumb_lv6_url">
+            <a class="c-breadcrumb__link" href="<$mt:Var name="breadcrumb_lv6_url" encode_html="1"$>"><$mt:Var name="breadcrumb_lv6_label" encode_html="1"$></a>
+          <mt:Else>
+            <span class="c-breadcrumb__text"><$mt:Var name="breadcrumb_lv6_label" encode_html="1"$></span>
+          </mt:If>
+        </li>
+      </mt:If>
+
+      <mt:If name="breadcrumb_current_label">
+        <mt:SetVar name="__bc_pos" op="+" value="1">
+        <li class="c-breadcrumb__item c-breadcrumb__item--current">
+          <span class="c-breadcrumb__current" aria-current="page"><$mt:Var name="breadcrumb_current_label" encode_html="1"$></span>
+        </li>
+      </mt:If>
+    </ol>
+  </div>
+</nav>
+
+<mt:If name="breadcrumb_show_jsonld" eq="1">
+<mt:SetVar name="__jpos" value="0">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    <mt:If name="breadcrumb_lv1_label"><mt:SetVar name="__jpos" op="+" value="1">{
+      "@type": "ListItem",
+      "position": <$mt:Var name="__jpos"$>,
+      "name": "<$mt:Var name="breadcrumb_lv1_label" encode_html="1"$>",
+      "item": "<$mt:Var name="breadcrumb_lv1_url" encode_html="1"$>"
+    }</mt:If><mt:If name="breadcrumb_lv2_label">,
+    <mt:SetVar name="__jpos" op="+" value="1">{
+      "@type": "ListItem",
+      "position": <$mt:Var name="__jpos"$>,
+      "name": "<$mt:Var name="breadcrumb_lv2_label" encode_html="1"$>"<mt:If name="breadcrumb_lv2_url">,
+      "item": "<$mt:Var name="breadcrumb_lv2_url" encode_html="1"$>"</mt:If>
+    }</mt:If><mt:If name="breadcrumb_lv3_label">,
+    <mt:SetVar name="__jpos" op="+" value="1">{
+      "@type": "ListItem",
+      "position": <$mt:Var name="__jpos"$>,
+      "name": "<$mt:Var name="breadcrumb_lv3_label" encode_html="1"$>"<mt:If name="breadcrumb_lv3_url">,
+      "item": "<$mt:Var name="breadcrumb_lv3_url" encode_html="1"$>"</mt:If>
+    }</mt:If><mt:If name="breadcrumb_lv4_label">,
+    <mt:SetVar name="__jpos" op="+" value="1">{
+      "@type": "ListItem",
+      "position": <$mt:Var name="__jpos"$>,
+      "name": "<$mt:Var name="breadcrumb_lv4_label" encode_html="1"$>"<mt:If name="breadcrumb_lv4_url">,
+      "item": "<$mt:Var name="breadcrumb_lv4_url" encode_html="1"$>"</mt:If>
+    }</mt:If><mt:If name="breadcrumb_lv5_label">,
+    <mt:SetVar name="__jpos" op="+" value="1">{
+      "@type": "ListItem",
+      "position": <$mt:Var name="__jpos"$>,
+      "name": "<$mt:Var name="breadcrumb_lv5_label" encode_html="1"$>"<mt:If name="breadcrumb_lv5_url">,
+      "item": "<$mt:Var name="breadcrumb_lv5_url" encode_html="1"$>"</mt:If>
+    }</mt:If><mt:If name="breadcrumb_lv6_label">,
+    <mt:SetVar name="__jpos" op="+" value="1">{
+      "@type": "ListItem",
+      "position": <$mt:Var name="__jpos"$>,
+      "name": "<$mt:Var name="breadcrumb_lv6_label" encode_html="1"$>"<mt:If name="breadcrumb_lv6_url">,
+      "item": "<$mt:Var name="breadcrumb_lv6_url" encode_html="1"$>"</mt:If>
+    }</mt:If><mt:If name="breadcrumb_current_label">,
+    <mt:SetVar name="__jpos" op="+" value="1">{
+      "@type": "ListItem",
+      "position": <$mt:Var name="__jpos"$>,
+      "name": "<$mt:Var name="breadcrumb_current_label" encode_html="1"$>"
+    }</mt:If>
+  ]
+}
+</script>
+</mt:If>

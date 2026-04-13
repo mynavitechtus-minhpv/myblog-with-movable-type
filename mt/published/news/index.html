@@ -53,6 +53,7 @@
     <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/floating-button.css?v=20260327">
     <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/go-to-top.css?v=20260327">
     <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/subpage-hero.css?v=20260327">
+    <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/breadcrumb.css?v=20260327">
    
 </head>
 <body>
@@ -238,7 +239,64 @@
 
 
     <main class="p-news-list" id="main">
+
         
+        
+        
+        
+        <nav class="c-breadcrumb" aria-label="パンくずリスト">
+  <div class="l-container-breadcrumb">
+    <ol class="c-breadcrumb__list">
+      
+        
+        <li class="c-breadcrumb__item c-breadcrumb__item--home">
+          <a class="c-breadcrumb__link" href="/">トップ</a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+        <li class="c-breadcrumb__item c-breadcrumb__item--current">
+          <span class="c-breadcrumb__current" aria-current="page">お知らせ一覧</span>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "トップ",
+      "item": "/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "お知らせ一覧"
+    }
+  ]
+}
+</script>
+
+
 
         
         

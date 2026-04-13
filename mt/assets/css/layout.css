@@ -5,8 +5,16 @@
   padding: 0 var(--layout-padding-inline);
 }
 
+.l-container-breadcrumb {
+  padding: 0 var(--layout-padding-inline);
+}
+
 @media (max-width: 767px) {
   .l-container {
+    padding: 0 var(--layout-padding-inline-mobile);
+  }
+
+  .l-container-breadcrumb {
     padding: 0 var(--layout-padding-inline-mobile);
   }
 }
