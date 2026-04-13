@@ -1,40 +1,48 @@
-/* ==========================================================================
-   Subpage Hero
-   Scope: subpage key visual used on news and other subpages.
-   ========================================================================== */
-
-:root {
+  :root {
   --subpage-hero-overlay-bg: rgba(255, 255, 255, 0.6);
-  --subpage-hero-min-height-desktop: 320px;
-  --subpage-hero-inner-min-height-desktop: 280px;
-  --subpage-hero-min-height-tablet: 300px;
-  --subpage-hero-inner-min-height-tablet: 260px;
-  --subpage-hero-min-height-mobile: 254px;
-  --subpage-hero-inner-min-height-mobile: 220px;
+
+  --subpage-hero-height-desktop: 427px; /* For @media (min-width: 1440px) */
+  --subpage-hero-height-mid:     320px; /* For @media (max-width: 1439px) and (min-width: 768px) */
+  --subpage-hero-height-mobile:  254px; /* For @media (max-width: 767px) */
+
+  --subpage-hero-bg-position: 50% 55%;
+
   --subpage-hero-title-size-desktop: var(--font-size-4xl);
-  --subpage-hero-title-size-tablet: var(--font-size-4xl);
-  --subpage-hero-title-size-mobile: 30px;
-  --subpage-hero-title-lh-mobile: 52px;
-  --subpage-hero-decoration-height-desktop: 320px;
-  --subpage-hero-decoration-height-mobile: 254px;
-  --subpage-hero-decoration-offset-desktop: -1px;
-  --subpage-hero-decoration-offset-mobile: -1px;
-  --subpage-hero-title-shift-desktop: -24px;
-  --subpage-hero-title-shift-mobile: -20px;
+  --subpage-hero-title-size-mobile:  30px;
+  --subpage-hero-title-lh-mobile:    52px;
+
+  --subpage-hero-title-shift-desktop: -20px;
+  --subpage-hero-title-shift-mobile:  -16px;
+  --subpage-hero-decoration-bottom: -1px;
+
+  --subpage-hero-max-width:    1920px;
+  --subpage-hero-bg-scale-sp:  1.5;
+  --subpage-hero-bg-origin-sp: center 55%;
 }
+
 
 .c-subpage-hero {
   position: relative;
   width: 100%;
-  min-height: var(--subpage-hero-min-height-desktop);
-  overflow: hidden;
+  max-width: var(--subpage-hero-max-width);
+  margin-inline: auto;
+  height: var(--subpage-hero-height-desktop);
   background-color: var(--color-bg);
 }
 
-.c-subpage-hero__media,
-.c-subpage-hero__picture {
+/* Background image
+========================================================================== */
+
+.c-subpage-hero__media {
   position: absolute;
   inset: 0;
+  z-index: 1;
+}
+
+.c-subpage-hero__media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .c-subpage-hero__bg {
@@ -42,25 +50,52 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: var(--subpage-hero-bg-position);
 }
+
+/* Overlay — z-index 2
+========================================================================== */
 
 .c-subpage-hero__overlay {
   position: absolute;
   inset: 0;
-  background-color: var(--subpage-hero-overlay-bg);
   z-index: 2;
+  background-color: var(--subpage-hero-overlay-bg);
 }
 
+/* Decoration — z-index 3
+========================================================================== */
+
+.c-subpage-hero__decoration {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: var(--subpage-hero-decoration-bottom);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.c-subpage-hero__decoration-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.c-subpage-hero__decoration-img--desktop { display: block; }
+.c-subpage-hero__decoration-img--mobile  { display: none;  }
+
+/* Inner / Title — z-index 4
+========================================================================== */
 .c-subpage-hero__inner {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 4;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: var(--subpage-hero-inner-min-height-desktop);
-  padding-top: var(--space-6xl);
-  padding-bottom: var(--space-5xl);
+  padding-inline: var(--layout-padding-inline);
+  box-sizing: border-box;
 }
 
 .c-subpage-hero__title {
@@ -70,46 +105,24 @@
   line-height: var(--line-height-heading);
   font-weight: var(--font-weight-bold);
   color: var(--color-primary-dark);
-  letter-spacing: 0.03em;
   transform: translateY(var(--subpage-hero-title-shift-desktop));
 }
 
-.c-subpage-hero__decoration {
-  position: absolute;
-  right: 0;
-  left: 0;
-  bottom: var(--subpage-hero-decoration-offset-desktop);
-  height: var(--subpage-hero-decoration-height-desktop);
-  z-index: 3;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.c-subpage-hero__decoration-svg {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-}
-
-.c-subpage-hero__decoration-svg--desktop {
-  display: block;
-}
-
-.c-subpage-hero__decoration-svg--mobile {
-  display: none;
-}
-
+/* Mobile  (< 768px)
+========================================================================== */
 @media (max-width: 767px) {
   .c-subpage-hero {
-    min-height: var(--subpage-hero-min-height-mobile);
+    height: var(--subpage-hero-height-mobile);
+    overflow: hidden;
+  }
+
+  .c-subpage-hero__bg {
+    transform: scale(var(--subpage-hero-bg-scale-sp));
+    transform-origin: var(--subpage-hero-bg-origin-sp);
   }
 
   .c-subpage-hero__inner {
-    min-height: var(--subpage-hero-inner-min-height-mobile);
-    padding-top: var(--space-2xl);
-    padding-bottom: var(--space-2xl);
+    padding-inline: var(--layout-padding-inline-mobile);
   }
 
   .c-subpage-hero__title {
@@ -117,36 +130,29 @@
     margin-inline: auto;
     font-size: var(--subpage-hero-title-size-mobile);
     line-height: var(--subpage-hero-title-lh-mobile);
-    text-wrap: balance;
     transform: translateY(var(--subpage-hero-title-shift-mobile));
   }
 
   .c-subpage-hero__decoration {
-    bottom: var(--subpage-hero-decoration-offset-mobile);
-    height: var(--subpage-hero-decoration-height-mobile);
+    height: var(--subpage-hero-height-mobile);
   }
 
-  .c-subpage-hero__decoration-svg--desktop {
-    display: none;
-  }
-
-  .c-subpage-hero__decoration-svg--mobile {
-    display: block;
+  @media (max-width: 375px) {
+    .c-subpage-hero__decoration-img--desktop { display: none;  }
+    .c-subpage-hero__decoration-img--mobile  { display: block; }
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+
+/* Mid  (768px – 1439px)
+========================================================================== */
+
+@media (max-width: 1439px) and (min-width: 768px) {
   .c-subpage-hero {
-    min-height: var(--subpage-hero-min-height-tablet);
+    height: var(--subpage-hero-height-mid);
   }
 
-  .c-subpage-hero__inner {
-    min-height: var(--subpage-hero-inner-min-height-tablet);
-    padding-top: var(--space-4xl);
-    padding-bottom: var(--space-4xl);
-  }
-
-  .c-subpage-hero__title {
-    font-size: var(--subpage-hero-title-size-tablet);
+  .c-subpage-hero__decoration {
+    height: var(--subpage-hero-height-mid);
   }
 }
