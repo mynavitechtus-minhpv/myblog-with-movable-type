@@ -562,8 +562,6 @@
     grid-template-columns: auto minmax(0, 1fr) auto auto;
     align-items: center;
     column-gap: var(--space-md);
-    max-width: none;
-    padding: 9px var(--layout-padding-inline);
     overflow: visible;
   }
 
@@ -625,7 +623,6 @@
 @media (max-width: 1024px) and (min-width: 768px) {
   .c-header__inner {
     column-gap: 12px;
-    padding: 9px var(--space-2xl);
   }
 
   .c-header__search-slot--open {

@@ -27,6 +27,7 @@
   --breakpoint-md: 1024px;
 
   /* Layout — widths */
+  --layout-max-width: 1920px;
   --layout-container: 1440px;
   --layout-content: 1280px;
   --layout-prose: 1120px;

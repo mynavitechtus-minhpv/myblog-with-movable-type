@@ -53,6 +53,7 @@
     <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/floating-button.css?v=20260327">
     <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/go-to-top.css?v=20260327">
     <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/subpage-hero.css?v=20260327">
+    <link rel="stylesheet" href="http://localhost:8082/mt-static/assets/css/breadcrumb.css?v=20260327">
    
 </head>
 <body>
@@ -241,16 +242,142 @@
 
         
         
+        
+        
+        <nav class="c-breadcrumb" aria-label="パンくずリスト">
+  <ol class="c-breadcrumb__list l-container">
+    
+      <li class="c-breadcrumb__item c-breadcrumb__item--home">
+        <a class="c-breadcrumb__link" href="/">トップ</a>
+      </li>
+    
+
+    
+
+    
+
+    
+      <li class="c-breadcrumb__item c-breadcrumb__item--current">
+        <span class="c-breadcrumb__current" aria-current="page">お知らせ一覧</span>
+      </li>
+    
+  </ol>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "トップ",
+      "item": "https://www.azcom-net.jp/"
+    }
+    
+    
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "お知らせ一覧"
+    }
+  ]
+}
+</script>
+
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        <nav class="c-breadcrumb" aria-label="パンくずリスト">
+  <ol class="c-breadcrumb__list l-container">
+    
+      <li class="c-breadcrumb__item c-breadcrumb__item--home">
+        <a class="c-breadcrumb__link" href="/">トップ</a>
+      </li>
+    
+
+    
+      <li class="c-breadcrumb__item">
+        
+          <a class="c-breadcrumb__link" href="/news/">お知らせ</a>
+        
+      </li>
+    
+
+    
+      <li class="c-breadcrumb__item">
+        
+          <a class="c-breadcrumb__link" href="/news/seminar/">研修・セミナー</a>
+        
+      </li>
+    
+
+    
+      <li class="c-breadcrumb__item c-breadcrumb__item--current">
+        <span class="c-breadcrumb__current" aria-current="page">記事タイトル</span>
+      </li>
+    
+  </ol>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "トップ",
+      "item": "https://www.azcom-net.jp/"
+    }
+    ,
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "お知らせ",
+      "item": "https://www.azcom-net.jp/news/"
+    }
+    
+    ,
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "研修・セミナー",
+      "item": "https://www.azcom-net.jp/news/seminar/"
+    }
+    
+    ,{
+      "@type": "ListItem",
+      "position": 4,
+      "name": "記事タイトル"
+    }
+  ]
+}
+</script>
+
+
+
+        
+        
         <section class="c-subpage-hero" aria-label="お知らせ">
   <div class="c-subpage-hero__media" aria-hidden="true">
-    <picture>
-      
+    <picture class="c-subpage-hero__picture">
       <img
         class="c-subpage-hero__bg"
-        src="http://localhost:8082/mt-static/assets/img/sub-img-004.png"
+        src="http://localhost:8082/mt-static/assets/img/sub-img-001.png"
         alt=""
-        width="1902"
-        height="1028"
+        width="1920"
         loading="eager"
         decoding="async">
     </picture>
@@ -291,7 +418,7 @@
     <footer class="c-footer">
   <!-- お問い合わせ種別: バックエンドでクエリ ?type= を読み取り、ラジオ（入会希望 / 資料請求 / お問合せ）の checked を設定する。
      type=membership → 入会希望 | type=materials → 資料請求 | type=contact → お問合せ -->
-<section class="c-footer__contact">
+<section class="c-footer__contact l-container">
   <div class="c-footer__contact-bg c-footer__contact-bg--pc">
     <img src="http://localhost:8082/mt-static/assets/img/footer-img-001.png" alt="" loading="lazy">
   </div>
@@ -315,7 +442,7 @@
   </div>
 </section>
 
-  <div class="c-footer__nav-wrapper">
+  <div class="c-footer__nav-wrapper l-container">
     <div class="c-footer__nav-wrapper-inner">
       <div class="c-footer__nav-logo">
   <a href="/"><img src="http://localhost:8082/mt-static/assets/img/logo.svg" alt="AZ-COM NET"></a>
@@ -397,7 +524,7 @@
 
     </div>
   </div>
-  <div class="c-footer__copyright">
+  <div class="c-footer__copyright l-container">
   <p class="c-footer__copyright-text">Copyright &copy; Az-com NET. All Rights Reserved.</p>
 </div>
 
