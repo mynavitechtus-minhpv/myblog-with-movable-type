@@ -1,21 +1,17 @@
 <mt:Ignore>
   Subpage Hero (shared)
-  Required vars before include:
-  - subpage_hero_bg: image filename or relative path under assets/img (e.g. sub-img-001.png)
-  - subpage_hero_title: page H1 title
+  Required: subpage_hero_bg (filename under assets/img), subpage_hero_title (H1 text).
 </mt:Ignore>
 
 <section class="c-subpage-hero" aria-label="<$mt:Var name="subpage_hero_title"$>">
   <div class="c-subpage-hero__media" aria-hidden="true">
-    <picture class="c-subpage-hero__picture">
-      <img
-        class="c-subpage-hero__bg"
-        src="<$mt:StaticWebPath encode_html="1"$>assets/img/<$mt:Var name="subpage_hero_bg"$>"
-        alt=""
-        width="1920"
-        loading="eager"
-        decoding="async">
-    </picture>
+    <img
+      class="c-subpage-hero__bg"
+      src="<$mt:StaticWebPath encode_html="1"$>assets/img/<$mt:Var name="subpage_hero_bg"$>"
+      alt=""
+      width="1920"
+      loading="eager"
+      decoding="async">
   </div>
 
   <div class="c-subpage-hero__overlay" aria-hidden="true"></div>
@@ -37,7 +33,7 @@
       class="c-subpage-hero__decoration-img c-subpage-hero__decoration-img--mobile"
       src="<$mt:StaticWebPath encode_html="1"$>assets/img/decoration-sub-sp-001.svg"
       alt=""
-      width="375"
+      width="767"
       height="254"
       loading="eager"
       decoding="async">
