@@ -9,7 +9,7 @@
 <li class="c-business-content__item">
   <article class="c-business-content__card<$mt:If name="card_featured" eq="1"$> c-business-content__card--featured</mt:If>">
     <div class="c-business-content__media">
-      <img src="<$mt:StaticWebPath encode_html="1"$>assets/img/<$mt:Var name="img" encode_html="1"$>"
+      <img src="<mt:Include module="azcom-site-root-path">assets/img/<$mt:Var name="img" encode_html="1"$>"
            alt="<$mt:Var name="img_alt" encode_html="1"$>"
            class="c-business-content__img"
            width="640"
@@ -27,7 +27,7 @@
              <mt:If name="card_rel">rel="<$mt:Var name="card_rel" encode_html="1"$>"</mt:If>
              aria-label="<$mt:Var name="card_title" encode_html="1"$>の詳細へ">
             <mt:If name="card_featured" eq="1">
-            <img src="<$mt:StaticWebPath encode_html="1"$>assets/img/icon-arrow-004.svg"
+            <img src="<mt:Include module="azcom-site-root-path">assets/img/icon-arrow-004.svg"
                  alt=""
                  class="c-business-content__cta-icon"
                  width="30"
@@ -35,7 +35,7 @@
                  loading="lazy"
                  decoding="async">
             <mt:Else>
-            <img src="<$mt:StaticWebPath encode_html="1"$>assets/img/icon-arrow-005.svg"
+            <img src="<mt:Include module="azcom-site-root-path">assets/img/icon-arrow-005.svg"
                  alt=""
                  class="c-business-content__cta-icon"
                  width="30"

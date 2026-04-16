@@ -9,9 +9,9 @@
   <div class="c-hero-fv__image-box">
     <picture>
       <mt:If name="img_sp">
-      <source media="(max-width: 767px)" srcset="<$mt:StaticWebPath encode_html="1"$>assets/img/<$mt:Var name="img_sp" encode_html="1"$>">
+      <source media="(max-width: 767px)" srcset="<mt:Include module="azcom-site-root-path">assets/img/<$mt:Var name="img_sp" encode_html="1"$>">
       </mt:If>
-      <img src="<$mt:StaticWebPath encode_html="1"$>assets/img/<$mt:Var name="img_pc" encode_html="1"$>" 
+      <img src="<mt:Include module="azcom-site-root-path">assets/img/<$mt:Var name="img_pc" encode_html="1"$>" 
            class="c-hero-fv__slide-img" 
            alt="<$mt:Var name="hero_alt" default="$line1" encode_html="1"$>"
            loading="<$mt:Var name="loading" default="lazy"$>">

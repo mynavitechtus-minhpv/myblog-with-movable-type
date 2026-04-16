@@ -4,13 +4,13 @@
 
 <div class="c-header__search-slot">
   <button type="button" class="c-header__search" id="header-search-toggle" aria-label="サイト内検索を開く" aria-expanded="false" aria-controls="header-search-panel">
-    <img class="c-header__search-img" src="<mt:StaticWebPath>assets/img/icon-search.svg" alt="" width="20" height="20" aria-hidden="true">
+    <img class="c-header__search-img" src="<mt:Include module="azcom-site-root-path">assets/img/icon-search.svg" alt="" width="20" height="20" aria-hidden="true">
   </button>
   <div class="c-header__search-panel" id="header-search-panel" aria-hidden="true">
     <form class="c-header__desktop-search" action="/search/" method="get" role="search">
       <label class="c-header__visually-hidden" for="header-desktop-search-q">サイト内検索</label>
       <span class="c-header__desktop-search-inner">
-        <img class="c-header__desktop-search-icon" src="<mt:StaticWebPath>assets/img/icon-search.svg" alt="" width="20" height="20" aria-hidden="true">
+        <img class="c-header__desktop-search-icon" src="<mt:Include module="azcom-site-root-path">assets/img/icon-search.svg" alt="" width="20" height="20" aria-hidden="true">
         <input id="header-desktop-search-q" class="c-header__desktop-search-input" type="search" name="q" placeholder="サイト内を検索" autocomplete="off">
         <button type="button" class="c-header__desktop-search-close" id="header-desktop-search-close" aria-label="検索を閉じる"></button>
         <button type="submit" class="c-header__desktop-search-submit">検索</button>

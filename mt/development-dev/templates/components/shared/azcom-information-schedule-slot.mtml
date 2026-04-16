@@ -2,7 +2,7 @@
 <a class="c-schedule-card" href="<$mt:Var name="schedule_slot_href" encode_html="1"$>">
   <span class="c-schedule-card__media">
     <mt:If name="schedule_slot_img" ne="">
-    <img class="c-schedule-card__img" src="<$mt:StaticWebPath encode_html="1"$>assets/img/<$mt:Var name="schedule_slot_img" encode_html="1"$>" alt="<$mt:Var name="schedule_slot_label" encode_html="1"$>" width="480" height="360" loading="lazy">
+    <img class="c-schedule-card__img" src="<mt:Include module="azcom-site-root-path">assets/img/<$mt:Var name="schedule_slot_img" encode_html="1"$>" alt="<$mt:Var name="schedule_slot_label" encode_html="1"$>" width="480" height="360" loading="lazy">
     <mt:Else>
     <span class="c-schedule-card__img c-schedule-card__img--placeholder" role="img" aria-hidden="true"></span>
     </mt:If>
@@ -21,7 +21,7 @@
 <div class="c-schedule-card is-disabled" aria-disabled="true">
   <span class="c-schedule-card__media">
     <mt:If name="schedule_slot_img" ne="">
-    <img class="c-schedule-card__img" src="<$mt:StaticWebPath encode_html="1"$>assets/img/<$mt:Var name="schedule_slot_img" encode_html="1"$>" alt="<$mt:Var name="schedule_slot_label" encode_html="1"$>" width="480" height="360" loading="lazy">
+    <img class="c-schedule-card__img" src="<mt:Include module="azcom-site-root-path">assets/img/<$mt:Var name="schedule_slot_img" encode_html="1"$>" alt="<$mt:Var name="schedule_slot_label" encode_html="1"$>" width="480" height="360" loading="lazy">
     <mt:Else>
     <span class="c-schedule-card__img c-schedule-card__img--placeholder" role="img" aria-hidden="true"></span>
     </mt:If>

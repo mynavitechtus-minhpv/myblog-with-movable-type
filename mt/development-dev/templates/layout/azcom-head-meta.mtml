@@ -7,7 +7,7 @@
   - meta_canonical_url … canonical / og:url（未設定時は BlogURL）
   - meta_og_type … og:type（未設定時は website）
   - meta_og_locale … og:locale（未設定時は ja_JP）
-  - meta_og_image … StaticWebPath からの相対パス（未設定時は assets/img/og-image_az-com-network.png）
+  - meta_og_image … site-root-path からの相対パス（未設定時は assets/img/og-image_az-com-network.png）
   - meta_twitter_card … twitter:card（未設定時は summary_large_image）
 </mt:Ignore>
 <mt:If name="meta_title">
@@ -55,9 +55,9 @@
 <meta property="og:url" content="<$mt:BlogURL encode_html="1"$>">
 </mt:If>
 <mt:If name="meta_og_image">
-<meta property="og:image" content="<$mt:StaticWebPath$><$mt:Var name="meta_og_image"$>">
+<meta property="og:image" content="<mt:Include module="azcom-site-root-path"><$mt:Var name="meta_og_image"$>">
 <mt:Else>
-<meta property="og:image" content="<$mt:StaticWebPath$>assets/img/og-image_az-com-network.png">
+<meta property="og:image" content="<mt:Include module="azcom-site-root-path">assets/img/og-image_az-com-network.png">
 </mt:If>
 <mt:If name="meta_twitter_card">
 <meta name="twitter:card" content="<$mt:Var name="meta_twitter_card" encode_html="1"$>">

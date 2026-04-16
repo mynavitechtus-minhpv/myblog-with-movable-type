@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <mt:Include module="azcom-env-config">
-
     <mt:SetVarBlock name="meta_title">お知らせ | AZ-COMネットワーク</mt:SetVarBlock>
     <mt:SetVarBlock name="meta_description">運送業・物流企業の経営課題を解決する支援ネットワーク。単独では乗り越えられない人手不足やコスト高騰、BCP対策に伴走し、企業成長と業界の未来をともに創ります。</mt:SetVarBlock>
     <mt:SetVarBlock name="meta_canonical_url">https://www.azcom-net.jp/news/</mt:SetVarBlock>
@@ -16,19 +14,19 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/base.css?v=<$mt:Var name="assets_version"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/layout.css?v=<$mt:Var name="assets_version"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/utility.css?v=<$mt:Var name="assets_version"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/article-card.css?v=<$mt:Var name="assets_version"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/article-sidebar.css?v=<$mt:Var name="assets_version"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/article-page.css?v=<$mt:Var name="assets_version"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/pagination.css?v=<$mt:Var name="assets_version"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/header.css?v=<$mt:Var name="assets_version"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/footer.css?v=<$mt:Var name="assets_version"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/floating-button.css?v=<$mt:Var name="assets_version"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/go-to-top.css?v=<$mt:Var name="assets_version"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/subpage-hero.css?v=<$mt:Var name="assets_version"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/breadcrumb.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/base.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/layout.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/utility.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/article-card.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/article-sidebar.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/article-page.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/pagination.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/header.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/footer.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/floating-button.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/go-to-top.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/subpage-hero.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/breadcrumb.css?v=<$mt:Var name="assets_version"$>">
 </head>
 <body>
     <mt:Include module="azcom-header">
@@ -85,6 +83,6 @@
     <mt:SetVar name="go_to_top_text" value="TOP">
     <mt:Include module="azcom-go-to-top">
 
-    <script defer src="<$mt:StaticWebPath encode_html="1"$>assets/js/go-to-top.js?v=<$mt:Var name="assets_version"$>"></script>
+    <script defer src="<mt:Include module="azcom-site-root-path">assets/js/go-to-top.js?v=<$mt:Var name="assets_version"$>"></script>
 </body>
 </html>
