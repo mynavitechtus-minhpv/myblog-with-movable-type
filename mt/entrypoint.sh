@@ -26,7 +26,7 @@ rm -rf /var/run/apache2/* 2>/dev/null || true
 chmod 755 /var/www/cgi-bin/mt/*.cgi 2>/dev/null || true
 chown -R www-data:www-data /var/www/cgi-bin/mt/ 2>/dev/null || true
 mkdir -p /var/www/html/site
-chown -R www-data:www-data /var/www/html/site /var/www/html/mt-static /var/www/html
+chown -R www-data:www-data /var/www/html/site /var/www/html/mt-static /var/www/html/renew /var/www/html
 chmod -R 755 /var/www/html
 
 # Đợi database sẵn sàng
