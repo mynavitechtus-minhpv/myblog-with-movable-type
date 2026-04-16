@@ -4,33 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <mt:Include module="azcom-env-config">
+
     <mt:SetVarBlock name="meta_title">お知らせ | AZ-COMネットワーク</mt:SetVarBlock>
     <mt:SetVarBlock name="meta_description">運送業・物流企業の経営課題を解決する支援ネットワーク。単独では乗り越えられない人手不足やコスト高騰、BCP対策に伴走し、企業成長と業界の未来をともに創ります。</mt:SetVarBlock>
     <mt:SetVarBlock name="meta_canonical_url">https://www.azcom-net.jp/news/</mt:SetVarBlock>
     <mt:SetVar name="meta_og_image" value="assets/img/og-image_az-com-network.png">
     <mt:Include module="azcom-head-meta">
 
-    <mt:SetVar name="assets_version" value="20260327">
+    <mt:SetVar name="assets_version" value="20260414">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/base.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/layout.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/utility.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/news.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
-
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/header.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/footer.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/floating-button.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/go-to-top.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/subpage-hero.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
-    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/breadcrumb.css?v=<$mt:Var name="assets_version" encode_html="1"$>">
-   
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/base.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/layout.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/utility.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/article-card.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/article-sidebar.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/article-page.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/pagination.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/header.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/footer.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/floating-button.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/go-to-top.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/subpage-hero.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<$mt:StaticWebPath encode_html="1"$>assets/css/breadcrumb.css?v=<$mt:Var name="assets_version"$>">
 </head>
 <body>
     <mt:Include module="azcom-header">
 
-    <main class="p-news-list" id="main">
+    <main class="p-news-list p-article-list" id="main">
 
         <mt:SetVarBlock name="breadcrumb_lv1_label">トップ</mt:SetVarBlock>
         <mt:SetVarBlock name="breadcrumb_lv1_url">/</mt:SetVarBlock>
@@ -38,24 +41,50 @@
         <mt:SetVar name="breadcrumb_show_jsonld" value="1">
         <mt:Include module="azcom-breadcrumb">
 
-        <mt:SetVar name="subpage_hero_bg" value="sub-img-001.png">
+        <mt:SetVar name="subpage_hero_bg" value="sub-img-004.png">
         <mt:SetVarBlock name="subpage_hero_title">お知らせ</mt:SetVarBlock>
         <mt:Include module="azcom-subpage-hero">
 
-        <div class="l-container"  style="height: 100vh;">
-           <!-- 100vh For testing -->
+        <div class="l-container">
+
+            <div class="p-article-list__header">
+                <h2 class="p-article-list__header-title">新着のお知らせ</h2>
+            </div>
+
+            <div class="p-article-list__body">
+
+                <div class="p-article-list__main">
+                    <div class="c-article-grid">
+                        <mt:SetVar name="article_query_limit" value="10">
+                        <mt:SetVar name="article_query_lastn" value="300">
+                        <mt:SetVar name="article_has_display_target" value="1">
+                        <mt:SetVar name="article_card_section" value="news">
+                        <mt:Include module="azcom-article-query-corporate">
+                    </div>
+
+                    <mt:If name="article_count" gt="0">
+                        <mt:Include module="azcom-pagination">
+                    </mt:If>
+                </div>
+
+                <div class="p-article-list__sidebar">
+                    <mt:SetVar name="sidebar_section" value="news">
+                    <mt:SetVar name="sidebar_has_display_target" value="1">
+                    <mt:SetVar name="article_query_lastn" value="300">
+                    <mt:Include module="azcom-article-sidebar">
+                </div>
+
+            </div>
         </div>
     </main>
 
     <mt:Include module="azcom-footer">
 
-    <!-- Go to Top Button -->
     <mt:SetVar name="go_to_top_href" value="#main">
     <mt:SetVarBlock name="go_to_top_aria_label">ページ先頭へ戻る</mt:SetVarBlock>
     <mt:SetVar name="go_to_top_text" value="TOP">
     <mt:Include module="azcom-go-to-top">
 
-    <!-- Scripts -->
-    <script defer src="<$mt:StaticWebPath encode_html="1"$>assets/js/go-to-top.js?v=<$mt:Var name="assets_version" encode_html="1"$>"></script>
+    <script defer src="<$mt:StaticWebPath encode_html="1"$>assets/js/go-to-top.js?v=<$mt:Var name="assets_version"$>"></script>
 </body>
 </html>
