@@ -562,6 +562,9 @@
     grid-template-columns: auto minmax(0, 1fr) auto auto;
     align-items: center;
     column-gap: var(--space-md);
+    max-width: var(--layout-container);
+    margin-inline: auto;
+    padding: 9px var(--layout-padding-inline);
     overflow: visible;
   }
 

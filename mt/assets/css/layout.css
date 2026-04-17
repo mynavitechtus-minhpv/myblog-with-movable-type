@@ -1,6 +1,6 @@
 /* layout.css — page shell, containers, layout primitives */
 .l-container {
-  max-width: var(--layout-max-width);
+  max-width: var(--layout-content);
   margin: 0 auto;
   padding: 0 var(--layout-padding-inline);
 }
