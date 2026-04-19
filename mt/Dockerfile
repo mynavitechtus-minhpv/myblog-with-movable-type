@@ -99,14 +99,6 @@ RUN cat > /etc/apache2/sites-available/mt.conf << 'APACHE_CONF'
         Require all granted
     </Directory>
 
-    # Renew assets (custom site root for frontend)
-    Alias /renew/ /var/www/html/renew/
-    <Directory /var/www/html/renew/>
-        Options -ExecCGI
-        AllowOverride None
-        Require all granted
-    </Directory>
-
     # Published site
     <Directory /var/www/html/site/>
         AllowOverride All
@@ -123,8 +115,7 @@ RUN a2dissite 000-default && a2ensite mt
 # Tạo directories
 RUN mkdir -p /var/www/cgi-bin/mt \
     /var/www/html/site \
-    /var/www/html/mt-static \
-    /var/www/html/renew
+    /var/www/html/mt-static
 
 # Entrypoint
 COPY entrypoint.sh /entrypoint.sh
