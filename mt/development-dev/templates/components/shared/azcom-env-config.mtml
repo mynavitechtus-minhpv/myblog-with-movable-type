@@ -1,0 +1,20 @@
+<mt:Ignore>
+  Environment configuration module.
+  Include this at the top of every page template.
+
+  env_has_cf:
+    0 = CustomFields plugin NOT available (local free MT — safe fallback, no filtering)
+    1 = CustomFields plugin available (MT Cloud — production behavior)
+
+  LOCAL DEV (this file):
+    env_has_cf = 0
+    → All entries visible (no display_target filter)
+    → Thumbnails show placeholder
+    → Ranking shows most-recent entries as fallback
+
+  CLOUD DEPLOYMENT:
+    Change env_has_cf to 1
+    → Full CF-based filtering active
+    → Also create module "azcom-article-cf-entry" in MT Admin (Website level)
+</mt:Ignore>
+<mt:SetVar name="env_has_cf" value="0" global="1">

@@ -1,0 +1,23 @@
+<mt:Ignore>
+  Single-entry JSON object. Caller is responsible for separating items
+  with commas. Must run inside an MT:Entries context.
+  Reads cf_thumbnail_url set by azcom-article-cf-entry.
+</mt:Ignore>
+{
+  "id": <$mt:EntryID$>,
+  "title": "<$mt:EntryTitle encode_json="1"$>",
+  "slug": "post_<$mt:EntryID$>",
+  "url": "<$mt:BlogRelativeURL$>post_<$mt:EntryID$>/",
+  "thumbnail": "<$mt:Var name="cf_thumbnail_url" encode_json="1"$>",
+  "categories": [<mt:EntryCategories glue=",">
+    {
+      "id": <$mt:CategoryID$>,
+      "label": "<$mt:CategoryLabel encode_json="1"$>",
+      "slug": "<$mt:CategoryBasename encode_json="1"$>",
+      "url": "<$mt:BlogRelativeURL$><$mt:CategoryBasename encode_json="1"$>/"
+    }</mt:EntryCategories>],
+  "date": "<$mt:EntryDate format="%Y.%m.%d"$>",
+  "datetime": "<$mt:EntryDate format_name="iso8601"$>",
+  "excerpt": "<$mt:EntryExcerpt encode_json="1"$>",
+  "tags": [<mt:EntryTags glue=",">"<$mt:TagName encode_json="1"$>"</mt:EntryTags>]
+}

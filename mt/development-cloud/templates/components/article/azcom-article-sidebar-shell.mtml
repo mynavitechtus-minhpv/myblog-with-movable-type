@@ -1,0 +1,32 @@
+<mt:Ignore>
+  Skeleton + mount point for the client-rendered sidebar. article-sidebar.js
+  fetches article_sidebar_endpoint and replaces the inner markup with
+  ranking, categories and tags sections.
+</mt:Ignore>
+<div id="article-sidebar-container"
+     data-article-sidebar
+     data-sidebar-endpoint="<$mt:Var name="article_sidebar_endpoint" encode_html="1"$>">
+  <div class="c-skeleton c-skeleton--sidebar" aria-hidden="true">
+    <div class="c-article-sidebar__section">
+      <div class="c-skeleton__section-title"></div>
+      <mt:For from="1" to="3" step="1">
+        <div class="c-skeleton__ranking-item">
+          <div class="c-skeleton__thumb c-skeleton__thumb--sm"></div>
+          <div class="c-skeleton__ranking-body">
+            <div class="c-skeleton__line c-skeleton__line--short"></div>
+            <div class="c-skeleton__line"></div>
+            <div class="c-skeleton__line"></div>
+          </div>
+        </div>
+      </mt:For>
+    </div>
+    <div class="c-article-sidebar__section">
+      <div class="c-skeleton__section-title"></div>
+      <div class="c-skeleton__pill-group">
+        <mt:For from="1" to="6" step="1">
+          <span class="c-skeleton__pill"></span>
+        </mt:For>
+      </div>
+    </div>
+  </div>
+</div>

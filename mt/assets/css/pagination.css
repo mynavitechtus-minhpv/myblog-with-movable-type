@@ -1,0 +1,90 @@
+/* ==========================================================================
+   Pagination — numeric pager with first/prev/next/last chevrons
+   Design: 46x46 square buttons, gap 4px, radius 4px
+   ========================================================================== */
+
+.c-pagination {
+  display: flex;
+  justify-content: center;
+  margin-block-start: var(--space-2xl);
+}
+
+.c-pagination__list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.c-pagination__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  font-family: var(--font-main);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--color-primary);
+  text-decoration: none;
+  background-color: var(--color-bg-alt);
+  border: 0;
+  border-radius: var(--radius-sm);
+  transition:
+    background-color var(--duration-normal) var(--easing-default),
+    color var(--duration-normal) var(--easing-default);
+}
+
+.c-pagination__link:hover {
+  background-color: var(--color-primary-light);
+}
+
+.c-pagination__link--active {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  pointer-events: none;
+}
+
+.c-pagination__link--active:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.c-pagination__link--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: default;
+}
+
+.c-pagination__link--disabled:hover {
+  background-color: var(--color-bg-alt);
+}
+
+.c-pagination__icon {
+  width: 10px;
+  height: 10px;
+  color: currentColor;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .c-pagination {
+    margin-block-start: var(--space-xl);
+  }
+
+  .c-pagination__link {
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-size-xs);
+  }
+
+  .c-pagination__icon {
+    width: 8px;
+    height: 8px;
+  }
+}

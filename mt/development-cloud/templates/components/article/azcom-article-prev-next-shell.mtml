@@ -1,0 +1,14 @@
+<mt:Ignore>
+  Mount point for client-side prev/next on the detail page. Must run in
+  an entry context. Reuses the list JSON endpoint so navigation honours
+  the same filtering rules as the listing page, bypassing the limitations
+  of MT's native EntryPrevious/EntryNext tags.
+</mt:Ignore>
+<nav id="article-prev-next"
+     class="c-article-prev-next"
+     data-article-prev-next
+     data-endpoint="<$mt:Var name="article_prev_next_endpoint" encode_html="1"$>"
+     data-current-entry-id="<$mt:EntryID encode_html="1"$>"
+     aria-label="前後の記事"
+     hidden>
+</nav>

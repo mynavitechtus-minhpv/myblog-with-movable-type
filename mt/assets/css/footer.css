@@ -366,10 +366,10 @@
 .c-footer__copyright {
   padding: calc(var(--space-md) - 2px) 0 calc(var(--space-md) + var(--space-xs));
   background: var(--footer-copyright-bg);
+  margin: 0 auto;
 }
 
 .c-footer__copyright-text {
-  margin: 0;
   color: var(--color-text-secondary);
   font-size: var(--font-size-xs);
   line-height: var(--line-height-tight);

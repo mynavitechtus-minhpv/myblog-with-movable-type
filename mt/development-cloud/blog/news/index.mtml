@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <mt:Include module="azcom-env-config">
-
-    <mt:Ignore>── Site root path for API client ──</mt:Ignore>
     <meta name="site-root" content="<$mt:BlogRelativeURL$>">
 
     <mt:SetVarBlock name="meta_title">お知らせ | AZ-COMネットワーク</mt:SetVarBlock>
@@ -45,7 +42,7 @@
         <mt:SetVar name="breadcrumb_show_jsonld" value="1">
         <mt:Include module="azcom-breadcrumb">
 
-        <mt:SetVar name="subpage_hero_bg" value="assets/img/sub-img-004.png">
+        <mt:SetVar name="subpage_hero_bg" value="sub-img-001.png">
         <mt:SetVarBlock name="subpage_hero_title">お知らせ</mt:SetVarBlock>
         <mt:Include module="azcom-subpage-hero">
 
@@ -58,7 +55,6 @@
             <div class="p-article-list__body">
 
                 <div class="p-article-list__main">
-                    <mt:Ignore>── Article list (client-side rendering, client-side pagination) ──</mt:Ignore>
                     <mt:SetVar name="article_list_endpoint" value="api/news-list.json">
                     <mt:SetVar name="article_list_page_size" value="10">
                     <mt:SetVarBlock name="article_list_empty_message">お知らせはまだありません。</mt:SetVarBlock>
@@ -67,7 +63,6 @@
                 </div>
 
                 <div class="p-article-list__sidebar">
-                    <mt:Ignore>── Sidebar (client-side rendering) ──</mt:Ignore>
                     <mt:SetVar name="article_sidebar_endpoint" value="api/sidebar.json">
                     <mt:Include module="azcom-article-sidebar-shell">
                 </div>

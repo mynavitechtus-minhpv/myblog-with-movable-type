@@ -1,0 +1,15 @@
+<mt:Ignore>
+  Tags used by published entries, sorted by count desc (MT:Tags default).
+  Outputs JSON array items only — caller wraps with brackets.
+</mt:Ignore>
+<mt:SetVar name="tag_count" value="0">
+<mt:Tags>
+  <mt:Unless name="tag_count" eq="0">,</mt:Unless>
+  {
+    "id": <$mt:TagID$>,
+    "name": "<$mt:TagName encode_json="1"$>",
+    "url": "<$mt:BlogRelativeURL$>tags_<$mt:TagID$>/",
+    "count": <$mt:TagCount$>
+  }
+  <mt:SetVar name="tag_count" op="++">
+</mt:Tags>

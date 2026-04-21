@@ -1,0 +1,64 @@
+<mt:Ignore>
+  ════════════════════════════════════════════════════════════════════════════
+  azcom-article-list-shell
+  ────────────────────────────────────────────────────────────────────────────
+  Reusable shell for client-side rendered article list + pagination.
+  Renders: skeleton placeholders, container, empty state, error state, nav.
+  JavaScript (article-list.js) fetches the configured API and slices articles
+  into pages client-side, swapping visibility between states.
+
+  CALLER MUST SET (before <mt:Include>):
+    article_list_endpoint         e.g. "api/news-list.json"
+                                  Endpoint must return ALL filtered articles
+                                  in one payload: { meta:{total}, articles:[…] }
+    article_list_empty_message    e.g. "お知らせはまだありません。"
+
+  OPTIONAL:
+    article_list_page_size           default 10  (items per page)
+    article_list_scroll_target       default "#main"
+    article_list_skeleton_count      default 6
+    article_list_filter_tag          filter by tag name (case-insensitive)
+    article_list_filter_category_slug filter by category basename/slug
+
+  Dependencies: skeleton.css, api-client.js, article-list.js
+  ════════════════════════════════════════════════════════════════════════════
+</mt:Ignore>
+<mt:SetVar name="article_list_scroll_target" value="#main" default="1">
+<mt:Unless name="article_list_page_size">
+  <mt:SetVar name="article_list_page_size" value="10">
+</mt:Unless>
+<mt:Unless name="article_list_skeleton_count">
+  <mt:SetVar name="article_list_skeleton_count" value="6">
+</mt:Unless>
+
+<div id="article-list-skeleton" class="c-skeleton c-skeleton--article-grid" aria-hidden="true">
+  <mt:For from="1" to="$article_list_skeleton_count" step="1">
+    <div class="c-skeleton__card">
+      <div class="c-skeleton__thumb"></div>
+      <div class="c-skeleton__card-body">
+        <div class="c-skeleton__line c-skeleton__line--short"></div>
+        <div class="c-skeleton__line"></div>
+        <div class="c-skeleton__line"></div>
+      </div>
+    </div>
+  </mt:For>
+</div>
+
+<div id="article-list-container"
+     class="c-article-grid"
+     data-article-list
+     data-list-endpoint="<$mt:Var name="article_list_endpoint" encode_html="1"$>"
+     data-page-size="<$mt:Var name="article_list_page_size" encode_html="1"$>"
+     data-scroll-target="<$mt:Var name="article_list_scroll_target" encode_html="1"$>"
+     data-empty-message="<$mt:Var name="article_list_empty_message" encode_html="1"$>"
+     <mt:If name="article_list_filter_tag">data-filter-tag="<$mt:Var name="article_list_filter_tag" encode_html="1"$>"</mt:If>
+     <mt:If name="article_list_filter_category_slug">data-filter-category-slug="<$mt:Var name="article_list_filter_category_slug" encode_html="1"$>"</mt:If>
+     style="display: none;"></div>
+
+<div id="article-list-empty" class="p-article-list__empty" style="display: none;">
+  <p role="status"><$mt:Var name="article_list_empty_message"$></p>
+</div>
+
+<div id="article-list-error" class="p-article-list__error" role="alert" style="display: none;"></div>
+
+<nav id="article-list-pagination" class="c-pagination" style="display: none;" aria-label="Pagination"></nav>

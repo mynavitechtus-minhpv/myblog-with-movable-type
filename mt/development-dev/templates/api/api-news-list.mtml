@@ -1,0 +1,85 @@
+<mt:Ignore>
+  JSON API: News list (ALL filtered articles in one payload)
+  MT Admin: Index Template
+  Output: /api/news-list.json
+
+  Strategy:
+    Server returns ALL filtered articles (capped at lastn="300").
+    Pagination is computed client-side by article-list.js using data-page-size.
+    This avoids MT-native pagination limitations with MTML-level filtering.
+</mt:Ignore>
+<mt:Include module="azcom-env-config">
+<mt:SetVar name="article_count" value="0">
+
+<mt:Ignore>── Pass 1: count filtered articles ──</mt:Ignore>
+<mt:Entries lastn="300" sort_by="authored_on" sort_order="descend">
+  <mt:SetVar name="cf_display_target" value="">
+  <mt:If name="env_has_cf" eq="1">
+    <mt:Include module="azcom-article-cf-entry">
+  </mt:If>
+
+  <mt:SetVar name="is_newsletter" value="0">
+  <mt:EntryCategories>
+    <mt:If tag="CategoryBasename" eq="azcom-newsletter">
+      <mt:SetVar name="is_newsletter" value="1">
+    </mt:If>
+  </mt:EntryCategories>
+
+  <mt:SetVar name="is_corp_target" value="0">
+  <mt:If name="cf_display_target" eq="corporate">
+    <mt:SetVar name="is_corp_target" value="1">
+  </mt:If>
+  <mt:If name="cf_display_target" eq="both">
+    <mt:SetVar name="is_corp_target" value="1">
+  </mt:If>
+  <mt:If name="cf_display_target" eq="">
+    <mt:SetVar name="is_corp_target" value="1">
+  </mt:If>
+
+  <mt:If name="is_newsletter" eq="0">
+    <mt:If name="is_corp_target" eq="1">
+      <mt:SetVar name="article_count" op="++">
+    </mt:If>
+  </mt:If>
+</mt:Entries>
+{
+  "meta": {
+    "total": <$mt:Var name="article_count"$>
+  },
+  "articles": [
+<mt:SetVar name="article_render_count" value="0">
+<mt:Entries lastn="300" sort_by="authored_on" sort_order="descend">
+  <mt:SetVar name="cf_display_target" value="">
+  <mt:SetVar name="cf_thumbnail_url" value="">
+  <mt:If name="env_has_cf" eq="1">
+    <mt:Include module="azcom-article-cf-entry">
+  </mt:If>
+
+  <mt:SetVar name="is_newsletter" value="0">
+  <mt:EntryCategories>
+    <mt:If tag="CategoryBasename" eq="azcom-newsletter">
+      <mt:SetVar name="is_newsletter" value="1">
+    </mt:If>
+  </mt:EntryCategories>
+
+  <mt:SetVar name="is_corp_target" value="0">
+  <mt:If name="cf_display_target" eq="corporate">
+    <mt:SetVar name="is_corp_target" value="1">
+  </mt:If>
+  <mt:If name="cf_display_target" eq="both">
+    <mt:SetVar name="is_corp_target" value="1">
+  </mt:If>
+  <mt:If name="cf_display_target" eq="">
+    <mt:SetVar name="is_corp_target" value="1">
+  </mt:If>
+
+  <mt:If name="is_newsletter" eq="0">
+    <mt:If name="is_corp_target" eq="1">
+      <mt:Unless name="article_render_count" eq="0">,
+</mt:Unless><mt:Include module="azcom-json-article-item">
+      <mt:SetVar name="article_render_count" op="++">
+    </mt:If>
+  </mt:If>
+</mt:Entries>
+  ]
+}

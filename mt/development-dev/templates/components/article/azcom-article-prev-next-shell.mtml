@@ -1,0 +1,25 @@
+<mt:Ignore>
+  ════════════════════════════════════════════════════════════════════════════
+  azcom-article-prev-next-shell
+  ────────────────────────────────────────────────────────────────────────────
+  Client-side prev/next navigation. Must be called inside entry context on
+  the detail page.
+
+  Reuses the article list JSON endpoint so prev/next respect EXACTLY the
+  same filter rules (display_target, newsletter exclusion, etc.) as the
+  listing page. Avoids MT-native EntryPrevious/EntryNext limitations.
+
+  CALLER MUST SET (before <mt:Include>):
+    article_prev_next_endpoint   e.g. "api/news-list.json"
+
+  Dependencies: api-client.js, article-prev-next.js
+  CSS: article-page.css (.c-article-prev-next)
+  ════════════════════════════════════════════════════════════════════════════
+</mt:Ignore>
+<nav id="article-prev-next"
+     class="c-article-prev-next"
+     data-article-prev-next
+     data-endpoint="<$mt:Var name="article_prev_next_endpoint" encode_html="1"$>"
+     data-current-entry-id="<$mt:EntryID encode_html="1"$>"
+     aria-label="前後の記事"
+     hidden></nav>

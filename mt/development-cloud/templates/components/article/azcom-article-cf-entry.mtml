@@ -1,0 +1,9 @@
+<mt:Ignore>
+  CustomField proxy. Run inside an entry context to expose the four
+  News-blog CFs as cf_* variables. Centralises CF access so callers
+  never depend on EntryCustomField/EntryData* tag names.
+</mt:Ignore>
+<mt:SetVarBlock name="cf_display_target"><$mt:EntryDataDisplayTarget$></mt:SetVarBlock>
+<mt:SetVarBlock name="cf_ranking_enabled"><$mt:EntryDataRankingEnabled$></mt:SetVarBlock>
+<mt:SetVarBlock name="cf_thumbnail_url"><$mt:EntryDataThumbnail asset_url="1"$></mt:SetVarBlock>
+<mt:SetVarBlock name="cf_meta_description"><$mt:EntryDataMetaDescription$></mt:SetVarBlock>

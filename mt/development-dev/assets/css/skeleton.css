@@ -1,0 +1,185 @@
+:root {
+  --skeleton-pulse-duration: 1.5s;
+  --skeleton-pulse-opacity-min: 0.55;
+  --skeleton-reduced-opacity: 0.8;
+
+  --skeleton-line-height: 12px;
+  --skeleton-line-title-height: 20px;
+
+  --skeleton-pill-height: 24px;
+  --skeleton-pill-width: 80px;
+}
+
+/* ==========================================================================
+   Skeleton Loading — pulse placeholders.
+   Dimensions mirror article-card.css and article-sidebar.css tokens so the
+   skeleton shares the exact frame of the real components and swaps in place
+   without layout shift.
+   ========================================================================== */
+
+@keyframes c-skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: var(--skeleton-pulse-opacity-min);
+  }
+}
+
+.c-skeleton {
+  animation: c-skeleton-pulse var(--skeleton-pulse-duration) var(--easing-default) infinite;
+}
+
+.c-skeleton__thumb,
+.c-skeleton__line,
+.c-skeleton__pill {
+  background-color: var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+/* Shared blocks
+========================================================================== */
+
+.c-skeleton__line {
+  height: var(--skeleton-line-height);
+  width: 100%;
+}
+
+.c-skeleton__line--title {
+  height: var(--skeleton-line-title-height);
+  width: 60%;
+}
+
+.c-skeleton__line--short {
+  width: 40%;
+}
+
+.c-skeleton__pill {
+  display: inline-block;
+  height: var(--skeleton-pill-height);
+  width: var(--skeleton-pill-width);
+  border-radius: var(--radius-pill);
+  margin: 0 var(--space-sm) var(--space-sm) 0;
+}
+
+/* Article grid (list of cards)
+========================================================================== */
+
+.c-skeleton--article-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+}
+
+.c-skeleton__card {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: var(--article-card-max-width);
+  background-color: transparent;
+}
+
+.c-skeleton__card .c-skeleton__thumb {
+  width: 100%;
+  aspect-ratio: var(--article-card-thumb-aspect);
+  border-radius: 0;
+}
+
+.c-skeleton__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+}
+
+/* Sidebar — ranking / categories / tags
+========================================================================== */
+
+.c-skeleton--sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--article-sidebar-gap);
+}
+
+.c-skeleton__section-title {
+  height: var(--article-sidebar-section-title-line-height);
+  margin: 0 0 var(--space-md);
+  padding: 0;
+  background-color: var(--article-sidebar-section-title-bg);
+  border-left: var(--article-sidebar-section-title-border) solid var(--article-sidebar-section-title-accent);
+  border-radius: var(--radius-sm);
+}
+
+.c-skeleton__ranking-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--article-sidebar-ranking-item-gap);
+  margin-bottom: var(--space-md);
+}
+
+.c-skeleton__ranking-item:last-child {
+  margin-bottom: 0;
+}
+
+.c-skeleton__thumb--sm {
+  flex-shrink: 0;
+  width: var(--article-sidebar-ranking-thumb-width);
+  aspect-ratio: var(--article-sidebar-ranking-thumb-aspect);
+}
+
+.c-skeleton__ranking-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding-top: var(--space-xs);
+}
+
+.c-skeleton__pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+/* Tablet (768px-1023px)
+========================================================================== */
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .c-skeleton--article-grid {
+    gap: var(--space-md);
+    justify-content: center;
+  }
+}
+
+/* Mobile (<768px)
+========================================================================== */
+
+@media (max-width: 767px) {
+  .c-skeleton--article-grid {
+    gap: var(--space-md);
+    justify-content: center;
+  }
+
+  .c-skeleton__card {
+    max-width: var(--article-card-max-width-sp);
+  }
+
+  .c-skeleton__section-title {
+    height: var(--article-sidebar-section-title-line-height-sp);
+  }
+
+  .c-skeleton__thumb--sm {
+    width: var(--article-sidebar-ranking-thumb-width-sp);
+  }
+}
+
+/* Reduce motion accessibility
+========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .c-skeleton {
+    animation: none;
+    opacity: var(--skeleton-reduced-opacity);
+  }
+}

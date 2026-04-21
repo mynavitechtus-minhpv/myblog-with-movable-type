@@ -1,0 +1,26 @@
+<mt:Ignore>
+  Outputs sidebar categories as JSON array.
+  
+  Rules:
+    - Only child categories (has parent)
+    - Exclude "azcom-newsletter" category
+    - Sort by label (MT default)
+  
+  Output: JSON array (no outer brackets)
+</mt:Ignore>
+<mt:SetVar name="cat_count" value="0">
+<mt:Categories>
+  <mt:If tag="CategoryParentCategory">
+    <mt:Unless tag="CategoryBasename" eq="azcom-newsletter">
+      <mt:Unless name="cat_count" eq="0">,</mt:Unless>
+      {
+        "id": <$mt:CategoryID$>,
+        "label": "<$mt:CategoryLabel encode_json="1"$>",
+        "slug": "<$mt:CategoryBasename encode_json="1"$>",
+        "url": "<$mt:BlogRelativeURL$><$mt:CategoryBasename encode_json="1"$>/",
+        "count": <$mt:CategoryCount$>
+      }
+      <mt:SetVar name="cat_count" op="++">
+    </mt:Unless>
+  </mt:If>
+</mt:Categories>

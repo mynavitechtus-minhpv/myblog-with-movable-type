@@ -1,0 +1,222 @@
+:root {
+  --article-card-max-width: 390px;
+  --article-card-max-width-sp: 295px;
+  --article-card-gap: var(--space-sm);
+
+  --article-card-thumb-aspect: 3 / 2;
+  --article-card-thumb-bg: var(--color-primary-light);
+  --article-card-thumb-overlay: var(--color-white);
+  --article-card-thumb-overlay-opacity: 0.3;
+
+  --article-card-new-badge-width: 80px;
+  --article-card-new-badge-padding: 6px 12px;
+  --article-card-new-badge-line-height: 28px;
+  --article-card-new-badge-bg: var(--color-accent);
+  --article-card-new-badge-color: var(--color-white);
+
+  --article-card-date-line-height: 28px;
+
+  --article-card-tag-gap: 12px;
+  --article-card-tag-padding: var(--space-xs) 12px;
+  --article-card-tag-bg: var(--color-primary-light);
+  --article-card-tag-color: var(--color-primary);
+  --article-card-tag-bg-hover: var(--color-primary);
+  --article-card-tag-color-hover: var(--color-white);
+
+  --article-card-placeholder-bg: linear-gradient(
+    to bottom right,
+    var(--color-primary-light),
+    var(--color-primary-light-2)
+  );
+}
+
+/* ==========================================================================
+   Article Card — cross-blog reusable component
+   Design: thumbnail + NEW badge + date + title + tag chips
+   ========================================================================== */
+
+.c-article-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+}
+
+.c-article-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--article-card-gap);
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: var(--article-card-max-width);
+  background-color: transparent;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Thumbnail — 3:2 aspect per Figma (360x240)
+========================================================================== */
+
+.c-article-card__thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--article-card-thumb-aspect);
+  overflow: hidden;
+  background-color: var(--article-card-thumb-bg);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.c-article-card__thumb-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.c-article-card__thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--article-card-thumb-overlay);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-normal) var(--easing-default);
+}
+
+.c-article-card:hover .c-article-card__thumb::after {
+  opacity: var(--article-card-thumb-overlay-opacity);
+}
+
+.c-article-card__thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--article-card-placeholder-bg);
+}
+
+/* NEW badge (top-left of thumbnail)
+========================================================================== */
+
+.c-article-card__new-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--article-card-new-badge-width);
+  padding: var(--article-card-new-badge-padding);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--article-card-new-badge-line-height);
+  color: var(--article-card-new-badge-color);
+  background-color: var(--article-card-new-badge-bg);
+  border-right: 1px solid var(--color-white);
+  border-bottom: 1px solid var(--color-white);
+  border-top-left-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
+  pointer-events: none;
+}
+
+/* Body
+========================================================================== */
+
+.c-article-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-xs) var(--space-md);
+  flex: 1;
+}
+
+.c-article-card__meta-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.c-article-card__date {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--article-card-date-line-height);
+  color: var(--color-text-primary);
+}
+
+.c-article-card__title {
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Tag list — pill chips (blue/50 bg, blue/500 text)
+========================================================================== */
+
+.c-article-card__tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--article-card-tag-gap);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c-article-card__tag-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--article-card-tag-padding);
+  font-family: var(--font-main);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-small);
+  color: var(--article-card-tag-color);
+  background-color: var(--article-card-tag-bg);
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  transition:
+    background-color var(--duration-normal) var(--easing-default),
+    color var(--duration-normal) var(--easing-default);
+}
+
+.c-article-card__tag-item:hover {
+  background-color: var(--article-card-tag-bg-hover);
+  color: var(--article-card-tag-color-hover);
+}
+
+/* Modifier: no thumbnail (future use — search results)
+========================================================================== */
+
+.c-article-card--no-thumb .c-article-card__thumb {
+  display: none;
+}
+
+/* Tablet (768px-1023px)
+========================================================================== */
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .c-article-grid {
+    gap: var(--space-md);
+    justify-content: center;
+  }
+}
+
+/* Mobile (<768px)
+========================================================================== */
+
+@media (max-width: 767px) {
+  .c-article-grid {
+    gap: var(--space-md);
+    justify-content: center;
+  }
+
+  .c-article-card {
+    max-width: var(--article-card-max-width-sp);
+  }
+}

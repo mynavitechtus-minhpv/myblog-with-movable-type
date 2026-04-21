@@ -1,0 +1,121 @@
+<mt:Ignore>
+  Outputs sidebar ranking as JSON array.
+  
+  Caller must set:
+    sidebar_section                — "news"
+    sidebar_has_display_target     — 1
+    article_query_lastn            — 300
+    env_has_cf                     — 0 (local) or 1 (cloud)
+  
+  Output: JSON array (no outer brackets — caller wraps in "ranking": [...])
+</mt:Ignore>
+<mt:SetVar name="rank_count" value="0">
+<mt:SetVar name="rank_ids_rendered" value=",">
+
+<mt:Ignore>═══ PHASE 1: ranking_enabled = 1 ═══</mt:Ignore>
+<mt:Entries lastn="$article_query_lastn" sort_by="authored_on" sort_order="descend">
+  <mt:If name="rank_count" lt="5">
+    <mt:SetVar name="cf_display_target" value="">
+    <mt:SetVar name="cf_ranking_enabled" value="">
+    <mt:SetVar name="cf_thumbnail_url" value="">
+    <mt:If name="env_has_cf" eq="1">
+      <mt:Include module="azcom-article-cf-entry">
+    </mt:If>
+
+    <mt:SetVar name="is_newsletter" value="0">
+    <mt:EntryCategories>
+      <mt:If tag="CategoryBasename" eq="azcom-newsletter">
+        <mt:SetVar name="is_newsletter" value="1">
+      </mt:If>
+    </mt:EntryCategories>
+
+    <mt:SetVar name="is_corp_target" value="0">
+    <mt:If name="sidebar_has_display_target" eq="0">
+      <mt:SetVar name="is_corp_target" value="1">
+    <mt:Else>
+      <mt:If name="cf_display_target" eq="corporate">
+        <mt:SetVar name="is_corp_target" value="1">
+      </mt:If>
+      <mt:If name="cf_display_target" eq="both">
+        <mt:SetVar name="is_corp_target" value="1">
+      </mt:If>
+      <mt:If name="cf_display_target" eq="">
+        <mt:SetVar name="is_corp_target" value="1">
+      </mt:If>
+    </mt:If>
+
+    <mt:If name="cf_ranking_enabled" eq="1">
+      <mt:If name="is_newsletter" eq="0">
+        <mt:If name="is_corp_target" eq="1">
+          <mt:Unless name="rank_count" eq="0">,</mt:Unless>
+          <mt:SetVar name="rank_count" op="++">
+          {
+            "rank": <$mt:Var name="rank_count"$>,
+            "id": <$mt:EntryID$>,
+            "title": "<$mt:EntryTitle encode_json="1"$>",
+            "url": "<$mt:BlogRelativeURL$>post_<$mt:EntryID$>/",
+            "thumbnail": "<$mt:Var name="cf_thumbnail_url" encode_json="1"$>",
+            "date": "<$mt:EntryDate format="%Y.%m.%d"$>",
+            "datetime": "<$mt:EntryDate format_name="iso8601"$>"
+          }
+          <mt:SetVar name="rank_ids_rendered" value="$rank_ids_rendered<$mt:EntryID$>,">
+        </mt:If>
+      </mt:If>
+    </mt:If>
+  </mt:If>
+</mt:Entries>
+
+<mt:Ignore>═══ PHASE 2: fallback ═══</mt:Ignore>
+<mt:If name="rank_count" lt="5">
+  <mt:Entries lastn="$article_query_lastn" sort_by="authored_on" sort_order="descend">
+    <mt:If name="rank_count" lt="5">
+      <mt:SetVar name="cf_display_target" value="">
+      <mt:SetVar name="cf_ranking_enabled" value="">
+      <mt:SetVar name="cf_thumbnail_url" value="">
+      <mt:If name="env_has_cf" eq="1">
+        <mt:Include module="azcom-article-cf-entry">
+      </mt:If>
+
+      <mt:SetVar name="is_newsletter" value="0">
+      <mt:EntryCategories>
+        <mt:If tag="CategoryBasename" eq="azcom-newsletter">
+          <mt:SetVar name="is_newsletter" value="1">
+        </mt:If>
+      </mt:EntryCategories>
+
+      <mt:SetVar name="is_corp_target" value="0">
+      <mt:If name="sidebar_has_display_target" eq="0">
+        <mt:SetVar name="is_corp_target" value="1">
+      <mt:Else>
+        <mt:If name="cf_display_target" eq="corporate">
+          <mt:SetVar name="is_corp_target" value="1">
+        </mt:If>
+        <mt:If name="cf_display_target" eq="both">
+          <mt:SetVar name="is_corp_target" value="1">
+        </mt:If>
+        <mt:If name="cf_display_target" eq="">
+          <mt:SetVar name="is_corp_target" value="1">
+        </mt:If>
+      </mt:If>
+
+      <mt:SetVarBlock name="entry_id_check">,<$mt:EntryID$>,</mt:SetVarBlock>
+      <mt:Unless name="rank_ids_rendered" like="$entry_id_check">
+        <mt:If name="is_newsletter" eq="0">
+          <mt:If name="is_corp_target" eq="1">
+            <mt:Unless name="rank_count" eq="0">,</mt:Unless>
+            <mt:SetVar name="rank_count" op="++">
+            {
+              "rank": <$mt:Var name="rank_count"$>,
+              "id": <$mt:EntryID$>,
+              "title": "<$mt:EntryTitle encode_json="1"$>",
+              "url": "<$mt:BlogRelativeURL$>post_<$mt:EntryID$>/",
+              "thumbnail": "<$mt:Var name="cf_thumbnail_url" encode_json="1"$>",
+              "date": "<$mt:EntryDate format="%Y.%m.%d"$>",
+              "datetime": "<$mt:EntryDate format_name="iso8601"$>"
+            }
+          </mt:If>
+        </mt:If>
+      </mt:Unless>
+    </mt:If>
+  </mt:Entries>
+</mt:If>

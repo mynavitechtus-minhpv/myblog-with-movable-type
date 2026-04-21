@@ -9,13 +9,16 @@
     <mt:Ignore>── Site root path for API client ──</mt:Ignore>
     <meta name="site-root" content="<$mt:BlogRelativeURL$>">
 
-    <mt:SetVarBlock name="meta_title">お知らせ | AZ-COMネットワーク</mt:SetVarBlock>
-    <mt:SetVarBlock name="meta_description">運送業・物流企業の経営課題を解決する支援ネットワーク。単独では乗り越えられない人手不足やコスト高騰、BCP対策に伴走し、企業成長と業界の未来をともに創ります。</mt:SetVarBlock>
-    <mt:SetVarBlock name="meta_canonical_url">https://www.azcom-net.jp/news/</mt:SetVarBlock>
+    <mt:SetVar name="cf_meta_description" value="">
+    <mt:If name="env_has_cf" eq="1">
+      <mt:Include module="azcom-article-cf-entry">
+    </mt:If>
+    <mt:SetVarBlock name="meta_title"><$mt:EntryTitle remove_html="1" encode_html="1"$> | AZ-COMネットワーク</mt:SetVarBlock>
+    <mt:SetVarBlock name="meta_description"><mt:If name="cf_meta_description" ne=""><$mt:Var name="cf_meta_description" encode_html="1"$><mt:Else><$mt:EntryExcerpt remove_html="1" encode_html="1"$></mt:If></mt:SetVarBlock>
     <mt:SetVar name="meta_og_image" value="assets/img/og-image_az-com-network.png">
     <mt:Include module="azcom-head-meta">
 
-    <mt:SetVar name="assets_version" value="20260414-5">
+    <mt:SetVar name="assets_version" value="20260414-4">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,10 +26,9 @@
     <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/layout.css?v=<$mt:Var name="assets_version"$>">
     <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/utility.css?v=<$mt:Var name="assets_version"$>">
     <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/skeleton.css?v=<$mt:Var name="assets_version"$>">
-    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/article-card.css?v=<$mt:Var name="assets_version"$>">
-    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/article-sidebar.css?v=<$mt:Var name="assets_version"$>">
     <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/article-page.css?v=<$mt:Var name="assets_version"$>">
-    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/pagination.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/article-content.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/article-sidebar.css?v=<$mt:Var name="assets_version"$>">
     <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/header.css?v=<$mt:Var name="assets_version"$>">
     <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/footer.css?v=<$mt:Var name="assets_version"$>">
     <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/floating-button.css?v=<$mt:Var name="assets_version"$>">
@@ -37,11 +39,13 @@
 <body>
     <mt:Include module="azcom-header">
 
-    <main class="p-news-list" id="main">
+    <main class="p-news-detail p-article-detail" id="main">
 
         <mt:SetVarBlock name="breadcrumb_lv1_label">トップ</mt:SetVarBlock>
         <mt:SetVarBlock name="breadcrumb_lv1_url"><mt:Include module="azcom-site-root-path"></mt:SetVarBlock>
-        <mt:SetVarBlock name="breadcrumb_current_label">お知らせ一覧</mt:SetVarBlock>
+        <mt:SetVarBlock name="breadcrumb_lv2_label">お知らせ一覧</mt:SetVarBlock>
+        <mt:SetVarBlock name="breadcrumb_lv2_url"><mt:Include module="azcom-site-root-path">news/</mt:SetVarBlock>
+        <mt:SetVarBlock name="breadcrumb_current_label"><$mt:EntryTitle remove_html="1" encode_html="1"$></mt:SetVarBlock>
         <mt:SetVar name="breadcrumb_show_jsonld" value="1">
         <mt:Include module="azcom-breadcrumb">
 
@@ -49,30 +53,50 @@
         <mt:SetVarBlock name="subpage_hero_title">お知らせ</mt:SetVarBlock>
         <mt:Include module="azcom-subpage-hero">
 
-        <div class="p-article-list l-container">
+        <div class="l-container">
+            <div class="p-article-detail__body">
 
-            <div class="p-article-list__header">
-                <h2 class="p-article-list__header-title">新着のお知らせ</h2>
-            </div>
+                <article class="p-article-detail__main">
 
-            <div class="p-article-list__body">
+                    <header class="p-article-detail__header">
+                        <div class="p-article-detail__meta">
+                            <time class="p-article-detail__date"
+                                  datetime="<$mt:EntryDate format_name="iso8601"$>">
+                                <$mt:EntryDate format="%Y.%m.%d"$>
+                            </time>
+                            <mt:EntryCategories glue="">
+                                <mt:If tag="CategoryParentCategory">
+                                    <span class="p-article-detail__category">
+                                        <$mt:CategoryLabel encode_html="1"$>
+                                    </span>
+                                </mt:If>
+                            </mt:EntryCategories>
+                        </div>
+                        <h1 class="p-article-detail__title">
+                            <$mt:EntryTitle encode_html="1"$>
+                        </h1>
+                    </header>
 
-                <div class="p-article-list__main">
-                    <mt:Ignore>── Article list (client-side rendering, client-side pagination) ──</mt:Ignore>
-                    <mt:SetVar name="article_list_endpoint" value="api/news-list.json">
-                    <mt:SetVar name="article_list_page_size" value="10">
-                    <mt:SetVarBlock name="article_list_empty_message">お知らせはまだありません。</mt:SetVarBlock>
-                    <mt:SetVar name="article_list_scroll_target" value="#main">
-                    <mt:Include module="azcom-article-list-shell">
-                </div>
+                    <div class="mt-content">
+                        <$mt:EntryBody$>
+                        <$mt:EntryMore$>
+                    </div>
 
-                <div class="p-article-list__sidebar">
+                    <mt:Ignore>── Prev/Next (client-side, reuses news-list.json filter) ──</mt:Ignore>
+                    <mt:SetVar name="article_prev_next_endpoint" value="api/news-list.json">
+                    <mt:Include module="azcom-article-prev-next-shell">
+
+                </article>
+
+                <div class="p-article-detail__sidebar">
                     <mt:Ignore>── Sidebar (client-side rendering) ──</mt:Ignore>
                     <mt:SetVar name="article_sidebar_endpoint" value="api/sidebar.json">
                     <mt:Include module="azcom-article-sidebar-shell">
                 </div>
+
             </div>
         </div>
+
     </main>
 
     <mt:Include module="azcom-footer">
@@ -84,7 +108,7 @@
 
     <script src="<mt:Include module="azcom-site-root-path">assets/js/api-client.js?v=<$mt:Var name="assets_version"$>"></script>
     <script defer src="<mt:Include module="azcom-site-root-path">assets/js/go-to-top.js?v=<$mt:Var name="assets_version"$>"></script>
-    <script defer src="<mt:Include module="azcom-site-root-path">assets/js/article-list.js?v=<$mt:Var name="assets_version"$>"></script>
     <script defer src="<mt:Include module="azcom-site-root-path">assets/js/article-sidebar.js?v=<$mt:Var name="assets_version"$>"></script>
+    <script defer src="<mt:Include module="azcom-site-root-path">assets/js/article-prev-next.js?v=<$mt:Var name="assets_version"$>"></script>
 </body>
 </html>

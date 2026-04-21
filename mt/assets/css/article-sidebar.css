@@ -1,0 +1,339 @@
+:root {
+  --article-sidebar-gap: var(--space-xl);
+
+  --article-sidebar-section-title-line-height: 44px;
+  --article-sidebar-section-title-line-height-sp: 28px;
+  --article-sidebar-section-title-border: 10px;
+  --article-sidebar-section-title-color: var(--color-primary-dark);
+  --article-sidebar-section-title-bg: var(--color-primary-light);
+  --article-sidebar-section-title-accent: var(--color-primary);
+
+  --article-sidebar-sub-title-line-height: 32px;
+  --article-sidebar-sub-title-divider: 1px solid var(--color-border-light);
+
+  --article-sidebar-ranking-gap: var(--space-md);
+  --article-sidebar-ranking-item-gap: 13px;
+
+  --article-sidebar-ranking-num-size: 32px;
+  --article-sidebar-ranking-num-color: var(--color-white);
+  --article-sidebar-ranking-num-bg-1: var(--color-primary-dark);
+  --article-sidebar-ranking-num-bg-2: var(--color-primary-medium);
+  --article-sidebar-ranking-num-bg-3: var(--color-primary);
+  --article-sidebar-ranking-num-bg-rest: var(--color-primary-light-4);
+
+  --article-sidebar-ranking-thumb-width: 145px;
+  --article-sidebar-ranking-thumb-width-sp: 120px;
+  --article-sidebar-ranking-thumb-aspect: 145 / 97;
+  --article-sidebar-ranking-thumb-bg: var(--color-primary-light);
+  --article-sidebar-ranking-thumb-overlay: var(--color-white);
+  --article-sidebar-ranking-thumb-overlay-opacity: 0.3;
+
+  --article-sidebar-ranking-body-gap: var(--space-xs);
+
+  --article-sidebar-tag-gap: var(--space-sm);
+  --article-sidebar-tag-padding: var(--space-xs) 12px;
+  --article-sidebar-tag-bg: var(--color-primary-light);
+  --article-sidebar-tag-color: var(--color-primary);
+  --article-sidebar-tag-bg-hover: var(--color-primary);
+  --article-sidebar-tag-color-hover: var(--color-white);
+
+  --article-sidebar-category-gap: var(--space-sm);
+  --article-sidebar-category-padding: var(--space-xs) var(--space-md);
+  --article-sidebar-category-border: 1px solid var(--color-primary-light-2);
+
+  --article-sidebar-placeholder-bg: linear-gradient(
+    to bottom right,
+    var(--color-primary-light),
+    var(--color-primary-light-2)
+  );
+}
+
+/* ==========================================================================
+   Article Sidebar — cross-blog reusable component
+   ========================================================================== */
+
+.c-article-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--article-sidebar-gap);
+}
+
+/* Section block (ranking / category+tag)
+========================================================================== */
+
+.c-article-sidebar__section {
+  background-color: transparent;
+}
+
+.c-article-sidebar__section-title {
+  margin: 0 0 var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--article-sidebar-section-title-line-height);
+  color: var(--article-sidebar-section-title-color);
+  background-color: var(--article-sidebar-section-title-bg);
+  border-left: var(--article-sidebar-section-title-border) solid var(--article-sidebar-section-title-accent);
+  border-radius: var(--radius-sm);
+}
+
+/* Ranking list
+========================================================================== */
+
+.c-article-sidebar__ranking-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--article-sidebar-ranking-gap);
+}
+
+.c-article-sidebar__ranking-empty {
+  list-style: none;
+}
+
+.c-article-sidebar__ranking-empty p {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  text-align: center;
+  padding: var(--space-md) 0;
+}
+
+.c-article-sidebar__ranking-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--article-sidebar-ranking-item-gap);
+}
+
+.c-article-sidebar__ranking-num {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--article-sidebar-ranking-num-size);
+  height: var(--article-sidebar-ranking-num-size);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  color: var(--article-sidebar-ranking-num-color);
+  background-color: var(--article-sidebar-ranking-num-bg-1);
+  border-right: 1px solid var(--color-white);
+  border-bottom: 1px solid var(--color-white);
+  border-radius: var(--radius-sm) 0 var(--radius-sm) 0;
+}
+
+.c-article-sidebar__ranking-item:nth-child(2) .c-article-sidebar__ranking-num {
+  background-color: var(--article-sidebar-ranking-num-bg-2);
+}
+
+.c-article-sidebar__ranking-item:nth-child(3) .c-article-sidebar__ranking-num {
+  background-color: var(--article-sidebar-ranking-num-bg-3);
+}
+
+.c-article-sidebar__ranking-item:nth-child(4) .c-article-sidebar__ranking-num,
+.c-article-sidebar__ranking-item:nth-child(5) .c-article-sidebar__ranking-num {
+  background-color: var(--article-sidebar-ranking-num-bg-rest);
+}
+
+.c-article-sidebar__ranking-thumb {
+  flex-shrink: 0;
+  position: relative;
+  width: var(--article-sidebar-ranking-thumb-width);
+  aspect-ratio: var(--article-sidebar-ranking-thumb-aspect);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background-color: var(--article-sidebar-ranking-thumb-bg);
+}
+
+.c-article-sidebar__ranking-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.c-article-sidebar__ranking-thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--article-sidebar-ranking-thumb-overlay);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-normal) var(--easing-default);
+}
+
+.c-article-sidebar__ranking-item:hover .c-article-sidebar__ranking-thumb::after {
+  opacity: var(--article-sidebar-ranking-thumb-overlay-opacity);
+}
+
+.c-article-sidebar__ranking-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--article-sidebar-placeholder-bg);
+}
+
+.c-article-sidebar__ranking-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--article-sidebar-ranking-body-gap);
+  text-decoration: none;
+  min-width: 0;
+}
+
+.c-article-sidebar__ranking-date {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
+}
+
+.c-article-sidebar__ranking-title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color var(--duration-normal) var(--easing-default);
+}
+
+/* Category + Tag section sub-headings — heading text + horizontal divider
+========================================================================== */
+
+.c-article-sidebar__sub-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0 var(--space-md);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--article-sidebar-sub-title-line-height);
+  color: var(--color-text-primary);
+}
+
+.c-article-sidebar__sub-title::after {
+  content: '';
+  flex: 1;
+  height: 0;
+  border-top: var(--article-sidebar-sub-title-divider);
+}
+
+.c-article-sidebar__sub-title:first-of-type {
+  margin-top: 0;
+}
+
+/* Category list
+========================================================================== */
+
+.c-article-sidebar__category-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--article-sidebar-category-gap);
+}
+
+.c-article-sidebar__category-item a {
+  display: inline-block;
+  padding: var(--article-sidebar-category-padding);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-small);
+  color: var(--article-sidebar-tag-color);
+  background-color: var(--article-sidebar-tag-bg);
+  border: var(--article-sidebar-category-border);
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition:
+    background-color var(--duration-normal) var(--easing-default),
+    color var(--duration-normal) var(--easing-default),
+    border-color var(--duration-normal) var(--easing-default);
+}
+
+.c-article-sidebar__category-item a:hover {
+  background-color: var(--article-sidebar-tag-bg-hover);
+  color: var(--article-sidebar-tag-color-hover);
+  border-color: var(--article-sidebar-tag-bg-hover);
+}
+
+/* Error state
+========================================================================== */
+
+.c-article-sidebar__error {
+  padding: var(--space-lg);
+  text-align: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-white);
+}
+
+.c-article-sidebar__error-message {
+  margin: 0 0 var(--space-md);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-body);
+  color: var(--color-text-primary);
+}
+
+/* Tag list — pill chips (blue/50 bg, blue/500 text)
+========================================================================== */
+
+.c-article-sidebar__tag-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--article-sidebar-tag-gap);
+}
+
+.c-article-sidebar__tag-item a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--article-sidebar-tag-padding);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-small);
+  color: var(--article-sidebar-tag-color);
+  background-color: var(--article-sidebar-tag-bg);
+  border: 0;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition:
+    background-color var(--duration-normal) var(--easing-default),
+    color var(--duration-normal) var(--easing-default);
+}
+
+.c-article-sidebar__tag-item a:hover {
+  background-color: var(--article-sidebar-tag-bg-hover);
+  color: var(--article-sidebar-tag-color-hover);
+}
+
+/* Mobile — layout handled by article-page.css flex-direction column
+========================================================================== */
+
+@media (max-width: 1023px) {
+  .c-article-sidebar__section {
+    padding: var(--space-md);
+  }
+
+  .c-article-sidebar__section-title {
+    font-size: var(--font-size-lg);
+    line-height: var(--article-sidebar-section-title-line-height-sp);
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .c-article-sidebar__ranking-thumb {
+    width: var(--article-sidebar-ranking-thumb-width-sp);
+  }
+}

@@ -1,0 +1,21 @@
+<mt:Ignore>
+  Child categories only (skip top-level group nodes); excludes
+  "azcom-newsletter" which is member-only content.
+  Outputs JSON array items only — caller wraps with brackets.
+</mt:Ignore>
+<mt:SetVar name="cat_count" value="0">
+<mt:Categories>
+  <mt:If tag="CategoryParentCategory">
+    <mt:Unless tag="CategoryBasename" eq="azcom-newsletter">
+      <mt:Unless name="cat_count" eq="0">,</mt:Unless>
+      {
+        "id": <$mt:CategoryID$>,
+        "label": "<$mt:CategoryLabel encode_json="1"$>",
+        "slug": "<$mt:CategoryBasename encode_json="1"$>",
+        "url": "<$mt:BlogRelativeURL$><$mt:CategoryBasename encode_json="1"$>/",
+        "count": <$mt:CategoryCount$>
+      }
+      <mt:SetVar name="cat_count" op="++">
+    </mt:Unless>
+  </mt:If>
+</mt:Categories>

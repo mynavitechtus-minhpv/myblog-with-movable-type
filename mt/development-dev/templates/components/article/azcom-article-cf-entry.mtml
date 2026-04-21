@@ -1,0 +1,20 @@
+<mt:Ignore>
+  CustomField loader for current Entry context.
+
+  ⚠️  CLOUD ONLY — Do NOT create this module in MT Admin on local dev.
+      This module uses <mt:EntryCustomField> which requires the CustomFields plugin.
+      On local (env_has_cf=0), this module is never included → no crash.
+      On cloud (env_has_cf=1), create this module at Website level → CF filtering active.
+
+  Must be called INSIDE an <mt:Entries> block or Entry archive context.
+
+  Sets variables (all default to "" if field is empty):
+    cf_display_target    — "corporate" | "both" | "" (backward-compat default = show all)
+    cf_ranking_enabled   — "1" | "" (only entries with "1" appear in phase 1 ranking)
+    cf_thumbnail_url     — URL string of the thumbnail asset, or ""
+    cf_meta_description  — custom meta description for detail page, or ""
+</mt:Ignore>
+<mt:SetVarBlock name="cf_display_target"><$mt:EntryDataDisplayTarget$></mt:SetVarBlock>
+<mt:SetVarBlock name="cf_ranking_enabled"><$mt:EntryDataRankingEnabled$></mt:SetVarBlock>
+<mt:SetVarBlock name="cf_thumbnail_url"><$mt:EntryDataThumbnail asset_url="1"$></mt:SetVarBlock>
+<mt:SetVarBlock name="cf_meta_description"><$mt:EntryDataMetaDescription$></mt:SetVarBlock>
