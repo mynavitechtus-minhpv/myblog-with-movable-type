@@ -189,7 +189,7 @@
     color var(--duration-normal) var(--easing-default);
 }
 
-.c-article-card__tag-item:hover {
+.c-article-card:hover .c-article-card__tag-item {
   background-color: var(--article-card-tag-bg-hover);
   color: var(--article-card-tag-color-hover);
 }
