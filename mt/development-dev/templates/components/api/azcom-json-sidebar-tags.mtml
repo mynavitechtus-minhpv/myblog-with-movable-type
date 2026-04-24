@@ -1,20 +1,32 @@
 <mt:Ignore>
-  Outputs sidebar tags as JSON array.
-  
-  Rules:
-    - All tags used by published entries
-    - Sort by count descending (MT default for <mt:Tags>)
-  
-  Output: JSON array (no outer brackets)
+  Tags used by published entries, sorted by count desc (MT:Tags default).
+  Outputs JSON array items only — caller wraps with brackets.
+
+  Optional caller vars:
+    tags_blog_ids   comma-separated blog IDs. Required when the template
+                    runs at Website/System scope; leave unset at Blog scope.
 </mt:Ignore>
 <mt:SetVar name="tag_count" value="0">
-<mt:Tags>
-  <mt:Unless name="tag_count" eq="0">,</mt:Unless>
-  {
-    "id": <$mt:TagID$>,
-    "name": "<$mt:TagName encode_json="1"$>",
-    "url": "<$mt:BlogRelativeURL$>tags_<$mt:TagID$>/",
-    "count": <$mt:TagCount$>
-  }
-  <mt:SetVar name="tag_count" op="++">
-</mt:Tags>
+<mt:If name="tags_blog_ids">
+  <mt:Tags blog_ids="$tags_blog_ids">
+    <mt:Unless name="tag_count" eq="0">,</mt:Unless>
+    {
+      "id": <$mt:TagID$>,
+      "name": "<$mt:TagName encode_json="1"$>",
+      "url": "<$mt:BlogRelativeURL$>tags_<$mt:TagID$>/",
+      "count": <$mt:TagCount$>
+    }
+    <mt:SetVar name="tag_count" op="++">
+  </mt:Tags>
+<mt:Else>
+  <mt:Tags>
+    <mt:Unless name="tag_count" eq="0">,</mt:Unless>
+    {
+      "id": <$mt:TagID$>,
+      "name": "<$mt:TagName encode_json="1"$>",
+      "url": "<$mt:BlogRelativeURL$>tags_<$mt:TagID$>/",
+      "count": <$mt:TagCount$>
+    }
+    <mt:SetVar name="tag_count" op="++">
+  </mt:Tags>
+</mt:If>

@@ -1,8 +1,9 @@
 <mt:Ignore>
   Output: /api/news-list.json
-  Returns all corporate-visible entries (max 300) in one payload; pagination
-  and tag/category filtering are handled client-side by article-list.js. Two
-  passes are used so meta.total reflects the post-filter count.
+  Corporate-visible entries in MT Data API v1-compatible shape
+  ({totalResults, items[]}). Two-pass so totalResults reflects the
+  post-filter count; pagination + tag/category filtering run client-side
+  via article-list.js.
 </mt:Ignore>
 <mt:SetVar name="article_count" value="0">
 
@@ -34,11 +35,10 @@
   </mt:If>
 </mt:Entries>
 {
-  "meta": {
-    "total": <$mt:Var name="article_count"$>
-  },
-  "articles": [
+  "totalResults": <$mt:Var name="article_count"$>,
+  "items": [
 <mt:SetVar name="article_render_count" value="0">
+<mt:SetVar name="item_include_body" value="0">
 <mt:Entries lastn="300" sort_by="authored_on" sort_order="descend">
   <mt:Include module="azcom-article-cf-entry">
 
@@ -63,7 +63,7 @@
   <mt:If name="is_newsletter" eq="0">
     <mt:If name="is_corp_target" eq="1">
       <mt:Unless name="article_render_count" eq="0">,
-</mt:Unless><mt:Include module="azcom-json-article-item">
+</mt:Unless>{<mt:Include module="azcom-json-article-item">}
       <mt:SetVar name="article_render_count" op="++">
     </mt:If>
   </mt:If>

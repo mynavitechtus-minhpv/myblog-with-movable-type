@@ -16,9 +16,12 @@
  *   </nav>
  *
  * Ordering convention:
- *   API returns articles newest first (articles[0] = newest).
- *   UI: 前の記事 (prev) = older article   = articles[idx + 1]
- *       次の記事 (next) = newer article   = articles[idx - 1]
+ *   API returns items newest first (items[0] = newest).
+ *   UI: 前の記事 (prev) = older item   = items[idx + 1]
+ *       次の記事 (next) = newer item   = items[idx - 1]
+ *
+ * Expected JSON payload (MT Data API v1 compatible):
+ *   { totalResults: N, items: [{id, title, permalink, ...}] }
  *
  * Dependencies: api-client.js (global MTApiClient)
  */
@@ -39,8 +42,8 @@
     return div.innerHTML;
   }
 
-  function renderItem(article, dir) {
-    if (!article) return '';
+  function renderItem(item, dir) {
+    if (!item) return '';
 
     const cls = `c-article-prev-next__item c-article-prev-next__item--${dir}`;
     const label = dir === 'prev' ? LABEL_PREV : LABEL_NEXT;
@@ -48,9 +51,9 @@
     const inner = dir === 'prev'
       ? `${icon}<span class="c-article-prev-next__label">${label}</span>`
       : `<span class="c-article-prev-next__label">${label}</span>${icon}`;
-    const aria = `${label}: ${article.title || ''}`;
+    const aria = `${label}: ${item.title || ''}`;
 
-    return `<a class="${cls}" href="${escapeHtml(article.url)}" rel="${dir}" aria-label="${escapeHtml(aria)}">${inner}</a>`;
+    return `<a class="${cls}" href="${escapeHtml(item.permalink)}" rel="${dir}" aria-label="${escapeHtml(aria)}">${inner}</a>`;
   }
 
   class ArticlePrevNextController {
@@ -85,15 +88,15 @@
         return;
       }
 
-      const articles = Array.isArray(data && data.articles) ? data.articles : [];
-      const idx = articles.findIndex((a) => Number(a.id) === this.currentId);
+      const items = Array.isArray(data && data.items) ? data.items : [];
+      const idx = items.findIndex((a) => Number(a.id) === this.currentId);
       if (idx < 0) {
         this.hide();
         return;
       }
 
-      const prev = idx < articles.length - 1 ? articles[idx + 1] : null;
-      const next = idx > 0 ? articles[idx - 1] : null;
+      const prev = idx < items.length - 1 ? items[idx + 1] : null;
+      const next = idx > 0 ? items[idx - 1] : null;
       this.render(prev, next);
     }
 

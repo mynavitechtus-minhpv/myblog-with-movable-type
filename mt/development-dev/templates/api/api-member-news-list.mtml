@@ -1,0 +1,44 @@
+<mt:Ignore>
+  Output: /api/news.json (News-blog Index Template)
+  Member-visible entries in MT Data API v1-compatible shape
+  ({totalResults, items[]}). Two-pass pattern so totalResults reflects the
+  post-filter count. No per_page: member-site owns pagination and slices
+  the array client-side.
+
+  Dev environment: azcom-article-cf-entry only runs when env_has_cf=1.
+</mt:Ignore>
+<mt:Include module="azcom-env-config">
+<mt:Include module="azcom-member-config">
+
+<mt:SetVar name="member_count" value="0">
+<mt:Entries blog_ids="$news_blog_id" lastn="1000" sort_by="authored_on" sort_order="descend">
+  <mt:SetVar name="cf_display_target" value="">
+  <mt:SetVar name="cf_thumbnail_url" value="">
+  <mt:If name="env_has_cf" eq="1">
+    <mt:Include module="azcom-article-cf-entry">
+  </mt:If>
+  <mt:Include module="azcom-article-query-member">
+  <mt:If name="is_member_visible" eq="1">
+    <mt:SetVar name="member_count" op="++">
+  </mt:If>
+</mt:Entries>
+{
+  "totalResults": <$mt:Var name="member_count"$>,
+  "items": [
+<mt:SetVar name="member_render_count" value="0">
+<mt:SetVar name="item_include_body" value="0">
+<mt:Entries blog_ids="$news_blog_id" lastn="1000" sort_by="authored_on" sort_order="descend">
+  <mt:SetVar name="cf_display_target" value="">
+  <mt:SetVar name="cf_thumbnail_url" value="">
+  <mt:If name="env_has_cf" eq="1">
+    <mt:Include module="azcom-article-cf-entry">
+  </mt:If>
+  <mt:Include module="azcom-article-query-member">
+  <mt:If name="is_member_visible" eq="1">
+    <mt:Unless name="member_render_count" eq="0">,
+</mt:Unless>{<mt:Include module="azcom-json-article-item">}
+    <mt:SetVar name="member_render_count" op="++">
+  </mt:If>
+</mt:Entries>
+  ]
+}

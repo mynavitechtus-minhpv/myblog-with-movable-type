@@ -1,19 +1,19 @@
 <mt:Ignore>
-  JSON API: News list (ALL filtered articles in one payload)
-  MT Admin: Index Template
   Output: /api/news-list.json
+  Corporate-visible entries in MT Data API v1-compatible shape
+  ({totalResults, items[]}). Two-pass so totalResults reflects the
+  post-filter count; pagination + tag/category filtering run client-side
+  via article-list.js.
 
-  Strategy:
-    Server returns ALL filtered articles (capped at lastn="300").
-    Pagination is computed client-side by article-list.js using data-page-size.
-    This avoids MT-native pagination limitations with MTML-level filtering.
+  Dev environment: include azcom-article-cf-entry only when env_has_cf=1.
+  Without CF, cf_display_target stays "" so every entry counts as corp.
 </mt:Ignore>
 <mt:Include module="azcom-env-config">
 <mt:SetVar name="article_count" value="0">
 
-<mt:Ignore>── Pass 1: count filtered articles ──</mt:Ignore>
 <mt:Entries lastn="300" sort_by="authored_on" sort_order="descend">
   <mt:SetVar name="cf_display_target" value="">
+  <mt:SetVar name="cf_thumbnail_url" value="">
   <mt:If name="env_has_cf" eq="1">
     <mt:Include module="azcom-article-cf-entry">
   </mt:If>
@@ -43,11 +43,10 @@
   </mt:If>
 </mt:Entries>
 {
-  "meta": {
-    "total": <$mt:Var name="article_count"$>
-  },
-  "articles": [
+  "totalResults": <$mt:Var name="article_count"$>,
+  "items": [
 <mt:SetVar name="article_render_count" value="0">
+<mt:SetVar name="item_include_body" value="0">
 <mt:Entries lastn="300" sort_by="authored_on" sort_order="descend">
   <mt:SetVar name="cf_display_target" value="">
   <mt:SetVar name="cf_thumbnail_url" value="">
@@ -76,7 +75,7 @@
   <mt:If name="is_newsletter" eq="0">
     <mt:If name="is_corp_target" eq="1">
       <mt:Unless name="article_render_count" eq="0">,
-</mt:Unless><mt:Include module="azcom-json-article-item">
+</mt:Unless>{<mt:Include module="azcom-json-article-item">}
       <mt:SetVar name="article_render_count" op="++">
     </mt:If>
   </mt:If>

@@ -1,0 +1,26 @@
+<mt:Ignore>
+  Output: /api/news-sidebar.json (News-blog Index Template)
+  Combines ranking, categories and tags for the member-site sidebar.
+  azcom-newsletter stays in categories (include_newsletter=1).
+</mt:Ignore>
+<mt:Include module="azcom-env-config">
+<mt:Include module="azcom-member-config">
+<mt:SetVar name="sidebar_section" value="news">
+<mt:SetVar name="sidebar_has_display_target" value="1">
+<mt:SetVar name="sidebar_audience" value="member">
+<mt:SetVar name="ranking_blog_ids" value="$news_blog_id">
+<mt:SetVar name="categories_blog_ids" value="$news_blog_id">
+<mt:SetVar name="tags_blog_ids" value="$news_blog_id">
+<mt:SetVar name="include_newsletter" value="1">
+<mt:SetVar name="article_query_lastn" value="300">
+{
+  "ranking": [
+<mt:Include module="azcom-json-sidebar-ranking">
+  ],
+  "categories": [
+<mt:Include module="azcom-json-sidebar-categories">
+  ],
+  "tags": [
+<mt:Include module="azcom-json-sidebar-tags">
+  ]
+}

@@ -6,7 +6,7 @@
   Required:  article_list_endpoint, article_list_empty_message
   Optional:  article_list_page_size (10), article_list_scroll_target (#main),
              article_list_skeleton_count (6),
-             article_list_filter_tag, article_list_filter_category_slug
+             article_list_filter_tag, article_list_filter_category_label
 </mt:Ignore>
 <mt:SetVar name="article_list_scroll_target" value="#main" default="1">
 <mt:Unless name="article_list_page_size">
@@ -37,7 +37,7 @@
      data-scroll-target="<$mt:Var name="article_list_scroll_target" encode_html="1"$>"
      data-empty-message="<$mt:Var name="article_list_empty_message" encode_html="1"$>"
      <mt:If name="article_list_filter_tag">data-filter-tag="<$mt:Var name="article_list_filter_tag" encode_html="1"$>"</mt:If>
-     <mt:If name="article_list_filter_category_slug">data-filter-category-slug="<$mt:Var name="article_list_filter_category_slug" encode_html="1"$>"</mt:If>
+     <mt:If name="article_list_filter_category_label">data-filter-category-label="<$mt:Var name="article_list_filter_category_label" encode_html="1"$>"</mt:If>
      style="display: none;"></div>
 
 <div id="article-list-empty" class="p-article-list__empty" style="display: none;">

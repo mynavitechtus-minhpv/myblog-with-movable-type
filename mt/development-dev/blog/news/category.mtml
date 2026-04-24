@@ -15,7 +15,7 @@
     <mt:SetVarBlock name="meta_canonical_url"><mt:Include module="azcom-site-root-path">news/<$mt:CategoryBasename encode_html="1"$>/</mt:SetVarBlock>
     <mt:Include module="azcom-head-meta">
 
-    <mt:SetVar name="assets_version" value="20260414-5">
+    <mt:SetVar name="assets_version" value="20260414-6">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,7 +67,7 @@
                     <mt:SetVar name="article_list_page_size" value="10">
                     <mt:SetVarBlock name="article_list_empty_message">該当するお知らせはありません。</mt:SetVarBlock>
                     <mt:SetVar name="article_list_scroll_target" value="#main">
-                    <mt:SetVarBlock name="article_list_filter_category_slug"><$mt:CategoryBasename$></mt:SetVarBlock>
+                    <mt:SetVarBlock name="article_list_filter_category_label"><$mt:CategoryLabel encode_html="1"$></mt:SetVarBlock>
                     <mt:Include module="azcom-article-list-shell">
                 </div>
 

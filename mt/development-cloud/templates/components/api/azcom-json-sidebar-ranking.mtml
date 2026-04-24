@@ -1,109 +1,47 @@
 <mt:Ignore>
   Top-5 ranking JSON items (no outer brackets).
-
   Two-phase selection: phase 1 emits entries with cf_ranking_enabled=1
-  (manual pin), phase 2 fills the remaining slots with the most recent
-  entries that are not already pinned. Both phases honour the corporate
-  display_target and exclude the azcom-newsletter category.
+  (manual pin); phase 2 fills remaining slots with the most recent
+  entries not already pinned.
 
-  Required caller vars: sidebar_section, sidebar_has_display_target,
-  article_query_lastn.
+  Required caller vars:
+    sidebar_section
+    sidebar_has_display_target   "1" honours display_target, "0" ignores it
+    article_query_lastn          max entries scanned per pass
+
+  Optional caller vars:
+    sidebar_audience             "corporate" (default) | "member"
+    ranking_blog_ids             comma-separated blog IDs. Required when the
+                                 template runs at Website/System scope;
+                                 leave unset at Blog scope.
 </mt:Ignore>
+<mt:Unless name="sidebar_audience">
+  <mt:SetVar name="sidebar_audience" value="corporate">
+</mt:Unless>
+
 <mt:SetVar name="rank_count" value="0">
 <mt:SetVar name="rank_ids_rendered" value=",">
 
-<mt:Entries lastn="$article_query_lastn" sort_by="authored_on" sort_order="descend">
-  <mt:If name="rank_count" lt="5">
-    <mt:Include module="azcom-article-cf-entry">
-
-    <mt:SetVar name="is_newsletter" value="0">
-    <mt:EntryCategories>
-      <mt:If tag="CategoryBasename" eq="azcom-newsletter">
-        <mt:SetVar name="is_newsletter" value="1">
-      </mt:If>
-    </mt:EntryCategories>
-
-    <mt:SetVar name="is_corp_target" value="0">
-    <mt:If name="sidebar_has_display_target" eq="0">
-      <mt:SetVar name="is_corp_target" value="1">
-    <mt:Else>
-      <mt:If name="cf_display_target" eq="corporate">
-        <mt:SetVar name="is_corp_target" value="1">
-      </mt:If>
-      <mt:If name="cf_display_target" eq="both">
-        <mt:SetVar name="is_corp_target" value="1">
-      </mt:If>
-      <mt:If name="cf_display_target" eq="">
-        <mt:SetVar name="is_corp_target" value="1">
-      </mt:If>
-    </mt:If>
-
-    <mt:If name="cf_ranking_enabled" eq="1">
-      <mt:If name="is_newsletter" eq="0">
-        <mt:If name="is_corp_target" eq="1">
-          <mt:Unless name="rank_count" eq="0">,</mt:Unless>
-          <mt:SetVar name="rank_count" op="++">
-          {
-            "rank": <$mt:Var name="rank_count"$>,
-            "id": <$mt:EntryID$>,
-            "title": "<$mt:EntryTitle encode_json="1"$>",
-            "url": "<$mt:BlogRelativeURL$>post_<$mt:EntryID$>/",
-            "thumbnail": "<$mt:Var name="cf_thumbnail_url" encode_json="1"$>",
-            "date": "<$mt:EntryDate format="%Y.%m.%d"$>",
-            "datetime": "<$mt:EntryDate format_name="iso8601"$>"
-          }
-          <mt:SetVar name="rank_ids_rendered" value="$rank_ids_rendered<$mt:EntryID$>,">
-        </mt:If>
-      </mt:If>
-    </mt:If>
-  </mt:If>
-</mt:Entries>
+<mt:SetVar name="rank_phase" value="1">
+<mt:If name="ranking_blog_ids">
+  <mt:Entries blog_ids="$ranking_blog_ids" lastn="$article_query_lastn" sort_by="authored_on" sort_order="descend">
+    <mt:Include module="azcom-json-sidebar-ranking-entry">
+  </mt:Entries>
+<mt:Else>
+  <mt:Entries lastn="$article_query_lastn" sort_by="authored_on" sort_order="descend">
+    <mt:Include module="azcom-json-sidebar-ranking-entry">
+  </mt:Entries>
+</mt:If>
 
 <mt:If name="rank_count" lt="5">
-  <mt:Entries lastn="$article_query_lastn" sort_by="authored_on" sort_order="descend">
-    <mt:If name="rank_count" lt="5">
-      <mt:Include module="azcom-article-cf-entry">
-
-      <mt:SetVar name="is_newsletter" value="0">
-      <mt:EntryCategories>
-        <mt:If tag="CategoryBasename" eq="azcom-newsletter">
-          <mt:SetVar name="is_newsletter" value="1">
-        </mt:If>
-      </mt:EntryCategories>
-
-      <mt:SetVar name="is_corp_target" value="0">
-      <mt:If name="sidebar_has_display_target" eq="0">
-        <mt:SetVar name="is_corp_target" value="1">
-      <mt:Else>
-        <mt:If name="cf_display_target" eq="corporate">
-          <mt:SetVar name="is_corp_target" value="1">
-        </mt:If>
-        <mt:If name="cf_display_target" eq="both">
-          <mt:SetVar name="is_corp_target" value="1">
-        </mt:If>
-        <mt:If name="cf_display_target" eq="">
-          <mt:SetVar name="is_corp_target" value="1">
-        </mt:If>
-      </mt:If>
-
-      <mt:SetVarBlock name="entry_id_check">,<$mt:EntryID$>,</mt:SetVarBlock>
-      <mt:Unless name="rank_ids_rendered" like="$entry_id_check">
-        <mt:If name="is_newsletter" eq="0">
-          <mt:If name="is_corp_target" eq="1">
-            <mt:Unless name="rank_count" eq="0">,</mt:Unless>
-            <mt:SetVar name="rank_count" op="++">
-            {
-              "rank": <$mt:Var name="rank_count"$>,
-              "id": <$mt:EntryID$>,
-              "title": "<$mt:EntryTitle encode_json="1"$>",
-              "url": "<$mt:BlogRelativeURL$>post_<$mt:EntryID$>/",
-              "thumbnail": "<$mt:Var name="cf_thumbnail_url" encode_json="1"$>",
-              "date": "<$mt:EntryDate format="%Y.%m.%d"$>",
-              "datetime": "<$mt:EntryDate format_name="iso8601"$>"
-            }
-          </mt:If>
-        </mt:If>
-      </mt:Unless>
-    </mt:If>
-  </mt:Entries>
+  <mt:SetVar name="rank_phase" value="2">
+  <mt:If name="ranking_blog_ids">
+    <mt:Entries blog_ids="$ranking_blog_ids" lastn="$article_query_lastn" sort_by="authored_on" sort_order="descend">
+      <mt:Include module="azcom-json-sidebar-ranking-entry">
+    </mt:Entries>
+  <mt:Else>
+    <mt:Entries lastn="$article_query_lastn" sort_by="authored_on" sort_order="descend">
+      <mt:Include module="azcom-json-sidebar-ranking-entry">
+    </mt:Entries>
+  </mt:If>
 </mt:If>

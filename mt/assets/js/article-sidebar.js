@@ -10,9 +10,13 @@
  *   </div>
  *
  * JSON shape expected:
- *   { ranking: [{rank,id,title,url,thumbnail,date,datetime}],
- *     categories: [{id,label,url,count}],
+ *   { ranking: [<item + rank>],
+ *     categories: [{id,label,slug,url,count}],
  *     tags: [{id,name,url,count}] }
+ *
+ *   <item> is the MT Data API v1-compatible article shape:
+ *     { id, title, basename, permalink, createdDate, categories:[label],
+ *       tags:[name], blog:{id}, thumbnail, excerpt }
  *
  * Dependencies: api-client.js (global MTApiClient)
  */
@@ -36,6 +40,16 @@
     const div = document.createElement('div');
     div.textContent = String(text);
     return div.innerHTML;
+  }
+
+  function formatDisplayDate(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return '';
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}.${m}.${day}`;
   }
 
   function classifyError(err) {
@@ -82,9 +96,9 @@
                 ${escapeHtml(item.rank)}
               </span>
             </div>
-            <a class="c-article-sidebar__ranking-body" href="${escapeHtml(item.url)}">
-              <time class="c-article-sidebar__ranking-date" datetime="${escapeHtml(item.datetime)}">
-                ${escapeHtml(item.date)}
+            <a class="c-article-sidebar__ranking-body" href="${escapeHtml(item.permalink)}">
+              <time class="c-article-sidebar__ranking-date" datetime="${escapeHtml(item.createdDate)}">
+                ${escapeHtml(formatDisplayDate(item.createdDate))}
               </time>
               <span class="c-article-sidebar__ranking-title">${escapeHtml(item.title)}</span>
             </a>

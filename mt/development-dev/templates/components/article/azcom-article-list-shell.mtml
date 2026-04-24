@@ -1,27 +1,12 @@
 <mt:Ignore>
-  ════════════════════════════════════════════════════════════════════════════
-  azcom-article-list-shell
-  ────────────────────────────────────────────────────────────────────────────
-  Reusable shell for client-side rendered article list + pagination.
-  Renders: skeleton placeholders, container, empty state, error state, nav.
-  JavaScript (article-list.js) fetches the configured API and slices articles
-  into pages client-side, swapping visibility between states.
+  Static markup for client-side article list + pagination. The endpoint
+  must return every filtered article in a single payload; article-list.js
+  handles paging, filtering and DOM state swapping.
 
-  CALLER MUST SET (before <mt:Include>):
-    article_list_endpoint         e.g. "api/news-list.json"
-                                  Endpoint must return ALL filtered articles
-                                  in one payload: { meta:{total}, articles:[…] }
-    article_list_empty_message    e.g. "お知らせはまだありません。"
-
-  OPTIONAL:
-    article_list_page_size           default 10  (items per page)
-    article_list_scroll_target       default "#main"
-    article_list_skeleton_count      default 6
-    article_list_filter_tag          filter by tag name (case-insensitive)
-    article_list_filter_category_slug filter by category basename/slug
-
-  Dependencies: skeleton.css, api-client.js, article-list.js
-  ════════════════════════════════════════════════════════════════════════════
+  Required:  article_list_endpoint, article_list_empty_message
+  Optional:  article_list_page_size (10), article_list_scroll_target (#main),
+             article_list_skeleton_count (6),
+             article_list_filter_tag, article_list_filter_category_label
 </mt:Ignore>
 <mt:SetVar name="article_list_scroll_target" value="#main" default="1">
 <mt:Unless name="article_list_page_size">
@@ -52,7 +37,7 @@
      data-scroll-target="<$mt:Var name="article_list_scroll_target" encode_html="1"$>"
      data-empty-message="<$mt:Var name="article_list_empty_message" encode_html="1"$>"
      <mt:If name="article_list_filter_tag">data-filter-tag="<$mt:Var name="article_list_filter_tag" encode_html="1"$>"</mt:If>
-     <mt:If name="article_list_filter_category_slug">data-filter-category-slug="<$mt:Var name="article_list_filter_category_slug" encode_html="1"$>"</mt:If>
+     <mt:If name="article_list_filter_category_label">data-filter-category-label="<$mt:Var name="article_list_filter_category_label" encode_html="1"$>"</mt:If>
      style="display: none;"></div>
 
 <div id="article-list-empty" class="p-article-list__empty" style="display: none;">

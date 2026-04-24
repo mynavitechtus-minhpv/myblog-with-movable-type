@@ -14,12 +14,17 @@
  *        data-page-size="10"
  *        data-scroll-target="#main"
  *        data-empty-message="お知らせはまだありません。"
- *        data-filter-tag="新着"                    (optional)
- *        data-filter-category-slug="press-release" (optional)>
+ *        data-filter-tag="新着"                       (optional)
+ *        data-filter-category-label="プレスリリース"  (optional)>
  *   </div>
  *
  * Filters are applied AFTER fetch, BEFORE pagination slicing. Matching is
  * case-insensitive. Multiple filters are combined with AND.
+ *
+ * Expected JSON payload (MT Data API v1 compatible):
+ *   { totalResults: N, items: [{id, title, basename, permalink, createdDate,
+ *     categories: [label,...], tags: [name,...], blog: {id}, thumbnail,
+ *     excerpt}] }
  *
  * DOM contract (IDs, rendered by the shell module):
  *   #article-list-skeleton   — initial skeleton placeholders
@@ -66,49 +71,59 @@
 
   const NEW_BADGE_DAYS = 7;
 
-  function isRecentDate(datetime, days) {
-    if (!datetime) return false;
-    const d = new Date(datetime);
+  function isRecentDate(iso, days) {
+    if (!iso) return false;
+    const d = new Date(iso);
     if (isNaN(d.getTime())) return false;
     const diff = Date.now() - d.getTime();
     return diff >= 0 && diff < days * 24 * 60 * 60 * 1000;
   }
 
-  function buildArticleCard(article) {
-    const thumbnail = article.thumbnail
+  function formatDisplayDate(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return '';
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}.${m}.${day}`;
+  }
+
+  function buildArticleCard(item) {
+    const thumbnail = item.thumbnail
       ? `<img class="c-article-card__thumb-img"
-             src="${escapeHtml(article.thumbnail)}"
+             src="${escapeHtml(item.thumbnail)}"
              alt=""
              width="400"
              height="225"
              loading="lazy">`
       : `<div class="c-article-card__thumb-placeholder"></div>`;
 
-    const newBadge = isRecentDate(article.datetime, NEW_BADGE_DAYS)
+    const newBadge = isRecentDate(item.createdDate, NEW_BADGE_DAYS)
       ? `<span class="c-article-card__new-badge" aria-label="新着">NEW</span>`
       : '';
 
     const tags =
-      Array.isArray(article.tags) && article.tags.length > 0
-        ? `<ul class="c-article-card__tag-list">${article.tags
+      Array.isArray(item.tags) && item.tags.length > 0
+        ? `<ul class="c-article-card__tag-list">${item.tags
             .map((t) => `<li class="c-article-card__tag-item">${escapeHtml(t)}</li>`)
             .join('')}</ul>`
         : '';
 
     return `
       <a class="c-article-card"
-         href="${escapeHtml(article.url)}"
-         aria-label="${escapeHtml(article.title)}">
+         href="${escapeHtml(item.permalink)}"
+         aria-label="${escapeHtml(item.title)}">
         <div class="c-article-card__thumb" aria-hidden="true">
           ${thumbnail}
           ${newBadge}
         </div>
         <div class="c-article-card__body">
           <div class="c-article-card__meta-block">
-            <time class="c-article-card__date" datetime="${escapeHtml(article.datetime)}">
-              ${escapeHtml(article.date)}
+            <time class="c-article-card__date" datetime="${escapeHtml(item.createdDate)}">
+              ${escapeHtml(formatDisplayDate(item.createdDate))}
             </time>
-            <h3 class="c-article-card__title">${escapeHtml(article.title)}</h3>
+            <h3 class="c-article-card__title">${escapeHtml(item.title)}</h3>
           </div>
           ${tags}
         </div>
@@ -243,11 +258,11 @@
       this.scrollTarget = container.dataset.scrollTarget || '#main';
       this.emptyMessage = container.dataset.emptyMessage || '';
       this.filterTag = (container.dataset.filterTag || '').trim();
-      this.filterCategorySlug = (container.dataset.filterCategorySlug || '').trim();
+      this.filterCategoryLabel = (container.dataset.filterCategoryLabel || '').trim();
 
       this.apiClient = new MTApiClient();
 
-      this.allArticles = null;
+      this.allItems = null;
 
       this.onPaginationClick = this.onPaginationClick.bind(this);
       this.onPopState = this.onPopState.bind(this);
@@ -310,24 +325,24 @@
       this.show(['error']);
     }
 
-    _applyFilters(articles) {
-      if (!this.filterTag && !this.filterCategorySlug) return articles;
+    _applyFilters(items) {
+      if (!this.filterTag && !this.filterCategoryLabel) return items;
 
       const tagLower = this.filterTag.toLowerCase();
-      const slugLower = this.filterCategorySlug.toLowerCase();
+      const catLower = this.filterCategoryLabel.toLowerCase();
 
-      return articles.filter((article) => {
+      return items.filter((item) => {
         if (tagLower) {
-          const tags = Array.isArray(article.tags) ? article.tags : [];
+          const tags = Array.isArray(item.tags) ? item.tags : [];
           const matched = tags.some(
             (t) => typeof t === 'string' && t.toLowerCase() === tagLower
           );
           if (!matched) return false;
         }
-        if (slugLower) {
-          const cats = Array.isArray(article.categories) ? article.categories : [];
+        if (catLower) {
+          const cats = Array.isArray(item.categories) ? item.categories : [];
           const matched = cats.some(
-            (c) => c && typeof c.slug === 'string' && c.slug.toLowerCase() === slugLower
+            (c) => typeof c === 'string' && c.toLowerCase() === catLower
           );
           if (!matched) return false;
         }
@@ -336,8 +351,8 @@
     }
 
     _renderPage(page) {
-      const articles = this._applyFilters(this.allArticles || []);
-      const total = articles.length;
+      const items = this._applyFilters(this.allItems || []);
+      const total = items.length;
       const totalPages = Math.max(1, Math.ceil(total / this.pageSize));
 
       const safePage = Math.min(Math.max(1, page), totalPages);
@@ -352,7 +367,7 @@
       }
 
       const start = (safePage - 1) * this.pageSize;
-      const slice = articles.slice(start, start + this.pageSize);
+      const slice = items.slice(start, start + this.pageSize);
 
       this.container.innerHTML = slice.map(buildArticleCard).join('');
       this.pagination.innerHTML = buildPagination({ page: safePage, totalPages });
@@ -374,12 +389,12 @@
         return;
       }
 
-      if (!data || !Array.isArray(data.articles)) {
+      if (!data || !Array.isArray(data.items)) {
         this.showError({ type: 'parse', message: 'invalid payload shape' });
         return;
       }
 
-      this.allArticles = data.articles;
+      this.allItems = data.items;
       this._renderPage(this.currentPage);
     }
 
@@ -414,7 +429,7 @@
     }
 
     onRetry() {
-      if (this.allArticles) {
+      if (this.allItems) {
         this._renderPage(this.currentPage);
       } else {
         this.loadAll();

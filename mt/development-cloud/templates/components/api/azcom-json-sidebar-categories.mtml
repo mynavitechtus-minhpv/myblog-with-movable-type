@@ -1,21 +1,59 @@
 <mt:Ignore>
-  Child categories only (skip top-level group nodes); excludes
-  "azcom-newsletter" which is member-only content.
-  Outputs JSON array items only — caller wraps with brackets.
+  Child categories only (skip top-level group nodes). Outputs JSON array
+  items only — caller wraps with brackets.
+
+  Optional caller vars:
+    include_newsletter   "0" (default) excludes azcom-newsletter (corporate).
+                         "1" keeps it (member-site).
+    categories_blog_ids  comma-separated blog IDs. Required when the template
+                         runs at Website/System scope; leave unset at Blog scope.
 </mt:Ignore>
+<mt:Unless name="include_newsletter">
+  <mt:SetVar name="include_newsletter" value="0">
+</mt:Unless>
 <mt:SetVar name="cat_count" value="0">
-<mt:Categories>
-  <mt:If tag="CategoryParentCategory">
-    <mt:Unless tag="CategoryBasename" eq="azcom-newsletter">
-      <mt:Unless name="cat_count" eq="0">,</mt:Unless>
-      {
-        "id": <$mt:CategoryID$>,
-        "label": "<$mt:CategoryLabel encode_json="1"$>",
-        "slug": "<$mt:CategoryBasename encode_json="1"$>",
-        "url": "<$mt:BlogRelativeURL$><$mt:CategoryBasename encode_json="1"$>/",
-        "count": <$mt:CategoryCount$>
-      }
-      <mt:SetVar name="cat_count" op="++">
-    </mt:Unless>
-  </mt:If>
-</mt:Categories>
+<mt:If name="categories_blog_ids">
+  <mt:Categories blog_ids="$categories_blog_ids">
+    <mt:If tag="CategoryParentCategory">
+      <mt:SetVar name="cat_keep" value="1">
+      <mt:If name="include_newsletter" eq="0">
+        <mt:If tag="CategoryBasename" eq="azcom-newsletter">
+          <mt:SetVar name="cat_keep" value="0">
+        </mt:If>
+      </mt:If>
+      <mt:If name="cat_keep" eq="1">
+        <mt:Unless name="cat_count" eq="0">,</mt:Unless>
+        {
+          "id": <$mt:CategoryID$>,
+          "label": "<$mt:CategoryLabel encode_json="1"$>",
+          "slug": "<$mt:CategoryBasename encode_json="1"$>",
+          "url": "<$mt:BlogRelativeURL$><$mt:CategoryBasename encode_json="1"$>/",
+          "count": <$mt:CategoryCount$>
+        }
+        <mt:SetVar name="cat_count" op="++">
+      </mt:If>
+    </mt:If>
+  </mt:Categories>
+<mt:Else>
+  <mt:Categories>
+    <mt:If tag="CategoryParentCategory">
+      <mt:SetVar name="cat_keep" value="1">
+      <mt:If name="include_newsletter" eq="0">
+        <mt:If tag="CategoryBasename" eq="azcom-newsletter">
+          <mt:SetVar name="cat_keep" value="0">
+        </mt:If>
+      </mt:If>
+      <mt:If name="cat_keep" eq="1">
+        <mt:Unless name="cat_count" eq="0">,</mt:Unless>
+        {
+          "id": <$mt:CategoryID$>,
+          "label": "<$mt:CategoryLabel encode_json="1"$>",
+          "slug": "<$mt:CategoryBasename encode_json="1"$>",
+          "url": "<$mt:BlogRelativeURL$><$mt:CategoryBasename encode_json="1"$>/",
+          "count": <$mt:CategoryCount$>
+        }
+        <mt:SetVar name="cat_count" op="++">
+      </mt:If>
+    </mt:If>
+  </mt:Categories>
+</mt:If>
