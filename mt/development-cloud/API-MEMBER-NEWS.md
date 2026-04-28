@@ -20,7 +20,7 @@ Nếu không cần 3 rule trên → gọi thẳng `/mt-data-api.cgi/v1/sites/{id
 
 ---
 
-## 1. `GET /news/api/news.json` — Full member-visible list
+## 1. `GET /news/api/news/members/list.json` — Full member-visible list
 
 Member-visible = `display_target ∈ {member, both}` **OR** entry thuộc category `azcom-newsletter`.
 
@@ -63,7 +63,7 @@ Member-visible = `display_target ∈ {member, both}` **OR** entry thuộc catego
 | `items[].thumbnail` | string | CustomField `thumbnail` URL, `""` when missing |
 | `items[].excerpt` | string | MT-generated excerpt |
 
-`body` is **not** included in list payload; fetch `/news/api/news/post_{id}.json` for full HTML body.
+`body` is **not** included in list payload; fetch `/news/api/news/members/post_{id}.json` for full HTML body.
 
 ### Pagination
 
@@ -71,7 +71,7 @@ MT static cannot interpret `?page=N`. Member-site slices `items` client-side:
 
 ```ts
 const PER_PAGE = 10;
-const { items } = await fetch('/news/api/news.json').then(r => r.json());
+const { items } = await fetch('/news/api/news/members/list.json').then(r => r.json());
 const page = 3;
 const pageItems = items.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 ```
@@ -82,7 +82,7 @@ const pageItems = items.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 // app/Services/MtService.php
 public function getMemberNewsList()
 {
-    return Http::get(config('services.mt.base').'/news/api/news.json')->json();
+    return Http::get(config('services.mt.base').'/news/api/news/members/list.json')->json();
     // → identical shape to Http::get("...mt-data-api.cgi/v1/sites/{id}/entries")
 }
 ```
@@ -93,9 +93,9 @@ are all present.
 
 ---
 
-## 2. `GET /news/api/news/post_{id}.json` — Detail + prev/next
+## 2. `GET /news/api/news/members/post_{id}.json` — Detail + prev/next
 
-- `{id}` là `EntryID` (number). Ex: `/news/api/news/post_123.json`.
+- `{id}` là `EntryID` (number). Ex: `/news/api/news/members/post_123.json`.
 - Prev/next navigation honours the **member-visible filter** (unlike MT's native
   EntryPrevious/EntryNext which ignore CustomField filters).
 
@@ -130,7 +130,7 @@ are all present.
 ```php
 public function getMemberNewsDetail($id)
 {
-    return Http::get(config('services.mt.base')."/news/api/news/post_{$id}.json")->json();
+    return Http::get(config('services.mt.base')."/news/api/news/members/post_{$id}.json")->json();
 }
 ```
 
@@ -138,7 +138,7 @@ Notice body HTML rewriting (image proxy, `<a>` stripping) currently in `NotifySe
 
 ---
 
-## 3. `GET /news/api/news-latest.json` — 5 newest
+## 3. `GET /news/api/news/members/latest.json` — 5 newest
 
 ```json
 {
@@ -147,11 +147,11 @@ Notice body HTML rewriting (image proxy, `<a>` stripping) currently in `NotifySe
 ```
 
 - Always ≤ 5 entries.
-- Shape identical to `items[]` in `/news/api/news.json`.
+- Shape identical to `items[]` in `/news/api/news/members/list.json`.
 
 ---
 
-## 4. `GET /news/api/news-ranking.json` — Top 5 ranking
+## 4. `GET /news/api/news/members/ranking.json` — Top 5 ranking
 
 ```json
 {
@@ -176,7 +176,7 @@ Rule:
 
 ---
 
-## 5. `GET /news/api/news-sidebar.json` — Sidebar aggregate
+## 5. `GET /news/api/news/members/sidebar.json` — Sidebar aggregate
 
 ```json
 {
@@ -222,21 +222,21 @@ class MtCorporateNewsService
     public function list(): array
     {
         return Cache::remember('mt-corp-news-list', 300, function () {
-            return Http::timeout(5)->get("{$this->base}/news/api/news.json")->json();
+            return Http::timeout(5)->get("{$this->base}/news/api/news/members/list.json")->json();
         });
     }
 
     public function detail(int $id): array
     {
         return Cache::remember("mt-corp-news-$id", 300, function () use ($id) {
-            return Http::timeout(5)->get("{$this->base}/news/api/news/post_{$id}.json")->json();
+            return Http::timeout(5)->get("{$this->base}/news/api/news/members/post_{$id}.json")->json();
         });
     }
 
     public function sidebar(): array
     {
         return Cache::remember('mt-corp-news-sidebar', 300, function () {
-            return Http::timeout(5)->get("{$this->base}/news/api/news-sidebar.json")->json();
+            return Http::timeout(5)->get("{$this->base}/news/api/news/members/sidebar.json")->json();
         });
     }
 }

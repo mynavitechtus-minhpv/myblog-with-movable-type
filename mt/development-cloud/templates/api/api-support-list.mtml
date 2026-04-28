@@ -1,0 +1,41 @@
+<mt:Ignore>
+  Output: /api/support-list.json
+  Corporate-visible Support entries in MT Data API v1-compatible shape
+  ({totalResults, items[]}). Two-pass so totalResults reflects the
+  post-filter count; pagination + tag/category filtering run client-side.
+</mt:Ignore>
+<mt:SetVar name="article_count" value="0">
+
+<mt:Entries lastn="150" sort_by="authored_on" sort_order="descend">
+  <mt:Include module="azcom-article-cf-entry">
+
+  <mt:SetVar name="is_corp_target" value="0">
+  <mt:If name="cf_display_target" eq="corporate"><mt:SetVar name="is_corp_target" value="1"></mt:If>
+  <mt:If name="cf_display_target" eq="both"><mt:SetVar name="is_corp_target" value="1"></mt:If>
+  <mt:If name="cf_display_target" eq=""><mt:SetVar name="is_corp_target" value="1"></mt:If>
+
+  <mt:If name="is_corp_target" eq="1">
+    <mt:SetVar name="article_count" op="++">
+  </mt:If>
+</mt:Entries>
+{
+  "totalResults": <$mt:Var name="article_count"$>,
+  "items": [
+<mt:SetVar name="article_render_count" value="0">
+<mt:SetVar name="item_include_body" value="0">
+<mt:Entries lastn="150" sort_by="authored_on" sort_order="descend">
+  <mt:Include module="azcom-article-cf-entry">
+
+  <mt:SetVar name="is_corp_target" value="0">
+  <mt:If name="cf_display_target" eq="corporate"><mt:SetVar name="is_corp_target" value="1"></mt:If>
+  <mt:If name="cf_display_target" eq="both"><mt:SetVar name="is_corp_target" value="1"></mt:If>
+  <mt:If name="cf_display_target" eq=""><mt:SetVar name="is_corp_target" value="1"></mt:If>
+
+  <mt:If name="is_corp_target" eq="1">
+    <mt:Unless name="article_render_count" eq="0">,
+</mt:Unless>{<mt:Include module="azcom-json-article-item">}
+    <mt:SetVar name="article_render_count" op="++">
+  </mt:If>
+</mt:Entries>
+  ]
+}

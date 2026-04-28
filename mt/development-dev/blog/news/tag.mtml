@@ -9,8 +9,8 @@
     <mt:Ignore>── Site root path for API client ──</mt:Ignore>
     <meta name="site-root" content="<$mt:BlogRelativeURL$>">
 
-    <mt:SetVarBlock name="meta_title"><$mt:TagName encode_html="1"$>に関連するお知らせ | AZ-COMネットワーク</mt:SetVarBlock>
-    <mt:SetVarBlock name="meta_description"><$mt:TagName encode_html="1"$>タグのお知らせ一覧です。</mt:SetVarBlock>
+    <mt:SetVarBlock name="meta_title"><$mt:TagName$>に関連するお知らせ | AZ-COMネットワーク</mt:SetVarBlock>
+    <mt:SetVarBlock name="meta_description"><$mt:TagName$>タグのお知らせ一覧です。</mt:SetVarBlock>
     <mt:SetVar name="meta_og_image" value="assets/img/og-image_az-com-network.png">
     <mt:SetVarBlock name="meta_canonical_url"><mt:Include module="azcom-site-root-path">news/tags_<$mt:TagID encode_html="1"$>/</mt:SetVarBlock>
     <mt:Include module="azcom-head-meta">
@@ -43,7 +43,7 @@
         <mt:SetVarBlock name="breadcrumb_lv1_url"><mt:Include module="azcom-site-root-path"></mt:SetVarBlock>
         <mt:SetVarBlock name="breadcrumb_lv2_label">お知らせ一覧</mt:SetVarBlock>
         <mt:SetVarBlock name="breadcrumb_lv2_url"><mt:Include module="azcom-site-root-path">news/</mt:SetVarBlock>
-        <mt:SetVarBlock name="breadcrumb_current_label"><$mt:TagName encode_html="1"$></mt:SetVarBlock>
+        <mt:SetVarBlock name="breadcrumb_current_label"><$mt:TagName$></mt:SetVarBlock>
         <mt:SetVar name="breadcrumb_show_jsonld" value="1">
         <mt:Include module="azcom-breadcrumb">
 
@@ -55,7 +55,7 @@
 
             <div class="p-article-list__header">
                 <h2 class="p-article-list__header-title">
-                    【<$mt:TagName encode_html="1"$>】に関連するお知らせ
+                    【<$mt:TagName$>】に関連するお知らせ
                 </h2>
             </div>
 
@@ -73,7 +73,7 @@
 
                 <div class="p-article-list__sidebar">
                     <mt:Ignore>── Sidebar (client-side rendering) ──</mt:Ignore>
-                    <mt:SetVar name="article_sidebar_endpoint" value="api/sidebar.json">
+                    <mt:SetVar name="article_sidebar_endpoint" value="api/news-sidebar.json">
                     <mt:Include module="azcom-article-sidebar-shell">
                 </div>
             </div>

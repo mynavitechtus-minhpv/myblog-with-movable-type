@@ -1,11 +1,14 @@
 <mt:Ignore>
   Member-site filter flag. Run inside an MT:Entries context after
   azcom-article-cf-entry. Sets is_member_visible = 1 when:
-    - entry belongs to category "azcom-newsletter" (newsletter always shown to members), OR
+    - entry belongs to category "azcom-newsletter" (only when member_include_newsletter=1), OR
     - cf_display_target is "member" or "both".
   Sets is_member_visible = 0 for corporate-only targets and for empty
   cf_display_target (strict member-site spec).
 </mt:Ignore>
+<mt:Unless name="member_include_newsletter">
+  <mt:SetVar name="member_include_newsletter" value="1">
+</mt:Unless>
 <mt:SetVar name="is_member_visible" value="0">
 <mt:SetVar name="is_newsletter" value="0">
 <mt:EntryCategories>
@@ -13,8 +16,17 @@
     <mt:SetVar name="is_newsletter" value="1">
   </mt:If>
 </mt:EntryCategories>
-<mt:If name="is_newsletter" eq="1">
-  <mt:SetVar name="is_member_visible" value="1">
+<mt:If name="member_include_newsletter" eq="1">
+  <mt:If name="is_newsletter" eq="1">
+    <mt:SetVar name="is_member_visible" value="1">
+  <mt:Else>
+    <mt:If name="cf_display_target" eq="member">
+      <mt:SetVar name="is_member_visible" value="1">
+    </mt:If>
+    <mt:If name="cf_display_target" eq="both">
+      <mt:SetVar name="is_member_visible" value="1">
+    </mt:If>
+  </mt:If>
 <mt:Else>
   <mt:If name="cf_display_target" eq="member">
     <mt:SetVar name="is_member_visible" value="1">
@@ -22,4 +34,5 @@
   <mt:If name="cf_display_target" eq="both">
     <mt:SetVar name="is_member_visible" value="1">
   </mt:If>
+</mt:Else>
 </mt:If>

@@ -10,8 +10,12 @@
                                  "2" fill pass (entries not already pinned)
     sidebar_audience            "corporate" | "member"
     sidebar_has_display_target  "1" | "0"
+    ranking_include_newsletter  "1" (default) | "0"
   Reads/updates: rank_count, rank_ids_rendered.
 </mt:Ignore>
+<mt:Unless name="ranking_include_newsletter">
+  <mt:SetVar name="ranking_include_newsletter" value="1">
+</mt:Unless>
 <mt:If name="rank_count" lt="5">
   <mt:Include module="azcom-article-cf-entry">
 
@@ -25,7 +29,9 @@
   <mt:SetVar name="is_eligible" value="0">
   <mt:If name="sidebar_audience" eq="member">
     <mt:If name="is_newsletter" eq="1">
-      <mt:SetVar name="is_eligible" value="1">
+      <mt:If name="ranking_include_newsletter" eq="1">
+        <mt:SetVar name="is_eligible" value="1">
+      </mt:If>
     <mt:Else>
       <mt:If name="cf_display_target" eq="member"><mt:SetVar name="is_eligible" value="1"></mt:If>
       <mt:If name="cf_display_target" eq="both"><mt:SetVar name="is_eligible" value="1"></mt:If>
@@ -38,6 +44,16 @@
         <mt:If name="cf_display_target" eq="corporate"><mt:SetVar name="is_eligible" value="1"></mt:If>
         <mt:If name="cf_display_target" eq="both"><mt:SetVar name="is_eligible" value="1"></mt:If>
         <mt:If name="cf_display_target" eq=""><mt:SetVar name="is_eligible" value="1"></mt:If>
+      </mt:If>
+    <mt:Else>
+      <mt:If name="ranking_include_newsletter" eq="1">
+        <mt:If name="sidebar_has_display_target" eq="0">
+          <mt:SetVar name="is_eligible" value="1">
+        <mt:Else>
+          <mt:If name="cf_display_target" eq="corporate"><mt:SetVar name="is_eligible" value="1"></mt:If>
+          <mt:If name="cf_display_target" eq="both"><mt:SetVar name="is_eligible" value="1"></mt:If>
+          <mt:If name="cf_display_target" eq=""><mt:SetVar name="is_eligible" value="1"></mt:If>
+        </mt:If>
       </mt:If>
     </mt:If>
   </mt:If>

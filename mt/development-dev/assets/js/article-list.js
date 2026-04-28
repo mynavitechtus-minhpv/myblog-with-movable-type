@@ -159,7 +159,7 @@
   }
 
   function paginationWindow(page, totalPages, size) {
-    const half = Math.floor(size / 2);
+    const half = Math.floor((size - 1) / 2);
     let start = Math.max(1, page - half);
     let end = Math.min(totalPages, start + size - 1);
     start = Math.max(1, end - size + 1);
