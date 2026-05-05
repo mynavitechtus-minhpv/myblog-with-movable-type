@@ -1,0 +1,37 @@
+<mt:Ignore>
+  入会のご案内 — single step (flow)
+  Params:
+    join_flow_step_index   (e.g. 01, 02)
+    join_flow_step_title   (card heading)
+    join_flow_step_img       (path from site root, e.g. assets/img/foo.png)
+    join_flow_step_img_alt
+    join_flow_step_text      (HTML; may include <a> — use SetVarBlock; do not use encode_html on output)
+</mt:Ignore>
+
+<li class="c-join-guide-flow__step">
+  <div class="c-join-guide-flow__shell">
+    <div class="c-join-guide-flow__label">
+      <span class="c-join-guide-flow__label-pre">Step</span>
+      <span class="c-join-guide-flow__label-num"><$mt:Var name="join_flow_step_index" encode_html="1"$></span>
+    </div>
+    <div class="c-join-guide-flow__card">
+      <div class="c-join-guide-flow__card-inner">
+        <figure class="c-join-guide-flow__figure">
+          <img
+            class="c-join-guide-flow__img"
+            src="<mt:Include module="azcom-site-root-path"><$mt:Var name="join_flow_step_img" encode_html="1"$>"
+            alt="<$mt:Var name="join_flow_step_img_alt" encode_html="1"$>"
+            width="195"
+            height="130"
+            loading="lazy"
+            decoding="async"
+          >
+        </figure>
+        <div class="c-join-guide-flow__content">
+          <h3 class="c-join-guide-flow__card-title"><$mt:Var name="join_flow_step_title" encode_html="1"$></h3>
+          <div class="c-join-guide-flow__text"><$mt:Var name="join_flow_step_text"$></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>

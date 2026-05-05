@@ -1,0 +1,99 @@
+/* ==========================================================================
+   About page — about.css
+   Mobile-first responsive design
+   ========================================================================== */
+
+:root {
+  --about-intro-desc-max-width: 817px;
+  --about-intro-network-max-width-md: 640px;
+  --about-intro-network-max-width-lg: 784px;
+}
+
+/* --------------------------------------------------------------------------
+   Page shell
+   -------------------------------------------------------------------------- */
+.p-about {
+  padding-block: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Section: Intro (c-about-intro)
+   -------------------------------------------------------------------------- */
+.c-about-intro {
+  padding-top: var(--space-xl);
+  padding-bottom: calc(var(--space-5xl) + var(--space-sm));
+  background-color: var(--color-white);
+}
+
+.c-about-intro__header {
+  margin-bottom: var(--space-xl);
+}
+
+.c-about-intro__lead {
+  margin: 0 0 var(--space-2xl);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: calc(var(--space-xl) - 4px);
+  color: var(--color-text-primary);
+}
+
+.c-about-intro__desc {
+  margin: 0 auto;
+  max-width: var(--about-intro-desc-max-width);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--space-lg);
+  color: var(--color-text-primary);
+}
+
+.c-about-intro__network {
+  margin: var(--space-4xl) 0 0;
+}
+
+.c-about-intro__network-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   Tablet — min-width: 768px
+   ========================================================================== */
+@media (min-width: 768px) {
+  .c-about-intro {
+    padding-top: var(--space-6xl);
+    padding-bottom: var(--space-3xl);
+  }
+
+  .c-about-intro__header {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .c-about-intro__lead {
+    margin-bottom: var(--space-xl);
+    font-size: var(--font-size-xl);
+    line-height: calc(var(--space-2xl) + var(--space-xs));
+    text-align: center;
+  }
+
+  .c-about-intro__network {
+    margin-top: var(--space-4xl);
+    max-width: var(--about-intro-network-max-width-md);
+    margin-inline: auto;
+  }
+}
+
+/* ==========================================================================
+   Desktop — min-width: 1025px
+   ========================================================================== */
+@media (min-width: 1025px) {
+  .c-about-intro {
+    padding-top: var(--space-6xl);
+    padding-bottom: calc(var(--space-5xl) + var(--space-xs));
+  }
+
+  .c-about-intro__network {
+    max-width: var(--about-intro-network-max-width-lg);
+  }
+}

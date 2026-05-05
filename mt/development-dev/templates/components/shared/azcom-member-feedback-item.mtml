@@ -1,0 +1,71 @@
+<mt:Ignore>
+  会員様の声 — single card (accordion)
+  Params:
+    member_feedback_logo       (path from site root)
+    member_feedback_logo_alt
+    member_feedback_title
+    member_feedback_meta
+    member_feedback_body       (plain text; use SetVarBlock for long copy)
+</mt:Ignore>
+
+<li class="c-member-feedback__item">
+  <article class="c-member-feedback__card<mt:If name="member_feedback_default_expanded" eq="1"> c-member-feedback__card--expanded</mt:If>" data-member-feedback-card>
+    <div class="c-member-feedback__media">
+      <img
+        class="c-member-feedback__logo<mt:If name="member_feedback_logo_modifier"> c-member-feedback__logo--<$mt:Var name="member_feedback_logo_modifier" encode_html="1"$></mt:If>"
+        src="<mt:Include module="azcom-site-root-path"><$mt:Var name="member_feedback_logo" encode_html="1"$>"
+        alt="<$mt:Var name="member_feedback_logo_alt" encode_html="1"$>"
+        width="200"
+        height="200"
+        loading="lazy"
+        decoding="async"
+      >
+    </div>
+    <div class="c-member-feedback__body">
+      <h3 class="c-member-feedback__title">
+        <img
+          class="c-member-feedback__title-icon"
+          src="<mt:Include module="azcom-site-root-path">assets/img/icon-horn.svg"
+          alt=""
+          width="20"
+          height="19"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        >
+        <span class="c-member-feedback__title-text"><$mt:Var name="member_feedback_title" encode_html="1"$></span>
+      </h3>
+      <p class="c-member-feedback__meta"><$mt:Var name="member_feedback_meta" encode_html="1"$></p>
+      <div class="c-member-feedback__excerpt">
+        <div class="c-member-feedback__text-wrap">
+          <p class="c-member-feedback__text"><$mt:Var name="member_feedback_body" encode_html="1"$></p>
+        </div>
+        <button
+          type="button"
+          class="c-member-feedback__toggle"
+          data-member-feedback-toggle
+          aria-expanded="<mt:If name="member_feedback_default_expanded" eq="1">true<mt:Else>false</mt:If>"
+        >
+          <span class="c-member-feedback__toggle-more">もっと見る</span>
+          <span class="c-member-feedback__toggle-less">閉じる</span>
+          <img
+            class="c-member-feedback__toggle-icon c-member-feedback__toggle-icon--more"
+            src="<mt:Include module="azcom-site-root-path">assets/img/icon-plus.svg"
+            alt=""
+            width="16"
+            height="16"
+            aria-hidden="true"
+          >
+          <img
+            class="c-member-feedback__toggle-icon c-member-feedback__toggle-icon--less"
+            src="<mt:Include module="azcom-site-root-path">assets/img/icon-minus.svg"
+            alt=""
+            width="16"
+            height="16"
+            aria-hidden="true"
+          >
+        </button>
+      </div>
+    </div>
+  </article>
+</li>

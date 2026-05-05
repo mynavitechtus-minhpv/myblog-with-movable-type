@@ -1,0 +1,76 @@
+<mt:Ignore>
+  CMP-086: Lower CTA Section (下層CTAセクション)
+  Shared in-page CTA used at the bottom of sub-pages.
+  Default: 2 cards on PC, 1 column on SP.
+
+  Usage:
+    <mt:Include module="azcom-lower-cta-section">
+
+  Caller customization (assign **before** include; omit built-in defaults with skip):
+    lower_cta_skip_defaults — set to **1** to skip all default `<mt:SetVar>`s below; define
+      lower_cta_heading, lower_cta_card1_* (, lower_cta_card2_* ) yourself.
+    lower_cta_item_count — **1** renders only slot 1 (grid gets `c-lower-cta__grid--single`, full-width card layout); omit or empty = two-card layout.
+
+  Per-card optional link attrs (mapped to Item as lower_cta_item_btn_* ):
+    lower_cta_card1_btn_target, lower_cta_card1_btn_rel
+    lower_cta_card2_btn_target, lower_cta_card2_btn_rel
+
+  Per-card optional **1** = hide divider: lower_cta_card1_hide_divider,
+    lower_cta_card2_hide_divider → lower_cta_item_hide_divider
+</mt:Ignore>
+
+<mt:Unless name="lower_cta_skip_defaults" eq="1">
+<mt:SetVar name="lower_cta_heading" value="AZ-COMネットワークにご興味がある方はこちら">
+<mt:SetVar name="lower_cta_card1_img" value="assets/img/illust_001.png">
+<mt:SetVar name="lower_cta_card1_img_alt" value="サービス資料の請求">
+<mt:SetVar name="lower_cta_card1_title" value="サービス資料の請求">
+<mt:SetVarBlock name="lower_cta_card1_desc">AZ-COMネットワークのサービスについてより詳しい情報の資料請求が可能です</mt:SetVarBlock>
+<mt:SetVar name="lower_cta_card1_btn_label" value="資料請求">
+<mt:SetVar name="lower_cta_card1_btn_href" value="/inquiry/?type=materials">
+<mt:SetVar name="lower_cta_card2_img" value="assets/img/illust_002.png">
+<mt:SetVar name="lower_cta_card2_img_alt" value="ご相談・お問合せ">
+<mt:SetVar name="lower_cta_card2_title" value="ご相談・お問合せ">
+<mt:SetVarBlock name="lower_cta_card2_desc">気になる点やご不明点など
+担当者がサポートいたします</mt:SetVarBlock>
+<mt:SetVar name="lower_cta_card2_btn_label" value="お問合せ">
+<mt:SetVar name="lower_cta_card2_btn_href" value="/inquiry/">
+</mt:Unless>
+
+<section class="c-lower-cta-section" aria-labelledby="lower-cta-heading">
+  <div class="l-container">
+    <div class="c-lower-cta c-lower-cta__content">
+      <header class="c-lower-cta__header">
+        <h2 id="lower-cta-heading" class="c-lower-cta__heading">
+          <$mt:Var name="lower_cta_heading" encode_html="1"$>
+        </h2>
+      </header>
+
+      <ul class="c-lower-cta__grid<mt:If name="lower_cta_item_count" eq="1"> c-lower-cta__grid--single</mt:If>">
+        <mt:SetVar name="lower_cta_item_img" value="$lower_cta_card1_img">
+        <mt:SetVar name="lower_cta_item_img_alt" value="$lower_cta_card1_img_alt">
+        <mt:SetVar name="lower_cta_item_title" value="$lower_cta_card1_title">
+        <mt:SetVar name="lower_cta_item_desc" value="$lower_cta_card1_desc">
+        <mt:SetVar name="lower_cta_item_btn_label" value="$lower_cta_card1_btn_label">
+        <mt:SetVar name="lower_cta_item_btn_href" value="$lower_cta_card1_btn_href">
+        <mt:SetVar name="lower_cta_item_btn_target" value="$lower_cta_card1_btn_target">
+        <mt:SetVar name="lower_cta_item_btn_rel" value="$lower_cta_card1_btn_rel">
+        <mt:SetVar name="lower_cta_item_hide_divider" value="$lower_cta_card1_hide_divider">
+        <mt:Include module="azcom-lower-cta-section-item">
+
+        <mt:If name="lower_cta_item_count" eq="1">
+        <mt:Else>
+        <mt:SetVar name="lower_cta_item_img" value="$lower_cta_card2_img">
+        <mt:SetVar name="lower_cta_item_img_alt" value="$lower_cta_card2_img_alt">
+        <mt:SetVar name="lower_cta_item_title" value="$lower_cta_card2_title">
+        <mt:SetVar name="lower_cta_item_desc" value="$lower_cta_card2_desc">
+        <mt:SetVar name="lower_cta_item_btn_label" value="$lower_cta_card2_btn_label">
+        <mt:SetVar name="lower_cta_item_btn_href" value="$lower_cta_card2_btn_href">
+        <mt:SetVar name="lower_cta_item_btn_target" value="$lower_cta_card2_btn_target">
+        <mt:SetVar name="lower_cta_item_btn_rel" value="$lower_cta_card2_btn_rel">
+        <mt:SetVar name="lower_cta_item_hide_divider" value="$lower_cta_card2_hide_divider">
+        <mt:Include module="azcom-lower-cta-section-item">
+        </mt:If>
+      </ul>
+    </div>
+  </div>
+</section>

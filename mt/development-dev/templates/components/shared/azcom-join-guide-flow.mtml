@@ -1,0 +1,59 @@
+<mt:Ignore>
+  入会のご案内 — vertical step flow section
+  This module owns heading and all 5 steps for About page.
+</mt:Ignore>
+
+<section class="c-join-guide-flow" id="guide" aria-labelledby="join-guide-flow-heading">
+  <div class="l-container">
+    <header class="c-join-guide-flow__header">
+      <mt:SetVar name="section_title_id" value="join-guide-flow-heading">
+      <mt:SetVarBlock name="section_title_text">入会のご案内</mt:SetVarBlock>
+      <mt:Include module="azcom-section-title">
+    </header>
+
+    <div class="c-join-guide-flow__layout">
+      <div class="c-join-guide-flow__rail" aria-hidden="true"></div>
+      <div class="c-join-guide-flow__main">
+        <ol class="c-join-guide-flow__list">
+          <mt:SetVar name="join_flow_step_index" value="01">
+          <mt:SetVar name="join_flow_step_title" value="お問合せ・ご相談">
+          <mt:SetVar name="join_flow_step_img" value="assets/img/illust_001.png">
+          <mt:SetVar name="join_flow_step_img_alt" value="お問合せ・ご相談のイラスト">
+          <mt:SetVarBlock name="join_flow_step_text"><a href="/inquiry/?type=membership">お問い合わせフォーム「入会のご案内」</a>よりご連絡ください。入会に関するご質問やご相談を承ります。</mt:SetVarBlock>
+          <mt:Include module="azcom-join-guide-flow-step">
+
+          <mt:SetVar name="join_flow_step_index" value="02">
+          <mt:SetVar name="join_flow_step_title" value="入会についてのご案内・ご説明">
+          <mt:SetVar name="join_flow_step_img" value="assets/img/illust_004.png">
+          <mt:SetVar name="join_flow_step_img_alt" value="ご案内・ご説明のイラスト">
+          <mt:SetVarBlock name="join_flow_step_text">お問合せいただいた情報をもとに、後日担当者よりご連絡いたします。
+入会に関する詳細や支援メニュー等について説明させていただきます。</mt:SetVarBlock>
+          <mt:Include module="azcom-join-guide-flow-step">
+
+          <mt:SetVar name="join_flow_step_index" value="03">
+          <mt:SetVar name="join_flow_step_title" value="お申込み">
+          <mt:SetVar name="join_flow_step_img" value="assets/img/illust_005.png">
+          <mt:SetVar name="join_flow_step_img_alt" value="お申込みのイラスト">
+          <mt:SetVarBlock name="join_flow_step_text">ご説明内容に同意いただけましたら、担当者から入会申込書をお渡ししますので必要事項をご記入・ご捺印の上、担当者までご提出ください。</mt:SetVarBlock>
+          <mt:Include module="azcom-join-guide-flow-step">
+
+          <mt:SetVar name="join_flow_step_index" value="04">
+          <mt:SetVar name="join_flow_step_title" value="審査">
+          <mt:SetVar name="join_flow_step_img" value="assets/img/illust_006.png">
+          <mt:SetVar name="join_flow_step_img_alt" value="審査のイラスト">
+          <mt:SetVarBlock name="join_flow_step_text">ご提出いただいた申込書をもとに所定の入会審査を行います。
+審査通過後、ご登録のメールアドレスへ入会金および年会費の請求書をお送りいたします。</mt:SetVarBlock>
+          <mt:Include module="azcom-join-guide-flow-step">
+
+          <mt:SetVar name="join_flow_step_index" value="05">
+          <mt:SetVar name="join_flow_step_title" value="ご入会">
+          <mt:SetVar name="join_flow_step_img" value="assets/img/illust_007.png">
+          <mt:SetVar name="join_flow_step_img_alt" value="ご入会のイラスト">
+          <mt:SetVarBlock name="join_flow_step_text">当法人にて入会金と年会費のご入金の確認が取れ次第、入会手続き完了とさせていただきます。
+入会後に会員様用IDやパスワード、サービスのご利用について、別途ご案内をお送りします。</mt:SetVarBlock>
+          <mt:Include module="azcom-join-guide-flow-step">
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>

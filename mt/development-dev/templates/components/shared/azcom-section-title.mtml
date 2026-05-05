@@ -1,0 +1,9 @@
+<mt:Ignore>
+  Common section title
+  Required:
+    section_title_text
+  Optional:
+    section_title_id
+</mt:Ignore>
+
+<h2<mt:If name="section_title_id"> id="<$mt:Var name="section_title_id" encode_html="1"$>"</mt:If> class="c-section__title"><$mt:Var name="section_title_text" encode_html="1"$></h2>

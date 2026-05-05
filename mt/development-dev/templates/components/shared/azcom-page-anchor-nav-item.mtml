@@ -1,0 +1,9 @@
+<mt:Ignore>
+  CMP-095: Page anchor nav item (1 link)
+  Params: anchor_label (text), anchor_href (section id without #)
+</mt:Ignore>
+
+<a class="c-page-anchor-nav__item" href="#<$mt:Var name="anchor_href" encode_html="1"$>">
+  <p class="c-page-anchor-nav__title"><$mt:Var name="anchor_label" encode_html="1"$></p>
+  <img class="c-page-anchor-nav__arrow" src="<mt:Include module="azcom-site-root-path">assets/img/icon-arrow-001.svg" alt="" width="15" height="9" loading="lazy" decoding="async" aria-hidden="true">
+</a>

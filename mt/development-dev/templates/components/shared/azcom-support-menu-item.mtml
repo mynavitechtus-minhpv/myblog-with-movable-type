@@ -1,0 +1,37 @@
+<mt:Ignore>
+  CMP-096: Support Menu item
+  Params:
+    support_menu_item_label (text)
+    support_menu_item_href (url)
+    support_menu_item_icon (icon path from site root)
+    support_menu_item_sub (optional: text in parentheses, smaller)
+</mt:Ignore>
+
+<li class="c-support-menu__item">
+  <a class="c-support-menu__item-link" href="<$mt:Var name="support_menu_item_href" encode_html="1"$>">
+    <span class="c-support-menu__item-main">
+      <img
+        class="c-support-menu__item-icon"
+        src="<mt:Include module="azcom-site-root-path"><$mt:Var name="support_menu_item_icon" encode_html="1"$>"
+        alt=""
+        width="24"
+        height="24"
+        loading="lazy"
+        aria-hidden="true"
+      >
+      <span class="c-support-menu__item-text">
+        <span class="c-support-menu__item-text-main"><$mt:Var name="support_menu_item_label" encode_html="1"$></span><mt:If name="support_menu_item_sub"><span class="c-support-menu__item-text-sub">(<$mt:Var name="support_menu_item_sub" encode_html="1"$>)</span></mt:If>
+      </span>
+    </span>
+    <img
+      class="c-support-menu__item-arrow"
+      src="<mt:Include module="azcom-site-root-path">assets/img/icon-arrow-004.svg"
+      alt=""
+      width="30"
+      height="30"
+      loading="lazy"
+      decoding="async"
+      aria-hidden="true"
+    >
+  </a>
+</li>

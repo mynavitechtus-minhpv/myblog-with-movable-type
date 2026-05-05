@@ -1,7 +1,8 @@
 <mt:Ignore>
   Parent (e.g. index): SetVar network_strengths_show_cta = 1 to render footer CTA; omit or 0 to hide.
+  Optional: SetVar network_strengths_id to override section id (default: network-strengths).
 </mt:Ignore>
-<section class="c-network-strengths" id="network-strengths" aria-labelledby="network-strengths-heading">
+<section class="c-network-strengths" id="<mt:If name="network_strengths_id"><$mt:Var name="network_strengths_id" encode_html="1"$><mt:Else>network-strengths</mt:If>" aria-labelledby="network-strengths-heading">
   <div class="l-container">
     <header class="c-network-strengths__header">
       <div class="c-network-strengths__title-row">

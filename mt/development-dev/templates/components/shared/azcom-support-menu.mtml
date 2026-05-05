@@ -1,0 +1,87 @@
+<mt:Ignore>
+  CMP-097: Support Menu section
+  This module owns heading/description/items for About page.
+</mt:Ignore>
+
+<section class="c-support-menu" id="support" aria-labelledby="support-menu-heading">
+  <div class="l-container">
+    <header class="c-support-menu__header">
+      <div class="c-support-menu__title-row">
+        <mt:SetVar name="section_title_id" value="support-menu-heading">
+        <mt:SetVarBlock name="section_title_text">支援メニュー</mt:SetVarBlock>
+        <mt:Include module="azcom-section-title">
+      </div>
+      <p class="c-support-menu__desc u-pc-only">運送業界が抱える人手不足やコスト増などの課題に対し、<br>
+        AZ-COMネットワークは会員企業を実務面から支える支援メニューを提供しています。<br>共同購入・ETC割引などのコスト削減策から、研修や求人支援、業務効率化サービスまで、<br>
+        目的に合わせて活用いただけるラインナップを整えています。
+      </p>
+      <p class="c-support-menu__desc u-sp-only">運送業界が抱える人手不足や<br>コスト増などの課題に対し、<br>
+        AZ-COMネットワークは<br>会員企業を実務面から支える<br>支援メニューを提供しています。<br>共同購入・ETC割引などの<br>コスト削減策から、研修や求人支援、<br>業務効率化サービスまで、<br>
+        目的に合わせて活用いただける<br>ラインナップを整えています。
+      </p>
+    </header>
+
+    <div class="c-support-menu__body">
+      <figure class="c-support-menu__media">
+        <img
+          class="c-support-menu__img"
+          src="<mt:Include module="azcom-site-root-path">assets/img/strong-img-002.png"
+          alt="支援メニューのイメージ"
+          width="560"
+          height="420"
+          loading="lazy"
+        >
+      </figure>
+
+      <ul class="c-support-menu__list">
+        <mt:SetVar name="support_menu_item_label" value="コスト削減">
+        <mt:SetVar name="support_menu_item_sub" value="ETC、共同購入等">
+        <mt:SetVar name="support_menu_item_icon" value="assets/img/icon-cost-reduction.svg">
+        <mt:SetVar name="support_menu_item_href" value="/support/cost-reduction/">
+        <mt:Include module="azcom-support-menu-item">
+
+        <mt:SetVar name="support_menu_item_label" value="安全・事故防止">
+        <mt:SetVar name="support_menu_item_sub" value="">
+        <mt:SetVar name="support_menu_item_icon" value="assets/img/icon-safety.svg">
+        <mt:SetVar name="support_menu_item_href" value="/support/safety-and-accident-prevention/">
+        <mt:Include module="azcom-support-menu-item">
+
+        <mt:SetVar name="support_menu_item_label" value="人材採用・教育支援">
+        <mt:SetVar name="support_menu_item_sub" value="">
+        <mt:SetVar name="support_menu_item_icon" value="assets/img/icon-human-resources.svg">
+        <mt:SetVar name="support_menu_item_href" value="/support/recruitment-and-training/">
+        <mt:Include module="azcom-support-menu-item">
+
+        <mt:SetVar name="support_menu_item_label" value="経営・業務支援">
+        <mt:SetVar name="support_menu_item_sub" value="DX、法令対応">
+        <mt:SetVar name="support_menu_item_icon" value="assets/img/icon-business-support.svg">
+        <mt:SetVar name="support_menu_item_href" value="/support/business-support/">
+        <mt:Include module="azcom-support-menu-item">
+
+        <mt:SetVar name="support_menu_item_label" value="車両・燃料・インフラ">
+        <mt:SetVar name="support_menu_item_sub" value="">
+        <mt:SetVar name="support_menu_item_icon" value="assets/img/icon-logistics.svg">
+        <mt:SetVar name="support_menu_item_href" value="/support/vehicle-and-infrastructure/">
+        <mt:Include module="azcom-support-menu-item">
+
+        <mt:SetVar name="support_menu_item_label" value="リース・金融・決済関連">
+        <mt:SetVar name="support_menu_item_sub" value="">
+        <mt:SetVar name="support_menu_item_icon" value="assets/img/icon-finance.svg">
+        <mt:SetVar name="support_menu_item_href" value="/support/finance-and-leasing/">
+        <mt:Include module="azcom-support-menu-item">
+
+        <mt:SetVar name="support_menu_item_label" value="健康・医療サポート">
+        <mt:SetVar name="support_menu_item_sub" value="">
+        <mt:SetVar name="support_menu_item_icon" value="assets/img/icon-healthcare.svg">
+        <mt:SetVar name="support_menu_item_href" value="/support/health-and-medical-support/">
+        <mt:Include module="azcom-support-menu-item">
+
+        <mt:SetVar name="support_menu_item_label" value="福利厚生・会員特典">
+        <mt:SetVar name="support_menu_item_sub" value="">
+        <mt:SetVar name="support_menu_item_icon" value="assets/img/icon-welfare.svg">
+        <mt:SetVar name="support_menu_item_href" value="/support/employee-benefits/">
+        <mt:Include module="azcom-support-menu-item">
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+<mt:Ignore>
+  CMP-086: Lower CTA Section item
+  Params:
+    lower_cta_item_img (empty = no thumbnail)
+    lower_cta_item_img_alt
+    lower_cta_item_title
+    lower_cta_item_desc
+    lower_cta_item_btn_label
+    lower_cta_item_btn_href
+    lower_cta_item_btn_target (optional, e.g. _blank)
+    lower_cta_item_btn_rel (optional, e.g. noreferrer)
+    lower_cta_item_hide_divider — set to **1** to omit the header/body divider <hr>.
+</mt:Ignore>
+
+<li class="c-lower-cta__item">
+  <div class="c-lower-cta__card">
+    <div class="c-lower-cta__card-header">
+      <mt:If name="lower_cta_item_img" ne="">
+      <img src="<mt:Include module="azcom-site-root-path"><$mt:Var name="lower_cta_item_img" encode_html="1"$>" alt="<$mt:Var name="lower_cta_item_img_alt" encode_html="1"$>" class="c-lower-cta__card-img" width="80" height="80" loading="lazy">
+      </mt:If>
+      <p class="c-lower-cta__card-title"><$mt:Var name="lower_cta_item_title" encode_html="1"$></p>
+    </div>
+    <mt:Unless name="lower_cta_item_hide_divider" eq="1">
+    <hr class="c-lower-cta__card-divider" aria-hidden="true">
+    </mt:Unless>
+    <p class="c-lower-cta__card-desc"><$mt:Var name="lower_cta_item_desc" encode_html="1"$></p>
+    <div class="c-lower-cta__card-action">
+      <a href="<$mt:Var name="lower_cta_item_btn_href" encode_html="1"$>" class="c-lower-cta__btn"<mt:If name="lower_cta_item_btn_target" ne=""> target="<$mt:Var name="lower_cta_item_btn_target" encode_html="1"$>"</mt:If><mt:If name="lower_cta_item_btn_rel" ne=""> rel="<$mt:Var name="lower_cta_item_btn_rel" encode_html="1"$>"</mt:If>>
+        <$mt:Var name="lower_cta_item_btn_label" encode_html="1"$>
+      </a>
+    </div>
+  </div>
+</li>

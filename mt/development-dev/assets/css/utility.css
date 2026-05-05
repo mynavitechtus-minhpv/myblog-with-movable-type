@@ -1,4 +1,5 @@
 /* utility.css — reusable single-purpose classes */
+
 .u-overflow-hidden {
   overflow: hidden !important;
 }
@@ -10,4 +11,23 @@
 
 .u-gradient-accent {
   background-image: linear-gradient(to right, var(--color-accent), var(--color-accent-dark));
+}
+
+/* Visibility — responsive show/hide */
+.u-pc-only {
+  display: none;
+}
+
+.u-sp-only {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .u-pc-only {
+    display: block;
+  }
+
+  .u-sp-only {
+    display: none;
+  }
 }

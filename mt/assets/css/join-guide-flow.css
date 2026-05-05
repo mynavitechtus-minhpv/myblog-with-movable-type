@@ -1,0 +1,217 @@
+/* ==========================================================================
+   入会のご案内 — vertical step flow (CMP join guide)
+   Mobile-first; BEM block .c-join-guide-flow
+   Gradient rail matches design (102.25deg); SP 18px / PC 26px bar width.
+   ========================================================================== */
+
+:root {
+  --join-flow-rail-border: 18px;
+  --join-flow-rail-inset-block: var(--space-2xl);
+  --join-flow-card-shadow: 0 4px 8px rgba(0, 0, 0, 0.102);
+  --join-flow-image-width: 195px;
+  --join-flow-image-height: 130px;
+  --join-flow-image-width-md: 210px;
+  --join-flow-image-height-md: 140px;
+  --join-flow-gradient: linear-gradient(
+    to left,
+    var(--color-primary-dark) 0,
+    var(--color-primary-dark) calc(100% - 2px),
+    rgba(66, 96, 212, 0.82) 100%
+  );
+}
+
+.c-join-guide-flow {
+  padding-top: var(--space-3xl);
+  padding-bottom: calc(var(--space-5xl) + var(--space-sm));
+}
+
+.c-join-guide-flow__header {
+  margin-bottom: var(--space-2xl);
+}
+
+.c-join-guide-flow__layout {
+  position: relative;
+  margin-inline: auto;
+}
+
+/* Vertical connector: centered behind steps (below content in stacking order) */
+.c-join-guide-flow__rail {
+  position: absolute;
+  top: var(--join-flow-rail-inset-block);
+  bottom: var(--join-flow-rail-inset-block);
+  left: 50%;
+  z-index: var(--z-index-base);
+  width: var(--join-flow-rail-border);
+  pointer-events: none;
+  background-image: var(--join-flow-gradient);
+  border-radius: calc(var(--join-flow-rail-border) / 2);
+  transform: translateX(-50%);
+}
+
+.c-join-guide-flow__main {
+  position: relative;
+  z-index: var(--z-index-raised);
+  width: 100%;
+}
+
+.c-join-guide-flow__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.c-join-guide-flow__step {
+  margin: 0 0 var(--space-xl);
+}
+
+.c-join-guide-flow__step:last-child {
+  margin-bottom: 0;
+}
+
+.c-join-guide-flow__shell {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
+.c-join-guide-flow__label {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 40px;
+  padding: var(--space-xs) var(--layout-padding-inline-mobile);
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--space-xl);
+  color: var(--color-white);
+  background-color: var(--color-primary-dark);
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+}
+
+.c-join-guide-flow__label-pre {
+  font-size: var(--font-size-sm);
+}
+
+.c-join-guide-flow__label-num {
+  font-size: var(--font-size-lg);
+  color: var(--color-white);
+}
+
+.c-join-guide-flow__card {
+  width: 100%;
+  background-color: var(--color-white);
+  border-top-right-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
+  border-bottom-left-radius: var(--radius-sm);
+  border-top-left-radius: 0;
+  box-shadow: var(--join-flow-card-shadow);
+}
+
+.c-join-guide-flow__card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  box-sizing: border-box;
+  min-height: 318px;
+  padding: var(--space-lg);
+}
+
+.c-join-guide-flow__figure {
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.c-join-guide-flow__img {
+  display: block;
+  width: var(--join-flow-image-width);
+  height: var(--join-flow-image-height);
+  object-fit: contain;
+}
+
+.c-join-guide-flow__content {
+  align-self: stretch;
+  min-width: 0;
+}
+
+.c-join-guide-flow__card-title {
+  margin: 0 0 var(--space-md);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--space-xl);
+  color: var(--color-accent);
+}
+
+.c-join-guide-flow__text {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--space-lg);
+  color: var(--color-text-primary);
+  white-space: pre-line;
+}
+
+.c-join-guide-flow__text a {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-underline-offset: 2px;
+}
+
+.c-join-guide-flow__text a:hover {
+  color: var(--color-primary-medium);
+}
+
+.c-join-guide-flow__text a:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus-primary);
+  border-radius: calc(var(--radius-sm) / 2);
+}
+
+@media (min-width: 768px) {
+  .c-join-guide-flow {
+    --join-flow-rail-border: 26px;
+    --join-flow-rail-inset-block: var(--space-4xl);
+    padding-top: var(--space-6xl);
+    padding-bottom: var(--space-6xl);
+  }
+
+  .c-join-guide-flow__layout {
+    max-width: 800px;
+  }
+
+  .c-join-guide-flow__main {
+    max-width: 800px;
+  }
+
+  .c-join-guide-flow__card {
+    max-width: 800px;
+  }
+
+  .c-join-guide-flow__card-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 188px;
+  }
+
+  .c-join-guide-flow__figure {
+    margin: 0;
+  }
+
+  .c-join-guide-flow__img {
+    width: var(--join-flow-image-width-md);
+    height: var(--join-flow-image-height-md);
+  }
+
+  .c-join-guide-flow__content {
+    flex: 1;
+  }
+}

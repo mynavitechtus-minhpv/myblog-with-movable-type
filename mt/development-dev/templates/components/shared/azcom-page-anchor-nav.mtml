@@ -1,0 +1,37 @@
+<mt:Ignore>
+  CMP-094: Page anchor navigation (PC only, hidden on SP)
+  If anchor_nav_items is not provided by caller, this module uses About page default items.
+</mt:Ignore>
+
+<mt:Unless name="anchor_nav_items">
+  <mt:SetVarBlock name="anchor_nav_items">
+    <mt:SetVar name="anchor_label" value="AZ−COMネットワークとは">
+    <mt:SetVar name="anchor_href" value="about">
+    <mt:Include module="azcom-page-anchor-nav-item">
+
+    <mt:SetVar name="anchor_label" value="強み">
+    <mt:SetVar name="anchor_href" value="strong-point">
+    <mt:Include module="azcom-page-anchor-nav-item">
+
+    <mt:SetVar name="anchor_label" value="支援メニュー">
+    <mt:SetVar name="anchor_href" value="support">
+    <mt:Include module="azcom-page-anchor-nav-item">
+
+    <mt:SetVar name="anchor_label" value="入会のご案内">
+    <mt:SetVar name="anchor_href" value="guide">
+    <mt:Include module="azcom-page-anchor-nav-item">
+
+    <mt:SetVar name="anchor_label" value="会員様の声">
+    <mt:SetVar name="anchor_href" value="member">
+    <mt:Include module="azcom-page-anchor-nav-item">
+  </mt:SetVarBlock>
+</mt:Unless>
+
+<nav class="c-page-anchor-nav" aria-label="ページ内ナビゲーション">
+  <div class="c-page-anchor-nav__inner l-container">
+    <div class="c-page-anchor-nav__grid">
+      <$mt:Var name="anchor_nav_items"$>
+    </div>
+    <span class="c-page-anchor-nav__accent" aria-hidden="true"></span>
+  </div>
+</nav>

@@ -1,0 +1,95 @@
+/* ==========================================================================
+   CMP-094 / CMP-095: Page Anchor Navigation
+   Hidden on SP, visible on PC only.
+   ========================================================================== */
+
+:root {
+  --page-anchor-nav-arrow-width: 15px;
+  --page-anchor-nav-arrow-height: 9px;
+  --page-anchor-nav-accent-height: 2px;
+}
+
+.c-page-anchor-nav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .c-page-anchor-nav {
+    display: block;
+    margin-top: var(--space-5xl);
+    margin-bottom: 0;
+    background-color: var(--color-white);
+  }
+
+  .c-page-anchor-nav__inner {
+    padding-block: 0;
+  }
+
+  .c-page-anchor-nav__grid {
+    display: flex;
+    gap: var(--space-xs);
+    margin: 0;
+    padding: 0;
+  }
+
+  .c-page-anchor-nav__item {
+    flex: 1 1 0%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--space-sm) + 2px);
+    padding-block: calc(var(--space-lg) - 6px);
+    padding-inline: var(--space-xs);
+    background-color: var(--color-primary-light);
+    border-top-left-radius: var(--radius-lg);
+    border-top-right-radius: var(--radius-lg);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--duration-normal);
+  }
+
+  .c-page-anchor-nav__item:hover {
+    background-color: var(--color-accent);
+  }
+
+  .c-page-anchor-nav__item:focus-visible {
+    outline: none;
+    box-shadow: inset var(--shadow-focus-primary);
+  }
+
+  .c-page-anchor-nav__title {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    color: var(--color-text-primary);
+    text-align: center;
+    transition: all var(--duration-slow);
+  }
+
+  .c-page-anchor-nav__arrow {
+    display: block;
+    width: var(--page-anchor-nav-arrow-width);
+    height: var(--page-anchor-nav-arrow-height);
+    object-fit: contain;
+    transform: translateY(0);
+    transition: all var(--duration-slow);
+  }
+
+  .c-page-anchor-nav__item:hover .c-page-anchor-nav__title {
+    color: var(--color-white);
+  }
+
+  .c-page-anchor-nav__item:hover .c-page-anchor-nav__arrow {
+    filter: brightness(0) saturate(100%) invert(100%);
+    transform: translateY(6px);
+  }
+
+  .c-page-anchor-nav__accent {
+    display: block;
+    width: 100%;
+    height: var(--page-anchor-nav-accent-height);
+    background-color: var(--color-accent);
+  }
+}

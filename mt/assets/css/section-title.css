@@ -1,0 +1,37 @@
+/* section-title.css — shared section title component */
+:root {
+  --section-title-rule-height: 4px;
+  --section-title-rule-gradient: linear-gradient(
+    to right,
+    var(--color-primary-dark) 0%,
+    var(--color-primary-dark) 55%,
+    transparent 100%
+  );
+}
+
+.c-section__title {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-accent);
+}
+
+.c-section__title::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: var(--section-title-rule-height);
+  margin-top: var(--space-sm);
+  background: var(--section-title-rule-gradient);
+}
+
+@media (min-width: 768px) {
+  .c-section__title {
+    font-size: var(--font-size-3xl);
+    line-height: var(--line-height-heading);
+  }
+}
