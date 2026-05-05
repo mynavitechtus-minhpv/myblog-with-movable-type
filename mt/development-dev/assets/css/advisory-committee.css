@@ -1,0 +1,154 @@
+/* Advisory committee root stack + purpose blocks (azcom-advisory-committee)
+ * 「とは」card: advisory-what-card.css
+ */
+
+:root {
+  --advisory-committee-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --advisory-committee-fill-width: 100%;
+}
+
+.c-advisory-committee {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  margin-top: calc(var(--space-lg) + var(--space-xs));
+}
+
+.c-advisory-committee__purpose-card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-sm);
+  padding-block: var(--space-2xl);
+  padding-inline: calc(var(--space-lg) + var(--space-xs));
+  box-shadow: var(--advisory-committee-card-shadow);
+}
+
+/* Section title「…の目的」— SP */
+.c-advisory-committee__purpose-title {
+  margin: 0;
+  font-family: var(--font-main);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-md);
+  line-height: calc(var(--font-size-md) + var(--space-sm));
+  letter-spacing: 0;
+  text-align: center;
+  color: var(--color-text-primary);
+}
+
+.c-advisory-committee__purpose-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xl);
+  margin-top: var(--space-lg);
+}
+
+/* Purpose row: SP column / PC row */
+.c-advisory-purpose-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: var(--advisory-committee-fill-width);
+  border-radius: var(--radius-sm);
+}
+
+.c-advisory-purpose-item__label {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  gap: var(--space-xs);
+  width: var(--advisory-committee-fill-width);
+  min-height: calc(var(--space-2xl) - var(--space-xs));
+  padding: var(--space-xs) var(--space-md);
+  box-sizing: border-box;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+.c-advisory-purpose-item__label-num {
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+  line-height: calc(var(--space-xl) - var(--space-xs));
+  letter-spacing: 0;
+  text-align: justify;
+  color: var(--color-white);
+}
+
+.c-advisory-purpose-item__label-text {
+  font-family: var(--font-main);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+  line-height: var(--space-lg);
+  letter-spacing: 0;
+  text-align: justify;
+  color: var(--color-white);
+}
+
+.c-advisory-purpose-item__label-fallback {
+  font-family: var(--font-main);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+  line-height: var(--space-lg);
+  color: var(--color-white);
+  text-align: center;
+}
+
+.c-advisory-purpose-item__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.c-advisory-purpose-item__title {
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-main);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+  line-height: var(--space-lg);
+  letter-spacing: 0;
+  text-align: justify;
+  color: var(--color-accent);
+}
+
+.c-advisory-purpose-item__text {
+  margin: 0;
+  font-family: var(--font-main);
+  font-weight: var(--font-weight-medium);
+  font-style: normal;
+  font-size: var(--font-size-sm);
+  line-height: var(--space-lg);
+  letter-spacing: 0;
+  text-align: justify;
+  color: var(--color-text-primary);
+}
+
+@media (min-width: 768px) {
+  .c-advisory-committee {
+    gap: var(--space-2xl);
+    margin-top: calc(
+      var(--space-2xl) + var(--space-sm) + (var(--space-xs) / 2)
+    );
+  }
+
+  .c-advisory-committee__purpose-card {
+    padding-inline: calc(var(--space-3xl) + var(--space-sm));
+  }
+
+  .c-advisory-committee__purpose-title {
+    font-size: var(--font-size-lg);
+    line-height: var(--space-xl);
+  }
+
+  .c-advisory-purpose-item {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+
+  .c-advisory-purpose-item__label {
+    justify-content: space-between;
+    width: fit-content;
+    min-width: calc(
+      var(--space-5xl) + var(--space-lg) + var(--space-xs)
+    );
+    max-width: none;
+  }
+}

@@ -1,0 +1,179 @@
+/* c-network-corporate-efforts — AZ-COMネットワーク関連企業のBCPの取り組み */
+
+:root {
+  /* 本ファイルのみ（base に単体トークンがない値・複合・再利用） */
+  --network-corporate-efforts-content-max-width: 800px;
+  --network-corporate-efforts-major-gutter: calc(
+    var(--space-6xl) - var(--space-sm)
+  );
+  --network-corporate-efforts-inner-padding-inline-desktop: calc(
+    var(--layout-padding-inline) * 2
+  );
+  --network-corporate-efforts-subtitle-accent-border-width: 3px;
+  --network-corporate-efforts-subtitle-line-height-sp: calc(
+    var(--font-size-lg) + var(--space-sm)
+  );
+  --network-corporate-efforts-subtitle-line-height-pc: calc(
+    var(--font-size-2xl) + var(--space-md)
+  );
+  --network-corporate-efforts-single-img-aspect-w-sp: 295;
+  --network-corporate-efforts-single-img-aspect-h-sp: 168;
+  --network-corporate-efforts-single-img-aspect-w-pc: 800;
+  --network-corporate-efforts-single-img-aspect-h-pc: 456;
+}
+
+.c-network-corporate-efforts {
+  width: 100%;
+  background-color: var(--color-primary-light);
+}
+
+.c-network-corporate-efforts__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  padding-top: calc(var(--space-3xl) + var(--space-xs));
+  padding-bottom: var(--space-2xl);
+}
+
+@media (min-width: 768px) {
+  .c-network-corporate-efforts__inner {
+    padding-top: var(--network-corporate-efforts-major-gutter);
+    padding-bottom: var(--space-2xl);
+    gap: var(--space-2xl);
+  }
+
+  .c-network-corporate-efforts__lower-cta > .c-lower-cta-section {
+    padding-bottom: var(--space-6xl);
+  }
+}
+
+.c-network-corporate-efforts .c-section__title {
+  width: fit-content;
+}
+
+.c-network-corporate-efforts__lower-cta {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.c-network-corporate-efforts__lower-cta > .c-lower-cta-section {
+  padding-top: 0;
+  padding-bottom: var(--space-2xl);
+}
+
+.c-network-corporate-efforts__figures {
+  width: 100%;
+  max-width: var(--network-corporate-efforts-content-max-width);
+  margin-inline: auto;
+  padding: 0 var(--layout-padding-inline-mobile);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  box-sizing: border-box;
+}
+
+/* シングル画像（あんしんストック）：__figures 直下のみ別寸法／オフセット */
+.c-network-corporate-efforts__figures > .c-image-pair.c-image-pair--single {
+  width: 100%;
+  opacity: 1;
+}
+
+.c-network-corporate-efforts__figures
+  > .c-image-pair.c-image-pair--single
+  .c-image-pair__item {
+  margin-inline: auto;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  opacity: 1;
+}
+
+.c-network-corporate-efforts__figures
+  > .c-image-pair.c-image-pair--single
+  .c-image-pair__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: var(--network-corporate-efforts-single-img-aspect-w-sp) /
+    var(--network-corporate-efforts-single-img-aspect-h-sp);
+  object-fit: contain;
+  opacity: 1;
+}
+
+.c-network-corporate-efforts__subtitle {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-main);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+  line-height: var(--network-corporate-efforts-subtitle-line-height-sp);
+  letter-spacing: 0;
+  text-align: center;
+  color: var(--color-primary);
+}
+
+.c-network-corporate-efforts__subtitle::after {
+  content: "";
+  display: block;
+  width: var(--network-corporate-efforts-major-gutter);
+  margin-top: var(--font-size-3xs);
+  margin-inline: auto;
+  box-sizing: border-box;
+  border-bottom: var(--network-corporate-efforts-subtitle-accent-border-width)
+    solid var(--color-primary);
+}
+
+.c-network-corporate-efforts__prose {
+  width: 100%;
+  max-width: var(--network-corporate-efforts-content-max-width);
+  margin-inline: auto;
+  margin-block: 0;
+  padding: 0 var(--layout-padding-inline-mobile);
+  font-family: var(--font-main);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-sm);
+  line-height: var(--space-lg);
+  letter-spacing: 0;
+  color: var(--color-text-primary);
+  text-align: justify;
+  box-sizing: border-box;
+}
+
+.c-network-corporate-efforts__prose p {
+  margin: 0 0 var(--space-md);
+}
+
+.c-network-corporate-efforts__prose p:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .c-network-corporate-efforts__subtitle {
+    margin-bottom: var(--space-lg);
+    font-size: var(--font-size-xl);
+    line-height: var(--network-corporate-efforts-subtitle-line-height-pc);
+  }
+
+  .c-network-corporate-efforts__subtitle::after {
+    display: none;
+  }
+
+  .c-network-corporate-efforts__figures
+    > .c-image-pair.c-image-pair--single
+    .c-image-pair__item {
+    width: 100%;
+    max-width: var(--network-corporate-efforts-content-max-width);
+  }
+
+  .c-network-corporate-efforts__figures
+    > .c-image-pair.c-image-pair--single
+    .c-image-pair__img {
+    aspect-ratio: var(--network-corporate-efforts-single-img-aspect-w-pc) /
+      var(--network-corporate-efforts-single-img-aspect-h-pc);
+  }
+
+  .c-network-corporate-efforts__figures,
+  .c-network-corporate-efforts__prose {
+    padding: 0;
+  }
+}

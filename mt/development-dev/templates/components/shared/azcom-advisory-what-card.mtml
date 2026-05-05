@@ -1,0 +1,64 @@
+<mt:Ignore>
+  諮問委員会（とは）— common card
+
+  Required:
+    what_card_title … タイトル
+
+  Optional:
+    what_card_image_src / what_card_image_alt … 写真
+    what_card_media_caption … src とセットで写真＋キャプション左／本文右（grid）。空なら従来の全幅写真 or 非表示。
+    what_card_body_html … HTML（block）
+    what_card_body      … plain text（fallback）
+</mt:Ignore>
+
+<section class="c-advisory-what-card">
+  <div class="c-advisory-what-card__head">
+    <img
+      class="c-advisory-what-card__illust"
+      src="<mt:Include module="azcom-site-root-path">assets/img/illust_008.png"
+      alt=""
+      width="137"
+      height="99"
+      loading="lazy"
+      decoding="async"
+    >
+    <h4 class="c-advisory-what-card__title"><$mt:Var name="what_card_title" encode_html="1"$></h4>
+  </div>
+
+  <mt:If name="what_card_media_caption" ne="">
+    <div class="c-advisory-what-card__split">
+      <figure class="c-advisory-what-card__figure">
+        <img
+          class="c-advisory-what-card__photo"
+          src="<mt:Include module="azcom-site-root-path">assets/img/<$mt:Var name="what_card_image_src" encode_html="1"$>"
+          alt="<$mt:Var name="what_card_image_alt" encode_html="1"$>"
+          width="280"
+          height="187"
+          loading="lazy"
+          decoding="async"
+        >
+        <figcaption class="c-advisory-what-card__caption"><$mt:Var name="what_card_media_caption" encode_html="1"$></figcaption>
+      </figure>
+      <mt:If name="what_card_body_html" ne="">
+        <div class="c-advisory-what-card__body c-advisory-what-card__body--split"><$mt:Var name="what_card_body_html"$></div>
+      <mt:Else>
+        <p class="c-advisory-what-card__body c-advisory-what-card__body--split"><$mt:Var name="what_card_body" encode_html="1"$></p>
+      </mt:If>
+    </div>
+  <mt:Else>
+    <mt:If name="what_card_image_src" ne="">
+      <img
+        class="c-advisory-what-card__img"
+        src="<mt:Include module="azcom-site-root-path">assets/img/<$mt:Var name="what_card_image_src" encode_html="1"$>"
+        alt="<$mt:Var name="what_card_image_alt" encode_html="1"$>"
+        loading="lazy"
+        decoding="async"
+      >
+    </mt:If>
+    <mt:If name="what_card_body_html" ne="">
+      <div class="c-advisory-what-card__body"><$mt:Var name="what_card_body_html"$></div>
+    <mt:Else>
+      <p class="c-advisory-what-card__body"><$mt:Var name="what_card_body" encode_html="1"$></p>
+    </mt:If>
+  </mt:If>
+</section>

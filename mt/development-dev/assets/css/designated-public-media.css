@@ -1,0 +1,37 @@
+/* c-designated-public-media — 2 figures + captions (SP 1col / PC 2col) */
+
+.c-designated-public-media {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+
+.c-designated-public-media__figure {
+  margin: 0;
+}
+
+.c-designated-public-media__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+
+.c-designated-public-media__caption {
+  margin: var(--space-sm) 0 0;
+  font-family: var(--font-main);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-small);
+  letter-spacing: 0;
+  color: var(--color-text-secondary);
+}
+
+@media (min-width: 768px) {
+  .c-designated-public-media {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+    align-items: start;
+  }
+}

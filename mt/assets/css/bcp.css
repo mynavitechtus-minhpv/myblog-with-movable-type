@@ -1,0 +1,18 @@
+/* bcp.css — page-specific overrides */
+:root {
+  --bcp-information-news-card-max-width: 800px;
+}
+
+.p-bcp .c-information-news {
+  background-color: transparent;
+}
+
+.p-bcp .c-information-news__card {
+  max-width: var(--bcp-information-news-card-max-width);
+  border-radius: var(--radius-sm);
+}
+
+.p-bcp__section-heading {
+  margin-bottom: var(--space-2xl);
+}
+

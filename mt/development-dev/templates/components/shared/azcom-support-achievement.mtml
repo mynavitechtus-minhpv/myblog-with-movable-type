@@ -1,0 +1,37 @@
+<mt:Ignore>
+  災害時の支援実績（セクション見出し + 支援実績カード複数）
+</mt:Ignore>
+
+<mt:SetVar name="section_title_id" value="bcp-track-record-heading">
+<section id="bcp-track-record" class="c-support-achievement" aria-labelledby="<$mt:Var name="section_title_id" encode_html="1"$>">
+  <div class="l-container c-support-achievement__heading">
+    <mt:SetVarBlock name="section_title_text">災害時の支援実績</mt:SetVarBlock>
+    <mt:Include module="azcom-section-title">
+  </div>
+  <div class="l-container c-support-achievement__content">
+    <mt:SetVar name="sac_eyebrow" value="令和7年">
+    <mt:SetVar name="sac_title" value="台風22号（東京都）">
+    <mt:SetVar name="dpm_img1" value="bcp-img-007.png">
+    <mt:SetVar name="dpm_alt1" value="台風22号の支援のため、物資の搬送・積み込みに関わる活動の様子">
+    <mt:SetVar name="dpm_img2" value="bcp-img-008.png">
+    <mt:SetVar name="dpm_alt2" value="八丈島・青ヶ島向け支援物資の輸送に関する活動の様子">
+    <mt:SetVarBlock name="sac_body_html"><p>
+        2025年10月9日に八丈島・青ヶ島に上陸した台風22号において、東京都からの要請に基づき、八丈島・青ヶ島への
+        支援物資の輸送活動に従事しました。
+        離島であったため、船舶会社や航空会社と連携し、羽田空港や竹芝桟橋に物資を輸送しました。
+    </p></mt:SetVarBlock>
+    <mt:Include module="azcom-support-achievement-card">
+
+    <mt:SetVar name="sac_eyebrow" value="令和6年">
+    <mt:SetVar name="sac_title" value="能登半島地震">
+    <mt:SetVar name="dpm_img1" value="bcp-img-009.png">
+    <mt:SetVar name="dpm_alt1" value="能登半島地震の支援のため、支援物資をトラックで輸送する活動の様子">
+    <mt:SetVar name="dpm_img2" value="bcp-img-010.png">
+    <mt:SetVar name="dpm_alt2" value="被災地へ向けた支援物資の積載・輸送の様子">
+    <mt:SetVarBlock name="sac_body_html"><p>
+        令和6年能登半島地震において、内閣府ならびに協定先自治体からの要請に基づき、被災地への支援物資の輸送活動に従事しました。
+        1月2日から約3ヶ月間、約220台のトラックで支援物資を被災地へ輸送しました。
+    </p></mt:SetVarBlock>
+    <mt:Include module="azcom-support-achievement-card">
+  </div>
+</section>

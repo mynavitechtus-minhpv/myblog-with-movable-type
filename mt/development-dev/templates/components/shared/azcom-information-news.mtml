@@ -1,17 +1,39 @@
-<div class="c-information-news" id="information-news" aria-labelledby="information-news-heading">
+<mt:Ignore>
+  Optional: information_news_hide_heading = 1 … <h3 class="c-information-news__heading"> を出さない
+</mt:Ignore>
+<div
+  id="information-news"
+  class="c-information-news"
+  <mt:If name="information_news_hide_heading" eq="1">
+  aria-label="お知らせ"
+  <mt:Else>
+  aria-labelledby="information-news-heading"
+  </mt:If>
+>
   <div class="c-information-news__card">
+    <mt:If name="information_news_hide_heading" ne="1">
     <h3 id="information-news-heading" class="c-information-news__heading">お知らせ</h3>
+    </mt:If>
 
     <mt:SetVar name="news_query_limit" value="$information_news_lastn">
     <mt:SetVar name="news_query_sort_by" value="$information_news_sort_by">
     <mt:SetVar name="news_query_sort_order" value="$information_news_sort_order">
+
+    <mt:Unless name="information_news_tag">
+      <mt:SetVar name="information_news_tag" value="">
+    </mt:Unless>
+    <mt:SetVar name="news_query_tag" value="$information_news_tag">
 
     <mt:Include module="azcom-query-news-corporate-latest">
 
     <mt:If name="information_news_show_list_cta" ne="">
       <mt:If name="news_corp_count" gt="0">
         <p class="c-information-news__actions">
-          <a class="c-information-news__btn-more" href="/news/">お知らせ一覧</a>
+          <mt:If name="information_news_tag" ne="">
+            <a class="c-information-news__btn-more" href="/news/tag/<$mt:Var name="information_news_tag" encode_html="1"$>/">お知らせ一覧</a>
+          <mt:Else>
+            <a class="c-information-news__btn-more" href="/news/">お知らせ一覧</a>
+          </mt:If>
         </p>
       </mt:If>
     </mt:If>

@@ -1,0 +1,82 @@
+<mt:Ignore>
+  画像の横並びレイアウト（共通）
+
+  既定（image_pair_mode 未設定）: 2枚横並び
+    image_pair_left_src / image_pair_left_alt
+    image_pair_right_src / image_pair_right_alt
+
+  image_pair_mode = single のとき: 1枚（左側変数のみ）
+    image_pair_left_src / image_pair_left_alt
+
+  image_pair_mode = triple のとき: 3枚横並び（SP 1列）
+    image_pair_left_src / Left_alt
+    image_pair_right_src / Right_alt
+    image_pair_third_src / image_pair_third_alt
+</mt:Ignore>
+
+<mt:If name="image_pair_mode" eq="single">
+  <div class="c-image-pair c-image-pair--single">
+    <figure class="c-image-pair__item">
+      <img
+        class="c-image-pair__img"
+        src="<mt:Include module="azcom-site-root-path">assets/img/<$mt:Var name="image_pair_left_src" encode_html="1"$>"
+        alt="<$mt:Var name="image_pair_left_alt" encode_html="1"$>"
+        loading="lazy"
+        decoding="async"
+      >
+    </figure>
+  </div>
+<mt:Else>
+  <mt:If name="image_pair_mode" eq="triple">
+    <div class="c-image-pair c-image-pair--triple">
+      <figure class="c-image-pair__item">
+        <img
+          class="c-image-pair__img"
+          src="<mt:Include module="azcom-site-root-path">assets/img/<$mt:Var name="image_pair_left_src" encode_html="1"$>"
+          alt="<$mt:Var name="image_pair_left_alt" encode_html="1"$>"
+          loading="lazy"
+          decoding="async"
+        >
+      </figure>
+      <figure class="c-image-pair__item">
+        <img
+          class="c-image-pair__img"
+          src="<mt:Include module="azcom-site-root-path">assets/img/<$mt:Var name="image_pair_right_src" encode_html="1"$>"
+          alt="<$mt:Var name="image_pair_right_alt" encode_html="1"$>"
+          loading="lazy"
+          decoding="async"
+        >
+      </figure>
+      <figure class="c-image-pair__item">
+        <img
+          class="c-image-pair__img"
+          src="<mt:Include module="azcom-site-root-path">assets/img/<$mt:Var name="image_pair_third_src" encode_html="1"$>"
+          alt="<$mt:Var name="image_pair_third_alt" encode_html="1"$>"
+          loading="lazy"
+          decoding="async"
+        >
+      </figure>
+    </div>
+  <mt:Else>
+    <div class="c-image-pair">
+      <figure class="c-image-pair__item">
+        <img
+          class="c-image-pair__img"
+          src="<mt:Include module="azcom-site-root-path">assets/img/<$mt:Var name="image_pair_left_src" encode_html="1"$>"
+          alt="<$mt:Var name="image_pair_left_alt" encode_html="1"$>"
+          loading="lazy"
+          decoding="async"
+        >
+      </figure>
+      <figure class="c-image-pair__item">
+        <img
+          class="c-image-pair__img"
+          src="<mt:Include module="azcom-site-root-path">assets/img/<$mt:Var name="image_pair_right_src" encode_html="1"$>"
+          alt="<$mt:Var name="image_pair_right_alt" encode_html="1"$>"
+          loading="lazy"
+          decoding="async"
+        >
+      </figure>
+    </div>
+  </mt:If>
+</mt:If>

@@ -1,0 +1,81 @@
+/* c-cta-button — shared CTA link (Primary / Accent / Outline / Pill: extend modifiers) */
+
+:root {
+  --cta-button-shadow: 0 4px 8px 0 #0000001a;
+  --cta-button-radius: 32px;
+  --cta-button-width-target: 235px;
+  --cta-button-border-width: 3px;
+}
+
+.c-cta-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, var(--cta-button-width-target));
+  max-width: 100%;
+  text-decoration: none;
+  cursor: pointer;
+  border-style: solid;
+  border-width: var(--cta-button-border-width);
+  border-radius: var(--cta-button-radius);
+  box-shadow: var(--cta-button-shadow);
+  transition:
+    background-color var(--duration-slow) var(--easing-emphasized),
+    color var(--duration-slow) var(--easing-emphasized),
+    border-color var(--duration-slow) var(--easing-emphasized),
+    box-shadow var(--duration-slow) var(--easing-emphasized),
+    opacity var(--duration-slow) var(--easing-emphasized);
+}
+
+/* Primary（20260324 更新） */
+.c-cta-button--primary {
+  min-height: var(--space-2xl);
+  padding-block: calc(var(--space-sm) + (var(--space-xs) / 2));
+  padding-inline: var(--space-lg);
+  gap: var(--space-sm);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary-light-4);
+  color: var(--color-white);
+}
+
+.c-cta-button--primary:hover:not(.c-cta-button--disabled) {
+  background-color: var(--color-white);
+  border-color: var(--color-primary-light-4);
+  color: var(--color-primary);
+}
+
+.c-cta-button--primary:not(.c-cta-button--disabled):focus-visible {
+  outline: none;
+  box-shadow: var(--cta-button-shadow), var(--shadow-focus-primary);
+}
+
+.c-cta-button--primary.c-cta-button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.c-cta-button__text {
+  font-family: var(--font-main);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-small);
+  letter-spacing: 0;
+  text-align: center;
+  color: inherit;
+}
+
+@media (min-width: 768px) {
+  .c-cta-button--primary {
+    min-height: calc(var(--space-2xl) + var(--space-md));
+    padding-block: calc(var(--space-sm) + (var(--space-xs) / 2));
+    padding-inline: var(--space-lg);
+  }
+
+  .c-cta-button__text {
+    font-size: var(--font-size-sm);
+    line-height: var(--space-lg);
+  }
+}
+
+/* 将来: .c-cta-button--accent / --outline / --pill */

@@ -1,0 +1,43 @@
+<mt:Ignore>
+  「指定公共機関への指定」ハイライト（azcom-highlight-section をラップ）
+
+  構成: 白カード（写真2＋本文＋CTA）／「指定公共機関とは」what-card ／ CMS 可変なし
+</mt:Ignore>
+
+<mt:SetVar name="highlight_section_margin_side" value="right">
+<mt:SetVarBlock name="highlight_section_heading_text">指定公共機関への指定</mt:SetVarBlock>
+<mt:SetVarBlock name="highlight_section_body">
+  <div class="c-designated-public-card">
+    <mt:Include module="azcom-designated-public-media">
+
+    <div class="c-designated-public-card__prose">
+      <p class="c-designated-public-card__para">
+        2023年6月23日、一般社団法人AZ-COM丸和・支援ネットワーク（現：AZ-COMネットワーク）は内閣府より指定公共機関の新規指定を受け、2023年7月6日指定通知書の交付式が行われました。<br>
+        交付式では谷公一内閣府特命担当大臣(防災担当)※当時 からAZ-COMネットワーク理事長の和佐見勝に指定通知書が手交され、意見交換を行いました。<br>
+        谷大臣からは「AZ-COM丸和グループには、日頃から災害支援活動に取り組んでいただき、国民を代表して感謝と御礼を申し上げるとともに、指定公共機関としてより一層、社会貢献と災害支援への取り組みを強化してほしい」とのお言葉がありました。
+      </p>
+    </div>
+
+    <div class="c-designated-public-card__cta">
+      <mt:SetVarBlock name="cta_button_href"><mt:Include module="azcom-site-root-path">assets/pdf/disaster_management_plan.pdf</mt:SetVarBlock>
+      <mt:SetVar name="cta_button_download" value="disaster_management_plan.pdf">
+      <mt:SetVar name="cta_button_target" value="_blank">
+      <mt:SetVar name="cta_button_rel" value="noreferrer">
+      <mt:SetVarBlock name="cta_button_text">防災業務計画(PDF)</mt:SetVarBlock>
+      <mt:Include module="azcom-cta-button">
+      <mt:SetVar name="cta_button_download" value="">
+      <mt:SetVar name="cta_button_target" value="">
+      <mt:SetVar name="cta_button_rel" value="">
+    </div>
+  </div>
+
+  <mt:SetVar name="what_card_title" value="指定公共機関とは">
+  <mt:SetVar name="what_card_image_src" value="">
+  <mt:SetVar name="what_card_image_alt" value="">
+  <mt:SetVar name="what_card_media_caption" value="">
+  <mt:SetVarBlock name="what_card_body_html">
+    <p>災害対策基本法第2条第5号に基づき、公共的機関及び公益的事業を営む法人のうち、防災行政上重要な役割を有するものとして、内閣総理大臣が指定している機関です。2023年6月23日現在、106機関が指定を受けています。当該法人等は、平時において防災業務計画の作成、防災訓練の実施等を行う義務を有しており、また災害等の緊急時においては、応急措置の実施、情報収集等を行うとされ、災害の予防・応急・復旧等の段階で重要な役割を果たすことが求められます。</p>
+  </mt:SetVarBlock>
+  <mt:Include module="azcom-advisory-what-card">
+</mt:SetVarBlock>
+<mt:Include module="azcom-highlight-section">

@@ -1,0 +1,33 @@
+<mt:Ignore>
+  BCP page の「AZ-COM BCPネットワークとは」ハイライト（共通 azcom-highlight-section をラップ）
+
+  bcp_network_highlight_body は使用しない（固定コンテンツ + 共通2枚画像）
+</mt:Ignore>
+
+<mt:SetVar name="highlight_section_margin_side" value="right">
+<mt:SetVarBlock name="highlight_section_heading_text">AZ-COM BCPネットワークとは</mt:SetVarBlock>
+<mt:SetVarBlock name="highlight_section_body">
+  <div class="c-highlight-section__lead">
+    <p class="c-highlight-section__text">
+      AZ-COMネットワーク会員企業の中で、災害時における支援活動に賛同・ご協力いただける会員で、輸送支援にご協力いただける会員で構成された組織。全国6つの支部で構成されており、災害時の対応力向上を図るため定期的な会合などを開催しております。
+    </p>
+
+    <div class="c-highlight-section__map-wrap">
+      <img
+        class="c-highlight-section__map"
+        src="<mt:Include module="azcom-site-root-path">assets/img/bcp-img-001.png"
+        alt="BCPネットワークの全国支部図"
+        loading="lazy"
+      >
+    </div>
+
+    <div class="c-highlight-section__image-pair-row">
+      <mt:SetVar name="image_pair_left_src" value="bcp-img-002.png">
+      <mt:SetVar name="image_pair_left_alt" value="BCPネットワーク活動写真（左）">
+      <mt:SetVar name="image_pair_right_src" value="bcp-img-003.png">
+      <mt:SetVar name="image_pair_right_alt" value="BCPネットワーク活動写真（右）">
+      <mt:Include module="azcom-image-pair">
+    </div>
+  </div>
+</mt:SetVarBlock>
+<mt:Include module="azcom-highlight-section">

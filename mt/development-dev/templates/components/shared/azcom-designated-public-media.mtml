@@ -1,0 +1,65 @@
+<mt:Ignore>
+  2枚（SP 1列 / PC 2列）。キャプション任意。
+
+  既定（dpm_img1 未設定）: bcp-img-005/006 + キャプション
+
+  上書き（dpm_img1 を設定時）:
+    dpm_img1, dpm_img2 … assets/img/ 配下のファイル名
+    dpm_alt1, dpm_alt2 … alt
+    dpm_caption1_html, dpm_caption2_html … 空なら figcaption なし（SetVarBlock）
+</mt:Ignore>
+
+<mt:If name="dpm_img1" ne="">
+  <div class="c-designated-public-media">
+    <figure class="c-designated-public-media__figure">
+      <img
+        class="c-designated-public-media__img"
+        src="<mt:Include module="azcom-site-root-path">assets/img/<$mt:Var name="dpm_img1" encode_html="1"$>"
+        alt="<$mt:Var name="dpm_alt1" encode_html="1"$>"
+        loading="lazy"
+        decoding="async"
+      >
+      <mt:If name="dpm_caption1_html" ne="">
+        <figcaption class="c-designated-public-media__caption"><$mt:Var name="dpm_caption1_html"$></figcaption>
+      </mt:If>
+    </figure>
+    <figure class="c-designated-public-media__figure">
+      <img
+        class="c-designated-public-media__img"
+        src="<mt:Include module="azcom-site-root-path">assets/img/<$mt:Var name="dpm_img2" encode_html="1"$>"
+        alt="<$mt:Var name="dpm_alt2" encode_html="1"$>"
+        loading="lazy"
+        decoding="async"
+      >
+      <mt:If name="dpm_caption2_html" ne="">
+        <figcaption class="c-designated-public-media__caption"><$mt:Var name="dpm_caption2_html"$></figcaption>
+      </mt:If>
+    </figure>
+  </div>
+<mt:Else>
+  <div class="c-designated-public-media">
+    <figure class="c-designated-public-media__figure">
+      <img
+        class="c-designated-public-media__img"
+        src="<mt:Include module="azcom-site-root-path">assets/img/bcp-img-005.png"
+        alt="内閣府特命担当大臣の谷公一氏とAZ-COMネットワーク理事長の和佐見勝氏が指定通知書に関する文書を手に記念撮影している様子"
+        loading="lazy"
+        decoding="async"
+      >
+      <figcaption class="c-designated-public-media__caption">
+        （左）内閣府特命担当大臣　　谷　公一<br>
+        （右）AZ-COMネット理事長　和佐見　勝
+      </figcaption>
+    </figure>
+    <figure class="c-designated-public-media__figure">
+      <img
+        class="c-designated-public-media__img"
+        src="<mt:Include module="azcom-site-root-path">assets/img/bcp-img-006.png"
+        alt="指定通知書"
+        loading="lazy"
+        decoding="async"
+      >
+      <figcaption class="c-designated-public-media__caption">指定通知書</figcaption>
+    </figure>
+  </div>
+</mt:If>

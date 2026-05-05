@@ -13,6 +13,7 @@
 
   Expected input variable (set by caller before include):
   - news_query_limit: maximum number of news items to render (for example: 5).
+  - news_query_tag: optional MT Entry tag name to filter (empty = no tag filter).
 
   Output contract:
   - HTML list structure used by .c-news-list styles.
@@ -21,13 +22,16 @@
 
 <mt:SetVar name="news_corp_count" value="0">
 
+<mt:Unless name="news_query_tag">
+  <mt:SetVar name="news_query_tag" value="">
+</mt:Unless>
+
 <mt:Blogs include_blogs="children">
   <mt:If tag="BlogName" eq="News">
 
     <mt:Entries lastn="300" sort_by="$news_query_sort_by" sort_order="$news_query_sort_order">
       <mt:If name="news_corp_count" lt="$news_query_limit">
 
-        <mt:Ignore>── Load CF values via proxy (no-op on local where env_has_cf=0) ──</mt:Ignore>
         <mt:SetVar name="cf_display_target" value="">
         <mt:If name="env_has_cf" eq="1">
           <mt:Include module="azcom-article-cf-entry">
@@ -51,15 +55,28 @@
           <mt:SetVar name="is_corp_target" value="1">
         </mt:If>
 
+        <mt:SetVar name="is_tag_target" value="0">
+        <mt:If name="news_query_tag" eq="">
+          <mt:SetVar name="is_tag_target" value="1">
+        </mt:If>
+        <mt:If name="news_query_tag" ne="">
+          <mt:EntryTags>
+            <mt:If tag="TagName" eq="$news_query_tag">
+              <mt:SetVar name="is_tag_target" value="1">
+            </mt:If>
+          </mt:EntryTags>
+        </mt:If>
+
         <mt:If name="is_newsletter" eq="0">
           <mt:If name="is_corp_target" eq="1">
+            <mt:If name="is_tag_target" eq="1">
 
             <mt:If name="news_corp_count" eq="0"><ul class="c-news-list"></mt:If>
 
             <li class="c-news-list__item">
               <a class="c-news-list__link" href="<mt:Include module="azcom-site-root-path">news/post_<$mt:EntryID encode_html="1"$>/">
                 <span class="c-news-list__body">
-                  <time class="c-news-list__date" datetime="<$mt:EntryDate format_name="iso8601"$>"><$mt:EntryDate format="%Y.%m.%d %H:%M:%S"$></time>
+                  <time class="c-news-list__date" datetime="<$mt:EntryDate format_name="iso8601"$>"><$mt:EntryDate format="%Y.%m.%d"$></time>
                   <span class="c-news-list__text"><$mt:EntryTitle remove_html="1" encode_html="1"$></span>
                 </span>
                 <span class="c-news-list__icon" aria-hidden="true">
@@ -73,6 +90,7 @@
 
             <mt:SetVar name="news_corp_count" op="++">
 
+            </mt:If>
           </mt:If>
         </mt:If>
 

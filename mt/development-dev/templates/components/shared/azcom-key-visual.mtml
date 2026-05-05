@@ -1,0 +1,35 @@
+<mt:Ignore>
+  キービジュアル（共通）
+  - 背景画像はCSSで切り替え（SP/PC）
+  - 右寄せレイアウト
+
+  Required（呼び出し元で必ずセット）:
+    key_visual_bg_image_sp … assets/img からの相対パス（例: fv-sp-img-004.png）
+    key_visual_bg_image_pc … assets/img からの相対パス（例: fv-img-004.png）
+    key_visual_title_text … H1文言
+    key_visual_copy_html … サブコピー（HTML可。例: <br>）
+
+  Optional:
+    key_visual_section_id … section#id（未設定時は key-visual）
+    key_visual_heading_id … h1#id（未設定時は key-visual-heading）
+</mt:Ignore>
+
+<mt:Unless name="key_visual_section_id">
+  <mt:SetVar name="key_visual_section_id" value="key-visual">
+</mt:Unless>
+<mt:Unless name="key_visual_heading_id">
+  <mt:SetVar name="key_visual_heading_id" value="key-visual-heading">
+</mt:Unless>
+
+<section
+  class="c-key-visual"
+  id="<$mt:Var name="key_visual_section_id" encode_html="1"$>"
+  aria-labelledby="<$mt:Var name="key_visual_heading_id" encode_html="1"$>"
+  style="--key-visual-bg-image-sp: url(&quot;<mt:Include module="azcom-site-root-path">assets/img/<$mt:Var name="key_visual_bg_image_sp" encode_html="1"$>&quot;); --key-visual-bg-image-pc: url(&quot;<mt:Include module="azcom-site-root-path">assets/img/<$mt:Var name="key_visual_bg_image_pc" encode_html="1"$>&quot;);">
+  <div class="c-key-visual__inner l-container">
+    <div class="c-key-visual__content">
+      <h1 id="<$mt:Var name="key_visual_heading_id" encode_html="1"$>" class="c-key-visual__title"><$mt:Var name="key_visual_title_text" encode_html="1"$></h1>
+      <p class="c-key-visual__copy"><$mt:Var name="key_visual_copy_html"$></p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,56 @@
+<mt:Ignore>
+  諮問委員会設立（共通 highlight section）
+
+  内部は common component に分割：
+  - azcom-advisory-purpose-item（目的）
+  - azcom-advisory-what-card（何とは）
+</mt:Ignore>
+
+<mt:SetVar name="highlight_section_margin_side" value="left">
+<mt:SetVarBlock name="highlight_section_heading_text">BCP諮問委員会設立</mt:SetVarBlock>
+
+<mt:SetVarBlock name="highlight_section_body">
+  <div class="c-advisory-committee">
+    <div class="c-advisory-committee__purpose-card">
+      <h4 class="c-advisory-committee__purpose-title">BCP諮問委員会設立の目的</h4>
+
+      <div class="c-advisory-committee__purpose-items">
+        <mt:SetVar name="purpose_item_label_num" value="01.">
+        <mt:SetVar name="purpose_item_label_text" value="社内">
+        <mt:SetVarBlock name="purpose_item_title_html">
+          AZ-COM丸和グループ・AZ-COMネットワーク会員のBCP体制の整備
+        </mt:SetVarBlock>
+        <mt:SetVarBlock name="purpose_item_body_html">
+          「災害時に重要業務が中断しない」
+          「企業を守り、従業員の雇用を維持」
+          「お客様や取引先からの信用を向上」
+        </mt:SetVarBlock>
+        <mt:Include module="azcom-advisory-purpose-item">
+
+        <mt:SetVar name="purpose_item_label_num" value="02.">
+        <mt:SetVar name="purpose_item_label_text" value="社外">
+        <mt:SetVarBlock name="purpose_item_title_html">
+          お客様・行政からのニーズに応じた支援活動の内容整備
+        </mt:SetVarBlock>
+        <mt:SetVarBlock name="purpose_item_body_html">
+          お客様支援活動・地域貢献活動の一環（大規模災害時のBCP対策を物流面から広域支援）
+        </mt:SetVarBlock>
+        <mt:Include module="azcom-advisory-purpose-item">
+      </div>
+    </div>
+
+    <mt:SetVar name="what_card_title" value="BCP諮問委員会とは">
+    <mt:SetVar name="what_card_image_src" value="bcp-img-004.png">
+    <mt:SetVar name="what_card_image_alt" value="BCP諮問委員会の会合における参加者の様子">
+    <mt:SetVar name="what_card_media_caption" value="諮問委員会における有識者">
+    <mt:SetVarBlock name="what_card_body_html">
+      災害時に物流支援を全国的で円滑に行うため、BCPを専門とする教授陣を構えた委員会です。防災に関する有識者の方を委員長に据え、年4回の諮問委員会を運営しています。
+    </mt:SetVarBlock>
+    <mt:Include module="azcom-advisory-what-card">
+    <mt:SetVar name="what_card_media_caption" value="">
+    <mt:SetVar name="what_card_image_src" value="">
+    <mt:SetVar name="what_card_image_alt" value="">
+  </div>
+</mt:SetVarBlock>
+
+<mt:Include module="azcom-highlight-section">

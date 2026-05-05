@@ -1,0 +1,23 @@
+<mt:Ignore>
+  共通ハイライトセクション（背景 #FFFDE5）
+  - heading h3
+  - after装飾（下線）
+  - contentはmax-width 800pxで中央
+
+  Required:
+    highlight_section_heading_text … h3文字
+    highlight_section_body … HTML（block）
+
+  Optional:
+    highlight_section_margin_side … 80pxにする側（value="left" or "right"）（margin）
+</mt:Ignore>
+
+<section
+  class="c-highlight-section<mt:If name="highlight_section_margin_side" eq="left"> c-highlight-section--margin-left</mt:If><mt:If name="highlight_section_margin_side" eq="right"> c-highlight-section--margin-right</mt:If>">
+  <h3 class="c-highlight-section__heading"><$mt:Var name="highlight_section_heading_text" encode_html="1"$></h3>
+
+  <div class="c-highlight-section__content">
+    <$mt:Var name="highlight_section_body"$>
+  </div>
+</section>
+

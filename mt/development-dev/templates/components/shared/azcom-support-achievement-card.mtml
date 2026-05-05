@@ -1,0 +1,23 @@
+<mt:Ignore>
+  災害時の支援実績カード（include 直前にセット）
+    sac_eyebrow, sac_title
+    dpm_img1 / dpm_alt1 / dpm_img2 / dpm_alt2 … assets/img（azcom-designated-public-media）
+    sac_body_html … 本文（SetVarBlock）
+</mt:Ignore>
+
+<article class="c-support-achievement-card">
+  <header class="c-support-achievement-card__header">
+    <p class="c-support-achievement-card__eyebrow"><$mt:Var name="sac_eyebrow" encode_html="1"$></p>
+    <h3 class="c-support-achievement-card__title"><$mt:Var name="sac_title" encode_html="1"$></h3>
+  </header>
+  <div class="c-support-achievement-card__body">
+    <div class="c-support-achievement-card__grid">
+      <div class="c-support-achievement-card__media">
+        <mt:Include module="azcom-designated-public-media">
+        <mt:SetVar name="dpm_img1" value="">
+        <mt:SetVar name="dpm_img2" value="">
+      </div>
+      <div class="c-support-achievement-card__prose"><$mt:Var name="sac_body_html"$></div>
+    </div>
+  </div>
+</article>

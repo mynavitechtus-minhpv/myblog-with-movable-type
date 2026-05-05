@@ -1,0 +1,21 @@
+<mt:Ignore>
+  共通 CTA（include/cta-button.mtml と同等・MT モジュール名: azcom-cta-button）
+
+  Required:
+    cta_button_href … URL
+    cta_button_text … ラベル
+
+  Optional:
+    cta_button_disabled … 1 で disabled 表示
+    cta_button_download … ファイル名（空でなければ download 属性）
+    cta_button_target … 例 _blank（空なら出力しない）
+    cta_button_rel … 例 noreferrer（空なら出力しない）
+</mt:Ignore>
+
+<a
+  class="c-cta-button c-cta-button--primary<mt:If name="cta_button_disabled" eq="1"> c-cta-button--disabled</mt:If>"
+  href="<$mt:Var name="cta_button_href" encode_html="1"$>"<mt:If name="cta_button_download" ne=""> download="<$mt:Var name="cta_button_download" encode_html="1"$>"</mt:If><mt:If name="cta_button_target" ne=""> target="<$mt:Var name="cta_button_target" encode_html="1"$>"</mt:If><mt:If name="cta_button_rel" ne=""> rel="<$mt:Var name="cta_button_rel" encode_html="1"$>"</mt:If>
+  <mt:If name="cta_button_disabled" eq="1">aria-disabled="true" tabindex="-1"</mt:If>
+>
+  <span class="c-cta-button__text"><$mt:Var name="cta_button_text" encode_html="1"$></span>
+</a>
