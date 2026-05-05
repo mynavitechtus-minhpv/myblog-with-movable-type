@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <mt:Include module="azcom-env-config">
+
+    <mt:Ignore>── Site root path for API client ──</mt:Ignore>
+    <meta name="site-root" content="<$mt:BlogRelativeURL$>">
+
+    <mt:SetVarBlock name="meta_title">活動報告 | AZ-COMネットワーク</mt:SetVarBlock>
+    <mt:SetVarBlock name="meta_description">AZ-COMネットワークの活動報告一覧です。物流業界の課題解決に向けた取り組みや成果をご紹介します。</mt:SetVarBlock>
+    <mt:SetVarBlock name="meta_canonical_url">https://www.azcom-net.jp/activity-report/</mt:SetVarBlock>
+    <mt:SetVar name="meta_og_image" value="assets/img/og-image_az-com-network.png">
+    <mt:Include module="azcom-head-meta">
+
+    <mt:SetVar name="assets_version" value="20260414-6">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/base.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/layout.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/utility.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/skeleton.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/article-card.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/article-sidebar.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/article-page.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/pagination.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/header.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/footer.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/floating-button.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/go-to-top.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/subpage-hero.css?v=<$mt:Var name="assets_version"$>">
+    <link rel="stylesheet" href="<mt:Include module="azcom-site-root-path">assets/css/breadcrumb.css?v=<$mt:Var name="assets_version"$>">
+</head>
+<body>
+    <mt:Include module="azcom-header">
+
+    <main class="p-news-list" id="main">
+
+        <mt:SetVarBlock name="breadcrumb_lv1_label">トップ</mt:SetVarBlock>
+        <mt:SetVarBlock name="breadcrumb_lv1_url"><mt:Include module="azcom-site-root-path"></mt:SetVarBlock>
+        <mt:SetVarBlock name="breadcrumb_current_label">活動報告一覧</mt:SetVarBlock>
+        <mt:SetVar name="breadcrumb_show_jsonld" value="1">
+        <mt:Include module="azcom-breadcrumb">
+
+        <mt:SetVar name="subpage_hero_bg" value="assets/img/sub-img-004.png">
+        <mt:SetVarBlock name="subpage_hero_title">活動報告</mt:SetVarBlock>
+        <mt:Include module="azcom-subpage-hero">
+
+        <div class="p-article-list l-container">
+
+            <div class="p-article-list__header">
+                <h2 class="p-article-list__header-title">新着の活動報告</h2>
+            </div>
+
+            <div class="p-article-list__body">
+
+                <div class="p-article-list__main">
+                    <mt:Ignore>── Article list (client-side rendering, client-side pagination) ──</mt:Ignore>
+                    <mt:SetVar name="article_list_endpoint" value="api/activity-report-list.json">
+                    <mt:SetVar name="article_list_page_size" value="10">
+                    <mt:SetVarBlock name="article_list_empty_message">活動報告はまだありません。</mt:SetVarBlock>
+                    <mt:SetVar name="article_list_scroll_target" value="#main">
+                    <mt:Include module="azcom-article-list-shell">
+                </div>
+
+                <div class="p-article-list__sidebar">
+                    <mt:Ignore>── Sidebar (client-side rendering) ──</mt:Ignore>
+                    <mt:SetVar name="article_sidebar_endpoint" value="api/activity-report-sidebar.json">
+                    <mt:Include module="azcom-article-sidebar-shell">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <mt:Include module="azcom-footer">
+
+    <mt:SetVar name="go_to_top_href" value="#main">
+    <mt:SetVarBlock name="go_to_top_aria_label">ページ先頭へ戻る</mt:SetVarBlock>
+    <mt:SetVar name="go_to_top_text" value="TOP">
+    <mt:Include module="azcom-go-to-top">
+
+    <script src="<mt:Include module="azcom-site-root-path">assets/js/api-client.js?v=<$mt:Var name="assets_version"$>"></script>
+    <script defer src="<mt:Include module="azcom-site-root-path">assets/js/go-to-top.js?v=<$mt:Var name="assets_version"$>"></script>
+    <script defer src="<mt:Include module="azcom-site-root-path">assets/js/article-list.js?v=<$mt:Var name="assets_version"$>"></script>
+    <script defer src="<mt:Include module="azcom-site-root-path">assets/js/article-sidebar.js?v=<$mt:Var name="assets_version"$>"></script>
+</body>
+</html>

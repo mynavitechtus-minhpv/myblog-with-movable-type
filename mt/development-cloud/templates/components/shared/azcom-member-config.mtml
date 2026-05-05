@@ -1,12 +1,15 @@
 <mt:Ignore>
-  Member-site API configuration. Support and News templates include this
-  module to share blog IDs.
+  Member-site API configuration. All /api/news*.json templates include
+  this module to share scope constants.
 
   Admin setup:
-    news_blog_id       News blog ID on MT Cloud.
-    support_blog_id    Support blog ID on MT Cloud.
+    news_blog_id       ID of the News blog on MT Cloud
+    support_blog_id    ID of the Support blog on MT Cloud
+    activity_blog_id   ID of the Activity-Report blog on MT Cloud
 
-  Replace both IDs below with real MT Admin values.
+  Pagination is owned by the member-site client: MT returns the full
+  member-visible payload and the client slices it.
 </mt:Ignore>
-<mt:SetVar name="news_blog_id" value="2">
-<mt:SetVar name="support_blog_id" value="2">
+<mt:SetVar name="news_blog_id" value="7">
+<mt:SetVar name="support_blog_id" value="7">
+<mt:SetVar name="activity_blog_id" value="7">

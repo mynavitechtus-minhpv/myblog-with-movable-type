@@ -1,0 +1,78 @@
+---
+description: Movable Type template sync targets across local dev, cloud build, and production git repo
+alwaysApply: true
+---
+
+# MT Template Sync Targets
+
+Movable Type template files (`.mtml`) live in **three** locations that MUST be
+kept in sync when edited. Treat any of them as authoritative for editing, but
+mirror the change to the other two before considering the work done.
+
+## Sync Targets
+
+| Path | Role | Notes |
+|---|---|---|
+| `mt/development-dev/templates/**` | Local Docker dev (mounted into MT container) | Used to verify changes locally |
+| `mt/development-cloud/templates/**` | Pre-prod / cloud build mirror | Mirrors `development-dev` |
+| `/Users/macbook_280/projects/azcom-corporate/templates/**` | **Git source of truth** for production | This is the repo that gets pushed to git and applied to MT Cloud production |
+
+The same rule applies to:
+
+- `templates/api/*.mtml`
+- `templates/components/**/*.mtml`
+- `templates/components/shared/*.mtml`
+- `blog/**/*.mtml`
+
+## Sync Procedure
+
+After editing any template file:
+
+1. Apply the change in the path the user is working in (or `development-dev` by default).
+2. Mirror **byte-identical** content into `development-cloud` counterpart.
+3. Mirror **byte-identical** content into `azcom-corporate` counterpart.
+4. Verify with `diff -q` across all three paths; expect empty output.
+
+## Environment-specific Files (DO NOT blanket-mirror)
+
+Some files **intentionally differ** between environments because they hold
+environment-specific config or guards. NEVER overwrite production values with
+local values. Edit each environment's file individually:
+
+- `templates/components/shared/azcom-member-config.mtml`
+ - holds `news_blog_id`, `support_blog_id`, `activity_blog_id`
+ - each environment may use different blog IDs
+ - sync **structure** (variables, comments) but preserve each environment's **values**
+- `templates/components/api/azcom-env-config.mtml`
+ - holds env flags like `env_has_cf` (whether CustomFields are configured)
+ - `mt/development-dev` typically has guards / `env_has_cf=0` for local dev
+ - `mt/development-cloud` and `azcom-corporate` typically have CustomFields enabled
+
+### Pre-existing dev-only guards (api-member-news-*)
+
+The `mt/development-dev` copy of `api-member-news-list / latest / sidebar / ranking`
+includes:
+
+- `<mt:Include module="azcom-env-config">`
+- `<mt:If name="env_has_cf" eq="1">` wrappers around `azcom-article-cf-entry`
+
+These guards exist so local Docker dev (without CustomFields) does not break.
+The `development-cloud` and `azcom-corporate` versions skip the guard and call
+`azcom-article-cf-entry` directly. **Preserve this asymmetry** when editing
+those four files unless the user explicitly asks to unify them.
+
+If you change such a file, explicitly call out in the response that values
+were preserved per environment.
+
+## Asset Sync (CSS / JS) — separate rule
+
+`assets/**` (CSS/JS) sync rules live in `mt-css-implementation.mdc`. This rule
+covers `.mtml` template files only.
+
+## Validation Checklist
+
+- [ ] Edited template path identified (dev / cloud / azcom-corporate).
+- [ ] Mirrored to the other two paths (excluding env-specific files listed above).
+- [ ] `diff -q` shows no differences for non-env-specific files.
+- [ ] Env-specific files preserved their per-environment values.
+- [ ] Response explicitly notes which paths were touched.

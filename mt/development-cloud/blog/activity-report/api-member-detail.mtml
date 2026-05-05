@@ -1,0 +1,48 @@
+<mt:Ignore>
+  Output: activity-report/api/member/activity/post_<EntryID>.json
+  Single-entry member payload with filter-consistent prev/next.
+</mt:Ignore>
+<mt:Include module="azcom-env-config">
+<mt:Include module="azcom-member-config">
+
+<mt:SetVarBlock name="archive_entry_id"><$mt:EntryID$></mt:SetVarBlock>
+
+<mt:SetVar name="detail_found" value="0">
+<mt:SetVar name="detail_next_candidate_json" value="">
+<mt:SetVar name="detail_next_json" value="">
+<mt:SetVar name="detail_prev_json" value="">
+
+<mt:Entries blog_ids="$activity_blog_id" lastn="150" sort_by="authored_on" sort_order="descend">
+  <mt:SetVar name="cf_display_target" value="">
+  <mt:SetVar name="cf_thumbnail_url" value="">
+  <mt:If name="env_has_cf" eq="1"><mt:Include module="azcom-article-cf-entry"></mt:If>
+  <mt:SetVar name="member_include_newsletter" value="0">
+  <mt:Include module="azcom-article-query-member">
+  <mt:If name="is_member_visible" eq="1">
+    <mt:SetVarBlock name="loop_entry_id"><$mt:EntryID$></mt:SetVarBlock>
+    <mt:If name="detail_found" eq="0">
+      <mt:If name="loop_entry_id" eq="$archive_entry_id">
+        <mt:SetVar name="detail_found" value="1">
+        <mt:SetVar name="detail_next_json" value="$detail_next_candidate_json">
+      <mt:Else>
+        <mt:SetVar name="item_include_body" value="0">
+        <mt:SetVarBlock name="detail_next_candidate_json"><mt:Include module="azcom-json-article-item"></mt:SetVarBlock>
+      </mt:If>
+    <mt:Else>
+      <mt:If name="detail_prev_json" eq="">
+        <mt:SetVar name="item_include_body" value="0">
+        <mt:SetVarBlock name="detail_prev_json"><mt:Include module="azcom-json-article-item"></mt:SetVarBlock>
+      </mt:If>
+    </mt:If>
+  </mt:If>
+</mt:Entries>
+
+<mt:SetVar name="cf_thumbnail_url" value="">
+<mt:SetVar name="cf_meta_description" value="">
+<mt:If name="env_has_cf" eq="1"><mt:Include module="azcom-article-cf-entry"></mt:If>
+<mt:SetVar name="item_include_body" value="1">
+{
+  <mt:Include module="azcom-json-article-item">,
+  "prev_post": <mt:If name="detail_prev_json">{<$mt:Var name="detail_prev_json"$>}<mt:Else>null</mt:If>,
+  "next_post": <mt:If name="detail_next_json">{<$mt:Var name="detail_next_json"$>}<mt:Else>null</mt:If>
+}

@@ -105,7 +105,11 @@ Xem `DEVELOPMENT.md` để biết hướng dẫn chi tiết.
 
 ## MTML Integration and Admin Escalation
 
-- For template work, keep tracked template files in `development-dev` structure.
+- For template work, keep tracked template files synced across **three**
+ locations: `mt/development-dev`, `mt/development-cloud`, and
+ `/Users/macbook_280/projects/azcom-corporate` (production git repo).
+ See `.cursor/rules/mt-template-sync.mdc` for full sync procedure and
+ env-specific exceptions (e.g. `azcom-member-config.mtml`).
 - Ensure template asset links follow project Docker path mapping.
 - When adding dynamic blocks, align with MT data assumptions:
   - article cards: `title`, `category.name`, `thumbnail`, `excerpt`, `published_at`
