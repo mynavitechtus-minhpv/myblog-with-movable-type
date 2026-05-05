@@ -1,0 +1,34 @@
+/* greeting.css — page-specific overrides */
+:root {
+  --greeting-philosophy-container-width: 100%;
+  --greeting-philosophy-container-margin-bottom-sp: 72px;
+  --greeting-philosophy-container-margin-bottom-pc: 40px;
+  --greeting-philosophy-media-wrap-max-width: 660px;
+}
+
+.p-greeting .c-philosophy-video__stage {
+  padding-bottom: 0;
+}
+
+.p-greeting .c-philosophy-video__container {
+  width: var(--greeting-philosophy-container-width);
+  margin-bottom: var(--greeting-philosophy-container-margin-bottom-sp);
+}
+
+.p-greeting .c-philosophy-video__media-wrap {
+  margin: 0 auto;
+  max-width: var(--greeting-philosophy-media-wrap-max-width);
+}
+
+@media (max-width: 767px) {
+  .p-greeting .c-philosophy-video__container {
+    max-width: unset;
+    margin-inline: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .p-greeting .c-philosophy-video__container {
+    margin-bottom: var(--greeting-philosophy-container-margin-bottom-pc);
+  }
+}

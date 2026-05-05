@@ -1,4 +1,7 @@
-<section class="c-philosophy-video" id="philosophy-video" aria-labelledby="philosophy-video-heading">
+<mt:Unless name="philosophy_video_id">
+  <mt:SetVar name="philosophy_video_id" value="philosophy-video">
+</mt:Unless>
+<section class="c-philosophy-video" id="<$mt:Var name="philosophy_video_id" encode_html="1"$>" aria-labelledby="philosophy-video-heading">
   <div class="l-container c-philosophy-video__container">
     <header class="c-philosophy-video__header">
       <h2 id="philosophy-video-heading" class="c-philosophy-video__title">AZ-COMネットの理念</h2>
@@ -7,36 +10,50 @@
     <div class="c-philosophy-video__stage">
       <div class="c-philosophy-video__media-wrap">
         <div class="c-philosophy-video__media">
+          <mt:Unless name="philosophy_video_iframe_src">
+            <mt:SetVar name="philosophy_video_iframe_src" value="https://www.youtube.com/embed/PFIi6CK6ga8?si=pRR6J2cogxdB--BV">
+          </mt:Unless>
+          <mt:Unless name="philosophy_video_iframe_title">
+            <mt:SetVar name="philosophy_video_iframe_title" value="AZ-COMネットの理念">
+          </mt:Unless>
+          <mt:Unless name="philosophy_video_iframe_allow">
+            <mt:SetVar name="philosophy_video_iframe_allow" value="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+          </mt:Unless>
+          <mt:Unless name="philosophy_video_iframe_loading">
+            <mt:SetVar name="philosophy_video_iframe_loading" value="lazy">
+          </mt:Unless>
           <iframe
             class="c-philosophy-video__iframe"
-            src="https://www.youtube.com/embed/PFIi6CK6ga8?si=pRR6J2cogxdB--BV"
-            title="AZ-COMネットの理念"
+            src="<$mt:Var name="philosophy_video_iframe_src" encode_html="1"$>"
+            title="<$mt:Var name="philosophy_video_iframe_title" encode_html="1"$>"
             frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="<$mt:Var name="philosophy_video_iframe_allow" encode_html="1"$>"
             allowfullscreen
-            loading="lazy">
+            loading="<$mt:Var name="philosophy_video_iframe_loading" encode_html="1"$>">
           </iframe>
         </div>
       </div>
 
-      <div class="c-philosophy-video__wave" aria-hidden="true">
-        <svg class="c-philosophy-video__wave-svg" width="1440" height="384" viewBox="0 500 1440 384" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M-466.438 558.211C-440.815 582.625 -406.701 604.676 -365.267 624.189C-131.992 734.079 332.426 763.715 808.393 685.144C1412.33 585.442 1806.16 349.279 1688.02 157.649C1652.09 99.3608 1572.92 51.9073 1463.15 16.8994C1472.9 14.0043 1507.52 1.66801 1516.15 -5.82087e-05C1766.26 83.6164 1933 202.118 1958.26 336.532C2009.6 609.517 1458 844.761 726.246 861.953C175.065 874.909 -321.091 760.459 -554.355 586.527C-529.017 579.941 -467.814 558.343 -466.438 558.211Z" fill="var(--color-accent)"/>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M-490.119 579.27C-464.495 603.684 -430.381 625.736 -388.947 645.248C-155.672 755.138 308.745 784.774 784.713 706.203C1388.65 606.501 1782.48 370.338 1664.34 178.708C1628.41 120.42 1549.24 72.9664 1439.47 37.9585C1449.22 35.0634 1483.84 22.7271 1492.47 21.059C1742.58 104.675 1909.32 223.177 1934.58 357.591C1985.92 630.576 1434.32 865.82 702.565 883.012C151.384 895.968 -344.771 781.518 -578.036 607.586C-552.697 601 -491.494 579.402 -490.119 579.27Z" fill="url(#philosophy-wave-gradient)"/>
-          <defs>
-            <linearGradient id="philosophy-wave-gradient" x1="1807.11" y1="320.272" x2="-795.202" y2="1105.23" gradientUnits="userSpaceOnUse">
-              <stop stop-color="var(--color-primary-dark)"/>
-              <stop offset="1" stop-color="var(--color-primary)"/>
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
+      <mt:Unless name="philosophy_video_show_message" eq="0">
+        <div class="c-philosophy-video__wave" aria-hidden="true">
+          <svg class="c-philosophy-video__wave-svg" width="1440" height="384" viewBox="0 500 1440 384" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M-466.438 558.211C-440.815 582.625 -406.701 604.676 -365.267 624.189C-131.992 734.079 332.426 763.715 808.393 685.144C1412.33 585.442 1806.16 349.279 1688.02 157.649C1652.09 99.3608 1572.92 51.9073 1463.15 16.8994C1472.9 14.0043 1507.52 1.66801 1516.15 -5.82087e-05C1766.26 83.6164 1933 202.118 1958.26 336.532C2009.6 609.517 1458 844.761 726.246 861.953C175.065 874.909 -321.091 760.459 -554.355 586.527C-529.017 579.941 -467.814 558.343 -466.438 558.211Z" fill="var(--color-accent)"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M-490.119 579.27C-464.495 603.684 -430.381 625.736 -388.947 645.248C-155.672 755.138 308.745 784.774 784.713 706.203C1388.65 606.501 1782.48 370.338 1664.34 178.708C1628.41 120.42 1549.24 72.9664 1439.47 37.9585C1449.22 35.0634 1483.84 22.7271 1492.47 21.059C1742.58 104.675 1909.32 223.177 1934.58 357.591C1985.92 630.576 1434.32 865.82 702.565 883.012C151.384 895.968 -344.771 781.518 -578.036 607.586C-552.697 601 -491.494 579.402 -490.119 579.27Z" fill="url(#philosophy-wave-gradient)"/>
+            <defs>
+              <linearGradient id="philosophy-wave-gradient" x1="1807.11" y1="320.272" x2="-795.202" y2="1105.23" gradientUnits="userSpaceOnUse">
+                <stop stop-color="var(--color-primary-dark)"/>
+                <stop offset="1" stop-color="var(--color-primary)"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
 
-      <div class="c-philosophy-video__quote-wrap">
-        <p class="c-philosophy-video__ruby">いっとうしょうぐう　　ばんとうしょうこく</p>
-        <p class="c-philosophy-video__quote">一燈照隅　万燈照国</p>
-        <p class="c-philosophy-video__caption">＝"一隅を照らす"人が増えていき、万の灯火となれば、国全体を照らすことができる</p>
-      </div>
+        <div class="c-philosophy-video__quote-wrap">
+          <p class="c-philosophy-video__ruby">いっとうしょうぐう　　ばんとうしょうこく</p>
+          <p class="c-philosophy-video__quote">一燈照隅　万燈照国</p>
+          <p class="c-philosophy-video__caption">＝"一隅を照らす"人が増えていき、万の灯火となれば、国全体を照らすことができる</p>
+        </div>
+      </mt:Unless>
     </div>
   </div>
 </section>

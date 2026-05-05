@@ -1,0 +1,79 @@
+/* chairman-greeting-message.css — chairman greeting text block */
+:root {
+  --chairman-message-body-max-width: 800px;
+}
+
+.c-chairman-message {
+  padding-bottom: var(--space-2xl);
+  background-color: var(--color-white);
+}
+
+.c-chairman-message__body {
+  max-width: var(--chairman-message-body-max-width);
+  margin: 0 auto;
+}
+
+.c-chairman-message__paragraph {
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--space-lg);
+  letter-spacing: 0;
+  text-align: justify;
+  vertical-align: middle;
+  color: var(--color-text-primary);
+}
+
+.c-chairman-message__paragraph + .c-chairman-message__paragraph {
+  margin-top: var(--space-lg);
+}
+
+.c-chairman-message__paragraph strong,
+.c-chairman-message__paragraph b {
+  font-family: var(--font-main);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--space-lg);
+  letter-spacing: 0;
+  text-align: justify;
+  vertical-align: middle;
+}
+
+.c-chairman-message__signature {
+  margin: var(--space-lg) 0 0;
+  font-family: var(--font-main);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--space-lg);
+  letter-spacing: 0;
+  text-align: right;
+  vertical-align: middle;
+  color: var(--color-text-primary);
+}
+
+@media (min-width: 768px) {
+  .c-chairman-message {
+    padding-bottom: var(--space-6xl);
+  }
+
+  .c-chairman-message__paragraph + .c-chairman-message__paragraph {
+    margin-top: var(--space-xl);
+  }
+
+  .c-chairman-message__paragraph {
+    line-height: var(--space-xl);
+  }
+
+  .c-chairman-message__paragraph strong,
+  .c-chairman-message__paragraph b {
+    line-height: var(--space-xl);
+  }
+
+  .c-chairman-message__signature {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--space-lg);
+    margin-top: var(--space-4xl);
+  }
+}

@@ -1,0 +1,32 @@
+/* chairman-greeting.css — chairman greeting section */
+.c-chairman-greeting {
+  padding-top: var(--space-lg);
+  padding-bottom: var(--space-2xl);
+  background-color: var(--color-white);
+}
+
+.c-chairman-greeting__figure {
+  margin: var(--space-2xl) 0 0;
+}
+
+.c-chairman-greeting__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .c-chairman-greeting {
+    padding-top: var(--space-5xl);
+    padding-bottom: calc(var(--space-3xl) + 5px);
+  }
+}
+
+@media (max-width: 767px) {
+  .c-chairman-greeting__figure {
+    width: calc(100% + (var(--layout-padding-inline-mobile) * 2));
+    margin-right: calc(var(--layout-padding-inline-mobile) * -1);
+    margin-left: calc(var(--layout-padding-inline-mobile) * -1);
+    margin-top: var(--space-lg);
+  }
+}

@@ -1,0 +1,27 @@
+<mt:Ignore>
+  Chairman greeting section
+  - section id="greeting"
+  - h2 title
+  - responsive image (pc/sp)
+</mt:Ignore>
+
+<section class="c-chairman-greeting" id="greeting" aria-label="理事長あいさつ">
+  <div class="l-container">
+    <mt:SetVarBlock name="section_title_text">理事長あいさつ</mt:SetVarBlock>
+    <mt:Include module="azcom-section-title">
+
+    <figure class="c-chairman-greeting__figure">
+      <picture>
+        <source media="(max-width: 767px)" srcset="<mt:Include module="azcom-site-root-path">assets/img/chairman-sp-img-001.png">
+        <img
+          class="c-chairman-greeting__image"
+          src="<mt:Include module="azcom-site-root-path">assets/img/chairman-img-001.png"
+          alt="理事長あいさつ"
+          width="1024"
+          height="442"
+          loading="lazy"
+          decoding="async">
+      </picture>
+    </figure>
+  </div>
+</section>
