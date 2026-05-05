@@ -18,6 +18,14 @@
  *        data-filter-category-label="プレスリリース"  (optional)>
  *   </div>
  *
+ * URL Query Params:
+ *   ?tag=TagName  — filter by tag (case-insensitive). Used because MT lacks
+ *                   native Tag Archive. Sidebar tag links use this format.
+ *   ?page=N       — pagination
+ *
+ * Note: Category filtering uses native MT Category Archive (category.mtml),
+ * not URL params. Only Tag uses ?tag= workaround.
+ *
  * Filters are applied AFTER fetch, BEFORE pagination slicing. Matching is
  * case-insensitive. Multiple filters are combined with AND.
  *
@@ -169,10 +177,15 @@
   }
 
   function buildPagination(state) {
-    const { page, totalPages } = state;
+    const { page, totalPages, filterTag } = state;
     if (totalPages <= 1) return '';
 
-    const pageUrl = (p) => `?page=${p}`;
+    const pageUrl = (p) => {
+      const params = new URLSearchParams();
+      if (filterTag) params.set('tag', filterTag);
+      params.set('page', p);
+      return '?' + params.toString();
+    };
     const items = [];
     const hasPrev = page > 1;
     const hasNext = page < totalPages;
@@ -257,7 +270,12 @@
       if (!this.pageSize || this.pageSize < 1) this.pageSize = DEFAULT_PAGE_SIZE;
       this.scrollTarget = container.dataset.scrollTarget || '#main';
       this.emptyMessage = container.dataset.emptyMessage || '';
-      this.filterTag = (container.dataset.filterTag || '').trim();
+
+      // URL ?tag= param for client-side tag filtering (MT lacks native Tag Archive)
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlTag = (urlParams.get('tag') || '').trim();
+      this.filterTag = urlTag || (container.dataset.filterTag || '').trim();
+      // Category uses native MT Archive (category.mtml), not URL params
       this.filterCategoryLabel = (container.dataset.filterCategoryLabel || '').trim();
 
       this.apiClient = new MTApiClient();
@@ -270,6 +288,23 @@
       this.onGoToFirstPage = this.onGoToFirstPage.bind(this);
 
       this.currentPage = this._readPageFromUrl();
+
+      // Update page header if filtering via URL
+      this._updatePageHeader();
+    }
+
+    _updatePageHeader() {
+      // Only update header for URL-based tag filtering
+      // Category has its own page (category.mtml) with proper header
+      if (!this.filterTag) return;
+
+      const urlParams = new URLSearchParams(window.location.search);
+      if (!urlParams.has('tag')) return;
+
+      const headerEl = document.querySelector('.p-article-list__header-title');
+      if (headerEl) {
+        headerEl.textContent = `【${this.filterTag}】に関連する記事`;
+      }
     }
 
     _readPageFromUrl() {
@@ -370,7 +405,11 @@
       const slice = items.slice(start, start + this.pageSize);
 
       this.container.innerHTML = slice.map(buildArticleCard).join('');
-      this.pagination.innerHTML = buildPagination({ page: safePage, totalPages });
+      this.pagination.innerHTML = buildPagination({
+        page: safePage,
+        totalPages,
+        filterTag: this.filterTag,
+      });
 
       const visible = ['container'];
       if (totalPages > 1) visible.push('pagination');
@@ -419,8 +458,16 @@
 
       const url = new URL(link.href, window.location.origin);
       const page = parseInt(url.searchParams.get('page') || '1', 10);
-      window.history.pushState({ page }, '', `?page=${page}`);
+      const newUrl = this._buildUrl(page);
+      window.history.pushState({ page }, '', newUrl);
       this.goToPage(page);
+    }
+
+    _buildUrl(page) {
+      const params = new URLSearchParams();
+      if (this.filterTag) params.set('tag', this.filterTag);
+      params.set('page', page);
+      return '?' + params.toString();
     }
 
     onPopState(event) {
@@ -437,7 +484,8 @@
     }
 
     onGoToFirstPage() {
-      window.history.pushState({ page: 1 }, '', '?page=1');
+      const newUrl = this._buildUrl(1);
+      window.history.pushState({ page: 1 }, '', newUrl);
       this.goToPage(1);
     }
 

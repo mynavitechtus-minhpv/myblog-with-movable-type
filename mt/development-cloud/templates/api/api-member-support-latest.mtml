@@ -1,8 +1,6 @@
 <mt:Ignore>
-  Output: news/api/member/news-latest.json
-  Five most recent member-visible entries. Scans up to 50 entries because
-  member filtering discards ineligible ones; 50 is a comfortable ceiling
-  even when many entries are corporate-only. Shape: {items: [...]}.
+  Output: support/api/member/support-latest.json
+  Five most recent member-visible Support entries. Shape: {items: [...]}.
 </mt:Ignore>
 <mt:Include module="azcom-member-config">
 
@@ -10,9 +8,10 @@
 <mt:SetVar name="item_include_body" value="0">
 {
   "items": [
-<mt:Entries blog_ids="$news_blog_id" lastn="50" sort_by="authored_on" sort_order="descend">
+<mt:Entries blog_ids="$support_blog_id" lastn="50" sort_by="authored_on" sort_order="descend">
   <mt:If name="latest_render_count" lt="5">
     <mt:Include module="azcom-article-cf-entry">
+    <mt:SetVar name="member_include_newsletter" value="0">
     <mt:Include module="azcom-article-query-member">
     <mt:If name="is_member_visible" eq="1">
       <mt:Unless name="latest_render_count" eq="0">,

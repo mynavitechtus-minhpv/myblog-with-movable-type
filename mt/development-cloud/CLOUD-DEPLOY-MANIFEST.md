@@ -191,16 +191,17 @@ development-cloud/templates/api/api-news-tag.mtml
 ## G. Member-site JSON API (Phase 2)
 
 > Bộ API mới phục vụ **member site** (AWS). Không động tới API corporate hiện có.
-> **Tất cả 5 endpoint đều sinh ra trong News blog** để base URL thống nhất `/<news-blog-root>/api/...`.
-> Cấu trúc endpoint (xem chi tiết ở `API-MEMBER-NEWS.md`):
+> **5 endpoint member** publish trong **News blog**; URL public (gốc blog News + đường dẫn sau):
 >
 > ```
-> /news/api/news.json                 — list
-> /news/api/news/post_<id>.json       — detail
-> /news/api/news-latest.json          — 5 mới nhất
-> /news/api/news-ranking.json         — top 5 ranking
-> /news/api/news-sidebar.json         — ranking + categories + tags
+> news/api/member/news.json
+> news/api/member/news/post_<id>.json
+> news/api/member/news-latest.json
+> news/api/member/news-ranking.json
+> news/api/member/news-sidebar.json
 > ```
+>
+> Chi tiết payload: `API-MEMBER-NEWS.md`. Khi cấu hình MT Admin, Output File / archive mapping dùng path blog-relative `api/member/...` để khớp các URL trên.
 >
 > Corporate-site API (`/news/api/news-list.json`, `/news/api/sidebar.json`) tên khác → không đụng.
 
@@ -224,20 +225,20 @@ Logic filter: hiển thị cho member khi `display_target ∈ {member, both}` **
 
 ### G3. Index Templates cấp **Blog: News** — 4 file JSON member
 
-> Các template này đặt trong **News blog** (không phải Website) để URL tương đối `api/...` publish ra dưới root của News blog → thống nhất với detail.
+> Các template này đặt trong **News blog** (không phải Website).
 
-| # | Template name | Source | Output path (relative to News blog root) | Vai trò |
+| # | Template name | Source | Public path | Vai trò |
 |---|---|---|---|---|
-| W1 | `API Member: News List` | `development-cloud/templates/api/api-member-news-list.mtml` | `api/news.json` | Toàn bộ entries member-visible + `meta.total`. Client tự paginate (slice mảng). |
-| W2 | `API Member: News Ranking` | `development-cloud/templates/api/api-member-news-ranking.mtml` | `api/news-ranking.json` | Top-5 ranking (include newsletter). |
-| W3 | `API Member: News Latest` | `development-cloud/templates/api/api-member-news-latest.mtml` | `api/news-latest.json` | 5 bài mới nhất (fixed). |
-| W4 | `API Member: News Sidebar` | `development-cloud/templates/api/api-member-news-sidebar.mtml` | `api/news-sidebar.json` | `{ranking, categories, tags}` (categories giữ newsletter). |
+| W1 | `API Member: News List` | `development-cloud/templates/api/api-member-news-list.mtml` | `news/api/member/news.json` | `totalResults` + `items[]` member-visible; client slice. |
+| W2 | `API Member: News Ranking` | `development-cloud/templates/api/api-member-news-ranking.mtml` | `news/api/member/news-ranking.json` | Top-5 ranking (include newsletter). |
+| W3 | `API Member: News Latest` | `development-cloud/templates/api/api-member-news-latest.mtml` | `news/api/member/news-latest.json` | 5 bài mới nhất (fixed). |
+| W4 | `API Member: News Sidebar` | `development-cloud/templates/api/api-member-news-sidebar.mtml` | `news/api/member/news-sidebar.json` | `{ranking, categories, tags}`. |
 
 ### G4. Archive Template cấp **Blog: News** — 1 file JSON detail
 
-| # | Template name | Source | Archive type | Custom mapping | Vai trò |
+| # | Template name | Source | Archive type | Public path | Vai trò |
 |---|---|---|---|---|---|
-| B1 | `API Member: News Detail` | `development-cloud/blog/news/api-member-detail.mtml` | **Entry** | `api/news/post_<$mt:EntryID$>.json` | 1 file / entry. Kèm `body_html` + `prev_post` / `next_post` đã filter theo member. |
+| B1 | `API Member: News Detail` | `development-cloud/blog/news/api-member-detail.mtml` | **Entry** | `news/api/member/news/post_<id>.json` | 1 file / entry: `body`, `prev_post`, `next_post` (member filter). |
 
 > **Archive path token**: không dùng `%e` (padded 000123) hay `%i` (basename, fallback về `index.html`) → **dùng MT tag trực tiếp** `post_<$mt:EntryID$>.json` để có filename `post_123.json` đúng như slug trong JSON.
 > MT cho phép **nhiều Archive Template cùng Entry archive type**; template này chạy **song song** với HTML detail (`post_<id>/index.html`), không xung đột.
@@ -246,51 +247,45 @@ Logic filter: hiển thị cho member khi `display_target ∈ {member, both}` **
 
 1. **Điền `news_blog_id`** trong module `azcom-member-config`: vào MT Admin → News blog → General → copy Blog ID, paste vào module.
 2. **Tạo 4 module mới** (M1–M4) + cập nhật 3 module sửa (M5–M7) ở cấp **Website**.
-3. **Tạo 4 Index Templates** (W1–W4) ở cấp **Blog: News**, set Output File đúng như bảng G3 (`api/news.json`, `api/news-ranking.json`, `api/news-latest.json`, `api/news-sidebar.json`).
-4. **Tạo 1 Archive Template** (B1) ở cấp **Blog: News**:
-   - Archive Type: `Entry`.
-   - Custom mapping: thêm new mapping với file template `api/news/post_<$mt:EntryID$>.json`.
+3. **Tạo 4 Index Templates** (W1–W4) ở cấp **Blog: News**; Output File (blog-relative): `api/member/news.json`, `api/member/news-ranking.json`, `api/member/news-latest.json`, `api/member/news-sidebar.json` → public như cột Public path ở G3.
+4. **Tạo 1 Archive Template** (B1) ở cấp **Blog: News**, Archive Type `Entry`, custom mapping blog-relative: `api/member/news/post_<$mt:EntryID$>.json` → public `news/api/member/news/post_<id>.json`.
 5. **Rebuild**:
-   - News blog → "Rebuild → Indexes only" để sinh 4 file JSON ở `<news>/api/`.
+   - News blog → "Rebuild → Indexes only" để sinh 4 file JSON (public dưới `news/api/member/`).
    - News blog → "Rebuild → All" để sinh thêm detail JSON cho từng entry.
 6. **Verify** (xem phần G6).
 
 ### G6. Verification checklist
 
 ```
-# List payload
-curl <news>/api/news.json | jq '.meta, .articles[0]'
-# → meta.total = số entries member-visible. articles[0] có shape spec 10.
+# List (member)
+curl <news>/api/member/news.json | jq '.totalResults, .items[0]'
+# → totalResults = số entries member-visible; items[0] là object list item.
 
-# Filter check
-curl <news>/api/news.json | jq '[.articles[] | select(.category.slug == "azcom-newsletter")] | length'
-# → > 0 (newsletter phải hiển thị cho member)
-
-curl <news>/api/news.json | jq '[.articles[] | {id,display:.__corp_only}] | length'
-# → các entry display_target=corporate KHÔNG xuất hiện
+# Filter sanity (member list không rỗng khi có bài member-visible)
+curl <news>/api/member/news.json | jq '.items | length'
 
 # Ranking
-curl <news>/api/news-ranking.json | jq '.ranking | length'
+curl <news>/api/member/news-ranking.json | jq '.ranking | length'
 # → 1..5
 
 # Latest
-curl <news>/api/news-latest.json | jq '.latest | length'
-# → 5 (nếu đủ entries member-visible)
+curl <news>/api/member/news-latest.json | jq '.items | length'
+# → ≤ 5
 
 # Sidebar
-curl <news>/api/news-sidebar.json | jq 'keys'
+curl <news>/api/member/news-sidebar.json | jq 'keys'
 # → ["categories","ranking","tags"]
 
 # Detail + prev/next
-curl <news>/api/news/post_123.json | jq '.prev_post, .next_post'
-# → null hoặc object với shape spec 10 (key/name cho category/tags)
+curl <news>/api/member/news/post_123.json | jq '.prev_post, .next_post'
+# → null hoặc object cùng shape list item (không có body)
 ```
 
 ### G7. Rủi ro đã biết
 
-- **Pagination client-side**: MT static không hiểu `?page=N`. Member team fetch 1 lần `news.json` rồi tự slice mảng `articles` theo page-size do client quyết định (MT không enforce).
+- **Pagination client-side**: MT static không hiểu `?page=N`. Member team fetch 1 lần `/news/api/member/news.json` rồi tự slice mảng `items` theo page-size do client quyết định (MT không enforce).
 - **Scale detail**: mỗi entry = 1 file JSON khi rebuild. 10k entries → 10k files (OK với static hosting, nhưng rebuild time tăng).
-- **Entry cap 1000**: template list scan tối đa 1000 entries, phù hợp giai đoạn hiện tại; nếu vượt cần nâng.
+- **Entry cap (lastn)**: template list đang `lastn="150"`; nếu số bài vượt ngưỡng filter cần tăng trong MTML.
 
 ---
 

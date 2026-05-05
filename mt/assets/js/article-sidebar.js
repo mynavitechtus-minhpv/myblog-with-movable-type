@@ -5,7 +5,7 @@
  * container rendered by azcom-article-sidebar-shell.mtml:
  *
  *   <div data-article-sidebar
- *        data-sidebar-endpoint="api/sidebar.json">
+ *        data-sidebar-endpoint="api/news-sidebar.json">
  *     ... skeleton placeholder ...
  *   </div>
  *

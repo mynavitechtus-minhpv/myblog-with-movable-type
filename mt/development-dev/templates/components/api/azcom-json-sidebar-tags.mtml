@@ -2,6 +2,8 @@
   Tags used by published entries, sorted by count desc (MT:Tags default).
   Outputs JSON array items only — caller wraps with brackets.
 
+  URL uses ?tag=TagName for client-side filtering (MT lacks native Tag archive).
+
   Optional caller vars:
     tags_blog_ids   comma-separated blog IDs. Required when the template
                     runs at Website/System scope; leave unset at Blog scope.
@@ -13,7 +15,7 @@
     {
       "id": <$mt:TagID$>,
       "name": "<$mt:TagName encode_json="1"$>",
-      "url": "<$mt:BlogRelativeURL$>tags_<$mt:TagID$>/",
+      "url": "<$mt:BlogRelativeURL$>?tag=<$mt:TagName encode_url="1"$>",
       "count": <$mt:TagCount$>
     }
     <mt:SetVar name="tag_count" op="++">
@@ -24,7 +26,7 @@
     {
       "id": <$mt:TagID$>,
       "name": "<$mt:TagName encode_json="1"$>",
-      "url": "<$mt:BlogRelativeURL$>tags_<$mt:TagID$>/",
+      "url": "<$mt:BlogRelativeURL$>?tag=<$mt:TagName encode_url="1"$>",
       "count": <$mt:TagCount$>
     }
     <mt:SetVar name="tag_count" op="++">

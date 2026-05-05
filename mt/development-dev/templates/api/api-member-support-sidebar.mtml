@@ -1,0 +1,25 @@
+<mt:Ignore>
+  Output: support/api/member/support-sidebar.json
+  Combines ranking, categories and tags for member Support sidebar.
+</mt:Ignore>
+<mt:Include module="azcom-member-config">
+<mt:SetVar name="sidebar_section" value="support">
+<mt:SetVar name="sidebar_has_display_target" value="1">
+<mt:SetVar name="sidebar_audience" value="member">
+<mt:SetVar name="ranking_blog_ids" value="$support_blog_id">
+<mt:SetVar name="categories_blog_ids" value="$support_blog_id">
+<mt:SetVar name="tags_blog_ids" value="$support_blog_id">
+<mt:SetVar name="include_newsletter" value="0">
+<mt:SetVar name="article_query_lastn" value="300">
+<mt:SetVar name="ranking_include_newsletter" value="0">
+{
+  "ranking": [
+<mt:Include module="azcom-json-sidebar-ranking">
+  ],
+  "categories": [
+<mt:Include module="azcom-json-sidebar-categories">
+  ],
+  "tags": [
+<mt:Include module="azcom-json-sidebar-tags">
+  ]
+}
