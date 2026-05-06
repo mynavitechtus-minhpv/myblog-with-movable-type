@@ -1,0 +1,129 @@
+/* company-profile.css — Component: c-company-profile */
+
+:root {
+  --company-profile-section-padding-top-sp: var(--space-3xl);
+  --company-profile-section-padding-bottom-sp: var(--space-3xl);
+  --company-profile-section-padding-top-pc: var(--space-6xl);
+  --company-profile-section-padding-bottom-pc: var(--space-5xl);
+
+  --company-profile-header-margin-bottom-sp: var(--space-2xl);
+  --company-profile-header-margin-bottom-pc: var(--space-3xl);
+
+  --company-profile-table-max-width: 980px;
+  --company-profile-term-width-pc: 176px;
+
+  --company-profile-row-border-width: 1px;
+  --company-profile-row-border-color: var(--color-primary-light-2);
+  --company-profile-term-bg: var(--color-primary-light-2);
+
+  --company-profile-term-padding-sp: var(--space-md) var(--space-md);
+  --company-profile-desc-padding-sp: var(--space-md) var(--space-md) var(--space-lg);
+  --company-profile-term-padding-pc: var(--space-xl) var(--space-md);
+  --company-profile-desc-padding-pc: var(--space-xl) var(--space-lg);
+
+  --company-profile-font-size: var(--font-size-lg);
+  --company-profile-line-height: var(--space-lg);
+  --company-profile-list-indent: var(--space-lg);
+  --company-profile-list-gap: var(--space-sm);
+  --company-profile-stat-gap: var(--space-sm);
+}
+
+.c-company-profile {
+  padding-top: var(--company-profile-section-padding-top-sp);
+  padding-bottom: var(--company-profile-section-padding-bottom-sp);
+  background-color: var(--color-white);
+}
+
+.c-company-profile__header {
+  margin-bottom: var(--company-profile-header-margin-bottom-sp);
+}
+
+.c-company-profile__table {
+  margin: 0 auto;
+  max-width: var(--company-profile-table-max-width);
+}
+
+.c-company-profile__row {
+  border-top: var(--company-profile-row-border-width) solid
+    var(--company-profile-row-border-color);
+}
+
+.c-company-profile__row:last-child {
+  border-bottom: var(--company-profile-row-border-width) solid
+    var(--company-profile-row-border-color);
+}
+
+.c-company-profile__term {
+  margin: 0;
+  padding: var(--company-profile-term-padding-sp);
+  font-family: var(--font-main);
+  font-size: var(--company-profile-font-size);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--company-profile-line-height);
+  color: var(--color-text-primary);
+  background-color: var(--company-profile-term-bg);
+}
+
+.c-company-profile__desc {
+  margin: 0;
+  padding: var(--company-profile-desc-padding-sp);
+  font-family: var(--font-main);
+  font-size: var(--company-profile-font-size);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--company-profile-line-height);
+  color: var(--color-text-primary);
+  text-align: left;
+}
+
+.c-company-profile__list {
+  margin: 0;
+  padding-left: var(--company-profile-list-indent);
+}
+
+.c-company-profile__list li + li {
+  margin-top: var(--company-profile-list-gap);
+}
+
+.c-company-profile__stat {
+  margin: 0;
+}
+
+.c-company-profile__stat + .c-company-profile__stat {
+  margin-top: var(--company-profile-stat-gap);
+}
+
+.c-company-profile__note {
+  margin: var(--company-profile-stat-gap) 0 0;
+}
+
+@media (min-width: 768px) {
+  .c-company-profile {
+    padding-top: var(--company-profile-section-padding-top-pc);
+    padding-bottom: var(--company-profile-section-padding-bottom-pc);
+  }
+
+  .c-company-profile__header {
+    margin-bottom: var(--company-profile-header-margin-bottom-pc);
+  }
+
+  .c-company-profile__row {
+    display: grid;
+    grid-template-columns: var(--company-profile-term-width-pc) minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .c-company-profile__term {
+    display: flex;
+    align-items: center;
+    padding: var(--company-profile-term-padding-pc);
+    border-right: var(--company-profile-row-border-width) solid
+      var(--company-profile-row-border-color);
+  }
+
+  .c-company-profile__desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--company-profile-desc-padding-pc);
+  }
+}

@@ -1,0 +1,41 @@
+<mt:Ignore>
+  アクセスセクション（Google Maps iframe + 住所 + 電車でのアクセス）
+</mt:Ignore>
+
+<section class="c-company-access" id="company-access" aria-labelledby="company-access-heading">
+  <div class="l-container">
+    <header class="c-company-access__header">
+      <mt:SetVar name="section_title_id" value="company-access-heading">
+      <mt:SetVarBlock name="section_title_text">アクセス</mt:SetVarBlock>
+      <mt:Include module="azcom-section-title">
+    </header>
+
+    <div class="c-company-access__map-wrap" aria-label="アクセスマップ">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12963.00766526601!2d139.75125138715822!3d35.6831101!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbbe64aea5%3A0x6151893d5716b962!2zQVotQ09N5Li45ZKM44Ob44O844Or44OH44Kj44Oz44Kw44K544ixIOadseS6rOacrOmDqA!5e0!3m2!1sja!2sjp!4v1775443564767!5m2!1sja!2sjp"
+        width="600"
+        height="450"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+
+    <div class="c-company-access__address">
+      <h3 class="c-company-access__subheading">住所</h3>
+      <p class="c-company-access__text">〒100-0005</p>
+      <p class="c-company-access__text">東京都千代田区丸の内1-8-2（鉄鋼ビルディング5F）</p>
+    </div>
+
+    <div class="c-company-access__train">
+      <h3 class="c-company-access__subheading">電車でのアクセス</h3>
+      <ul class="c-company-access__list">
+        <li>JR東京駅八重洲北口/日本橋口　徒歩約2分</li>
+        <li>地下鉄丸の内駅　徒歩約6分</li>
+        <li>地下鉄日本橋駅A3出口　徒歩約3分</li>
+        <li>地下鉄大手町駅B10出口　直結</li>
+      </ul>
+    </div>
+  </div>
+</section>
