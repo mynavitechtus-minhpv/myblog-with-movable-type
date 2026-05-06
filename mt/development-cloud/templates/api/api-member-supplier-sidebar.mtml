@@ -1,0 +1,33 @@
+<mt:Ignore>
+  Output: supplier/api/member/supplier-sidebar.json
+  Combines ranking, categories and tags for Supplier sidebar.
+
+  sidebar_has_display_target = 0: Supplier blog has no display_target CF.
+  All entries are eligible for ranking without CF-based filtering.
+
+  sidebar_audience uses the corporate eligibility path so that entries
+  without a display_target CF are treated as eligible (non-newsletter +
+  sidebar_has_display_target=0 → is_eligible=1 in azcom-json-sidebar-ranking-entry).
+  This is correct for Supplier which is member-only by design.
+</mt:Ignore>
+<mt:Include module="azcom-member-config">
+<mt:SetVar name="sidebar_section" value="supplier">
+<mt:SetVar name="sidebar_has_display_target" value="0">
+<mt:SetVar name="sidebar_audience" value="corporate">
+<mt:SetVar name="ranking_blog_ids" value="$supplier_blog_id">
+<mt:SetVar name="categories_blog_ids" value="$supplier_blog_id">
+<mt:SetVar name="tags_blog_ids" value="$supplier_blog_id">
+<mt:SetVar name="include_newsletter" value="0">
+<mt:SetVar name="ranking_include_newsletter" value="0">
+<mt:SetVar name="article_query_lastn" value="300">
+{
+  "ranking": [
+<mt:Include module="azcom-json-sidebar-ranking">
+  ],
+  "categories": [
+<mt:Include module="azcom-json-sidebar-categories">
+  ],
+  "tags": [
+<mt:Include module="azcom-json-sidebar-tags">
+  ]
+}

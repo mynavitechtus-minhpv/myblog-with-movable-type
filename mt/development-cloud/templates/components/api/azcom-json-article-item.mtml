@@ -7,31 +7,23 @@
   beforehand to populate cf_thumbnail_url (blank when missing).
 
   Caller variables:
-    item_include_body    "1" to emit "body" (detail endpoints);
-                         "0" (default) skips it to keep list payload small.
-
-  Shape (MT Data API v1):
-    id            number
-    title         string
-    basename      "post_<id>"
-    permalink     absolute URL
-    createdDate   ISO8601
-    categories    string[] (category labels)
-    tags          string[] (tag names)
-    blog          { id: number }
-    thumbnail     string (extension: CustomField URL, "" when missing)
-    excerpt       string
-    body          string (only when item_include_body=1)
+    item_include_body     "1" to emit "body" (detail endpoints);
+                          "0" (default) skips it to keep list payload small.
+    item_categories_full  "1" to emit {label,slug} objects (set via azcom-member-config);
+                          "0" (default) emits label strings (corporate endpoints).
 </mt:Ignore>
 <mt:Unless name="item_include_body">
   <mt:SetVar name="item_include_body" value="0">
+</mt:Unless>
+<mt:Unless name="item_categories_full">
+  <mt:SetVar name="item_categories_full" value="0">
 </mt:Unless>
 "id": <$mt:EntryID$>,
 "title": "<$mt:EntryTitle encode_json="1"$>",
 "basename": "post_<$mt:EntryID$>",
 "permalink": "<$mt:BlogURL$>post_<$mt:EntryID$>/",
 "createdDate": "<$mt:EntryDate format_name="iso8601"$>",
-"categories": [<mt:SetVar name="json_cat_idx" value="0"><mt:EntryCategories><mt:Unless name="json_cat_idx" eq="0">,</mt:Unless>"<$mt:CategoryLabel encode_json="1"$>"<mt:SetVar name="json_cat_idx" op="++"></mt:EntryCategories>],
+"categories": [<mt:SetVar name="json_cat_idx" value="0"><mt:EntryCategories><mt:Unless name="json_cat_idx" eq="0">,</mt:Unless><mt:If name="item_categories_full" eq="1">{"label":"<$mt:CategoryLabel encode_json="1"$>","slug":"<$mt:CategoryBasename encode_json="1"$>"}<mt:Else>"<$mt:CategoryLabel encode_json="1"$>"</mt:If><mt:SetVar name="json_cat_idx" op="++"></mt:EntryCategories>],
 "tags": [<mt:SetVar name="json_tag_idx" value="0"><mt:EntryTags><mt:Unless name="json_tag_idx" eq="0">,</mt:Unless>"<$mt:TagName encode_json="1"$>"<mt:SetVar name="json_tag_idx" op="++"></mt:EntryTags>],
 "blog": { "id": <$mt:BlogID$> },
 "thumbnail": "<$mt:Var name="cf_thumbnail_url" encode_json="1"$>",

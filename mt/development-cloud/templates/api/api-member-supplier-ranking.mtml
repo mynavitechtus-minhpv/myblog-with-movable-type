@@ -1,0 +1,19 @@
+<mt:Ignore>
+  Output: supplier/api/member/supplier-ranking.json
+  Top-5 ranking for Supplier section.
+
+  sidebar_has_display_target = 0: Supplier blog has no display_target CF.
+  All entries are eligible without CF-based filtering.
+</mt:Ignore>
+<mt:Include module="azcom-member-config">
+<mt:SetVar name="sidebar_section" value="supplier">
+<mt:SetVar name="sidebar_has_display_target" value="0">
+<mt:SetVar name="sidebar_audience" value="corporate">
+<mt:SetVar name="ranking_blog_ids" value="$supplier_blog_id">
+<mt:SetVar name="ranking_include_newsletter" value="0">
+<mt:SetVar name="article_query_lastn" value="300">
+{
+  "ranking": [
+<mt:Include module="azcom-json-sidebar-ranking">
+  ]
+}

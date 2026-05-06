@@ -1,0 +1,24 @@
+<mt:Ignore>
+  Output: supplier/api/member/supplier-latest.json
+  Five most recent Supplier entries. Shape: {items: [...]}.
+  No display_target filtering — all entries are member-visible by default.
+</mt:Ignore>
+<mt:Include module="azcom-env-config">
+<mt:Include module="azcom-member-config">
+
+<mt:SetVar name="latest_render_count" value="0">
+<mt:SetVar name="item_include_body" value="0">
+{
+  "items": [
+<mt:Entries blog_ids="$supplier_blog_id" lastn="50" sort_by="authored_on" sort_order="descend">
+  <mt:If name="latest_render_count" lt="5">
+    <mt:SetVar name="cf_display_target" value="">
+    <mt:SetVar name="cf_thumbnail_url" value="">
+    <mt:If name="env_has_cf" eq="1"><mt:Include module="azcom-article-cf-entry"></mt:If>
+    <mt:Unless name="latest_render_count" eq="0">,
+</mt:Unless>{<mt:Include module="azcom-json-article-item">}
+    <mt:SetVar name="latest_render_count" op="++">
+  </mt:If>
+</mt:Entries>
+  ]
+}

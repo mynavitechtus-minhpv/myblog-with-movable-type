@@ -1,0 +1,26 @@
+<mt:Ignore>
+  Output: supplier/api/member/supplier.json
+  All Supplier entries in MT Data API v1-compatible shape
+  ({totalResults, items[]}). No display_target filtering — all entries
+  in the supplier blog are member-visible by default.
+</mt:Ignore>
+<mt:Include module="azcom-member-config">
+
+<mt:SetVar name="member_count" value="0">
+<mt:Entries blog_ids="$supplier_blog_id" lastn="150" sort_by="authored_on" sort_order="descend">
+  <mt:Include module="azcom-article-cf-entry">
+  <mt:SetVar name="member_count" op="++">
+</mt:Entries>
+{
+  "totalResults": <$mt:Var name="member_count"$>,
+  "items": [
+<mt:SetVar name="member_render_count" value="0">
+<mt:SetVar name="item_include_body" value="0">
+<mt:Entries blog_ids="$supplier_blog_id" lastn="150" sort_by="authored_on" sort_order="descend">
+  <mt:Include module="azcom-article-cf-entry">
+  <mt:Unless name="member_render_count" eq="0">,
+</mt:Unless>{<mt:Include module="azcom-json-article-item">}
+  <mt:SetVar name="member_render_count" op="++">
+</mt:Entries>
+  ]
+}
