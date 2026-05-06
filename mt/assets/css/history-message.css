@@ -1,0 +1,182 @@
+/* history-message.css — Component: c-history-message */
+
+:root {
+  --history-message-section-padding-block-pc: calc(var(--space-5xl) + var(--space-xs));
+  --history-message-inner-aspect-w-sp: 375;
+  --history-message-inner-aspect-h-sp: 988;
+  --history-message-inner-aspect-w-pc: 1440;
+  --history-message-inner-aspect-h-pc: 768;
+  --history-message-shadow-stop-mid: 50%;
+  --history-message-shadow-stop-bottom: 78%;
+  --history-message-shadow-height: 76%;
+}
+
+.c-history-message {
+  position: relative;
+  margin-top: var(--space-3xl);
+  background-color: var(--color-white);
+  overflow: hidden;
+}
+
+.c-history-message__inner {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  aspect-ratio: var(--history-message-inner-aspect-w-sp) /
+    var(--history-message-inner-aspect-h-sp);
+  margin: 0;
+  padding-inline: var(--layout-padding-inline-mobile);
+}
+
+.c-history-message__media {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.c-history-message__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: var(--history-message-inner-aspect-w-sp) /
+    var(--history-message-inner-aspect-h-sp);
+  object-fit: cover;
+  object-position: center;
+  opacity: 1;
+}
+
+.c-history-message__shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--history-message-shadow-height);
+  z-index: 2;
+  background: linear-gradient(
+    to bottom,
+    rgb(255 255 255 / 1) 0%,
+    rgb(255 255 255 / 1) calc(var(--history-message-shadow-stop-mid) - 12%),
+    rgb(255 255 255 / 0.88) var(--history-message-shadow-stop-mid),
+    rgb(255 255 255 / 0.66) var(--history-message-shadow-stop-bottom),
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+
+@supports (color: color-mix(in srgb, red 50%, white 50%)) {
+  .c-history-message__shadow {
+    background: linear-gradient(
+      to bottom,
+      color-mix(
+        in srgb,
+        var(--color-white) 100%,
+        transparent
+      ) 0%,
+      color-mix(
+        in srgb,
+        var(--color-white) 100%,
+        transparent
+      ) calc(var(--history-message-shadow-stop-mid) - 12%),
+      color-mix(
+        in srgb,
+        var(--color-white) 88%,
+        transparent
+      ) var(--history-message-shadow-stop-mid),
+      color-mix(
+        in srgb,
+        var(--color-white) 66%,
+        transparent
+      ) var(--history-message-shadow-stop-bottom),
+      transparent 100%
+    );
+  }
+}
+
+.c-history-message__text {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: var(--layout-prose);
+  margin: 0 auto;
+  padding-block: var(--space-2xl);
+  text-align: center;
+}
+
+.c-history-message__title {
+  margin: 0 0 var(--space-lg);
+  font-family: var(--font-main);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: calc(var(--font-size-lg) * var(--line-height-nav));
+  letter-spacing: 0;
+  text-align: center;
+  color: var(--color-text-primary);
+}
+
+.c-history-message__lead {
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--space-lg);
+  letter-spacing: 0;
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+
+
+
+@media (min-width: 768px) {
+  .c-history-message__shadow {
+    background: linear-gradient(
+      to bottom,
+      rgb(255 255 255 / 1) 0%,
+      rgb(255 255 255 / 0.96) calc(var(--history-message-shadow-stop-mid) - 12%),
+      rgb(255 255 255 / 0.78) var(--history-message-shadow-stop-mid),
+      rgb(255 255 255 / 0.5) var(--history-message-shadow-stop-bottom),
+      transparent 100%
+    );
+  }
+
+  .c-history-message {
+    margin-top: var(--space-6xl);
+  }
+
+  .c-history-message__inner {
+    aspect-ratio: var(--history-message-inner-aspect-w-pc) /
+      var(--history-message-inner-aspect-h-pc);
+    padding-inline: var(--layout-padding-inline);
+  }
+
+  .c-history-message__title {
+    font-size: var(--font-size-xl);
+    line-height: calc(var(--font-size-xl) * var(--line-height-body-relaxed));
+  }
+
+  .c-history-message__img {
+    aspect-ratio: var(--history-message-inner-aspect-w-pc) /
+      var(--history-message-inner-aspect-h-pc);
+  }
+}
+
+@supports (color: color-mix(in srgb, red 50%, white 50%)) {
+  @media (min-width: 768px) {
+    .c-history-message__shadow {
+      background: linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--color-white) 100%, transparent) 0%,
+        color-mix(in srgb, var(--color-white) 96%, transparent)
+          calc(var(--history-message-shadow-stop-mid) - 12%),
+        color-mix(in srgb, var(--color-white) 78%, transparent)
+          var(--history-message-shadow-stop-mid),
+        color-mix(in srgb, var(--color-white) 50%, transparent)
+          var(--history-message-shadow-stop-bottom),
+        transparent 100%
+      );
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<mt:Ignore>
+  History timeline — one year block (c-history-timeline__item).
+  Set before include:
+    history_timeline_year_slug — e.g. "2015" (for id, no "年")
+    history_timeline_year — e.g. "2015年"
+    history_timeline_body — SetVarBlock of rows: .c-history-timeline__row markup
+</mt:Ignore>
+
+<div class="c-history-timeline__item">
+  <div class="c-history-timeline__grid">
+    <div class="c-history-timeline__year" id="history-year-<$mt:Var name="history_timeline_year_slug" encode_html="1"$>"><$mt:Var name="history_timeline_year" encode_html="1"$></div>
+    <div class="c-history-timeline__body">
+<$mt:Var name="history_timeline_body"$>
+    </div>
+  </div>
+  <div class="c-history-timeline__divider" aria-hidden="true"></div>
+</div>

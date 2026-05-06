@@ -1,0 +1,163 @@
+/* history-timeline.css — Component: c-history-timeline */
+
+:root {
+  --history-timeline-year-col-width: 160px;
+  --history-timeline-month-min-width-pc: 37px;
+  --history-timeline-divider-padding-top-pc: 56px;
+  --history-timeline-divider-padding-bottom-pc: 56px;
+  --history-timeline-divider-accent-width-sp: 160px;
+  --history-timeline-divider-accent-width-pc: 160px;
+  --history-timeline-divider-accent-thickness: 2px;
+  --history-timeline-divider-line-thickness: 1px;
+  --history-timeline-divider-line-color: #ededed;
+
+  --history-timeline-year-line-height: calc(var(--font-size-xl) * var(--line-height-body-relaxed));
+  --history-timeline-year-letter-spacing: 0;
+}
+
+.c-history-timeline {
+  padding-top: var(--space-5xl);
+  padding-bottom: var(--space-3xl);
+}
+
+.c-history-timeline .l-container > .c-section__title {
+  margin-bottom: var(--space-2xl);
+}
+
+.c-history-timeline__items {
+  display: flex;
+  flex-direction: column;
+}
+
+.c-history-timeline__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-3xl);
+}
+
+.c-history-timeline__year {
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--history-timeline-year-line-height);
+  letter-spacing: var(--history-timeline-year-letter-spacing);
+  color: var(--color-text-primary);
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+}
+
+.c-history-timeline__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  min-width: 0;
+}
+
+.c-history-timeline__row {
+  display: grid;
+  grid-template-columns: var(--history-timeline-month-min-width-pc) minmax(0, 1fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.c-history-timeline__month {
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--space-lg);
+  letter-spacing: 0;
+  text-align: right;
+  color: var(--color-text-primary);
+}
+
+.c-history-timeline__text {
+  min-width: 0;
+}
+
+.c-history-timeline__list {
+  margin: 0;
+  padding-left: var(--space-lg);
+  font-family: var(--font-main);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--space-lg);
+  letter-spacing: 0;
+  color: var(--color-text-primary);
+  list-style-type: disc;
+}
+
+.c-history-timeline__list li + li {
+  margin-top: var(--space-sm);
+}
+
+.c-history-timeline__list li::marker {
+  font-family: var(--font-main);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  line-height: var(--space-lg);
+  letter-spacing: 0;
+  color: var(--color-text-primary);
+}
+
+.c-history-timeline__divider {
+  position: relative;
+  width: 100%;
+  border-top: var(--history-timeline-divider-line-thickness) solid
+    var(--history-timeline-divider-line-color);
+  left: 0;
+}
+
+.c-history-timeline__divider::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(-1 * var(--history-timeline-divider-line-thickness));
+  width: var(--history-timeline-divider-accent-width-sp);
+  border-top: var(--history-timeline-divider-accent-thickness) solid
+    var(--color-primary);
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .c-history-timeline {
+    padding-top: var(--space-5xl);
+    padding-bottom: var(--space-6xl);
+  }
+
+  .c-history-timeline .l-container > .c-section__title {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .c-history-timeline__year {
+    justify-self: start;
+    align-self: center;
+    padding-inline: var(--space-md);
+    color: var(--color-text-primary);
+    text-align: center;
+  }
+
+  .c-history-timeline__grid {
+    grid-template-columns: var(--history-timeline-year-col-width) minmax(0, 1fr);
+    gap: var(--space-3xl);
+    align-items: center;
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .c-history-timeline__body {
+    gap: var(--space-lg);
+  }
+
+  .c-history-timeline__row {
+    gap: var(--space-lg);
+  }
+
+  .c-history-timeline__divider::before {
+    width: var(--history-timeline-divider-accent-width-pc);
+  }
+}

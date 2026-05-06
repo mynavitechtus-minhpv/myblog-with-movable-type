@@ -1,0 +1,5 @@
+/* history.css — 沿革ページ shell（.p-history のみ。コンポーネントは history-timeline.css / history-message.css） */
+
+.p-history {
+  padding-block: 0;
+}
