@@ -4,12 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <mt:Include module="azcom-env-config">
-
-    <mt:Ignore>── Site root path for API client ──</mt:Ignore>
     <meta name="site-root" content="<$mt:BlogRelativeURL$>">
 
-    <mt:SetVar name="cf_meta_description" value="">
+    <mt:Include module="azcom-env-config">
     <mt:If name="env_has_cf" eq="1">
       <mt:Include module="azcom-article-cf-entry">
     </mt:If>
@@ -40,7 +37,7 @@
 <body>
     <mt:Include module="azcom-header">
 
-    <main class="p-news-detail p-article-detail" id="main">
+    <main class="p-article-detail" id="main">
 
         <mt:SetVarBlock name="breadcrumb_lv1_label">トップ</mt:SetVarBlock>
         <mt:SetVarBlock name="breadcrumb_lv1_url"><mt:Include module="azcom-site-root-path"></mt:SetVarBlock>
@@ -50,7 +47,7 @@
         <mt:SetVar name="breadcrumb_show_jsonld" value="1">
         <mt:Include module="azcom-breadcrumb">
 
-        <mt:SetVar name="subpage_hero_bg" value="assets/img/sub-img-004.png">
+        <mt:SetVar name="subpage_hero_bg" value="sub-img-001.png">
         <mt:SetVarBlock name="subpage_hero_title">支援メニュー</mt:SetVarBlock>
         <mt:Include module="azcom-subpage-hero">
 
@@ -83,14 +80,12 @@
                         <$mt:EntryMore$>
                     </div>
 
-                    <mt:Ignore>── Prev/Next (client-side, reuses news-list.json filter) ──</mt:Ignore>
                     <mt:SetVar name="article_prev_next_endpoint" value="api/support-list.json">
                     <mt:Include module="azcom-article-prev-next-shell">
 
                 </article>
 
                 <div class="p-article-detail__sidebar">
-                    <mt:Ignore>── Sidebar (client-side rendering) ──</mt:Ignore>
                     <mt:SetVar name="article_sidebar_endpoint" value="api/support-sidebar.json">
                     <mt:Include module="azcom-article-sidebar-shell">
                 </div>

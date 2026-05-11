@@ -4,17 +4,13 @@
   ({totalResults, items[]}). Two-pass so totalResults reflects the
   post-filter count; pagination + tag/category filtering run client-side.
 
-  Dev environment: include azcom-article-cf-entry only when env_has_cf=1.
 </mt:Ignore>
-<mt:Include module="azcom-env-config">
 <mt:SetVar name="article_count" value="0">
 
 <mt:Entries lastn="150" sort_by="authored_on" sort_order="descend">
   <mt:SetVar name="cf_display_target" value="">
   <mt:SetVar name="cf_thumbnail_url" value="">
-  <mt:If name="env_has_cf" eq="1">
-    <mt:Include module="azcom-article-cf-entry">
-  </mt:If>
+  <mt:Include module="azcom-article-cf-entry">
 
   <mt:SetVar name="is_corp_target" value="0">
   <mt:If name="cf_display_target" eq="corporate"><mt:SetVar name="is_corp_target" value="1"></mt:If>
@@ -33,9 +29,7 @@
 <mt:Entries lastn="150" sort_by="authored_on" sort_order="descend">
   <mt:SetVar name="cf_display_target" value="">
   <mt:SetVar name="cf_thumbnail_url" value="">
-  <mt:If name="env_has_cf" eq="1">
-    <mt:Include module="azcom-article-cf-entry">
-  </mt:If>
+  <mt:Include module="azcom-article-cf-entry">
 
   <mt:SetVar name="is_corp_target" value="0">
   <mt:If name="cf_display_target" eq="corporate"><mt:SetVar name="is_corp_target" value="1"></mt:If>

@@ -2,6 +2,9 @@
   Child categories only (skip top-level group nodes). Outputs JSON array
   items only — caller wraps with brackets.
 
+  Uses mt:TopLevelCategories + mt:SubCategories to iterate only children.
+  mt:CategoryParentCategory is not available in MT 8.8.2.
+
   Optional caller vars:
     include_newsletter   "0" (default) excludes azcom-newsletter (corporate).
                          "1" keeps it (member-site).
@@ -13,8 +16,8 @@
 </mt:Unless>
 <mt:SetVar name="cat_count" value="0">
 <mt:If name="categories_blog_ids">
-  <mt:Categories blog_ids="$categories_blog_ids">
-    <mt:If tag="CategoryParentCategory">
+  <mt:TopLevelCategories blog_ids="$categories_blog_ids">
+    <mt:SubCategories>
       <mt:SetVar name="cat_keep" value="1">
       <mt:If name="include_newsletter" eq="0">
         <mt:If tag="CategoryBasename" eq="azcom-newsletter">
@@ -32,11 +35,11 @@
         }
         <mt:SetVar name="cat_count" op="++">
       </mt:If>
-    </mt:If>
-  </mt:Categories>
+    </mt:SubCategories>
+  </mt:TopLevelCategories>
 <mt:Else>
-  <mt:Categories>
-    <mt:If tag="CategoryParentCategory">
+  <mt:TopLevelCategories>
+    <mt:SubCategories>
       <mt:SetVar name="cat_keep" value="1">
       <mt:If name="include_newsletter" eq="0">
         <mt:If tag="CategoryBasename" eq="azcom-newsletter">
@@ -54,6 +57,6 @@
         }
         <mt:SetVar name="cat_count" op="++">
       </mt:If>
-    </mt:If>
-  </mt:Categories>
+    </mt:SubCategories>
+  </mt:TopLevelCategories>
 </mt:If>

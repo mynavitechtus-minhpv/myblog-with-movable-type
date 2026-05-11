@@ -3,29 +3,26 @@
   All Supplier entries in MT Data API v1-compatible shape
   ({totalResults, items[]}). No display_target filtering — all entries
   in the supplier blog are member-visible by default.
+
+  Single-pass: items rendered into a block variable so totalResults
+  is counted during render — avoids a redundant second DB query.
+  (Support/Activity need two passes because they filter by display_target;
+  Supplier has no such filter so one pass is sufficient.)
 </mt:Ignore>
 <mt:Include module="azcom-env-config">
 <mt:Include module="azcom-member-config">
 
 <mt:SetVar name="member_count" value="0">
-<mt:Entries blog_ids="$supplier_blog_id" lastn="150" sort_by="authored_on" sort_order="descend">
+<mt:SetVar name="item_include_body" value="0">
+<mt:SetVarBlock name="items_json"><mt:Entries blog_ids="$supplier_blog_id" lastn="150" sort_by="authored_on" sort_order="descend">
   <mt:SetVar name="cf_display_target" value="">
   <mt:SetVar name="cf_thumbnail_url" value="">
   <mt:If name="env_has_cf" eq="1"><mt:Include module="azcom-article-cf-entry"></mt:If>
+  <mt:Unless name="member_count" eq="0">,
+</mt:Unless>{<mt:Include module="azcom-json-article-item">}
   <mt:SetVar name="member_count" op="++">
-</mt:Entries>
+</mt:Entries></mt:SetVarBlock>
 {
   "totalResults": <$mt:Var name="member_count"$>,
-  "items": [
-<mt:SetVar name="member_render_count" value="0">
-<mt:SetVar name="item_include_body" value="0">
-<mt:Entries blog_ids="$supplier_blog_id" lastn="150" sort_by="authored_on" sort_order="descend">
-  <mt:SetVar name="cf_display_target" value="">
-  <mt:SetVar name="cf_thumbnail_url" value="">
-  <mt:If name="env_has_cf" eq="1"><mt:Include module="azcom-article-cf-entry"></mt:If>
-  <mt:Unless name="member_render_count" eq="0">,
-</mt:Unless>{<mt:Include module="azcom-json-article-item">}
-  <mt:SetVar name="member_render_count" op="++">
-</mt:Entries>
-  ]
+  "items": [<$mt:Var name="items_json"$>]
 }

@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <mt:Include module="azcom-env-config">
-
     <mt:Ignore>── Site root path for API client ──</mt:Ignore>
     <meta name="site-root" content="<$mt:BlogRelativeURL$>">
 
     <mt:SetVar name="cf_meta_description" value="">
-    <mt:If name="env_has_cf" eq="1">
-      <mt:Include module="azcom-article-cf-entry">
-    </mt:If>
+    <mt:Include module="azcom-article-cf-entry">
     <mt:SetVarBlock name="meta_title"><$mt:EntryTitle remove_html="1" trim_to="20+…"$> | AZ-COMネットワーク</mt:SetVarBlock>
     <mt:SetVarBlock name="meta_description"><mt:If name="cf_meta_description" ne=""><$mt:Var name="cf_meta_description"$><mt:Else><$mt:EntryExcerpt remove_html="1"$></mt:If></mt:SetVarBlock>
     <mt:SetVar name="meta_og_image" value="assets/img/og-image_az-com-network.png">
@@ -40,7 +36,7 @@
 <body>
     <mt:Include module="azcom-header">
 
-    <main class="p-news-detail p-article-detail" id="main">
+    <main class="p-article-detail" id="main">
 
         <mt:SetVarBlock name="breadcrumb_lv1_label">トップ</mt:SetVarBlock>
         <mt:SetVarBlock name="breadcrumb_lv1_url"><mt:Include module="azcom-site-root-path"></mt:SetVarBlock>
@@ -50,7 +46,7 @@
         <mt:SetVar name="breadcrumb_show_jsonld" value="1">
         <mt:Include module="azcom-breadcrumb">
 
-        <mt:SetVar name="subpage_hero_bg" value="assets/img/sub-img-004.png">
+        <mt:SetVar name="subpage_hero_bg" value="sub-img-004.png">
         <mt:SetVarBlock name="subpage_hero_title">活動報告</mt:SetVarBlock>
         <mt:Include module="azcom-subpage-hero">
 

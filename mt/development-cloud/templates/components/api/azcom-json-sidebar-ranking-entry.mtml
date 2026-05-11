@@ -1,11 +1,9 @@
 <mt:Ignore>
   Per-entry body for azcom-json-sidebar-ranking. Must run inside an
   MT:Entries context. Emits a complete JSON object wrapped in braces
-  (this module is the per-iteration JSON node); item shape delegates to
-  azcom-json-article-item (list mode) with "rank" prefix.
-
-  Dev environment includes azcom-article-cf-entry only when env_has_cf=1
-  (local dev typically lacks CustomFields).
+  because this module is itself the per-iteration JSON node; item
+  shape delegates to azcom-json-article-item (list mode) and is
+  prefixed with "rank".
 
   Caller sets:
     rank_phase                  "1" pin pass (requires cf_ranking_enabled=1)
@@ -19,12 +17,7 @@
   <mt:SetVar name="ranking_include_newsletter" value="1">
 </mt:Unless>
 <mt:If name="rank_count" lt="5">
-  <mt:SetVar name="cf_display_target" value="">
-  <mt:SetVar name="cf_thumbnail_url" value="">
-  <mt:SetVar name="cf_ranking_enabled" value="">
-  <mt:If name="env_has_cf" eq="1">
-    <mt:Include module="azcom-article-cf-entry">
-  </mt:If>
+  <mt:Include module="azcom-article-cf-entry">
 
   <mt:SetVar name="is_newsletter" value="0">
   <mt:EntryCategories>
@@ -71,23 +64,26 @@
       <mt:SetVar name="rank_pass_ok" value="1">
     </mt:If>
   <mt:Else>
-    <mt:SetVarBlock name="entry_id_check">,<$mt:EntryID$>,</mt:SetVarBlock>
-    <mt:Unless name="rank_ids_rendered" like="$entry_id_check">
-      <mt:SetVar name="rank_pass_ok" value="1">
+    <mt:Unless name="cf_ranking_enabled" eq="1">
+      <mt:SetVarBlock name="entry_id_check">*,<$mt:EntryID$>,*</mt:SetVarBlock>
+      <mt:Unless name="rank_ids_rendered" like="$entry_id_check">
+        <mt:SetVar name="rank_pass_ok" value="1">
+      </mt:Unless>
     </mt:Unless>
   </mt:If>
 
   <mt:If name="rank_pass_ok" eq="1">
     <mt:If name="is_eligible" eq="1">
       <mt:Unless name="rank_count" eq="0">,</mt:Unless>
-      <mt:SetVar name="rank_count" op="++">
+      <mt:SetVar name="rank_count" op="++" global="1">
       <mt:SetVar name="item_include_body" value="0">
       {
         "rank": <$mt:Var name="rank_count"$>,
         <mt:Include module="azcom-json-article-item">
       }
       <mt:If name="rank_phase" eq="1">
-        <mt:SetVar name="rank_ids_rendered" value="$rank_ids_rendered<$mt:EntryID$>,">
+        <mt:SetVarBlock name="tmp_rank_append"><$mt:EntryID$>,</mt:SetVarBlock>
+        <mt:SetVar name="rank_ids_rendered" value="$rank_ids_rendered$tmp_rank_append" global="1">
       </mt:If>
     </mt:If>
   </mt:If>

@@ -2,9 +2,11 @@
   Output: /api/support-sidebar.json
   Aggregates ranking, categories and tags for Support section.
 </mt:Ignore>
-<mt:Include module="azcom-env-config">
+<mt:Include module="azcom-member-config">
+<mt:SetVar name="item_categories_full" value="0">
 <mt:SetVar name="sidebar_section" value="support">
 <mt:SetVar name="sidebar_has_display_target" value="1">
+<mt:SetVar name="categories_blog_ids" value="$support_blog_id">
 <mt:SetVar name="article_query_lastn" value="300">
 <mt:SetVar name="ranking_include_newsletter" value="0">
 <mt:SetVar name="include_newsletter" value="0">

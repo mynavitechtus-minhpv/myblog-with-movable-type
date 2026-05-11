@@ -5,5 +5,8 @@
 </mt:Ignore>
 <mt:SetVarBlock name="cf_display_target"><$mt:EntryDataDisplayTarget$></mt:SetVarBlock>
 <mt:SetVarBlock name="cf_ranking_enabled"><$mt:EntryDataRankingEnabled$></mt:SetVarBlock>
-<mt:SetVarBlock name="cf_thumbnail_url"><$mt:EntryDataThumbnail asset_url="1"$></mt:SetVarBlock>
+<mt:SetVar name="cf_thumbnail_url" value="">
+<mt:EntryAssets field="Thumbnail" limit="1">
+  <mt:SetVarBlock name="cf_thumbnail_url"><mt:AssetURL></mt:SetVarBlock>
+</mt:EntryAssets>
 <mt:SetVarBlock name="cf_meta_description"><$mt:EntryDataMetaDescription$></mt:SetVarBlock>

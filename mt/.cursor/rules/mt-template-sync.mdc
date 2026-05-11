@@ -64,6 +64,21 @@ those four files unless the user explicitly asks to unify them.
 If you change such a file, explicitly call out in the response that values
 were preserved per environment.
 
+### Dev-only guard: azcom-json-sidebar-ranking-entry.mtml
+
+`templates/components/api/azcom-json-sidebar-ranking-entry.mtml` is also
+**env-specific** and intentionally differs between dev and cloud/corporate:
+
+| Path | Behavior |
+|---|---|
+| `development-dev` | Guards CF include with `env_has_cf` check; if `env_has_cf=0` sets CF vars to `""` and falls back to making all entries eligible (for local testing without CF plugin). Includes `azcom-env-config` lazily inside the loop via `env_has_cf_initialized` flag. |
+| `development-cloud` / `azcom-corporate` | Calls `<mt:Include module="azcom-article-cf-entry">` directly (no guard). Eligibility uses only member/corporate CF-based checks — no `env_has_cf=0` fallback branch. |
+
+**Rule:** On cloud, CustomFields are always available. Do NOT add `env_has_cf`
+guards to the cloud/corporate copy. Keep the fallback logic only in the dev copy.
+When editing this file, update dev and cloud/corporate separately — never
+blanket-mirror between them.
+
 ## Asset Sync (CSS / JS) — separate rule
 
 `assets/**` (CSS/JS) sync rules live in `mt-css-implementation.mdc`. This rule

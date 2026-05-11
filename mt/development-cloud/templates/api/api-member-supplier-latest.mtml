@@ -2,6 +2,10 @@
   Output: supplier/api/member/supplier-latest.json
   Five most recent Supplier entries. Shape: {items: [...]}.
   No display_target filtering — all entries are member-visible by default.
+
+  lastn="5" is exact: no filter means no buffer needed.
+  (Support/Activity use lastn=50 as buffer in case display_target
+  filters entries out; Supplier needs no such buffer.)
 </mt:Ignore>
 <mt:Include module="azcom-member-config">
 
@@ -9,13 +13,11 @@
 <mt:SetVar name="item_include_body" value="0">
 {
   "items": [
-<mt:Entries blog_ids="$supplier_blog_id" lastn="50" sort_by="authored_on" sort_order="descend">
-  <mt:If name="latest_render_count" lt="5">
-    <mt:Include module="azcom-article-cf-entry">
-    <mt:Unless name="latest_render_count" eq="0">,
+<mt:Entries blog_ids="$supplier_blog_id" lastn="5" sort_by="authored_on" sort_order="descend">
+  <mt:Include module="azcom-article-cf-entry">
+  <mt:Unless name="latest_render_count" eq="0">,
 </mt:Unless>{<mt:Include module="azcom-json-article-item">}
-    <mt:SetVar name="latest_render_count" op="++">
-  </mt:If>
+  <mt:SetVar name="latest_render_count" op="++">
 </mt:Entries>
   ]
 }

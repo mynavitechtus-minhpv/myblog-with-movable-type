@@ -19,10 +19,10 @@
   <mt:SetVar name="sidebar_audience" value="corporate">
 </mt:Unless>
 
-<mt:SetVar name="rank_count" value="0">
-<mt:SetVar name="rank_ids_rendered" value=",">
+<mt:SetVar name="rank_count" value="0" global="1">
+<mt:SetVar name="rank_ids_rendered" value="," global="1">
 
-<mt:SetVar name="rank_phase" value="1">
+<mt:SetVar name="rank_phase" value="1" global="1">
 <mt:If name="ranking_blog_ids">
   <mt:Entries blog_ids="$ranking_blog_ids" lastn="$article_query_lastn" sort_by="authored_on" sort_order="descend">
     <mt:Include module="azcom-json-sidebar-ranking-entry">
@@ -34,7 +34,7 @@
 </mt:If>
 
 <mt:If name="rank_count" lt="5">
-  <mt:SetVar name="rank_phase" value="2">
+  <mt:SetVar name="rank_phase" value="2" global="1">
   <mt:If name="ranking_blog_ids">
     <mt:Entries blog_ids="$ranking_blog_ids" lastn="$article_query_lastn" sort_by="authored_on" sort_order="descend">
       <mt:Include module="azcom-json-sidebar-ranking-entry">

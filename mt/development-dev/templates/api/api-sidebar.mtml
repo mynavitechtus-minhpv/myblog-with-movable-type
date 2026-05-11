@@ -1,13 +1,13 @@
 <mt:Ignore>
-  JSON API: Sidebar data (ranking, categories, tags)
-  MT Admin: Index Template
   Output: /api/news-sidebar.json
-  
-  No pagination. Global sidebar state.
+  Aggregates ranking, categories and tags into one payload consumed by
+  article-sidebar.js.
 </mt:Ignore>
-<mt:Include module="azcom-env-config">
+<mt:Include module="azcom-member-config">
+<mt:SetVar name="item_categories_full" value="0">
 <mt:SetVar name="sidebar_section" value="news">
 <mt:SetVar name="sidebar_has_display_target" value="1">
+<mt:SetVar name="categories_blog_ids" value="$news_blog_id">
 <mt:SetVar name="article_query_lastn" value="300">
 {
   "ranking": [
