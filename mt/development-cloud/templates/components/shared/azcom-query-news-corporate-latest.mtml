@@ -14,6 +14,7 @@
   Expected input variable (set by caller before include):
   - news_query_limit: maximum number of news items to render (for example: 5).
   - news_query_tag: optional MT Entry tag name to filter (empty = no tag filter).
+  - news_query_date_outside_link (optional): "1" で日付を <a> の外に出すマークアップ（例: .c-news-list__item--date-outside-link + component CSS）
 
   Output contract:
   - HTML list structure used by .c-news-list styles.
@@ -34,10 +35,8 @@
     <mt:Entries lastn="300" sort_by="$news_query_sort_by" sort_order="$news_query_sort_order">
       <mt:If name="news_corp_count" lt="$news_query_limit">
 
-        <mt:SetVar name="cf_display_target" value="">
-        <mt:If name="env_has_cf" eq="1">
-          <mt:Include module="azcom-article-cf-entry">
-        </mt:If>
+		<mt:SetVar name="cf_display_target" value="">
+		<mt:Include module="azcom-article-cf-entry">
 
         <mt:SetVar name="is_newsletter" value="0">
         <mt:EntryCategories>
@@ -75,10 +74,16 @@
 
             <mt:If name="news_corp_count" eq="0"><ul class="c-news-list"></mt:If>
 
-            <li class="c-news-list__item">
+            <li class="c-news-list__item<mt:If name="news_query_date_outside_link" eq="1"> c-news-list__item--date-outside-link</mt:If>">
+              <mt:If name="news_query_date_outside_link" eq="1">
+                <time class="c-news-list__date" datetime="<$mt:EntryDate format_name="iso8601"$>"><$mt:EntryDate format="%Y.%m.%d"$></time>
+              </mt:If>
+
               <a class="c-news-list__link" href="<mt:Include module="azcom-site-root-path">news/post_<$mt:EntryID encode_html="1"$>/">
                 <span class="c-news-list__body">
-                  <time class="c-news-list__date" datetime="<$mt:EntryDate format_name="iso8601"$>"><$mt:EntryDate format="%Y.%m.%d"$></time>
+                  <mt:If name="news_query_date_outside_link" ne="1">
+                    <time class="c-news-list__date" datetime="<$mt:EntryDate format_name="iso8601"$>"><$mt:EntryDate format="%Y.%m.%d"$></time>
+                  </mt:If>
                   <span class="c-news-list__text"><$mt:EntryTitle remove_html="1" encode_html="1"$></span>
                 </span>
                 <span class="c-news-list__icon" aria-hidden="true">
